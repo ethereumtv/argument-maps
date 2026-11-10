@@ -85,12 +85,16 @@ export function mapProblems(map) {
         if (!text(line.text)) fail(`${where}#${i}`, 'text is required')
         else if (/\.\.\.|\u2026/.test(line.text))
           fail(`${where}#${i}`, 'no ellipses: a cut passage is two lines')
+        // ETV-915: a written line shows its exact passage; no separate clean text.
+        if (line.clean != null && line.clean !== line.text)
+          fail(`${where}#${i}`, 'a written line has text only (clean must not differ)')
       })
     } else fail(where, 'kind must be quote, written, decision or status')
     // ETV-915: a point suggested through the public repo credits its contributor.
     if (stop.contributor != null) {
-      if (!text(stop.contributor.name)) fail(where, 'contributor needs a name')
-      if (stop.contributor.url != null && !/^https:\/\//.test(stop.contributor.url))
+      if (typeof stop.contributor !== 'object' || !text(stop.contributor.name))
+        fail(where, 'contributor needs a name')
+      else if (stop.contributor.url != null && !/^https:\/\//.test(stop.contributor.url))
         fail(where, 'contributor url must be https')
     }
   }
