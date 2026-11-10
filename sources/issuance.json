@@ -1,0 +1,575 @@
+{
+  "map": "issuance",
+  "sources": [
+    {
+      "url": "https://notes.ethereum.org/@anderselowsson/MinimumViableIssuance",
+      "read_at": "2026-11-06 19:11:35.567195+00",
+      "read_as": "page text",
+      "sha256": "5175ca66d32b7d30a00362128cf41e032f5627c29b643ddf4472e682b3476731",
+      "quoted_by": [
+        "w-aelowsson-mvi-2023"
+      ],
+      "passages": [
+        "Staking should secure Ethereum, but not become an inflation tax, degrading utility and liquidity while generating monopolistic hazard.",
+        "If the protocol does not operate under MVI, but at a higher deposit ratio, one or a few LSTs may overtake as money in the Ethereum ecosystem, embedding themselves across every layer and application."
+      ]
+    },
+    {
+      "url": "https://hackmd.io/@sacha/thoughts-on-mvi",
+      "read_at": "2026-11-06 19:11:37.081353+00",
+      "read_as": "page text",
+      "sha256": "47d3800f1a739d1c8f9d9485bbf198bd2ade020c73aa2a803f11f20f99bfb9c2",
+      "quoted_by": [
+        "w-sacha-mvi-2023",
+        "w-sacha-mvi-defi-2023"
+      ],
+      "passages": [
+        "Practically speaking, under MVI, lower rewards will mean greater (if not exclusive) competition on margins. Economies of scale on cost will, in all likelihood, end up winning out, and bigger players will be in a position to either price out or outlast smaller ones.",
+        "making staking less attractive will have important downstream consequences on the rest of Ethereum DeFi -- in particular it's likely to play in the favour of USD centric DeFi"
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/endgame-staking-economics-a-case-for-targeting/18751/1",
+      "read_at": "2026-11-10 16:04:19.252383+00",
+      "read_as": "forum raw text",
+      "sha256": "e9c0d0b27ffafd2536e9f976f090df8f326ef44b3f3919074e4c2286dd95bc7e",
+      "quoted_by": [
+        "w-er18751-adietrichs-casparschwa-2024"
+      ],
+      "passages": [
+        "In short, the current issuance policy allows for all ETH to be eventually staked. This arguably over-secures the protocol and comes with negative externalities. We elaborate why the endgame of staking economics should target a staking ratio range instead. The intention is to provide enough security for the protocol, while limiting the negative externalities of too much stake in the system."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/electra-issuance-curve-adjustment-proposal/18825/1",
+      "read_at": "2026-11-10 16:04:20.640255+00",
+      "read_as": "forum raw text",
+      "sha256": "312c0c27dcd51c7c4abcae60007069bb6640b14044fac873f7e7307c213fade5",
+      "quoted_by": [
+        "w-mg18825-adietrichs-caspar-2024"
+      ],
+      "passages": [
+        "Thus, Ethereum will remain under current issuance policy for at least 9-12 months, and without a change included in Electra, it will be ~2 years."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/18825/3",
+      "read_at": "2026-11-06 19:13:17.445648+00",
+      "read_as": "forum raw text",
+      "sha256": "e8d43787cb4cd88663cf15cdfa2611fca53ef6b332645e6ed70982459df3e36c",
+      "quoted_by": [
+        "w-mg18825-artofkot"
+      ],
+      "passages": [
+        "If the staking ratio 1/4 is targeted (~30m ETH), we arrive at the very much possible scenario of Coinbase controlling 51% of staked ETH.",
+        "I think that the premise of the staking endgame (capping and targeting 1/4 level) is dangerous and may allow 51% attacks in the future, in the view of very strong institutional flows into staking market."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/18751/3",
+      "read_at": "2026-11-06 19:13:11.985223+00",
+      "read_as": "forum raw text",
+      "sha256": "8cdbd5017043091aae13de783316cf5c712d4725275a6218be271b188d1578c3",
+      "quoted_by": [
+        "w-er18751-fradamt"
+      ],
+      "passages": [
+        "Solo staking costs are mostly upfront, and current solo stakers have already paid them. It seems to me that one could reasonably expect many of them to stick around."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/18825/8",
+      "read_at": "2026-11-06 19:13:19.927437+00",
+      "read_as": "forum raw text",
+      "sha256": "ed0440a68f52346ad7e34679291ad0415b5c109fa60305c0bfc4e9b654356741",
+      "quoted_by": [
+        "w-mg18825-sharp"
+      ],
+      "passages": [
+        "ETH holders will always seek yield, adjusting Ethereum's issuance curve with the intent of decreasing the % of staked ETH will likely push ETH holders further up the risk curve leading to higher restaking concentration on Eigenlayer."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/18825/11",
+      "read_at": "2026-11-06 19:13:26.967537+00",
+      "read_as": "forum raw text",
+      "sha256": "97d0b1fea57cacac681a8c362b24ed6e0f87c6149ca45646ac42a355c5ce9c32",
+      "quoted_by": [
+        "w-mg18825-barnabe"
+      ],
+      "passages": [
+        "A new equilibrium would be found, where the share of Coinbase in the staking set would likely not simply be their custodied amount at stake under the previous configuration with non-targeting issuance curve (so 15m staked, say) divided by the target (30m).",
+        "I would expect the net effect to be a reduction of Coinbase's nominal amount of ETH at stake."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/18825/10",
+      "read_at": "2026-11-06 19:13:29.473937+00",
+      "read_as": "forum raw text",
+      "sha256": "79fb6ad98dc40940e0a791d7dcd802a045f4686b8f81487d685b7cb3b9a43b44",
+      "quoted_by": [
+        "w-mg18825-oisin"
+      ],
+      "passages": [
+        "I'm firmly opposed to MVI as a direction, and think the impact of this change would be very negative for the health of the Ethereum network.",
+        "As a counterproposal, if the problem to be solved is LSTs becoming the base asset for the network, I think we should fix the primary downside of native staking, by allowing a mechanism for someone to exit their stake at finality for an escalating basefee."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/18751/15",
+      "read_at": "2026-11-06 19:13:24.06456+00",
+      "read_as": "forum raw text",
+      "sha256": "ce225037fbfbb4d089c83bd19b19b3a47bae5a29aff9da441ec90e9f8a66b93a",
+      "quoted_by": [
+        "w-er18751-draco"
+      ],
+      "passages": [
+        "The dominance of SSPs (and in turn, the staking ratio issue) is a result of average ETH holders making rational economic decisions. The threat posed by SSP dominance is not a new topic and yet we have make little progress solving it. And I'd argue the reason we found ourselves in this situation because we have not been willing to address the structural advantages of SSPs over solo stakers In the end, it's an incentive problem. And it is best (can only be) fixed with incentives"
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/18751/9",
+      "read_at": "2026-11-06 19:13:22.788259+00",
+      "read_as": "forum raw text",
+      "sha256": "5e50132809baa3923314d1671687726866674a6ea1dc6dd586296b35e74533e1",
+      "quoted_by": [
+        "w-er18751-0xemperor"
+      ],
+      "passages": [
+        "The issuance ultimately is a value that reflects the networks' willingness to pay for its own security, which coupled with the burn has actually resulted in a negative issuance since the merge overall."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/18751/18",
+      "read_at": "2026-11-06 19:13:32.296464+00",
+      "read_as": "forum raw text",
+      "sha256": "0496478a0a3e36af178edce094196c1af20587ef5d1ecf08dd50dbc61f04442b",
+      "quoted_by": [
+        "w-er18751-danw"
+      ],
+      "passages": [
+        "I think it's a misconception that it's not viable to hold ETH without a yield. Bitcoin is held without a mining yield, and the recent ETF flows have proven that people don't need a yield to simply hold an asset."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/18825/20",
+      "read_at": "2026-11-06 19:13:34.824238+00",
+      "read_as": "forum raw text",
+      "sha256": "95e1f9736b09369b0774e4dfb6ce7d60394eec7753aefafcbda583ef68faf001",
+      "quoted_by": [
+        "w-mg18825-valdorff"
+      ],
+      "passages": [
+        "I think a proposal like this, if implemented, would essentially end solo staking (with the exception of some very large solo stakers, and some altruists willing to lose money for ethos).",
+        "Making staking profits marginal will ensure that the only validators left are those that are most effective at extracting value -- this is extremely different from those that are most effective at securing the chain (I would argue there's a negative correlation)."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/reward-curve-with-tempered-issuance-eip-research-post/19171/1",
+      "read_at": "2026-11-10 16:04:22.270954+00",
+      "read_as": "forum raw text",
+      "sha256": "efbf9873ddcfe3e1859e879b520cf31c213b4fcad9451691fb0c9cb69bc976f7",
+      "quoted_by": [
+        "w-er19171-aelowsson-2024"
+      ],
+      "passages": [
+        "The equilibrium yield offered to stakers corresponds to the cost that the marginal staker assigns to staking, i.e., their indifference point between staking and not staking. Section 2.1 shows that if Ethereum offers a higher yield than necessary for maintaining security, it compels its users to incur higher costs, degrading user utility in aggregate. This explains why all ETH holders can benefit from an issuance reduction, something which is also illustrated in Figure 2."
+      ]
+    },
+    {
+      "url": "https://vitalik.eth.limo/general/2024/10/20/futures3.html",
+      "read_at": "2026-11-06 19:12:02.516376+00",
+      "read_as": "page text",
+      "sha256": "3502015a2943d875d837a07294448978b29458c38c7f098ff92627ba0bbcfa8f",
+      "quoted_by": [
+        "w-vitalik-scourge-2024",
+        "w-vitalik-scourge-solo-2024"
+      ],
+      "passages": [
+        "Today, about 30% of the ETH supply is actively staking. This is far more than enough to protect Ethereum from 51% attacks. If the percent of ETH staked grows much larger, researchers fear a different scenario: the risks that would arise if almost all ETH becomes staked. These risks include: Staking turns from being a profitable task for specialists into a duty for all ETH holders.",
+        "If total staking returns drop below 0.85%, solo staking will be unviable for many people at these levels.",
+        "One particular point of concern is that if staking returns become very low, this means we have to choose between (i) making penalties also low, reducing disincentives against bad behavior, and (ii) keeping penalties high, which would increase the set of circumstances in which even well-meaning validators accidentally end up with negative returns if they get unlucky with technical issues or even attacks."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/20747/5",
+      "read_at": "2026-11-06 19:13:43.373456+00",
+      "read_as": "forum raw text",
+      "sha256": "e4f1a0be18e60211c6fc1ea269615748c26bdf206157dff94ae7bfc6a64891fd",
+      "quoted_by": [
+        "w-er20747-keyneom"
+      ],
+      "passages": [
+        "I don't believe deflation is sustainable, I also don't think it is even desirable if it were. Over indexing on the store-of-value property of money leads to weakness in its use as a unit-of-account and medium-of-exchange."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/20747/13",
+      "read_at": "2026-11-06 19:13:46.143314+00",
+      "read_as": "forum raw text",
+      "sha256": "a56fa71172db69e1847612d809f8dc4631ceb72d18d600a3e403c95918649486",
+      "quoted_by": [
+        "w-er20747-pa7x1"
+      ],
+      "passages": [
+        "The biggest issue of tempered issuance and other issuance curves that flatten out after certain stake rate is that they result in a big gap between the stake rates at which solo stakers become economically disincentivized and where LSTs do so. This creates a large regime of stake rates where solo stakers get pushed out of the validator set, while large operators and LSTs remain viable."
+      ]
+    },
+    {
+      "url": "https://x.com/drakefjustin/status/1887108667675124174",
+      "read_at": "2026-11-10 16:04:35.184775+00",
+      "read_as": "page text",
+      "sha256": "e68d6b7b1e412d115ccbce2681f1f06aa13f3f25fda2ee6f12117d0d19ddc34e",
+      "quoted_by": [
+        "w-x-drake-croissant-2025"
+      ],
+      "passages": [
+        "The current issuance curve is a trap. Unfortunately, like Bitcoin's issuance, Ethereum's issuance was misdesigned. It guarantees 2% tail APR, even if 100% ETH is staked.",
+        "IMO the issuance curve should drive discovery of a fair issuance rate through staker competition—no arbitrary 2% floor. This means the issuance curve must eventually decline and return to zero with increased ETH stake. My suggestion is \"croissant issuance\".",
+        "soft cap: The staking fraction where issuance returns to zero. To me a 50% staking soft cap feels credibly neutral and pragmatic."
+      ]
+    },
+    {
+      "url": "https://arxiv.org/abs/2503.14385",
+      "read_at": "2026-11-06 19:12:09.379213+00",
+      "read_as": "page text",
+      "sha256": "a752d2a2857bf34f2ca06879b21ee08f54613ef7004e8c3ae0e92801ca8496a1",
+      "quoted_by": [
+        "w-arxiv-2503-14385"
+      ],
+      "passages": [
+        "Our findings show that solo stakers are more sensitive to variations in staking rewards compared to ETH holders using centralized exchanges or liquid staking providers.",
+        "Consequently, a reduction in issuance is likely to crowd out solo stakers while increasing the market share of centralized entities, further concentrating validator power."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/20405/4",
+      "read_at": "2026-11-06 19:13:51.910635+00",
+      "read_as": "forum raw text",
+      "sha256": "eef70f84bc670704abba3a4c30c7af9ea116d445d84f7d5db03668d3cec074a7",
+      "quoted_by": [
+        "w-er20405-aelowsson-2025"
+      ],
+      "passages": [
+        "However, the \"gap\" in the plots is not particularly relevant under a joint equilibrium model. Since all stakers compete for the same yield, the market clears at a single nominal yield."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/24618/6",
+      "read_at": "2026-11-06 19:13:53.156664+00",
+      "read_as": "forum raw text",
+      "sha256": "dfe7e679c28a7bc65112a4c56f8f135bb1a547692c8ec3e0ba82d948e3909be9",
+      "quoted_by": [
+        "w-er24618-clesaege"
+      ],
+      "passages": [
+        "So if we reach the cap and tx fees are not high enough, what would happen? - In this case staking stops being profitable and we lose on security. - This loss in security can lead to a loss of usage. - Which put tx fees even lower. All that can result in a death spiral."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/24618/7",
+      "read_at": "2026-11-06 19:13:54.457605+00",
+      "read_as": "forum raw text",
+      "sha256": "ae79598bc32d09a5cf3a93cd79d7ee318f213706d4c6cebf477af5a51f0da8bf",
+      "quoted_by": [
+        "w-er24618-antonydenyer"
+      ],
+      "passages": [
+        "If you increase staking yields through higher issuance, you’re not creating new economic value, you’re expanding the supply and redistributing value from all ETH holders to validators.",
+        "A stronger asset can support robust security with no issuance."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/15",
+      "read_at": "2026-11-06 19:12:13.409171+00",
+      "read_as": "forum raw text",
+      "sha256": "40fcf38345cd99a28221800f7d0e9702ffbcba5fa7ecd2ab30000e6e75ed317c",
+      "quoted_by": [
+        "w-mp-15-ethwarrior"
+      ],
+      "passages": [
+        "A zero-yield regime accelerates the capture it means to deter. It filters out everyone who stakes for economic return and leaves the field to entities that stake for structural, regulatory, or product reasons, which describes exactly the KYC'd, jurisdiction-bound, coercible operators the proposal fears.",
+        "An ETF issuer that has to show a distribution yield on the same screen as a Solana product will stake at 0.13% if the alternative is 0.00%."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/3",
+      "read_at": "2026-11-06 19:12:17.554383+00",
+      "read_as": "forum raw text",
+      "sha256": "e793338941fadf893b4675b14e028a2de9a2239b6e30d8e1732c12036aa07e76",
+      "quoted_by": [
+        "w-mp-3-vshvsh"
+      ],
+      "passages": [
+        "Ethereum direct economic security (stake under slashing) is very strong for a very long time. Strong enough that any potentially successful attack on Ethereum will have to be indirect.",
+        "Many professional node operators (who run most of Ethereum stake) are barely breaking even."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/28",
+      "read_at": "2026-11-06 19:12:20.593381+00",
+      "read_as": "forum raw text",
+      "sha256": "087872459e253332d72cc2d4c4f238edfb4bfdadc461a1572b4a07912cd336e6",
+      "quoted_by": [
+        "w-mp-28-mr-plum"
+      ],
+      "passages": [
+        "changes to the issuance curve will become harder to implement over time as more businesses are built around staking yield and the amount of staked ETH continues to increase.",
+        "I also think that, if this or a similar proposal is implemented, solo stakers will continue to stake after the dust settles, and that’s the most important thing imo."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/29",
+      "read_at": "2026-11-06 19:12:21.838947+00",
+      "read_as": "forum raw text",
+      "sha256": "00370bcd9d00b4a7dce41246a42d01e5c7740998b401c7c8f23f4cca9ab0a359",
+      "quoted_by": [
+        "w-mp-29-zexoverz"
+      ],
+      "passages": [
+        "A flat burn keyed to the global ratio taxes the home staker exactly as hard as a staking ETF. If the goal is decentralization, the lever is pointing at the wrong quantity.",
+        "Once yield becomes a function of a measured, laggy, global ratio, it stops being stationary."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/50",
+      "read_at": "2026-11-06 19:12:26.974945+00",
+      "read_as": "forum raw text",
+      "sha256": "b5d52e073fc75c674266f094e3e7916ee9b9d696d797c8b33429d769c0833ae7",
+      "quoted_by": [
+        "w-mp-50-pintail"
+      ],
+      "passages": [
+        "The staking ratio has been almost continuously up since beacon chain genesis, and the validator entry queue has not cleared since the SEC guidance in May 2025.",
+        "In short, additional stake is making Ethereum less secure, not more."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/36",
+      "read_at": "2026-11-06 19:12:24.461504+00",
+      "read_as": "forum raw text",
+      "sha256": "136365eee0ce534e33d35dd9b38e8652ca8a69f36560af0bc74376812f19fbfe",
+      "quoted_by": [
+        "w-mp-36-qedk"
+      ],
+      "passages": [
+        "Hypothetically, if the intent is for validator composition to improve, surely reducing `MIN_ACTIVATION_BALANCE` to 16 ETH (and corresponding consensus improvement to account for messaging overhead) would work miles better?"
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/57",
+      "read_at": "2026-11-06 19:12:29.510027+00",
+      "read_as": "forum raw text",
+      "sha256": "98b89b816dff78cfdeeca69e72f857c99c3ed318e6ff37eaad063325bef75fa9",
+      "quoted_by": [
+        "w-mp-57-dimitardinev7"
+      ],
+      "passages": [
+        "The staking rate is no longer just compensation paid to validators. It has become the closest thing Ethereum has to a native benchmark rate.",
+        "Before concluding that a materially lower staking rate improves ETH as money, the proposal should model what happens to the financial system already built around that rate."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/75",
+      "read_at": "2026-11-06 19:12:33.629671+00",
+      "read_as": "forum raw text",
+      "sha256": "20506ef51bc6c9f01b014c3d7425f617451b15818278794d2c2641a60c98e4ee",
+      "quoted_by": [
+        "w-mp-75-lex-node"
+      ],
+      "passages": [
+        "Do not rewrite Ethereum’s monetary policy today to pre-empt an unobserved future staking problem, especially when the intervention is likely to require redesign soon and will preferentially damage solo/decentralized stakers while strengthening centralized exchanges.",
+        "There is no evidence that current issuance is driving away investors, holders, or builders."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/74",
+      "read_at": "2026-11-06 19:12:32.320019+00",
+      "read_as": "forum raw text",
+      "sha256": "f1ff415a2cd3cd0db249d487b54dd6080c0228947a325b8779f56b15c6265129",
+      "quoted_by": [
+        "w-mp-74-swarles"
+      ],
+      "passages": [
+        "Individual yields go down as the stake grows higher, but institutions can at least offset this against rising income (as they will attract part of the new stake). Solo stakers cannot.",
+        "We need to reduce the total stake, before the big interests against it become entrenched. It is urgent and necessary."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/71",
+      "read_at": "2026-11-06 19:03:03.254521+00",
+      "read_as": "forum raw text",
+      "sha256": "14d89c1b7f888fd19648cce6a18c2b9c75162b348637ffccaa924915f705644e",
+      "quoted_by": [
+        "w-mp-71-gregk"
+      ],
+      "passages": [
+        "Lido contributors believe that EIP-8363 should not be considered for Hegota. This is not because issuance should never be lowered, but because this proposal is a broad monetary policy change, published at the end of the PFI window, with major unresolved questions around validator composition, solo staking, on-chain staking protocols, DeFi, tax/accounting implications, and roadmap interactions. For a monetary-policy change, process legitimacy is not a minor detail.",
+        "Although issuance has been debated for years, this specific proposal and curve were withheld and not available for broad ecosystem input & review until now."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/89",
+      "read_at": "2026-11-06 19:12:38.635783+00",
+      "read_as": "forum raw text",
+      "sha256": "85ec5a66e6958c9ba07e3db83f57e24b204bda5b0cdd7bf6ba7e2565f0be1e15",
+      "quoted_by": [
+        "w-mp-89-cyp"
+      ],
+      "passages": [
+        "And whether people like it or not, staking yield is now part of ETH’s investment case. Destroying part of that yield may reduce demand for ETH by more than it reduces supply."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/118",
+      "read_at": "2026-11-10 16:10:41.240029+00",
+      "read_as": "forum raw text",
+      "sha256": "b8ec35333dd959133f9db0b6c07a134a87a36de3b5bba1d85c5fafa62fddec88",
+      "quoted_by": [
+        "w-mp-118-chalom-2026"
+      ],
+      "passages": [
+        "A proposal now before the Ethereum community would sharply reduce the reward for securing the network. Its odds for passing are long. Its implications are not. It would undermine DeFi, push capital off the chain, and cost ETH the yield productivity that differentiates it from Bitcoin.",
+        "Collateral migrates to assets that still have reasonable yields. Lending markets thin out. At near zero yield, the operators who survive are the ones with the lowest cost of capital and the largest scale, while solo stakers and mid-sized operators carrying real unsubsidized costs are pushed out first."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/136",
+      "read_at": "2026-11-06 19:12:39.929451+00",
+      "read_as": "forum raw text",
+      "sha256": "3e5ecd0ecce05265e5e8af5f2a138de1a5bd53e82c3ca945928f70fadbd07b13",
+      "quoted_by": [
+        "w-mp-136-jmiehau"
+      ],
+      "passages": [
+        "But run down the list and one group is missing: the majority of ETH that never stakes.",
+        "It pays for issuance through dilution, it has no fee revenue on the line and no poll that weighs it, and until this post, as far as I can tell, no voice in this thread."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/145",
+      "read_at": "2026-11-06 19:12:41.197763+00",
+      "read_as": "forum raw text",
+      "sha256": "dcb5022b41be4778446c64f382dd36e36c413a0d1e4305e2d072ab773fa6d008",
+      "quoted_by": [
+        "w-mp-145-0xchainvalue"
+      ],
+      "passages": [
+        "This proposal answers a targeting problem with abolition.",
+        "The answer to a badly aimed subsidy is to aim it — regressivity per validator rather than per ETH, incentives conditional on independent operation, stronger correlated-penalty design."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/150",
+      "read_at": "2026-11-06 19:12:45.180379+00",
+      "read_as": "forum raw text",
+      "sha256": "fbb803128c3e04dff84bdeb354ca371afb6a1818af533d7c470d735cc1fadb31",
+      "quoted_by": [
+        "w-mp-150-greystroke"
+      ],
+      "passages": [
+        "In my opinion, the only credibly neutral way to compensate ZK provers to avoid a highly centralized prover set will be to pay them with some amount of issuance."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/156",
+      "read_at": "2026-11-06 19:12:46.399788+00",
+      "read_as": "forum raw text",
+      "sha256": "ac05f44b0270dd3280c122b3b5532b2787eb8449f0a4c1c63869fdb48c105870",
+      "quoted_by": [
+        "w-mp-156-bettyhei"
+      ],
+      "passages": [
+        "Solo stakers have plenty of other ways to put their ETH to good use, often with higher yields, but they choose to continue solo staking.",
+        "If this EIP is implemented, and I hope it is, I will continue to solo stake at almost any yield that is not 0%"
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/215",
+      "read_at": "2026-11-06 19:12:50.41943+00",
+      "read_as": "forum raw text",
+      "sha256": "c5b824178eee22d463ecf6633746366c48c72970b3da6104de32cfe413a5a452",
+      "quoted_by": [
+        "w-mp-215-wycks"
+      ],
+      "passages": [
+        "Having too much ETH in the consensus layer is fundamentally unhealthy for the broader Ethereum economy. When a vast majority of the native asset is locked in staking, monetary momentum stagnates. While LSTs attempt to solve this illiquidity, they do so by introducing systemic risks—specifically recursive leverage loops and money substitution. A thriving layer-1 economy requires active circulating capital, not a passive network where the native asset is parked in consensus merely to secure a protocol that is already safe."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/240",
+      "read_at": "2026-11-06 19:12:53.063975+00",
+      "read_as": "forum raw text",
+      "sha256": "54967c4d87cc58209be7d6e017ea0d31ba63ac4044ae29b4632c0827597fde08",
+      "quoted_by": [
+        "w-mp-240-knoshua"
+      ],
+      "passages": [
+        "Someone that’s online 96.5% of the time receives 94.7% of the rewards someone with 99.5% uptime gets.",
+        "EIP-8363 is fundamentally an anti home staker change."
+      ]
+    },
+    {
+      "url": "https://www.rocklogic.at/blog/eip-8363-issuance-cut-solo-stakers",
+      "read_at": "2026-11-06 19:12:54.168299+00",
+      "read_as": "page text",
+      "sha256": "b2a1b0e1b33923f1e5a29b3ecbaba15f0d4ce66c8652aceb63ee6d49cb437b5e",
+      "quoted_by": [
+        "w-rocklogic-2026",
+        "w-rocklogic-looping-2026"
+      ],
+      "passages": [
+        "Issuance is not money from nowhere. Every holder pays for it through dilution, a transfer from the roughly 65% of ETH that is not staked to the stake.",
+        "Supporting solo stakers through the general reward mostly subsidises everyone else. This argues for targeted instruments such as bond curves and low capital thresholds, not the status quo.",
+        "Our objection is not to the goal. It is to the effect of this instrument.",
+        "The loudest objection to EIP-8363 is that cutting Ethereum's consensus issuance would kill one trade. Post stETH, borrow WETH, swap, repeat.",
+        "Median spread: 0.15 percentage points. At leverage of two to four that adds 0.30 to 0.60 points before gas and multiplies the liquidation risk. In 15% of samples the spread was negative and the loop cost money."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/253",
+      "read_at": "2026-11-06 19:12:55.528818+00",
+      "read_as": "forum raw text",
+      "sha256": "67fea26419a35f3772987c8993080723f1e9e3fef84d9d5e1fc54acd958f65d4",
+      "quoted_by": [
+        "w-mp-253-jdetychey"
+      ],
+      "passages": [
+        "There's nevertheless an important difference between acquisition cost and coercition cost.",
+        "The operators collude (however many entities that takes) and have 2/3 of the staking power. This cartel agrees to attest only to blocks from one builder, and that builder applies a sanctions list or anything against credible neutrality. Every other proposer's block is orphaned. Nothing in the protocol fires: declining to attest isn't equivocation (nobody is slashed) and the coalition has finality (no inactivity leak). The chain keeps finalising but censored."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8363-tapered-issuance-burn/29263/255",
+      "read_at": "2026-11-06 19:12:56.82994+00",
+      "read_as": "forum raw text",
+      "sha256": "40a1377b66fa8c0de168a0a7873bd747da4605c542a65113115d637632db4c28",
+      "quoted_by": [
+        "w-mp-255-crypduck"
+      ],
+      "passages": [
+        "30% staked through a handful of custodians and LSTs is easier to capture than 55% across uncorrelated operators.",
+        "The EIP only sees aggregate D. It does not see operator count or jurisdiction."
+      ]
+    },
+    {
+      "url": "https://x.com/peter_szilagyi/status/2119121477706416322",
+      "read_at": "2026-11-08 10:07:49.635894+00",
+      "read_as": "page text",
+      "sha256": "bfb9b0e9546f192b0dace2ac2b6d3cda45ff12e27316057ee38f1680c82a4ffb",
+      "quoted_by": [
+        "w-x-szilagyi-2026"
+      ],
+      "passages": [
+        "the reason everyone stakes ETH is because there isn't anything else to do with it!",
+        "Sure, you can shove it in the casino and hope it doesn't get drained",
+        "The entire Ether issuance discussion is trying to remedy the symptom instead of the root of the problem.",
+        "The symptom is that everyone wants to stake instead of using the network, so there's no economic activity being generated.",
+        "by reducing the issuance you're making people choose between the casino or exiting.",
+        "Improve the human condition and they will spend ETH on it and generate economic activity.",
+        "Improve the reliability of the ecosystem so people aren't afraid of losing their saving while they sleep.",
+        "People want to live their lives, not play onchain PvP against the entire world."
+      ]
+    }
+  ]
+}

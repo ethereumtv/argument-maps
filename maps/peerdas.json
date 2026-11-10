@@ -1,0 +1,2861 @@
+{
+  "slug": "peerdas",
+  "title": "How PeerDAS came to Ethereum",
+  "intro": "Rollups need room to post their data, and Ethereum's answer was blobs. This is how it went from every node downloading every blob (EIP-4844, the Dencun upgrade) to nodes holding and sampling only a slice, PeerDAS (EIP-7594), which went live with the Fusaka upgrade. Along the way, the argument was how fast to raise blob counts, at what cost to home stakers, and with what priority. It is told in talks, research posts and forum replies.",
+  "eips": [
+    "EIP-7594",
+    "EIP-4844"
+  ],
+  "topic": "data-availability",
+  "stops": [
+    {
+      "id": "s-18",
+      "kind": "quote",
+      "date": "2022-05-13",
+      "date_label": "13 May 2022",
+      "place": "Bankless",
+      "speaker": "Dankrad Feist",
+      "speaker_slug": "dankrad-feist",
+      "talk_id": "9bee9f4d-59f8-4927-86f6-fda0623433cd",
+      "talk_slug": "119-dive-into-danksharding-vitalik-dankrad-bankless",
+      "note": "The origin of the sampling idea in its author's own words: why you cannot sample a block directly, and why erasure coding and random samples fix it. The host hands the question to Dankrad by name (the caption mishears it).",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 2077,
+          "clean": "Naively, if you just do this on blocks as they are now, then it doesn't work. Why? Because if there's just one piece of the block missing, the probability that you catch it is tiny, because you would have to request exactly that piece of the block.",
+          "caption": "naively like if you just do this on blocks as they are now then it doesn't work and why because um if there's say just one piece of the block missing the probability that you catch it is Tiny because you would have to request exactly that piece of the block",
+          "chunks": [
+            {
+              "ord": 48,
+              "t": 2077,
+              "raw": "naively like if you just do this on blocks as they are now then it doesn't work and why because um if there's say just one piece of the block missing the probability that you"
+            },
+            {
+              "ord": 49,
+              "t": 2119,
+              "raw": "catch it is Tiny because you would have to request exactly that piece of the block"
+            }
+          ],
+          "edits": [
+            "'say' dropped from 'if there's say just one piece'; the claim is unchanged."
+          ]
+        },
+        {
+          "t": 2119,
+          "clean": "That doesn't work, because in blockchains the bad things could happen anywhere: even one single missing transaction could screw up the whole system, so you cannot allow any part of the data to be missing. Just sampling directly doesn't work.",
+          "caption": "so that doesn't work because we know like in blockchains basically the thing with blockchains is like the bad things could happen anywhere like even one single missing transaction could screw up the whole system so you cannot allow any part of the data to be missing like just sampling directly doesn't work",
+          "chunks": [
+            {
+              "ord": 49,
+              "t": 2119,
+              "raw": "so that doesn't work because we know like in blockchains basically the thing with blockchains is like the bad things could happen anywhere like even one single missing transaction could screw up the whole system so you cannot allow any part of the data to be missing like just sampling directly doesn't work"
+            }
+          ],
+          "edits": [
+            "'we know like in blockchains basically the thing with blockchains is like' read as 'in blockchains'; the claim is unchanged."
+          ]
+        },
+        {
+          "t": 2119,
+          "clean": "You have to first encode the data, and you encode it in such a way, and this is called [Reed-Solomon] codes, that any fixed fraction, for example you can pick 50 percent, if any 50 percent of the data are available, then you can reconstruct the whole from that.",
+          "caption": "you have to first encode the data and you encode it in such a way and that is this is called read Solomon codes you encode it in such a way that um uh that any any fixed fraction for example you can pick 50 percent uh if any 50 of the data are available then uh then you can reconstruct the whole from that",
+          "chunks": [
+            {
+              "ord": 49,
+              "t": 2119,
+              "raw": "you have to first encode the data and you encode it in such a way and that is this is called read Solomon codes you encode it in such a way that um"
+            },
+            {
+              "ord": 50,
+              "t": 2163,
+              "raw": "uh that any any fixed fraction for example you can pick 50 percent uh if any 50 of the data are available then uh then you can reconstruct the whole from that"
+            }
+          ],
+          "edits": [
+            "The repeated 'you encode it in such a way' (restated before 'that any fixed fraction') is said once; '50' in 'any 50 of the data' read as '50 percent', as the speaker says just before."
+          ]
+        },
+        {
+          "t": 2205,
+          "clean": "This is the attack we're trying to defend against: someone is trying to hide the data. If they do that, they have to make less than 50 percent of the samples available. If you download, for example, 30 samples, then the probability that all of those will be available is 2 to the minus 30, which is one in a billion, and so it's really small.",
+          "caption": "this is the attack we're trying to defend against right someone is trying to hide the data somehow if they do that they have to make less than 50 percent of the samples available if they make less than fifty percent of the samples available and you download for example 30 then the probability that uh that you all of those will be available is 2 to the minus 30 which is one important in a billion and so it's really small",
+          "chunks": [
+            {
+              "ord": 51,
+              "t": 2205,
+              "raw": "this is the attack we're trying to defend against right someone is trying to hide the data somehow if they do that they have to make less than 50 percent of the samples available if they make less than fifty percent of the samples available and you download for example 30 then the probability that uh that you all of those will be available is 2 to the minus 30 which is one important in a billion and so it's really small"
+            }
+          ],
+          "edits": [
+            "'one important in a billion' read as 'one in a billion'; 'they have to make less than 50 percent... if they make less than fifty percent' stated once."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s-01",
+      "kind": "quote",
+      "date": "2022-10-26",
+      "date_label": "26 October 2022",
+      "place": "Epicenter",
+      "speaker": "Vitalik Buterin",
+      "speaker_slug": "vitalik-buterin",
+      "talk_id": "c4ae81a9-1f84-47ef-9c0e-53c27d4b638b",
+      "talk_slug": "vitalik-buterin-ethereum-state-affairs-after-merge-epicenter",
+      "note": "The long-term plan as Vitalik laid it out before any of it shipped: proto-danksharding first, then a multi-stage move to sampling.",
+      "lines": [
+        {
+          "t": 3205,
+          "clean": "[Danksharding] is interesting because it's inherently this multi-phase thing. Phase one of [Danksharding] is proto-[danksharding], AKA EIP-4844, and people really want it to be in early to mid next year, but that could get delayed more.",
+          "caption": "so dig shorting is interesting because it's like inherently this multi-phase thing right so phase one of Dan sharding is a proto-dink sharding AKA eip4844 and uh that like people really want it to be in um you know early to mid next year but you know that could get delayed more",
+          "chunks": [
+            {
+              "ord": 75,
+              "t": 3205,
+              "raw": "so dig shorting is interesting because it's like inherently this multi-phase thing right so phase one of Dan sharding is a proto-dink sharding AKA eip4844 and uh that like people really want it to be in um you know early to mid next year but you know that could get delayed more"
+            }
+          ]
+        },
+        {
+          "t": 3248,
+          "clean": "Phase two of [danksharding] is: how do we go from one megabyte to 16 megabytes, and how do we actually start splitting up the data load? That gets more complicated.",
+          "caption": "phase two of the ink sharding is uh how do we um you know go from one megabyte to 16 megabytes and how do we actually like start splitting up the data load that gets more complicated",
+          "chunks": [
+            {
+              "ord": 76,
+              "t": 3248,
+              "raw": "phase two of the ink sharding is uh how do we um you know go from one megabyte to 16 megabytes and how do we actually like start splitting up the data load that gets more complicated"
+            }
+          ]
+        },
+        {
+          "t": 3291,
+          "clean": "I don't think we're going to see an all-at-once transition. I think we're going to see some nodes transition to sampling over time.",
+          "caption": "I don't think we're going to see an all at once transition I think we're going to see some nodes uh transition to sampling over time",
+          "chunks": [
+            {
+              "ord": 77,
+              "t": 3291,
+              "raw": "I don't think we're going to see an all at once transition I think we're going to see some nodes uh transition to sampling over time"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "a-149-micah",
+      "kind": "quote",
+      "date": "2022-11-10",
+      "date_label": "10 November 2022",
+      "place": "All Core Devs - Execution #149",
+      "speaker": "Micah Zoltu",
+      "speaker_slug": "micah-zoltu",
+      "talk_id": "c82baf73-886a-49bf-b01d-f00f6c31f463",
+      "talk_slug": "all-core-devs-execution-149",
+      "note": "The first objection to adding blob space, put on the call that week by a developer who wants censorship resistance first: more data is a small cost to running a node each time, and the costs add up. He asks the call to choose, and says his own preference.",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 1715,
+          "clean": "I think that at some point we need to stop and ask ourselves: do we want a high scalability blockchain, or do we want a censorship resistant blockchain that people can actually run themselves? And if we choose that we want the censorship resistant blockchain people can run, then I think we need to take steps to say, anything that makes that situation worse, we should wait on until we have solved the problem of making it so people can actually run their own nodes.",
+          "caption": "and I think that at some point we need to stop and ask ourselves do we want a high scalability blockchain or do we want a censorship resistant blockchain that people can actually run themselves and if we choose that we want the censorship resistant blockchain people can run then I think we need to take steps to say you know anything that makes that situation worse we should wait on until we have solved the problem of making it so people can actually run their own nodes",
+          "chunks": [
+            {
+              "ord": 92,
+              "t": 1715,
+              "raw": "and I think that at some point we need to stop and ask ourselves do we want a high scalability blockchain or do we want a censorship resistant blockchain that people can actually run themselves and if we choose that we want the censorship resistant blockchain people can run then I think we need to take steps to say you know anything that makes that situation worse we should wait on until we have solved the problem of making it so people can actually run their own nodes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-149-dankrad",
+      "kind": "quote",
+      "date": "2022-11-10",
+      "date_label": "10 November 2022",
+      "place": "All Core Devs - Execution #149",
+      "speaker": "Dankrad Feist",
+      "speaker_slug": "dankrad-feist",
+      "talk_id": "c82baf73-886a-49bf-b01d-f00f6c31f463",
+      "talk_slug": "all-core-devs-execution-149",
+      "note": "The answer on the same call from the researcher behind blobs: resource use is not what stops people running nodes, and the cost of using Ethereum excludes more users. He asks for pragmatism.",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 2061,
+          "clean": "The resource consumption is not currently the main reason why people don't run Ethereum nodes. It's UX of all kinds.",
+          "caption": "the resource consumption is not currently the main reason why people don't run Ethereum nodes. It's UX of all kinds.",
+          "chunks": [
+            {
+              "ord": 105,
+              "t": 2061,
+              "raw": "the resource consumption is not currently the main reason why people don't run Ethereum nodes. It's UX of all kinds."
+            }
+          ]
+        },
+        {
+          "t": 2106,
+          "clean": "Most people don't run nodes because it's so much more convenient to use one of the centralized services, and not because they can't run a Raspberry Pi.",
+          "caption": "Most people don't run nodes because it's so much more convenient to use one of the centralized services. Um, and not because they can't run uh run a Raspberry Pi.",
+          "chunks": [
+            {
+              "ord": 106,
+              "t": 2106,
+              "raw": "Most people don't run nodes because it's so much more convenient to use one of the centralized services. Um, and not because they can't run uh run a Raspberry Pi."
+            }
+          ]
+        },
+        {
+          "t": 2182,
+          "clean": "We have to be a bit more pragmatic here and prioritize people actually being able to use Ethereum.",
+          "caption": "we have to be a bit more pragmat pragmatic here and prioritize people actually being able to use Ethereum.",
+          "chunks": [
+            {
+              "ord": 108,
+              "t": 2182,
+              "raw": "we have to be a bit more pragmat pragmatic here and prioritize people actually being able to use Ethereum."
+            }
+          ],
+          "edits": [
+            "Caption 'pragmat pragmatic' is a stutter on 'pragmatic'."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-149-decision",
+      "kind": "decision",
+      "date": "2022-11-14",
+      "date_label": "14 November 2022",
+      "place": "EIP-4844",
+      "title": "EIP-4844 starts small: two blobs a block",
+      "body": "Four days after that call, EIP-4844 was changed to cut its starting capacity from a target of about 1 MB and a limit of about 2 MB per block to about 0.25 MB and 0.5 MB, a target of two blobs and a maximum of four. The EIP says these small initial limits are intended to minimize the strain on the network.",
+      "link": "https://github.com/ethereum/EIPs/pull/5863",
+      "link_label": "Read the EIP change",
+      "note": "Primary source: EIPs pull request 5863 'Reduce Throughput' (commit 89b85203, 14 Nov 2022): MAX_DATA_GAS_PER_BLOCK 2**21 to 2**19 and TARGET_DATA_GAS_PER_BLOCK 2**20 to 2**18; new 'Throughput' section: 'a target of 2 blobs (0.25 MB) and maximum of 4 blobs (0.5 MB) per block. These small initial limits are intended to minimize the strain on the network'. Micah Zoltu names the PR on ACDE #149 (segment 91: 'this PR to change its throughput ... helps a little bit but it is still strictly an increase'). The call in which it was agreed was not identified: the EIP-4844 implementers calls of 8 and 15 Nov 2022 were not searched for it beyond a keyword scan."
+    },
+    {
+      "id": "a-163-dankrad",
+      "kind": "quote",
+      "date": "2023-06-08",
+      "date_label": "8 June 2023",
+      "place": "All Core Devs - Execution #163",
+      "speaker": "Dankrad Feist",
+      "speaker_slug": "dankrad-feist",
+      "talk_id": "bdfeab12-ea27-458f-8501-419210deb358",
+      "talk_slug": "all-core-devs-execution-163",
+      "note": "How many blobs Dencun would carry: the researcher who ran the load tests asks the call to raise the limits from the original numbers to a target of three and a maximum of six, before launch. EIP-4844's own text was changed the same day (pull request 7154). Pectra's EIP-7691 later raised them to 6 and 9.",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 252,
+          "clean": "We ran some tests on mainnet where we created blocks of large sizes, so we simulated a sustained load. We tried between 128 kilobytes and one megabyte, and so we did 260 kilobytes to 512 and 768 kilobytes in between, and in all those tests the network looked stable. We didn't see lots of validators going offline or anything like that, or attestations being massively delayed.",
+          "caption": "we ran some tests on mainnet where we created blocks of large sizes so we we simulated a sustained load um and uh that we we tried that between 128 kilobytes and one megabyte um and so we did 260 kilobytes to 512 and 768 kilobytes um in between and um so in all those tests um the network looked stable like we didn't see like um lots of validators going offline or anything like that or like attestations being massively delayed",
+          "chunks": [
+            {
+              "ord": 3,
+              "t": 252,
+              "raw": "we ran some tests on mainnet where we created blocks of large sizes so we we simulated a sustained load"
+            },
+            {
+              "ord": 4,
+              "t": 280,
+              "raw": "um and uh that we we tried that between 128 kilobytes and one megabyte um and so we did 260 kilobytes to 512 and 768 kilobytes um in between and um so in all those tests um the network looked stable like we didn't see like um lots of validators going offline or anything like that or like attestations being massively delayed"
+            }
+          ]
+        },
+        {
+          "t": 367,
+          "clean": "My recommendation based on these tests is that we should consider raising the limits to six [blobs] rather than four, and the targets to three, because we don't see any problems with these loads.",
+          "caption": "and so my recommendation based on these tests is that uh we should consider raising the the limits to six blocks rather than um uh four and and the targets to three um because uh yeah we don't see any problems with uh with these loads",
+          "chunks": [
+            {
+              "ord": 6,
+              "t": 367,
+              "raw": "and so my recommendation based on these tests is that uh we should consider raising the the limits to six blocks rather than um uh four and and the targets to three um because uh yeah we don't see any problems with uh with these loads"
+            }
+          ],
+          "edits": [
+            "Caption 'blocks' is blobs: the limit in EIP-4844 is counted in blobs (six rather than four), the target three."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w-er16541-djrtwo",
+      "kind": "written",
+      "date": "2023-09-04",
+      "date_label": "4 September 2023",
+      "place": "ethresear.ch",
+      "author": "Danny Ryan",
+      "source_title": "PeerDAS -- a simpler DAS approach using battle-tested p2p components",
+      "source_url": "https://ethresear.ch/t/peerdas-a-simpler-das-approach-using-battle-tested-p2p-components/16541/1",
+      "note": "The founding post of PeerDAS: reuse the networking Ethereum already runs instead of inventing a new one, and keep each honest node's work close to 4844's.",
+      "lines": [
+        {
+          "text": "The intent of a PeerDAS design is to reuse well known, battle-tested p2p components already in production in Ethereum to bring additional DA scale beyond that of 4844 while keeping the minimum amount of work of honest nodes in the same realm as 4844 (downloading < 1MB per slot)."
+        },
+        {
+          "text": "Importantly, any DAS solution will rely upon nodes of various types and the assumptions we can make about them."
+        }
+      ]
+    },
+    {
+      "id": "w-er17169-dankrad",
+      "kind": "written",
+      "date": "2023-11-08",
+      "date_label": "8 November 2023",
+      "place": "ethresear.ch",
+      "author": "Dankrad",
+      "source_title": "SubnetDAS - an intermediate DAS approach",
+      "source_url": "https://ethresear.ch/t/subnetdas-an-intermediate-das-approach/17169/7",
+      "note": "A sharp question, not a verdict: written about SubnetDAS, a sibling proposal to PeerDAS, not about PeerDAS itself. Dankrad says sampling is only safe if everyone converges on available even against a malicious majority, and that one disrupted row subnet could stop reconstruction under that construction. He says himself he is unsure how reliable such a subnet is and that it needs research.",
+      "lines": [
+        {
+          "text": "Once the DA threshold (e.g. 50% in this proposal) is reached, we want all nodes to agree that the data is available. This property should be robust even if a majority of validators is malicious, for obvious reasons."
+        },
+        {
+          "text": "Note that under the given construction, it suffices to disrupt a single row subnet to completely stop reconstruction -- all samples would be incomplete if that subnet is not able to do its part."
+        }
+      ]
+    },
+    {
+      "id": "w-er18046-fradamt",
+      "kind": "written",
+      "date": "2023-12-28",
+      "date_label": "28 December 2023",
+      "place": "ethresear.ch",
+      "author": "Francesco (fradamt)",
+      "source_title": "From 4844 to Danksharding: a path to scaling Ethereum DA",
+      "source_url": "https://ethresear.ch/t/from-4844-to-danksharding-a-path-to-scaling-ethereum-da/18046/1",
+      "note": "The staging plan that PeerDAS became: do not jump to full Danksharding, break the road into steps that raise throughput while barely raising bandwidth.",
+      "lines": [
+        {
+          "text": "Given its ambitious nature, we think it is best to further break down the road from 4844 to Danksharding into more manageable steps, reducing the complexity and risk of each upgrade and allowing us to gradually scale the data layer throughput."
+        },
+        {
+          "text": "A possible path goes through intermediate stages, where we gradually introduce all cryptographic and networking components, and gradually obtain more scalability and feature-completeness, while at most minimally increasing the bandwidth requirements compared to 4844."
+        }
+      ]
+    },
+    {
+      "id": "s-02",
+      "kind": "quote",
+      "date": "2024-01-01",
+      "date_label": "January 2024",
+      "place": "Ethereum Berlin Meetup",
+      "speaker": "Francesco D'Amato",
+      "speaker_slug": "francesco-d-amato",
+      "talk_id": "6d6bcc0e-1c74-4597-b03b-5e694284e343",
+      "talk_slug": "4844-danksharding-da-layer-roadmap-francesco-damato-januray",
+      "note": "About a month before Dencun: why 4844 alone is not enough, and the idea behind PeerDAS (one of its authors).",
+      "lines": [
+        {
+          "t": 433,
+          "clean": "We're still completely bottlenecked on how much can an individual [full node] handle in terms of bandwidth, because everyone is still downloading the whole data. We created this new data, these [blobs], but everyone is downloading every blob.",
+          "caption": "so we're still completely bottlenecked on how much can an individual food not handle in terms of bandwidth because everyone is still downloading the whole data so we like created this new data these blogs but everyone is downloading every blob",
+          "chunks": [
+            {
+              "ord": 10,
+              "t": 433,
+              "raw": "so we're still completely bottlenecked on how much can an individual food not handle in terms of bandwidth because everyone is still downloading the whole data so we like created this new data these blogs but everyone is downloading every blob"
+            }
+          ]
+        },
+        {
+          "t": 649,
+          "clean": "The idea at the moment is what we're calling [PeerDAS], and the peer part tells you how it is that people actually get samples.",
+          "caption": "so yeah the idea at the moment is to do what we we're calling peer do and the peer part is essentially tells you how it is that people actually get samples",
+          "chunks": [
+            {
+              "ord": 15,
+              "t": 649,
+              "raw": "so yeah the idea at the moment is to do what we we're calling peer do and the peer part is essentially tells you how it is that people actually get samples"
+            }
+          ],
+          "edits": [
+            "'to do' dropped from 'is to do what we're calling', and 'essentially' from the restarted clause 'is essentially tells you'"
+          ]
+        },
+        {
+          "t": 649,
+          "clean": "You would just maintain all the network infrastructure that we have today and just reuse it to do sampling.",
+          "caption": "you would just um maintain all Network infrastructure that we have today and just reuse it to do sampling",
+          "chunks": [
+            {
+              "ord": 15,
+              "t": 649,
+              "raw": "you would just um maintain all Network infrastructure that we have today and just reuse it to do sampling"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-03",
+      "kind": "quote",
+      "date": "2024-02-19",
+      "date_label": "19 February 2024",
+      "place": "Bankless",
+      "speaker": "Mike Neuder",
+      "speaker_slug": "mike-neuder",
+      "talk_id": "c7cb3ec4-4d47-4858-8045-dcb09ed7b809",
+      "talk_slug": "endgame-2-0-guide-vitaliks-ethereum-roadmap-bankless",
+      "note": "The trade-off stated plainly before it was decided: Ethereum scales data more slowly on purpose, to keep running a node within reach. (He calls the 3x-a-year pace a heuristic, not a guarantee.)",
+      "lines": [
+        {
+          "t": 3389,
+          "clean": "I think it's important to set the expectation that Ethereum is never going to scale in terms of DA as fast as alternative DA layers, and that's an intentional design decision, because Ethereum is prioritizing decentralization. Sure, if you want to make the hardware and bandwidth requirements higher, then you can get higher DA throughput.",
+          "caption": "I think it's important to kind of set the expectation that ethereum is never going to scale in terms of Da as fast as alternative da layers and that's an intentional design decision because ethereum is prior prioritizing decentralization like sure if you if you want to make the hardware and bandwidth requirements higher then like you can get higher da throughput",
+          "chunks": [
+            {
+              "ord": 79,
+              "t": 3389,
+              "raw": "I think it's important to kind of set the expectation that ethereum is never going to scale in terms of Da as fast as alternative da layers and that's an intentional design decision because ethereum is prior prioritizing decentralization like sure if you if you want to make the hardware and bandwidth requirements higher then like you can get higher da throughput"
+            }
+          ],
+          "edits": [
+            "false start 'prior' before 'prioritizing' dropped"
+          ]
+        },
+        {
+          "t": 3389,
+          "clean": "But doing this gradual 3x per year approach, more incremental but still having a clear vision towards getting that endgame scaling that we think is necessary for rollups, is an important, I guess, expectation to set for looking forward.",
+          "caption": "but doing this kind of gradual 3x per year approach more incremental but still like having a Clear Vision towards getting that endgame scaling that we think is necessary for rollups is like an important um I guess expectation to set for for looking forward",
+          "chunks": [
+            {
+              "ord": 79,
+              "t": 3389,
+              "raw": "but doing this kind of gradual 3x per year approach more incremental but still like having a"
+            },
+            {
+              "ord": 80,
+              "t": 3433,
+              "raw": "Clear Vision towards getting that endgame scaling that we think is necessary for rollups is like an important um I guess expectation to set for for looking forward"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "a-dencun-live",
+      "kind": "decision",
+      "date": "2024-03-13",
+      "date_label": "13 March 2024",
+      "place": "Dencun mainnet upgrade",
+      "title": "Blobs go live on mainnet in Dencun",
+      "body": "Dencun (Cancun-Deneb) activated on 13 March 2024. ethereum.org's upgrade history describes its EIP-4844, proto-danksharding, as introducing data blobs that let rollups post data to Mainnet for a short period of time.",
+      "link": "https://ethereum.org/en/history/",
+      "link_label": "Read the upgrade history",
+      "note": "Primary source: ethereum.org/en/history (read 10 Nov 2026): Dencun (Cancun-Deneb), Mar 13, 2024, 1:55:35 PM UTC, block 19,426,587; EIP-4844 'Proto-Danksharding'. The page states no blob target or maximum, so the body does not. Also confirmed: EF blog Dencun mainnet announcement (epoch 269568, 13 March 2024 13:55 UTC; written before activation). Closes the gap noted on x-09 ('leaves no stop that says Dencun went live')."
+    },
+    {
+      "id": "a-139-gajinder",
+      "kind": "quote",
+      "date": "2024-08-08",
+      "date_label": "8 August 2024",
+      "place": "All Core Devs - Consensus #139",
+      "speaker": "Gajinder Singh",
+      "speaker_slug": "gajinder-singh",
+      "talk_id": "775ec480-b2ce-4e4e-b1ec-dcdc97b38ea7",
+      "talk_slug": "all-core-devs-consensus-139",
+      "note": "The first retreat in PeerDAS's design: on the call the chair asks whether to drop sampling from the test networks to ship PeerDAS sooner, and a Lodestar developer reports the PeerDAS breakout decided to focus on a stable devnet without it. This is the 'descoped so much' that Etan Kissling describes a month later.",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 2666,
+          "clean": "Currently we will focus towards not doing sampling. The clients which are doing sampling can still do sampling, but they will not penalize the peers if the sampling fails; they will just log it, so it will be just for the information purposes. We decided that we will think about inclusion of sampling at later [devnets], because the priority right now would be to get a functional [devnet] that hasn't happened till now, in that sense that it has stayed up and has not [forked].",
+          "caption": "currently we will for Focus towards uh not doing sampling and the clients which are doing sampling they can still do sampling but they will not penalize the peers if the sampling fails and they they will just log it so it will be just for the information purposes uh and we will we decided that we will uh think about inclusion of sampling at later demets uh because the priority right now would be to get a uh functional defet that hasn't happened till now uh in that sense that uh it has stayed up and has not foged",
+          "chunks": [
+            {
+              "ord": 145,
+              "t": 2666,
+              "raw": "currently we will for Focus towards uh not doing sampling and the clients which are doing sampling they can still do sampling but they will not penalize the peers if the sampling fails and they they will just log it so it will be just for the information purposes uh and we will we decided that we will uh think about inclusion of sampling at later demets uh because the priority right now would be to get a uh functional defet that hasn't happened till now uh in that sense that uh it has stayed up and has not foged"
+            }
+          ],
+          "edits": [
+            "Caption 'demets', 'defet' and 'foged' are devnets, devnet and forked (the speaker is talking about test networks that stay up and do not fork).",
+            "'for' in 'we will for Focus' is a false start, left out."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-142-etan",
+      "kind": "quote",
+      "date": "2024-09-19",
+      "date_label": "19 September 2024",
+      "place": "All Core Devs - Consensus #142",
+      "speaker": "Etan Kissling",
+      "speaker_slug": "etan-kissling",
+      "talk_id": "5ed59f7c-ace4-49f6-87d5-1761de4bfde4",
+      "talk_slug": "all-core-devs-consensus-142",
+      "note": "Why PeerDAS left Pectra, from a Nimbus developer on the call that discussed splitting Pectra in two: the sampling had been cut back so far that what remained was only splitting data among nodes.",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 585,
+          "clean": "Personally I'm also in favor of the split, just because I'm looking at it from a [PeerDAS] perspective. At this stage it seems like it got descoped so much that it's essentially the subnet [DAS], but the [DAS] part is also removed now. So it's just splitting the data among [nodes] and hoping that it sort of works out with the availability, without any sampling. So I'm not sure, I mean, not fully removed, but it just appears to me that it's not [as] ready as all the other features that have already been implemented.",
+          "caption": "personally I'm also in favor of the split um just because uh like I'm I'm looking at it from a peer perspective and and at this stage it seems like that it got descoped so much that it's essentially like the subnet Des but the Des part is also removed now so it's like just splitting the data among notes and hoping that it sort of works out with the availability without any sampling so I'm not sure I mean not not not fully removed but um yeah it it just appears to me that it's not like ready ready as all the other features that have already been implemented",
+          "chunks": [
+            {
+              "ord": 20,
+              "t": 585,
+              "raw": "personally I'm also in favor of the split um just because uh like I'm I'm looking at it from a peer perspective and and at this stage it seems like that it got descoped so much that it's essentially like the subnet Des but the Des part is also removed now so it's like just splitting the data among notes and hoping that it sort of works out with the availability without any sampling so I'm not sure I mean not not not fully removed but um yeah it it just appears to me that"
+            },
+            {
+              "ord": 21,
+              "t": 629,
+              "raw": "it's not like ready ready as all the other features that have already been implemented"
+            }
+          ],
+          "edits": [
+            "Caption 'peer', 'Des' (twice) and 'notes' are PeerDAS, DAS and nodes (subnet DAS is the sibling proposal the speaker compares it to).",
+            "'ready ready' is a stutter; 'not not not fully removed' is kept as 'not fully removed': the speaker softens 'the DAS part is also removed' in the same breath.",
+            "Caption 'not like ready ready as' is read as 'not [as] ready as' (the other features are the ones already implemented and ready)."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-142-decision",
+      "kind": "decision",
+      "date": "2024-09-19",
+      "date_label": "19 September 2024",
+      "place": "All Core Devs - Consensus #142",
+      "title": "Pectra is limited to what is already on devnet 3",
+      "body": "On the 19 September 2024 consensus-layer call, developers agreed to focus the next fork, Pectra, on the EIPs already deployed to Pectra devnet 3, and to postpone deciding the scope of the fork after it. The call's notes name EOF and PeerDAS as the candidates for that later fork.",
+      "link": "https://github.com/ethereum/pm/blob/master/AllCoreDevs-CL-Meetings/call_142.md",
+      "link_label": "Read the call notes",
+      "note": "Primary source: ethereum/pm call_142.md summary items 142.2 ('two key decisions: 1. Focus on the EIPs currently deployed to pectra-devnet-3 for the next hard fork. 2. Postpone decisions on the scope of the fork after Pectra') and 142.4 ('candidates like EOF and PeerDAS'); confirmed against the call transcript (Alex Stokes, segments 9 to 10: natural split between what is on devnet 3 and PeerDAS or EOF). The notes do not say 'PeerDAS removed'; dapplion (s-06) gives that account a month later."
+    },
+    {
+      "id": "s-05",
+      "kind": "quote",
+      "date": "2024-10-17",
+      "date_label": "October 2024",
+      "place": "ETHSofia 2024",
+      "speaker": "dapplion",
+      "speaker_slug": "dapplion",
+      "talk_id": "6acebfae-d95c-40f2-abc4-8d43f646de1e",
+      "talk_slug": "peerdas-lion-dapplion-scaling-ethereum-today-ethsofia-2024",
+      "note": "The first-hand criticism of the original design, from a client implementer: sampling inside a four-second deadline leaves solo stakers behind, which is a centralisation factor.",
+      "lines": [
+        {
+          "t": 654,
+          "clean": "The attesting deadline is a 4-second window today that [attesters] have to meet before they cast a [vote] and then decide if the block is available or not, and this deadline is pretty tight. What we have seen in testing since we have developed this feature is that some [attesters] miss the deadline.",
+          "caption": "the attesting deadline is a 4 second window today that a testers have to meet before they cast a boat and then decide if the block is available or not and this deadline is pretty tight what we have seen in testing since we have developed this this this feature is that some testers miss the deadline",
+          "chunks": [
+            {
+              "ord": 15,
+              "t": 654,
+              "raw": "the attesting deadline is a 4 second window today that a testers have to meet before they cast a boat and then decide if the block is available or not and this deadline is pretty tight what we have seen in testing since we have developed this this this feature is that some testers miss the deadline"
+            }
+          ],
+          "edits": [
+            "'a testers' is the caption's mishearing of 'attesters', written as [attesters]",
+            "'boat' is the caption's mishearing of 'vote', written as [vote]"
+          ]
+        },
+        {
+          "t": 697,
+          "clean": "So some people get left behind, and unfortunately those that left behind tend to be those that have not the best bandwidth or not the fastest computer, so the solo stakers. So this is kind of annoying, because now we are introducing a [centralization] factor, where we are incentivizing people to have good bandwidth and good connections in order to have not a penalty when doing sampling.",
+          "caption": "so some people get left behind and unfortunately those that left behind tend to be those that have not the best bandwidth or not the fastest computer so the solo stakers so this is kind of annoying because now we are introducing a calization Factor where we are incentivizing people to have good bandwidth and good Connections in order to have like not a penalty when doing sampling",
+          "chunks": [
+            {
+              "ord": 16,
+              "t": 697,
+              "raw": "so some people get left behind and unfortunately those that left behind tend to be those that have not the best bandwidth or not the fastest computer so the solo stakers so this is kind of annoying because now we are introducing a calization Factor where we are incentivizing people to have good bandwidth and good Connections in order to have like not a penalty when doing sampling"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-06",
+      "kind": "quote",
+      "date": "2024-10-17",
+      "date_label": "October 2024",
+      "place": "ETHSofia 2024",
+      "speaker": "dapplion",
+      "speaker_slug": "dapplion",
+      "talk_id": "6acebfae-d95c-40f2-abc4-8d43f646de1e",
+      "talk_slug": "peerdas-lion-dapplion-scaling-ethereum-today-ethsofia-2024",
+      "note": "PeerDAS leaves Pectra for Fusaka, said by the same implementer, with how hard the testing was and that it works.",
+      "lines": [
+        {
+          "t": 869,
+          "clean": "As of a month ago, [PeerDAS] have been descheduled from the next fork, which is [Pectra], into the next next one, which is Fusaka, so hopefully by Q4 2025 we could see this. I think in the meanwhile, for Pectra, we will probably just increase the number of blobs in the network without actually introducing sampling.",
+          "caption": "as of a month ago Pi do have been uh descheduled from from the next Fork which is spectra into the next next one which is fusaka so hopefully by Q4 2025 we could see this I think in the in the meanwhile for pectra we will probably just increase the number of blobs in the network without actually introducing sampling",
+          "chunks": [
+            {
+              "ord": 20,
+              "t": 869,
+              "raw": "as of a month ago Pi do have been uh descheduled from from the next Fork which is spectra into the next next one which is fusaka so hopefully by Q4 2025 we could see this I think in the in the meanwhile for pectra we will probably just increase the number of blobs in the network without actually introducing sampling"
+            }
+          ],
+          "edits": [
+            "'Pi do' is the caption's mishearing of PeerDAS, written as [PeerDAS]"
+          ]
+        },
+        {
+          "t": 913,
+          "clean": "I think this has been proven to be much more challenging than we all expected. [Devnets] just keep failing for no reason until we figure out.",
+          "caption": "again I think this has been proven to be much more challenging than we all expected devet just keep failing for uh no reason until we figure out",
+          "chunks": [
+            {
+              "ord": 21,
+              "t": 913,
+              "raw": "again I think this has been proven to be much more challenging than we all expected devet just keep failing for uh no reason until we figure out"
+            }
+          ],
+          "edits": [
+            "the speaker trails off at 'until we figure out' and moves on"
+          ]
+        },
+        {
+          "t": 913,
+          "clean": "Even though we're still in [devnet], this stuff is working. We have working prototypes.",
+          "caption": "and even though we're still in definite this this this stuff is working we have working prototypes",
+          "chunks": [
+            {
+              "ord": 21,
+              "t": 913,
+              "raw": "and even though we're still in definite this this this stuff is working we have working prototypes"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "a-145-decision",
+      "kind": "decision",
+      "date": "2024-10-31",
+      "date_label": "31 October 2024",
+      "place": "All Core Devs - Consensus #145",
+      "title": "PeerDAS is put into Fulu, the fork after Pectra",
+      "body": "On the 31 October 2024 consensus-layer call, the chair said he heard no opposition to moving the PeerDAS EIP (EIP-7594) into the Fulu fork, on top of Electra (Pectra), so that PeerDAS activates with Fulu. The call had named the pair of Fulu and Osaka Fusaka on 22 August 2024. One developer asked to keep it separately triggered until sure; that went to the next execution-layer call.",
+      "link": "https://forkcast.org/calls/acdc/145/",
+      "link_label": "See the call on Forkcast",
+      "note": "Primary source: our transcript of ACDC #145 (Alex Stokes, segments 80 to 97: 'having PeerDAS be Fulu, have it activate at Fulu ... there's no opposition to moving ahead on the CL in this direction'; Barnabas Busa, segments 85 to 93, asks whether to keep it separately triggered as EIP-7594 until sure, because activating Fulu would also activate Osaka and EOF on the execution side; Stokes will take that to the next ACDE). The name Fusaka (Fulu plus Osaka) was picked on ACDC #140 (22 Aug 2024, segments 215 to 216). Fills the gap between s-06's 'descheduled from Pectra' and Fusaka."
+    },
+    {
+      "id": "s-07",
+      "kind": "quote",
+      "date": "2024-11-14",
+      "date_label": "14 November 2024",
+      "place": "Devcon 7",
+      "speaker": "Mark Tyneway",
+      "speaker_slug": "mark-tyneway",
+      "talk_id": "baaa8801-1709-4d2d-81ed-dd856f697338",
+      "talk_slug": "ethereums-values-ethos-alignment-pre-merge-now",
+      "note": "A caution from the rollup side, from a panel: scaling blobs before the bandwidth fixes would hurt home and solo stakers, and rollups' own incentive is to ask for more.",
+      "lines": [
+        {
+          "t": 1570,
+          "clean": "I think we already have some solutions to the bandwidth problems, and I think that probably scaling the blobs before these solutions are implemented would be detrimental to home stakers and solo stakers in a lot of places. But the solutions are out there; we can turn them on, work on them, and then we can scale the blobs to support all the L2s.",
+          "caption": "I think we already have some solutions to the bandwidth problems and I think that um probably scaling the blobs before these Solutions are implemented would be detrimental to home stakers and Solo stakers in a lot of places um but the Solutions are out there we can turn them on work on them and then we can scale the blobs to support all the all the l2s",
+          "chunks": [
+            {
+              "ord": 36,
+              "t": 1570,
+              "raw": "I think we already have some solutions to the bandwidth problems and I think that um probably scaling the blobs before these Solutions are implemented would be detrimental to home stakers and Solo stakers in a lot of places um but the Solutions are out there we can turn them on work on them and then we can scale the blobs to support all the all the l2s"
+            }
+          ],
+          "edits": [
+            "stutter 'all the all the' read as 'all the'"
+          ]
+        },
+        {
+          "t": 1570,
+          "clean": "So as an L2, I have the incentive to ask L1 for more blobs, and it's unclear if I have considered the full consequences of this. And this is just the incentives at play, so I am a little bit worried, because I know that there's a bunch more L2s coming online that might have a bunch of usage, and we're already close to the blob target.",
+          "caption": "so as an L2 I have the incentive to ask L1 for more blobs and you know it's unclear if I have considered the full consequences of this and this is just the incentives at play so I am a little bit worried because I know that there's a bunch more l2s coming online that might have a bunch of usage and we're already close to the blob Target",
+          "chunks": [
+            {
+              "ord": 36,
+              "t": 1570,
+              "raw": "so as an L2 I have the incentive to ask L1 for more blobs and you know it's unclear if I have considered the full consequences of"
+            },
+            {
+              "ord": 37,
+              "t": 1613,
+              "raw": "this and this is just the incentives at play so I am a little bit worried because I know that there's a bunch more l2s coming online that might have a bunch of usage and we're already close to the blob Target"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-19",
+      "kind": "quote",
+      "date": "2024-11-15",
+      "date_label": "15 November 2024",
+      "place": "Devcon 7",
+      "speaker": "Csaba Kiraly",
+      "speaker_slug": "csaba-kiraly",
+      "talk_id": "8d67e9f2-bd7d-41b3-9a1c-6559ab2e57b0",
+      "talk_slug": "peerdas-fulldas-towards-massive-scalability-32mb-kiraly",
+      "note": "The case for scaling the data layer, from a researcher working on the next step (FullDAS): blob space is running out, and raising hardware requirements is the option he calls controversial. Cut on a Devcon 7 stage, a week before the Pectra blob increase was settled.",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 86,
+          "clean": "L2 transaction fees are driven by blob space, by [data availability] space, and that's running out. It is a problem, and if that happens, prices can rise fast.",
+          "caption": "L2 transaction fees are uh driven by uh blob space by datability space and that's running out. It is a problem and if that happens prices can rise fast.",
+          "chunks": [
+            {
+              "ord": 2,
+              "t": 86,
+              "raw": "L2 transaction fees are uh driven by uh blob space by datability space and that's running out. It is a problem and if that happens prices can rise fast."
+            }
+          ]
+        },
+        {
+          "t": 329,
+          "clean": "We can change resource requirements. It's a good discussion. It's a bit controversial. We have small gains. We have a lot to lose.",
+          "caption": "uh we can change resource requirements. Uh it's a good discussion. Uh it's a bit controversial. We have small gains. We have a lot to lose.",
+          "chunks": [
+            {
+              "ord": 8,
+              "t": 329,
+              "raw": "uh we can change resource requirements. Uh it's a good discussion. Uh it's a bit controversial. We have small gains. We have a lot to lose."
+            }
+          ]
+        },
+        {
+          "t": 329,
+          "clean": "Then we can do sharding and [data availability] sampling, and this is my talk today. This is large gains, I hope.",
+          "caption": "Then we can do sharding and data with sampling and this is my talk today. Uh this is large gains I hope",
+          "chunks": [
+            {
+              "ord": 8,
+              "t": 329,
+              "raw": "Then we can do sharding and data with sampling and this is my talk today. Uh this is large gains I hope"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w-er21096-samcm",
+      "kind": "written",
+      "date": "2024-11-27",
+      "date_label": "27 November 2024",
+      "place": "ethresear.ch",
+      "author": "Sam Calder-Mason (samcm)",
+      "author_slug": "sam-calder-mason",
+      "source_title": "Block Arrivals, Home Stakers & Bumping the blob count",
+      "source_url": "https://ethresear.ch/t/block-arrivals-home-stakers-bumping-the-blob-count/21096/1",
+      "note": "The data that opened the Pectra blob-increase decision: real block-arrival times from home stakers, posted the day before the 28 Nov 2024 call and presented on it. It supports 4/8 or 6/9 and says plainly it is one of many factors. The post names ethPandaOps as the team collecting the data; the author is shown by his forum name.",
+      "lines": [
+        {
+          "text": "Our analysis indicates that block arrival performance surpasses initial expectations for nodes with limited bandwidth."
+        },
+        {
+          "text": "While we naively assumed a linear relationship between blob count and arrival time, this is a simplified view of a highly complex distributed system."
+        },
+        {
+          "text": "Based on block/blob arrival metrics alone, increasing the blob count from (target 3/max 6) to (target 4/max 8) or (target 6/max 9) appears to be viable."
+        }
+      ]
+    },
+    {
+      "id": "a-146-potuz",
+      "kind": "quote",
+      "date": "2024-11-28",
+      "date_label": "28 November 2024",
+      "place": "All Core Devs - Consensus #146",
+      "speaker": "Potuz",
+      "speaker_slug": "potuz",
+      "talk_id": "667b8006-3fad-470d-98da-f75b96d45354",
+      "talk_slug": "all-core-devs-consensus-146",
+      "note": "The caution on the Pectra blob increase (EIP-7691), from a Prysm developer on the call that settled it: even if the average looks safe, a full block every slot puts the slowest blocks near the four-second deadline. He proposes 4 and 8.",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 2709,
+          "clean": "When we are in congestion, when actually [blobs] need to be posted regularly, then we would be in a situation where [we] hit on every slot the maximum, if the builders are behaving correctly.",
+          "caption": "when we are in congestion when actually blocks are needed to be posted regularly then we would be in a situation where hit on every slot the maximum if the builders are behaving correctly",
+          "chunks": [
+            {
+              "ord": 138,
+              "t": 2709,
+              "raw": "when we are in congestion when actually blocks are needed to be posted regularly then we would be in a situation where hit on every slot the maximum if the builders are behaving correctly"
+            }
+          ],
+          "edits": [
+            "Caption 'blocks' is blobs; 'where hit on every slot' lacks its subject, supplied as [we]. The sentence goes on ('and then if you see nine or 10 for limits ...'), which the next line picks up."
+          ]
+        },
+        {
+          "t": 2749,
+          "clean": "I would expect that at least 5% of those blocks are going to be [reorged], besides the validators losing the attestation and instability on the network, if we see every single block [at] nine or 10.",
+          "caption": "so I would expect that at least 5% of those blocks are going to be re being reared besides the validators like losing the attestation and instability on the network if we see every single block nine or 10",
+          "chunks": [
+            {
+              "ord": 139,
+              "t": 2749,
+              "raw": "so I would expect that at least 5% of those blocks are going to be re being reared besides the validators like losing the attestation and instability on the network if we see every single block nine or 10"
+            }
+          ],
+          "edits": [
+            "Caption 're being reared' is reorged; 'block nine or 10' read as 'block at nine or 10' (the limits of 9 or 10 blobs); the condition is the speaker's own, from the previous line."
+          ]
+        },
+        {
+          "t": 2749,
+          "clean": "My proposal would be to not do something radical this fork: move to [4/8], that we kind of know that we can handle.",
+          "caption": "my proposal would be to not do something radical this Fork move to 48 that we kind of know that we can handle",
+          "chunks": [
+            {
+              "ord": 139,
+              "t": 2749,
+              "raw": "my proposal would be to not do something radical this Fork move to 48 that we kind of know that we can handle"
+            }
+          ],
+          "edits": [
+            "Caption '48' is 4/8 (target 4, maximum 8), as in the surrounding 'four, eight' limits.",
+            "The speaker goes on: 'probably 5/8 if you want to increase the target, 6/8 might work, but I wouldn't increase the limit without more measurements'. The quote stops before that; the next line resumes at the limit."
+          ]
+        },
+        {
+          "t": 2749,
+          "clean": "I wouldn't increase the limit without more measurements.",
+          "caption": "I wouldn't increase the limit without more measurements",
+          "chunks": [
+            {
+              "ord": 139,
+              "t": 2749,
+              "raw": "I wouldn't increase the limit"
+            },
+            {
+              "ord": 140,
+              "t": 2793,
+              "raw": "without more measurements"
+            }
+          ],
+          "edits": [
+            "Starts after 'but' and after the speaker's aside on 5/8 and 6/8 (see the previous line); the claim about the limit is unchanged."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-146-ansgar",
+      "kind": "quote",
+      "date": "2024-11-28",
+      "date_label": "28 November 2024",
+      "place": "All Core Devs - Consensus #146",
+      "speaker": "Ansgar Dietrichs",
+      "speaker_slug": "ansgar-dietrichs",
+      "talk_id": "667b8006-3fad-470d-98da-f75b96d45354",
+      "talk_slug": "all-core-devs-consensus-146",
+      "note": "The case for 6 and 9 over a symmetric change (target half the maximum, such as 4 and 8 or 5 and 10), from an Ethereum Foundation researcher on the same call: the only people hurt by a more volatile blob fee are rollups, and they say they want room more than a smooth fee.",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 2617,
+          "clean": "The reason why I strongly would argue for [6/9] over a symmetric change is that in both cases only really the rollups are concerned as consumers of blobs. The network doesn't care about a slightly more flaky base fee. That's only a UX problem for rollups, and from talking to rollups it really seemed like they are much more concerned with overall throughput than the UX of a slightly more volatile base fee. They would much rather have overall more room.",
+          "caption": "the reason why I strongly would argue for 69 over a symmetric change is that in both cases only really the the rollups are concerned as consumers to blobs the network doesn't care about like about a slightly more flaky um base fee right like that's only ux problem for rollups and from talking to rollups it really seemed like they they are much much more concerned with overall throughput than the ux of a slightly more um volatile base fee so basically they they would much rather have overall more more room",
+          "chunks": [
+            {
+              "ord": 133,
+              "t": 2617,
+              "raw": "the reason why I strongly would argue for 69 over a symmetric change is that in both cases only really the the rollups are concerned as consumers to blobs the network doesn't care about like about a slightly more flaky um base fee right"
+            },
+            {
+              "ord": 134,
+              "t": 2661,
+              "raw": "like that's only ux problem for rollups and from talking to rollups it really seemed like they they are much much more concerned with overall throughput than the ux of a slightly more um volatile base fee so basically they they would much rather have overall more more room"
+            }
+          ],
+          "edits": [
+            "Caption '69' is 6/9 (target six, maximum nine).",
+            "'like about a slightly more flaky' is read as 'about a slightly more flaky'; 'they they' and 'more more' are stutters."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-146-decision",
+      "kind": "decision",
+      "date": "2024-11-28",
+      "date_label": "28 November 2024",
+      "place": "All Core Devs - Consensus #146",
+      "title": "Pectra goes ahead with a higher blob target and limit",
+      "body": "On the 28 November 2024 consensus-layer call, after hearing from the ethPandaOps data and from developers on both sides, the chair said he was hearing a lot of support for EIP-7691's target of 6 and maximum of 9 blobs, up from 3 and 6, and later asked whether the call was happy moving ahead with 6/9 and the fee update, on the strength of support in the chat. The call's closing review of the Pectra devnet 5 changes listed EIP-7691 and asked its authors to update the fee update fraction.",
+      "link": "https://forkcast.org/calls/acdc/146/",
+      "link_label": "See the call on Forkcast",
+      "note": "Primary source: our transcript of ACDC #146 (Alex Stokes: 'I am hearing a lot of support for 6/9 ... I'd like to go ahead and just make the decision now'; closing items: 'from this list here on this issue, 7691 ... would need an update for the update fraction', authors asked to handle it) and ethereum/pm call_146.md items 146.5 to 146.7. The update fraction was settled on ACDE #201 (5 Dec 2024, Ansgar Dietrichs) and the EIP text updated the same day (EIPs commit b45ee372). The call itself does not read out a vote; the body says only what was said."
+    },
+    {
+      "id": "w-er21138-cortze",
+      "kind": "written",
+      "date": "2024-12-02",
+      "date_label": "2 December 2024",
+      "place": "ethresear.ch",
+      "author": "Mikel Cortes (cortze)",
+      "author_slug": "mikel-cortes",
+      "affiliation": "ProbeLab",
+      "source_title": "Bandwidth Availability in Ethereum: Regional Differences and Network Impacts",
+      "source_url": "https://ethresear.ch/t/bandwidth-availability-in-ethereum-regional-differences-and-network-impacts/21138/1",
+      "note": "The second measurement behind the Pectra increase, from ProbeLab, measured 23 to 28 Nov 2024 and discussed on the 28 Nov call: it sees no critical objection to 6/9, but notes a loaded first four seconds of the slot, and asks for bandwidth-saving work because more blobs will be needed.",
+      "lines": [
+        {
+          "text": "60% of nodes deployed in Europe or the US have bandwidth availability of more than 20Mbps, while only 20% of nodes deployed in Australia can go above 20Mbps. This is not related to line speed availability in Australia, but rather it is due to the fact that 65% of Ethereum nodes are located in Europe or the US and therefore geographically far from Asia-based nodes."
+        },
+        {
+          "text": "Given the above, our take is that we don’t see any critical objection to the current desired blob target and max values of 6/9 discussed in the All Core Dev CL Call on Thursday 28th of November."
+        },
+        {
+          "text": "At the same time, we expect that nodes will be stressed with regard to bandwidth availability during the 1st and 4th seconds of the slot, especially assuming the number of duplicate messages that Gossipsub inevitably propagates through the network."
+        }
+      ]
+    },
+    {
+      "id": "w-mg22623-protolambda",
+      "kind": "written",
+      "date": "2025-01-22",
+      "date_label": "22 January 2025",
+      "place": "Ethereum Magicians",
+      "author": "protolambda",
+      "affiliation": "Optimism Collective",
+      "source_title": "Blob-Parameter-Only (BPO) forks",
+      "source_url": "https://ethereum-magicians.org/t/blob-parameter-only-bpo-forks/22623/1",
+      "note": "The rollup side's proposal for how to raise blob counts safely and often: small forks that change only two numbers, with solo stakers' bandwidth as the first condition. Posted by protolambda; the post names its authors as Sam McIngvale, Mark Tyneway and Proto.",
+      "lines": [
+        {
+          "text": "BPO forks are simple Ethereum forks that only change two parameters: blob targets and blob limits."
+        },
+        {
+          "text": "There are two generally agreed upon priorities with blobs: 1) ensure solo stakers with limited bandwidth can continue to produce blocks, and 2) provide DA scale to L2s to keep tx costs competitive. More flexibility to tweak blob parameters will help Ethereum thread the needle between the two."
+        }
+      ]
+    },
+    {
+      "id": "s-r01",
+      "kind": "quote",
+      "date": "2025-02-06",
+      "date_label": "6 February 2025",
+      "place": "All Core Devs - Consensus #150",
+      "speaker": "Sean Anderson",
+      "speaker_slug": "sean-anderson",
+      "talk_id": "89968f05-a887-41b7-a964-36e909a825bd",
+      "talk_slug": "all-core-devs-consensus-150",
+      "note": "A design change on the table before launch, from a Lighthouse developer: move the work of building cell proofs from the consensus clients to whoever sends the blob transaction, so blob counts can grow past 16.",
+      "lines": [
+        {
+          "t": 1118,
+          "clean": "One was the idea of shifting proof building responsibilities to the transaction [sender]. From Jimmy's point of view, it's important for this so that we could scale the number of blobs in [PeerDAS] past 16.",
+          "caption": "one was the idea of shifting proof building responsibilities to the transaction center. Jimmy from Jimmy's point of view is uh important for this so that we could scale the number of blobs in pure past 16.",
+          "chunks": [
+            {
+              "ord": 55,
+              "t": 1118,
+              "raw": "one was the idea of shifting proof building responsibilities to the transaction center."
+            },
+            {
+              "ord": 56,
+              "t": 1138,
+              "raw": "Jimmy from Jimmy's point of view is uh important for this so that we could scale the number of blobs in pure past 16."
+            }
+          ],
+          "edits": [
+            "False start 'Jimmy from' dropped; caption 'center' is 'sender' and 'pure' is PeerDAS."
+          ]
+        },
+        {
+          "t": 1138,
+          "clean": "The transaction sender would build KZG proofs and cell proofs. Right now I think KZG proofs are built by the transaction sender, but cell proofs are built by CLs. There's a computation bottleneck here, and if the transaction sender is computing cell proofs, we can shave off the proof computation time during block proposal.",
+          "caption": "the uh transaction sender would build KZG proofs. Um and cell proofs. Oh, right now I think KZG proofs are built by the transaction sender, but cell proofs are built by CL's. Um and there's a computation bottleneck here. Um and if the transaction sender is computing cell proofs, we can shave off the proof computation time during block proposal.",
+          "chunks": [
+            {
+              "ord": 56,
+              "t": 1138,
+              "raw": "the uh transaction sender would build KZG proofs. Um and cell proofs. Oh, right now I think KZG proofs are built by the transaction sender, but cell proofs are built by CL's. Um and there's a computation bottleneck here. Um and if the transaction sender is computing cell proofs, we can shave off the proof computation time during block proposal."
+            }
+          ],
+          "edits": [
+            "Filler 'Oh' before 'right now' dropped; 'CL's' written CLs."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-base-blob-acc-2025",
+      "kind": "written",
+      "date": "2025-02-27",
+      "date_label": "27 February 2025",
+      "place": "Base blog",
+      "author": "Base",
+      "source_title": "blob/acc: Achieving more blob space in 2025",
+      "source_url": "https://blog.base.dev/achieving-more-blob-space-in-2025",
+      "note": "The loudest case for going fast, from a large rollup: blobs are saturated and fees are up, so lock Fusaka to PeerDAS and EOF, start at a high blob count and keep raising it.",
+      "lines": [
+        {
+          "text": "Right now, blob usage has been saturated for several months, resulting in higher fees for users and constrained ecosystem growth."
+        },
+        {
+          "text": "We believe 24 blobs per block is a sensible starting point given that PeerDAS requires the weakest nodes to use roughly 8x less bandwidth than before, aligning with current bandwidth levels (3 blobs per block)."
+        }
+      ]
+    },
+    {
+      "id": "s-08",
+      "kind": "quote",
+      "date": "2025-02-28",
+      "date_label": "February 2025",
+      "place": "ETHDenver 2025",
+      "speaker": "Danno Ferrin",
+      "speaker_slug": "danno-ferrin",
+      "talk_id": "05bea9cb-53e8-4dff-9fc5-61896663820c",
+      "talk_slug": "state-ethereum-state-danno-ferrin-eof",
+      "note": "The home-hardware side in numbers: what more blobs mean for the disk of someone who stores them, and why PeerDAS was the 'more exciting answer'.",
+      "lines": [
+        {
+          "t": 697,
+          "clean": "When we target three blobs per block on average, what that means is you need to take about 36 [gigabytes] of data on your consensus client to store these blobs.",
+          "caption": "when we target three blobs per block on average what that means is you need to take about 36 gigabyt of data on your consensus client to store these blobs",
+          "chunks": [
+            {
+              "ord": 17,
+              "t": 697,
+              "raw": "when we target three blobs per block on average what that means is you need to take about 36 gigabyt of data on your consensus client to store these blobs"
+            }
+          ]
+        },
+        {
+          "t": 697,
+          "clean": "Now that's for Cancun. In about a month or two we're going to fork Pectra, and we're going to double that number: six blobs per block is what our target's going to be. What that means is that you need to keep 73 GB of data on your hard drive.",
+          "caption": "now that's for Cancun in about a month or two we're going to fork pectra and we're going to double that number to Six blobs per block is what our Target's going to be what that means is that you need to keep 73 GB of data on on your hard drive",
+          "chunks": [
+            {
+              "ord": 17,
+              "t": 697,
+              "raw": "now that's for Cancun in about a month or two we're going to fork"
+            },
+            {
+              "ord": 18,
+              "t": 741,
+              "raw": "pectra and we're going to double that number to Six blobs per block is what our Target's going to be what that means is that you need to keep 73 GB of data on on your hard drive"
+            }
+          ]
+        },
+        {
+          "t": 741,
+          "clean": "One idea, the very simple solution that we know we can achieve, is just to go up another three [blobs], target nine [blobs]. That means we can have about 120 [GB] of data. The more exciting answer, though, is something called [PeerDAS], and if we do [PeerDAS], we can go for a 6x, 8x number: 48 blobs.",
+          "caption": "one idea the very simple solution that we know we can achieve is just to go up another three blocks Target nine blocks that means we can have about 120 gabes of data takes about 3 terabytes of data the more exciting answer though is something called pieraz and if we do pieraz we can go for a 6X 8X number um 48 blobs",
+          "chunks": [
+            {
+              "ord": 18,
+              "t": 741,
+              "raw": "one idea the very simple solution that we know we can achieve is just to"
+            },
+            {
+              "ord": 19,
+              "t": 782,
+              "raw": "go up another three blocks Target nine blocks that means we can have about 120 gabes of data takes about 3 terabytes of data the more exciting answer though is something called pieraz and if we do pieraz we can go for a 6X 8X number um 48 blobs"
+            }
+          ],
+          "edits": [
+            "dropped 'takes about 3 terabytes of data', a second figure for the nine-blob option that the line does not need"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-09",
+      "kind": "quote",
+      "date": "2025-03-24",
+      "date_label": "24 March 2025",
+      "place": "Bankless",
+      "speaker": "Tim Beiko",
+      "speaker_slug": "tim-beiko",
+      "talk_id": "d5b4ede7-1198-41c1-8e2d-6d36d158999e",
+      "talk_slug": "its-time-get-aggressive-tim-beiko-ethereums-roadmap-bankless",
+      "note": "How fast, and how to ramp: the open question on how to roll out PeerDAS, with an 'escalator' idea that foreshadows the blob-parameter forks.",
+      "lines": [
+        {
+          "t": 2993,
+          "clean": "The thing that's still somewhat undecided is the best way to test this: to start with the highest possible blob counts, say like [48 or 72], and then kind of work backwards from there, or should we try to run [PeerDAS] with the same number of blobs, make sure that works, and then you ramp up and see what breaks. I see the value in both approaches, but we haven't quite made a call yet.",
+          "caption": "the thing we that's still somewhat undecided is is the best way to test this to start with the highest possible blob counts say like 4872 and then kind of work backwards from there or should we try to like run P Das with say you know the same number of blobs make sure that works and then you ramp up ramp up and see what breaks I see the value in both approaches so like I but we we haven't quite made a call yet",
+          "chunks": [
+            {
+              "ord": 71,
+              "t": 2993,
+              "raw": "the thing we that's still somewhat undecided is is the best way to test this to start with the highest possible blob counts say like 4872 and then kind of work backwards from there or should we try to like run P Das with say you know the same number of blobs make sure"
+            },
+            {
+              "ord": 72,
+              "t": 3034,
+              "raw": "that works and then you ramp up ramp up and see what breaks I see the value in both approaches so like I but we we haven't quite made a call yet"
+            }
+          ],
+          "edits": [
+            "the caption runs two numbers together ('4872'); written as [48 or 72], with 'or' supplied between them",
+            "'P Das' is the caption's mishearing of PeerDAS, written as [PeerDAS]",
+            "restarts dropped: 'the thing we that's' (we), 'with say you know' (say), 'so like I but' (I)"
+          ]
+        },
+        {
+          "t": 3076,
+          "clean": "We could ship [PeerDAS] with kind of like an escalator, increasing blob count, where we say, okay, when the fork goes live maybe there's actually not even a blob increase, but then two weeks after that it goes from six to eight, and then two weeks after that from 8 to 10, or something like that.",
+          "caption": "we could ship piod us with kind of like an escalator incre increasing blob count where we say okay when the fork goes live maybe there's like actually not even a blob increase but then two weeks after that it goes you know from six to eight and then two weeks after that from 8 to 10 or something like that",
+          "chunks": [
+            {
+              "ord": 73,
+              "t": 3076,
+              "raw": "we could ship piod us with kind of like an escalator incre increasing blob count where we say okay when the fork goes live maybe there's like actually not even a blob increase but then two weeks after that it goes you know from six to eight and then two weeks after that from 8 to 10 or something like that"
+            }
+          ],
+          "edits": [
+            "'piod us' is the caption's mishearing of PeerDAS, written as [PeerDAS]",
+            "cut-off word 'incre' before 'increasing' dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-20",
+      "kind": "quote",
+      "date": "2025-04-02",
+      "date_label": "2 April 2025",
+      "place": "PeerDAS talk",
+      "speaker": "Francesco D'Amato",
+      "speaker_slug": "francesco-d-amato",
+      "talk_id": "044e6afb-5121-470b-87b9-bca7101d4fe3",
+      "talk_slug": "ethereum-peer-data-availability-sampling-peer-das-damato",
+      "note": "The assumption PeerDAS ships with, stated by its designer: availability and recovery lean on nodes that take all the data. It answers the supernode worry raised by dapplion (s-05) and Luca Zanolini (s-15).",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 859,
+          "clean": "The way it's meant to work in Fusaka is with this [one-of-N] honesty assumption, and the actors we're making this assumption about are nodes that are willing to participate in all of the subnets: download all of the data, reconstruct it and reseed it if needed. If the data is missing, there has to be a node that is in all of the subnets, gets all of the columns that are there, does the reconstruction and reseeding, and helps heal the network.",
+          "caption": "so the way that it it's meant to work in Fusaka is with this one of an honesty assumption. Um and specifically the set of people that we're making or actors that we're making this assumption about is um nodes that are willing to participate in all of the subnets not not just sample but like really participate in all of the subnets. Uh download all of the data, reconstruct it and recede it if needed. So if the data is missing uh basically there has to be this node that actually is in all of the subnets. So gets all of the columns that are actually there does the reconstruction and then recedes and kind of helps uh heal the network.",
+          "chunks": [
+            {
+              "ord": 20,
+              "t": 859,
+              "raw": "so the way that it it's meant to work in Fusaka is with this one of an honesty assumption. Um and specifically the set of people that we're making or actors that we're making this assumption about is um nodes that are willing to participate in all of the subnets not not just sample but like really participate in all of the subnets. Uh download all of the data, reconstruct it and recede it if needed. So if the data is missing uh basically there has to be this node that actually is in all of the subnets. So gets all of the columns that are actually there does the reconstruction and then recedes and kind of helps uh heal the network."
+            }
+          ],
+          "edits": [
+            "'And u so' and 'not just sample but like really participate' trimmed; 'the way that it it's meant to work' read as 'the way it's meant to work'."
+          ]
+        },
+        {
+          "t": 902,
+          "clean": "Of course, it doesn't have to be a single node that carries the whole load. If there were multiple of them, this would be better. Some of them can send some columns, some can send other columns. They can all help out with the [reseeding], but the assumption is just that there is a single node that does this.",
+          "caption": "of course it doesn't have to be a single node that like carries this whole load but the and and yeah if there were multiple of them this would be better. Some of them can send some columns some that can can send other columns. um they can all help out with the receding but then the point is that the assumption is just that there is a single node that that does this",
+          "chunks": [
+            {
+              "ord": 21,
+              "t": 902,
+              "raw": "of course it doesn't have to be a single node that like carries this whole load but the and and yeah if there were multiple of them this would be better. Some of them can send some columns some that can can send other columns. um they can all help out with the receding but then the point is that the assumption is just that there is a single node that that does this"
+            }
+          ],
+          "edits": [
+            "'this whole load but the and and yeah' read as 'the whole load'; 'some that can can send' as 'some can send'; 'but then the point is that' as 'but'."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s-r02",
+      "kind": "quote",
+      "date": "2025-04-03",
+      "date_label": "3 April 2025",
+      "place": "All Core Devs - Consensus #154",
+      "speaker": "Alex Stokes",
+      "speaker_slug": "alex-stokes",
+      "talk_id": "2af2bb4d-6863-44dd-bb0c-afafe29697f9",
+      "talk_slug": "all-core-devs-consensus-154",
+      "note": "Fusaka scope on the consensus-layer call: the chair finds every client team wants PeerDAS, with the blob-parameter-only forks to raise counts, and the aim is to ship as fast as possible.",
+      "lines": [
+        {
+          "t": 2534,
+          "clean": "I guess the TLDR is that uniformly people want [PeerDAS] and BPO, which is 7892.",
+          "caption": "I guess the Tldr is that uniformly people want pure dos. And Bpo, which is 7, 8, 9, 2.",
+          "chunks": [
+            {
+              "ord": 86,
+              "t": 2534,
+              "raw": "I guess the Tldr is that uniformly people want pure dos. And Bpo, which is 7, 8, 9, 2."
+            }
+          ],
+          "edits": [
+            "Caption 'pure dos' is PeerDAS; '7, 8, 9, 2' written 7892 (EIP-7892, the blob-parameter-only forks)."
+          ]
+        },
+        {
+          "t": 3900,
+          "clean": "I think that's what everyone intends to do. So that was my framing here, that we assume that we go with [PeerDAS], ship [PeerDAS] as quickly as possible, ideally by the end of the year mark.",
+          "caption": "I think that's what everyone intends to do. So that was my framing here is that we assume that we go with pure dos ship pure dos as quickly as possible. Ideally, by the end of the year mark.",
+          "chunks": [
+            {
+              "ord": 131,
+              "t": 3900,
+              "raw": "I think that's what everyone intends to do. So that was my framing here is that we assume that we go with pure dos ship pure dos as quickly as possible. Ideally, by the end of the year mark."
+            }
+          ],
+          "edits": [
+            "Caption 'pure dos' is PeerDAS."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "a-154-anders",
+      "kind": "quote",
+      "date": "2025-04-03",
+      "date_label": "3 April 2025",
+      "place": "All Core Devs - Consensus #154",
+      "speaker": "Anders Elowsson",
+      "speaker_slug": "anders-elowsson",
+      "talk_id": "2af2bb4d-6863-44dd-bb0c-afafe29697f9",
+      "talk_slug": "all-core-devs-consensus-154",
+      "note": "The blob fee floor (EIP-7918), pitched for Fusaka by its author: without it the blob price can sink to where the transaction cost dominates and the market stops adjusting, which limits how far blob counts can be raised safely. The call's other Fusaka scope item is s-r02.",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 3389,
+          "clean": "I want to pitch it from a scaling perspective. The current blob fee market doesn't actually account for the real blob space demand function.",
+          "caption": "So I want to pitch it sort of from a scaling perspective. So the current blob fee market doesn't actually account, you know, for the real blob space demand function",
+          "chunks": [
+            {
+              "ord": 110,
+              "t": 3389,
+              "raw": "So I want to pitch it sort of from a scaling perspective. So the current blob fee market doesn't actually account, you know, for the real blob space demand function"
+            }
+          ]
+        },
+        {
+          "t": 3389,
+          "clean": "The consequence of this is that the fee update becomes insignificant when a Tx cost dominates, and the fee market then fails to converge on an equilibrium in a timely manner.",
+          "caption": "And the consequence of this is that the fee update becomes insignificant when a Tx cost dominates, and the fee market then fails to converge on an equilibrium in a timely manner",
+          "chunks": [
+            {
+              "ord": 110,
+              "t": 3389,
+              "raw": "And the consequence of this is that the fee update becomes insignificant when a Tx cost dominates, and the fee market then fails to converge on an equilibrium in a timely manner"
+            }
+          ]
+        },
+        {
+          "t": 3426,
+          "clean": "This EIP resolves it by imposing at least fee parity between the cheapest bulk transaction and the total fee for target number of blobs, and this stops the blob base fee from falling into the region where the Tx cost dominates, and it acts similar to EIP-7762, but will adapt with the execution base fee and future scaling.",
+          "caption": "and this eip resolves it by imposing at least fee parity between the cheapest bulk transaction and the total fee for target number of blobs, and this stops the blob base fee from falling into the region where the Tx cost dominates, and it acts similar to Eip, 7,762, but will adapt with the execution, base fee and future scaling",
+          "chunks": [
+            {
+              "ord": 111,
+              "t": 3426,
+              "raw": "and this eip resolves it by imposing at least fee parity between the cheapest bulk transaction and the total fee for target number of blobs, and this stops the blob base fee from falling into the region where the Tx cost dominates, and it acts similar to Eip, 7,762, but will adapt with the execution, base fee and future scaling"
+            }
+          ],
+          "edits": [
+            "Caption 'Eip, 7,762' written EIP-7762."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-155-decision",
+      "kind": "decision",
+      "date": "2025-04-17",
+      "date_label": "17 April 2025",
+      "place": "All Core Devs - Consensus #155",
+      "title": "Blob-parameter-only forks are scheduled for Fusaka",
+      "body": "On the 17 April 2025 consensus-layer call, the chair moved EIP-7892, blob-parameter-only forks, from considered to scheduled for inclusion in Fusaka, so that PeerDAS and the blob-parameter forks were both shipping. One developer on the call said he was not convinced about blob-parameter forks, and treated them as settled.",
+      "link": "https://forkcast.org/calls/acdc/155/",
+      "link_label": "See the call on Forkcast",
+      "note": "Primary source: our transcript of ACDC #155 (Alex Stokes, segments 60 to 65: 'there are enough comments in the chat to go ahead and SFI EIP-7892 ... we currently have PeerDAS SFI'd, meaning it is shipping; we just moved the BPO EIP to SFI from CFI, meaning the BPO EIP is shipping'; Dustin Brody, segments 24 to 29, questions the emergency-override premise and says 'I'm not particularly convinced about BPOs in this context, either', having 'started taking that a bit as a fait accompli'). The EIP-7892 text was updated on 10 Apr 2025 (use valid yaml for the consensus config) and 7 May 2025 (consensus config format)."
+    },
+    {
+      "id": "s-r03",
+      "kind": "quote",
+      "date": "2025-04-24",
+      "date_label": "24 April 2025",
+      "place": "All Core Devs - Execution #210",
+      "speaker": "Tim Beiko",
+      "speaker_slug": "tim-beiko",
+      "talk_id": "ee38dcdf-d400-470c-be58-7e1bb3da67eb",
+      "talk_slug": "all-core-devs-execution-210",
+      "note": "Tim Beiko's account, on the 24 April 2025 call, that raising the L1 gas limit is Fusaka's other priority. It predates the charge in the Tom Dunleavy stop below (19 May 2025) and is not a reply to it.",
+      "lines": [
+        {
+          "t": 5055,
+          "clean": "On the last [All Core Devs] we said that the other thing we wanted to prioritize for Fusaka is focusing on raising the gas limit.",
+          "caption": "on the last awkward devs we we said that the other thing we wanted to prioritize for for Fusaka is focusing on raising the gas limit.",
+          "chunks": [
+            {
+              "ord": 192,
+              "t": 5055,
+              "raw": "on the last awkward devs we we said that the other thing we wanted to prioritize for for Fusaka is"
+            },
+            {
+              "ord": 193,
+              "t": 5128,
+              "raw": "focusing on raising the gas limit."
+            }
+          ],
+          "edits": [
+            "Stutters 'we we' and 'for for' reduced; caption 'awkward devs' is All Core Devs (the AllCoreDevs call)."
+          ]
+        },
+        {
+          "t": 5128,
+          "clean": "The idea is that this EIP that I showed in the chat would be like our final backstop, where by the time we ship Fusaka, maybe we realize 80 million gas is fine, and so all the clients ship with 80 million gas.",
+          "caption": "The idea is that this eip that I showed in the chat would be like our final backstop, where by the time we ship Fusaka, maybe we realize 80 million gas is fine, and so all the clients ship with 80 million gas",
+          "chunks": [
+            {
+              "ord": 193,
+              "t": 5128,
+              "raw": "The idea is that this eip that I showed in the chat would be like our final backstop, where by the time we ship Fusaka, maybe we realize 80 million gas is fine, and so all the clients ship with 80 million gas"
+            }
+          ]
+        },
+        {
+          "t": 5184,
+          "clean": "But it does feel important to have something like that, because otherwise we will just add a bunch of stuff in the fork, and then no one will have time to work on the gas limit, and the gas limit will be the same a year from now than it is today.",
+          "caption": "But it does feel important to have something like that, because otherwise we will just add a bunch of stuff in the fork, and then no one will have time to work on the gas limit and the gas limit will be the same a year from now than it is today.",
+          "chunks": [
+            {
+              "ord": 194,
+              "t": 5184,
+              "raw": "But it does feel important to have something like that, because otherwise we will just add a bunch of stuff in the fork, and then no one will have time to work on the gas limit and the gas limit will be the same a year from now than it is today."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "a-pectra-live",
+      "kind": "decision",
+      "date": "2025-05-07",
+      "date_label": "7 May 2025",
+      "place": "Pectra mainnet upgrade",
+      "title": "Pectra raises the blob target to 6 and the limit to 9",
+      "body": "Pectra went live on 7 May 2025. EIP-7691, which it carried, raised the blob target from 3 to 6 and the maximum from 6 to 9 per block.",
+      "link": "https://ethereum.org/en/history/#pectra",
+      "link_label": "Read the upgrade history",
+      "note": "Two primary sources, read 10 Nov 2026: ethereum.org/en/history (Pectra, 7 May 2025; lists 'EIP-7691 - Blob throughput increase') and the EIP text itself (eips.ethereum.org/EIPS/eip-7691, status Final: 'a new target and max of 6 and 9 blobs per block respectively'; Dencun's was 3/6). The body states only those two facts. Closes the gap between the 28 Nov 2024 decision (a-146-decision) and Fusaka."
+    },
+    {
+      "id": "s-10",
+      "kind": "quote",
+      "date": "2025-05-19",
+      "date_label": "19 May 2025",
+      "place": "Empire",
+      "speaker": "Tom Dunleavy",
+      "speaker_slug": "tom-dunleavy",
+      "talk_id": "17ef77d8-e7f9-4eb6-b8ff-13da39f2a313",
+      "talk_slug": "bull-case-ethereum-ryan-berckmans-tom-dunleavy-empire",
+      "note": "The priorities objection: Fusaka scales the rollups' data layer while L1 execution waits. Tom's critique.",
+      "lines": [
+        {
+          "t": 2323,
+          "clean": "I would argue we're not actually focusing on the L1. If you look at the upgrade path right now, Fusaka, Pectra, going forward, all these things we're talking about scaling L2s, larger blobs, things like that, that are scaling at the L2 layer. There's effectively no one looking at the L1 until later '26, I think, on the Ethereum roadmap right now, which in my view is far too late.",
+          "caption": "So I would argue we're not actually focusing on the L1. So if you look at the upgrade path right now, Fusaka um pectra you know going forward all these things we're talking about scaling L2s larger blobs um you know things like that that are scaling at the L2 layer there's effectively no one looking at the L1 until later 26 I think on Ethereum road map right now which in my view is far too late",
+          "chunks": [
+            {
+              "ord": 56,
+              "t": 2323,
+              "raw": "So I would argue we're not actually focusing on the L1. So if you look at the upgrade path right now, Fusaka um pectra you know going forward all these things we're talking about scaling L2s larger blobs um you know things like that that are scaling at the L2 layer there's effectively no one looking at the L1 until later 26 I think on Ethereum road map right now which in my view is far too late"
+            }
+          ]
+        },
+        {
+          "t": 2626,
+          "clean": "I think the L2-centric roadmap's important. Blobs are full today. Fantastic. But we need to move things here. We need to move things along.",
+          "caption": "So I think you know the L2 centric road map's important. you know, blobs are full today. Fantastic. But like we need to we need to move things here. We need to move things along",
+          "chunks": [
+            {
+              "ord": 63,
+              "t": 2626,
+              "raw": "So I think you know the L2 centric road map's important. you know, blobs are full today. Fantastic. But like we need to we need to move things here. We need to move things along"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-21",
+      "kind": "quote",
+      "date": "2025-06-26",
+      "date_label": "26 June 2025",
+      "place": "All Core Devs - Consensus #159",
+      "speaker": "Parithosh Jayanthi",
+      "speaker_slug": "parithosh-jayanthi",
+      "talk_id": "70d5a78b-8064-47c5-a2ad-cec123d02458",
+      "talk_slug": "all-core-devs-consensus-159",
+      "note": "How to roll blob counts out, from the testing side, on the call where the Fusaka consensus-layer specs were frozen: one cautious step right after Fusaka to get clean PeerDAS data, then bolder ones. In the same discussion he notes that a Sigma Prime post proposed a higher starting point (18 blobs).",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 1630,
+          "clean": "With [PeerDAS] that changes: we can do all the analysis we want right now, it just won't really mean much for a post-PeerDAS world. Which is why our proposal would be to have a very conservative bump immediately after Fusaka, so that could be BPO1.",
+          "caption": "with pierdas that changes, we can do all the analysis we want right now. It just won't really mean much for a post peer das world. Which is why our proposal would be to have a very conservative bump immediately. After Fusaka, so that could be Bpo one.",
+          "chunks": [
+            {
+              "ord": 62,
+              "t": 1630,
+              "raw": "with pierdas that changes, we can do all the analysis we want right now. It just won't really mean much for a post peer das world. Which is why our proposal would be to have a very conservative bump immediately. After Fusaka, so that could be Bpo one."
+            }
+          ],
+          "edits": [
+            "'post peer das' written as 'post-PeerDAS'; 'immediately. After Fusaka' joined across the caption's sentence break."
+          ]
+        },
+        {
+          "t": 1681,
+          "clean": "Then we have BPO1, which increases blob counts by a relatively small number, to give us some scaling short term. Then we can actually do all the analyses that we want with the [mainnet] data, and then we can schedule the next two BPOs, which can be a lot more aggressive if required.",
+          "caption": "And then we have Bpo, one that increases blob counts by a relatively small number to give us some scaling short term, and then we can actually do all the analyses that we want on with the main data, and then we can schedule the next 2 Bpo's, which can be a lot more aggressive if required,",
+          "chunks": [
+            {
+              "ord": 63,
+              "t": 1681,
+              "raw": "And then we have Bpo, one that increases blob counts by a relatively small number to give us some scaling short term, and then we can actually do all the analyses that we want on with the main data, and then we can schedule the next 2 Bpo's, which can be a lot more aggressive if required,"
+            }
+          ],
+          "edits": [
+            "'on with the main data' read as 'with the mainnet data'; 'And then we have Bpo, one that increases' read as 'which increases'."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w-sigma-chen-2025-06-26",
+      "kind": "written",
+      "date": "2025-06-26",
+      "date_label": "26 June 2025",
+      "place": "Sigma Prime blog",
+      "author": "Jimmy Chen",
+      "affiliation": "Sigma Prime",
+      "source_title": "Road to Shipping PeerDAS to Mainnet in 2025",
+      "source_url": "https://sigmaprime.io/blog/shipping-peerdas/",
+      "note": "The Lighthouse team's counter to going to 72 blobs at once, a week before the 3 July call: aim for a number that already works today and raise it in a BPO fork. The post is the 'Sigma Prime post on a higher starting blob count' that x-n11 could not find and s-21's note mentions; it proposes 18 blobs at Fusaka and 24 at one BPO, i.e. a lower start than the 'from six to 72' idea Parithosh Jayanthi describes in s-13.",
+      "lines": [
+        {
+          "text": "Rather than spending time trying to push to 72 blobs, I think we'd be better off setting a more realistic number that already works today, with some headroom, as the target and making it robust."
+        },
+        {
+          "text": "Launch Fusaka with up to 18 blobs (2x Pectra), and schedule one BPO fork to increase this to 24 blobs."
+        },
+        {
+          "text": "Finalising a blob schedule without enough real-world data might be a bit risky, but having a tentative target to focus testing around would still be very helpful."
+        }
+      ]
+    },
+    {
+      "id": "s-22",
+      "kind": "quote",
+      "date": "2025-06-30",
+      "date_label": "30 June 2025",
+      "place": "EthCC[8]",
+      "speaker": "Mike Neuder",
+      "speaker_slug": "mike-neuder",
+      "talk_id": "9e6b545d-36e1-5ad3-86b0-a3e92f3bfc1b",
+      "talk_slug": "ethereum-blob-gossip-and-validation-before-and-after-peerdas-ethcc-8-9e6b545d",
+      "note": "A cost PeerDAS does not remove, from the Ethereum Foundation researcher who studied blob gossip: the consensus layer samples, but the transaction pool still carries whole blobs.",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 839,
+          "clean": "Without changing anything, the blob bandwidth increases by 8x, while the DA check remains constant in terms of bandwidth consumption. So we kind of threw the baby out with the bathwater a little bit. We said, \"We're only going to subsample parts of these blobs on the consensus layer, but on the execution layer, if you want to stay connected to the mempool, you're going to have to download the full blob data.\"",
+          "caption": "And basically the the summary here is without changing anything the blob bandwidth increases by 8x while the DA check remains constant in terms of bandwidth consumption. So, we kind of threw the baby out with the bathwater little bit. We said, \"Okay, we're going to only subsample parts of these blobs on the on the consensus layer, but on the execution layer, if you want to stay connected to the memp pool, you're going to have to download the full blob data.\"",
+          "chunks": [
+            {
+              "ord": 20,
+              "t": 839,
+              "raw": "And basically the the summary here is without changing anything the blob bandwidth increases by 8x while the DA check remains constant in terms of bandwidth consumption. So, we kind of threw the baby out with the bathwater little bit. We said, \"Okay, we're going to only subsample parts of these blobs on the on the consensus layer, but on the execution layer, if you want to stay connected to the memp pool, you're going to have to download the full blob data.\""
+            }
+          ],
+          "edits": [
+            "'Okay,' dropped from inside the quoted sentence; 'a' supplied before 'little bit'."
+          ]
+        },
+        {
+          "t": 920,
+          "clean": "The second claim is [that solving] the fundamental asymmetry of blob validation and gossip is important to continue the scaling roadmap. [PeerDAS] may be fine, as the blob pool will only consume maybe 10x the resources that it consumes now, but once we go to 2D sampling it gets another order of magnitude increase. It doesn't make sense to say the execution layer is continuing to scale linearly in the number of blobs but the consensus layer is only scaling sublinearly. That feels directly at odds to me.",
+          "caption": "and then the second claim is solving the fundamental asymmetry of blob validation and gossip is important to continue the scaling road map right so pure may be fine like the blob pool will only consume maybe 10x the resources that it consumes now but once we go to 2D sampling it gets another order of magnitude increase and it just like it doesn't make sense to to say oh the ex uh the execution layer is continuing to scale linearly in the number of blobs but the consensus layer is only scaling kind of um sublinearly like that that feels uh directly at odds to me.",
+          "chunks": [
+            {
+              "ord": 22,
+              "t": 920,
+              "raw": "and then the second claim is solving the fundamental asymmetry of blob validation and gossip is important to continue the scaling road map right so pure may be fine like the blob pool will only consume maybe 10x the"
+            },
+            {
+              "ord": 23,
+              "t": 962,
+              "raw": "resources that it consumes now but once we go to 2D sampling it gets another order of magnitude increase and it just like it doesn't make sense to to say oh the ex uh the execution layer is continuing to scale linearly in the number of blobs but the consensus layer is only scaling kind of um sublinearly like that that feels uh directly at odds to me."
+            }
+          ],
+          "edits": [
+            "'that' supplied so the sentence stands alone; 'right so pure may be fine like' read as 'PeerDAS may be fine, as'."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-160-stokes",
+      "kind": "quote",
+      "date": "2025-07-10",
+      "date_label": "10 July 2025",
+      "place": "All Core Devs - Consensus #160",
+      "speaker": "Alex Stokes",
+      "speaker_slug": "alex-stokes",
+      "talk_id": "af40b40b-7951-4ec4-9fc2-ae01e7d90b73",
+      "talk_slug": "all-core-devs-consensus-160",
+      "note": "Where the 'how fast' argument landed: after Parithosh Jayanthi's call for a cautious first step (s-21), the consensus-layer chair asks the call to agree a conservative rollout, with only two blob-parameter forks scheduled with Fusaka. The more aggressive alternative he names is more forks scheduled up front. The numbers were not set on this call.",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 1942,
+          "clean": "There's pretty broad support for having a more conservative rollout with Fusaka, where basically we just schedule maybe one substantial increase at launch. Then that would imply we have a BPO update early next year to get us to a higher number.",
+          "caption": "There's pretty broad support for having a more conservative rollout with Fusaka, where basically, we just schedule like maybe one substantial increase at launch. Then that would imply we have a Bpo update early next year to get us to like a higher number.",
+          "chunks": [
+            {
+              "ord": 79,
+              "t": 1942,
+              "raw": "There's pretty broad support for having a more conservative rollout with Fusaka, where basically, we just schedule like maybe one substantial increase at launch. Then that would imply we have a Bpo update early next year to get us to like a higher number."
+            }
+          ],
+          "edits": [
+            "The speaker then offers the alternative ('a more aggressive option where we just try to have more BPOs scheduled with Osaka'); the quote stops before it, and the next line is his statement of what was agreed."
+          ]
+        },
+        {
+          "t": 2184,
+          "clean": "But then what we can, I think, agree to today is just the shape of having only two BPO scheduled with Osaka. And of course, that's all pending further development that we do.",
+          "caption": "But then what we can, I think, agree to today is just the shape of having only 2 Bpo scheduled with Osaka. And of course, you know, that's all. Pending further development that we do.",
+          "chunks": [
+            {
+              "ord": 87,
+              "t": 2184,
+              "raw": "But then what we can, I think, agree to today is just the shape of having only 2 Bpo scheduled with Osaka. And of course, you know, that's all. Pending further development that we do."
+            }
+          ],
+          "edits": [
+            "'Osaka' is the execution-layer name for the Fusaka fork."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-160-decision",
+      "kind": "decision",
+      "date": "2025-07-10",
+      "date_label": "10 July 2025",
+      "place": "All Core Devs - Consensus #160",
+      "title": "Fusaka will schedule two blob-parameter forks",
+      "body": "On the 10 July 2025 consensus-layer call, developers agreed to the shape of a conservative rollout: Fusaka would schedule only two blob-parameter-only forks, with their blob numbers still to be set from test-network data.",
+      "link": "https://forkcast.org/calls/acdc/160/",
+      "link_label": "See the call on Forkcast",
+      "note": "Primary source: our transcript of ACDC #160 (Alex Stokes, segment 87: 'what we can, I think, agree to today is just the shape of having only two BPO scheduled with Osaka ... pending further development'; Barnabas Busa, segment 85: a mild first step, 8 and 12 or 9 and 12, not fixed; Parithosh Jayanthi, segment 86: no network stable enough yet to pick values). The values 10/15 and 14/21 came from the Devnet 5 analysis reported on ACDC #165 (s-r05). Replaces the 'process' reading in x-n05."
+    },
+    {
+      "id": "s-12",
+      "kind": "quote",
+      "date": "2025-08-06",
+      "date_label": "August 2025",
+      "place": "PEEPanEIP",
+      "speaker": "Mark Mackey",
+      "speaker_slug": "mark-mackey",
+      "talk_id": "54bdc37c-aa5e-42e1-a229-e5e58e318332",
+      "talk_slug": "eip-7892-blob-parameter-only-hardforks-mackey-ranjan",
+      "note": "Why blob counts cannot just be raised, and how blob-parameter-only forks let PeerDAS ship cautiously and ramp.",
+      "lines": [
+        {
+          "t": 376,
+          "clean": "As you increase the number of blobs per block, you end up increasing the bandwidth requirements on nodes, the storage requirements, and the CPU requirements. And while we could always do that, if you push hardware requirements too far, you end up risking centralization, as people don't want to run full nodes. So we can't push that indefinitely far.",
+          "caption": "Well, as you increase the number of blobs per block, you end up increasing the bandwidth requirements on nodes, the storage requirements, and the CPU requirements. And while we could always do that, you know, if you push hardware requirements too far, you end up risking centralization as people don't want to run full nodes. So, we can't push that indefinitely far.",
+          "chunks": [
+            {
+              "ord": 9,
+              "t": 376,
+              "raw": "Well, as you increase the number of blobs per block, you end up increasing the bandwidth requirements on nodes, the storage requirements, and the CPU requirements. And while we could always do that, you know, if you push hardware requirements too far, you end up risking centralization as people don't want to run full nodes. So, we can't push that indefinitely far."
+            }
+          ]
+        },
+        {
+          "t": 797,
+          "clean": "With the ability to upgrade outside of forks, we have a new strategy where we could basically just ship the major upgrade when it's ready. This is actually already entered into discussions on how we ship [PeerDAS]. We can just like pick a more conservative target and just ship [PeerDAS] to begin with, cuz we know we can upgrade later.",
+          "caption": "So with the ability to upgrade outside of forks, we have a new strategy where we could basically just ship the major upgrade when it's ready. So this is actually already entered into discussions on how we ship pure. So we can just like pick a more conservative target and just ship pure to begin with cuz we know we can upgrade later",
+          "chunks": [
+            {
+              "ord": 19,
+              "t": 797,
+              "raw": "So with the ability to upgrade outside of forks, we have a new strategy where we could basically just ship the major upgrade when it's ready. So this is actually already entered into discussions on how we ship pure. So we can just like pick a more conservative target and just ship pure to begin with cuz we know we can upgrade later"
+            }
+          ],
+          "edits": [
+            "'pure' is the caption's mishearing of PeerDAS, written as [PeerDAS] both times"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-mg23018-etan",
+      "kind": "written",
+      "date": "2025-08-06",
+      "date_label": "6 August 2025",
+      "place": "Ethereum Magicians",
+      "author": "Etan Kissling",
+      "source_title": "EIP-7892: Blob Parameter Only Hardforks",
+      "source_url": "https://ethereum-magicians.org/t/eip-7892-blob-parameter-only-hardforks/23018/5",
+      "note": "A security objection to the blob-parameter-only forks four months before launch: changing only the fork digest leaves traffic from clients that did not upgrade valid on the upgraded network, and the 'cheap fork' rationale does not match the operator experience.",
+      "lines": [
+        {
+          "text": "The problem with only rolling the ForkDigest is that after the BPO activates, network traffic from clients that did not upgrade remains valid on the network partition of clients that upgraded."
+        },
+        {
+          "text": "The EIP rationale doesn't make sense to me. The same coordination is required for a BPO: All users have to update clients before it activates, and the node consumes more resources after the fork, possibly requiring hardware upgrades; the experience for users is exactly the same as for a full blown fork."
+        }
+      ]
+    },
+    {
+      "id": "s-r04",
+      "kind": "quote",
+      "date": "2025-08-07",
+      "date_label": "7 August 2025",
+      "place": "All Core Devs - Consensus #162",
+      "speaker": "Matthew Keil",
+      "speaker_slug": "matthew-keil",
+      "talk_id": "23a454ca-da16-40f3-9e1c-8b53b6861e30",
+      "talk_slug": "all-core-devs-consensus-162",
+      "note": "Client readiness a few months before launch, from a Lodestar developer speaking for several consensus teams: more time on a stable testnet with every client's code on its main branch, and testing without the getBlobs shortcut.",
+      "lines": [
+        {
+          "t": 1232,
+          "clean": "Our code isn't on master. And so now, being able to test, to execute that code or to exercise those code [paths] on trunk branches, we think is critically important. The timeline that we've been talking about is basically four extra weeks, so end of September.",
+          "caption": "our code isn't on master. And so now, being able to to test, to execute that code or to exercise those code bats on on trunk branches. We think is is critically important. the timeline that we've been talking about is basically 4 extra weeks. So end of September.",
+          "chunks": [
+            {
+              "ord": 38,
+              "t": 1232,
+              "raw": "our code isn't on master. And so now, being able to to test, to execute that code or to exercise those code bats on on trunk branches. We think is is critically important. the timeline that we've been talking about is basically 4 extra weeks. So end of September."
+            }
+          ],
+          "edits": [
+            "Caption 'code bats' is 'code paths'.",
+            "The caption lead-in 'Devnet granted 4 is basically the same as 3 but' is not quoted."
+          ]
+        },
+        {
+          "t": 1308,
+          "clean": "There is a concern that the [getBlobs] V2 has been a crutch in order to make sure that syncing and following head works well. And we think that needs to be exercised as well.",
+          "caption": "there is a concern that the get blocks. V. 2 has been a crutch in order to make sure that syncing and and following head works well. And we think that needs to be exercised as well.",
+          "chunks": [
+            {
+              "ord": 39,
+              "t": 1308,
+              "raw": "there is a concern that the get blocks. V. 2 has been a crutch in order to make sure that syncing and and following head works well. And we think that needs to be exercised as well."
+            }
+          ],
+          "edits": [
+            "Caption 'get blocks. V. 2' is the getBlobs V2 call; the caption sentence before, which says there has been no private mempool testing, is not quoted."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-r05",
+      "kind": "quote",
+      "date": "2025-09-18",
+      "date_label": "18 September 2025",
+      "place": "All Core Devs - Consensus #165",
+      "speaker": "Barnabas Busa",
+      "speaker_slug": "barnabas-busa",
+      "talk_id": "d8eb52a2-55f9-4fd0-b422-c4b3a36927fb",
+      "talk_slug": "all-core-devs-consensus-165",
+      "note": "What the big devnet showed and where the first two blob-parameter steps landed: 15/21 looked safe, with a further analysis to come.",
+      "lines": [
+        {
+          "t": 202,
+          "clean": "The conclusion of our analysis was that max values of 15 and 21 seem to be reasonable for BPO1 and 2. And next value of 32 might lead to struggles in publishing blobs, with limited bandwidth. We certainly will have to do another analysis. It's probably going to be [Fusaka-devnet] 6, maybe a couple of weeks from now, but we feel like we should be good to go with [Holesky] and with these BPO numbers.",
+          "caption": "conclusion of our, analysis was that, max values of 15 and 21, seem to be reasonable for BPO1 and 2. And next value of 32, might lead to struggles into publishing blobs without any V-release or full nodes, with limited bandwidth. We certainly will have to do another analysis. It's probably going to be physical.net 6, maybe a couple of weeks from now, but, we feel like we should be good to go with Holosky and with these, BPO numbers.",
+          "chunks": [
+            {
+              "ord": 5,
+              "t": 202,
+              "raw": "conclusion of our, analysis was that, max values of 15 and 21, seem to be reasonable for BPO1 and 2. And next value of 32, might lead to struggles into publishing blobs without any V-release or full nodes, with limited bandwidth. We certainly will have to do another analysis. It's probably going to be physical.net 6, maybe a couple of weeks from now, but, we feel like we should be good to go with Holosky and with these, BPO numbers."
+            }
+          ],
+          "edits": [
+            "Caption 'physical.net' is the Fusaka devnet and 'Holosky' is Holesky.",
+            "The garbled caption words 'without any V-release or full nodes' (between 'publishing blobs' and 'with limited bandwidth') are not quoted."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-13",
+      "kind": "quote",
+      "date": "2025-11-18",
+      "date_label": "18 November 2025",
+      "place": "EthStaker at Devconnect Buenos Aires 2025",
+      "speaker": "Parithosh Jayanthi",
+      "speaker_slug": "parithosh-jayanthi",
+      "talk_id": "5394183b-6f9e-445b-81c9-6d1e503cd469",
+      "talk_slug": "parithosh-jayanthi-barnabas-busa-ethpandaops-fusaka-testing",
+      "note": "The 'too fast' voice from the testers: going from six to 72 blobs at once was the original idea, and the more they looked, the less safe it felt. They checked it against a home staker's connection.",
+      "lines": [
+        {
+          "t": 678,
+          "clean": "What is the actual scaling that we're going to ship with? Were we going to go from six blobs to 72 blobs immediately at Fusaka? That was the original idea. But the longer we looked at the problem, the more unsafe that felt.",
+          "caption": "what is the actual scaling that we're going to ship with? Were we going to go from six blobs to 72 blobs immediately at Fusaka? That was the original idea. Um, but the longer we looked at the problem, the more unsafe that felt",
+          "chunks": [
+            {
+              "ord": 16,
+              "t": 678,
+              "raw": "what is the actual scaling that we're going to ship with? Were we going to go from six blobs to 72 blobs immediately at Fusaka? That was the original idea."
+            },
+            {
+              "ord": 17,
+              "t": 716,
+              "raw": "Um, but the longer we looked at the problem, the more unsafe that felt"
+            }
+          ]
+        },
+        {
+          "t": 874,
+          "clean": "There's also the Syncor tool, and this was very important for us to actually figure out: hey, if we go to 72 blobs and we have a homestaker with 50 Mbps internet, are we going to make them take 4 days to sync?",
+          "caption": "Uh there's also the Syncor tool and this was very important for us to actually figure out hey if we go to 72 blobs and we have a homestaker with 50 Mbps internet are we going to make them take 4 days to sync",
+          "chunks": [
+            {
+              "ord": 21,
+              "t": 874,
+              "raw": "Uh there's also the Syncor tool and this was very important for us to actually figure out hey if we go to 72 blobs and we have a homestaker with 50 Mbps internet are we going to make them take 4 days to sync"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-14",
+      "kind": "quote",
+      "date": "2025-12-03",
+      "date_label": "3 December 2025",
+      "place": "Unchained",
+      "speaker": "Preston Van Loon",
+      "speaker_slug": "preston-van-loon",
+      "talk_id": "ea4bf061-ec91-4ede-b754-81409636224a",
+      "talk_slug": "cheaper-fees-no-more-free-lunch-layer-2s-inside-unchained",
+      "note": "Two days before activation, from a Prysm developer: the aim of keeping it practical to run at home, and what node operators gain.",
+      "lines": [
+        {
+          "t": 215,
+          "clean": "We have a really interesting headliner called [PeerDAS]. The theme here is blobs. We're trying to scale the data layer of Ethereum through blobs, and do it in a way that keeps it practical to run [at] home, and to keep the decentralization going and keep the home staker alive, and at the same time scaling the data layer, scaling the L1.",
+          "caption": "because we have a really interesting headliner called Pure Das. And the the theme here is blobs, right? We're trying to scale the data layer of Ethereum uh through blobs and do it in a way that you know keeps it practical to run home and to to keep the decentralization going and keep the home staker alive and uh at the same time scaling scaling the data layer scaling the L1",
+          "chunks": [
+            {
+              "ord": 5,
+              "t": 215,
+              "raw": "because we have a really interesting headliner called Pure Das. And the the theme here is blobs, right? We're trying to scale the data layer of Ethereum uh through blobs and do it in a way that you know keeps it practical to run home and to to keep the decentralization going and keep the home"
+            },
+            {
+              "ord": 6,
+              "t": 257,
+              "raw": "staker alive and uh at the same time scaling scaling the data layer scaling the L1"
+            }
+          ],
+          "edits": [
+            "'at' supplied in 'run [at] home'",
+            "'Pure Das' is the caption's mishearing of PeerDAS, written as [PeerDAS]"
+          ]
+        },
+        {
+          "t": 469,
+          "clean": "The blob count is still six, the maximum or nine, whatever it was in Pectra, didn't change right away. So all of a sudden node operators are storing less data and achieving the same goal. That's a huge win.",
+          "caption": "the blob count is still six the maximum or or nine whatever it was in um Pectra didn't change right away. So all of a sudden node operators are storing less data and achieving the same goal. That's a huge win",
+          "chunks": [
+            {
+              "ord": 11,
+              "t": 469,
+              "raw": "the blob count is still six the maximum or or nine whatever it was in um Pectra didn't change right away. So all of a sudden node operators are storing less data and achieving the same goal. That's a huge win"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-decision",
+      "kind": "decision",
+      "date": "2025-12-03",
+      "date_label": "3 December 2025",
+      "place": "Fusaka mainnet upgrade",
+      "title": "Live on mainnet in Fusaka",
+      "body": "PeerDAS (EIP-7594) went live with the Fusaka upgrade on 3 December 2025. Two blob-parameter-only forks then raised the blob target and limit in steps, to 10 and 15 on 9 December and to 14 and 21 on 7 January 2026.",
+      "link": "https://blog.ethereum.org/2026/01/20/checkpoint-8",
+      "link_label": "Read the Ethereum Foundation update",
+      "note": "Two primary sources, both on the Ethereum Foundation blog. That the upgrade went live with Data Availability Sampling, and that the target is now 14 blobs with a limit of 21, is from Checkpoint #8 (20 Jan 2026, linked). The dates and numbers are from the Fusaka mainnet announcement (blog.ethereum.org/2025/11/06/fusaka-mainnet-announcement, Protocol Coordination Team): activation at epoch 411392 on 3 December 2025 21:49:11 UTC; BPO1 on 9 December 2025 and BPO2 on 7 January 2026; targets and limits 6 and 9, then 10 and 15, then 14 and 21. That announcement was written before activation, so it is cited for the schedule only. Not in our catalogue; we link to the blog and never copy it."
+    },
+    {
+      "id": "w-er23801-mempirate",
+      "kind": "written",
+      "date": "2026-01-05",
+      "date_label": "5 January 2026",
+      "place": "ethresear.ch",
+      "author": "mempirate",
+      "affiliation": "Chainbound",
+      "source_title": "Block & Blob Propagation with PeerDAS",
+      "source_url": "https://ethresear.ch/t/block-blob-propagation-with-peerdas/23801/1",
+      "note": "The first measured pushback after launch: more blobs still cost block latency and attestation rate, even with PeerDAS. Written by Chainbound, which also proposes a network of supernodes. The post itself says orphan rate showed no clear effect.",
+      "lines": [
+        {
+          "text": "Increasing the blob count incurs a clear worsening of both block latency and attestation rate on almost all observed networks, both before and after PeerDAS alike."
+        },
+        {
+          "text": "Additionally, we observed a worse tail latency after PeerDAS compared to before, and the tail latency increasingly worsens as the blob count increases."
+        },
+        {
+          "text": "However, increasing the blob count has no noticeable impact on the orphan rate; some results are inconclusive and overall more data is required to have a meaningful conclusion regarding orphan rate."
+        }
+      ]
+    },
+    {
+      "id": "w-mg27652-leobago",
+      "kind": "written",
+      "date": "2026-02-04",
+      "date_label": "4 February 2026",
+      "place": "Ethereum Magicians",
+      "author": "Leo",
+      "source_title": "Hegota Headliner: Partial Reconstruction and 2D PeerDAS",
+      "source_url": "https://ethereum-magicians.org/t/hegota-headliner-partial-reconstruction-and-2d-peerdas/27652/1",
+      "note": "Where the design may go next: a proposal for the Hegota upgrade, not a decision. It argues for two-dimensional sampling and partial reconstruction.",
+      "lines": [
+        {
+          "text": "Partial reconstruction and 2D PeerDAS represent a natural next step in the evolution of data availability for Hegota."
+        },
+        {
+          "text": "Delaying a principled move toward partial reconstruction and 2D sampling risks accumulating technical debt and locking in bandwidth-inefficient assumptions."
+        }
+      ]
+    },
+    {
+      "id": "w-mg27652-cskiraly",
+      "kind": "written",
+      "date": "2026-02-05",
+      "date_label": "5 February 2026",
+      "place": "Ethereum Magicians",
+      "author": "Csaba Kiraly",
+      "author_slug": "csaba-kiraly",
+      "source_title": "Hegota Headliner: Partial Reconstruction and 2D PeerDAS",
+      "source_url": "https://ethereum-magicians.org/t/hegota-headliner-partial-reconstruction-and-2d-peerdas/27652/2",
+      "note": "A reply that narrows the headliner: row-based reconstruction does not by itself need 2D encoding; the second dimension buys cheaper sampling.",
+      "lines": [
+        {
+          "text": "Support for row-based reconstruction does not need 2D encoding."
+        },
+        {
+          "text": "Where the 2D encoding comes in is allowing cheaper sampling."
+        }
+      ]
+    },
+    {
+      "id": "s-16",
+      "kind": "quote",
+      "date": "2026-02-19",
+      "date_label": "February 2026",
+      "place": "ETHDenver 2026",
+      "speaker": "Preston Van Loon",
+      "speaker_slug": "preston-van-loon",
+      "talk_id": "6237bddb-c156-4b3c-96d4-7a17868ead15",
+      "talk_slug": "ethereums-evolution-fusaka-glamsterdam-beyond-van-loon",
+      "note": "What it measured out to after launch, from a Prysm developer: bandwidth for blobs fell sharply, and stays below the pre-Fusaka level even after the two BPO steps.",
+      "lines": [
+        {
+          "t": 162,
+          "clean": "You only need to custody 1/8 of the blobs, and with any 50% of the blobs you can reconstruct the whole thing. So with this spread out over the network, it makes sure that data is available and that there's less of a burden on solo stakers. This is giving us an immediate almost 90% network bandwidth reduction in blob usage.",
+          "caption": "You only need to custody 1/8 of the the blobs. And with [snorts] any 50% of the blobs, you can reconstruct the whole thing. So with this spread out over the network, it makes sure that data is available and that there's less of a burden on solo stakers. This is giving us an immediate almost 90% network bandwidth reduction in blob usage",
+          "chunks": [
+            {
+              "ord": 4,
+              "t": 162,
+              "raw": "You only need to custody 1/8 of the the blobs. And with [snorts] any 50% of the blobs, you can reconstruct the whole thing. So with this spread out over the network, it makes sure that data is available and that there's less of a burden on solo stakers. This is giving us an immediate almost 90% network bandwidth reduction in blob usage"
+            }
+          ]
+        },
+        {
+          "t": 235,
+          "clean": "And then again with BPO1, the blob parameter only fork, we increased the target to 10 and the max to 15. [BPO2], which happened just a month later, we went to 14 and 21, which is double of what we had in [Pectra], but still 71% less bandwidth usage on blobs for solo stakers than it was in [Pectra].",
+          "caption": "And then again with BPO1 the blob parameter only fork we increased the target to 10 the max to 15 BP2 which happened just a month later we went to 14 and 21 which is double of what we had in Pekra but still 71% less bandwidth usage on blobs for solo stakers than it was in Perra",
+          "chunks": [
+            {
+              "ord": 6,
+              "t": 235,
+              "raw": "And then again with BPO1 the blob parameter only fork we increased the target to 10 the max to 15 BP2 which happened just a month later we went to 14 and 21 which is double of what we had in Pekra but still 71% less bandwidth usage on blobs for solo stakers than it was in Perra"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "a-175-stokes",
+      "kind": "quote",
+      "date": "2026-02-19",
+      "date_label": "19 February 2026",
+      "place": "All Core Devs - Consensus #175",
+      "speaker": "Alex Stokes",
+      "speaker_slug": "alex-stokes",
+      "talk_id": "dc01cd9b-0820-4d9b-a432-0c0a85429c65",
+      "talk_slug": "all-core-devs-consensus-175",
+      "note": "How the follow-up to PeerDAS fared: with two headliner proposals on the table, the chair locks in FOCIL for Hegota and declines the 2D PeerDAS / partial reconstruction proposal (Leo, 4 Feb 2026, w-mg27652-leobago) for now. 'SFI' is scheduled for inclusion, 'DFI' declined for inclusion.",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 774,
+          "clean": "FOCIL will be the headliner on the CL side for Hegota. I will triple check the process, just to make sure I don't do anything incorrect here, but I believe that means we SFI FOCIL for Hegota.",
+          "caption": "So, FOCIL will be the headliner on the CL side for Hegota. I will triple check the process, just to make sure I don't do anything, incorrect here, but I believe that means we SFI FOCIL for Hegota.",
+          "chunks": [
+            {
+              "ord": 24,
+              "t": 774,
+              "raw": "So, FOCIL will be the headliner on the CL side for Hegota. I will triple check the process, just to make sure I don't do anything, incorrect here, but I believe that means we SFI FOCIL for Hegota."
+            }
+          ]
+        },
+        {
+          "t": 840,
+          "clean": "And then we would DFI this 2D PeerDAS proposal for now.",
+          "caption": "And then we would DFI, this 2D PeerDAS proposal for now.",
+          "chunks": [
+            {
+              "ord": 25,
+              "t": 840,
+              "raw": "And then we would DFI, this 2D PeerDAS proposal for now."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-175-decision",
+      "kind": "decision",
+      "date": "2026-02-19",
+      "date_label": "19 February 2026",
+      "place": "All Core Devs - Consensus #175",
+      "title": "2D PeerDAS is not chosen for Hegotá",
+      "body": "On the 19 February 2026 consensus-layer call, FOCIL (EIP-7805) was locked in as the consensus-layer headliner for Hegotá, and the proposal for partial reconstruction and 2D PeerDAS was declined for inclusion for now.",
+      "link": "https://forkcast.org/calls/acdc/175/",
+      "link_label": "See the call on Forkcast",
+      "note": "Primary source: our transcript of ACDC #175 (Alex Stokes, segments 22 to 25: two headliner proposals, FOCIL and partial reconstruction in 2D PeerDAS; 'FOCIL will be the headliner on the CL side for Hegota ... And then we would DFI this 2D PeerDAS proposal for now'). The same Forkcast call link is used on the FOCIL map. Before the call, ACDC #174 (5 Feb 2026) heard Leo present the proposal and Alex Stokes say the cell-level messaging work can ship between forks and that nobody is rushing to another BPO."
+    },
+    {
+      "id": "s-23",
+      "kind": "quote",
+      "date": "2026-04-02",
+      "date_label": "2 April 2026",
+      "place": "EthCC[9]",
+      "speaker": "Stefano De Angelis",
+      "speaker_slug": "stefano-de-angelis",
+      "talk_id": "130f44a1-6231-586f-a058-84c0b37299df",
+      "talk_slug": "rethinking-peerdas-transparent-post-quantum-das-with-fri-ethcc-9-130f44a1",
+      "note": "A design objection to the commitments PeerDAS uses, from a researcher presenting an alternative: KZG is not secure against quantum computers. Shown as an open research direction, not a decision or a bug.",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 229,
+          "clean": "What's the problem with post-quantum security? The problem is that KZG is based on traditional cryptography building blocks. It's based on pairings operations and elliptic curves, like BLS signatures are using. So with quantum adversaries, this is not very nice.",
+          "caption": "So, what's the problem with with post-quantum security? The problem is that KZG is based on traditional cryptography building blocks. It's based on on pairings operations and elliptic curves like BLS signatures are using. So, with quantum quantum adversaries, this is not very nice.",
+          "chunks": [
+            {
+              "ord": 6,
+              "t": 229,
+              "raw": "So, what's the problem with with post-quantum security? The problem is that KZG is based on traditional cryptography building blocks."
+            },
+            {
+              "ord": 7,
+              "t": 268,
+              "raw": "It's based on on pairings operations and elliptic curves like BLS signatures are using. So, with quantum quantum adversaries, this is not very nice."
+            }
+          ]
+        },
+        {
+          "t": 268,
+          "clean": "Now he can forge a commitment that, from a validator point of view, is a valid commitment. He can now send chunks of data that are not really valid for that commitment, even though they look valid. The validator will verify the chunk against the commitment and it will be happy. It looks good. But the problem is that encoding validity is broken.",
+          "caption": "but now he can forge a commitment that from a validator point of view, it's a valid commitment. But what can do we he can now send chunks of data that are not really valid for that commitment, even though they look like valid. So, in this case the validator will verify the chunk and verify against the commitment and it will be happy. So, it looks good. But the problem is that encoding validity is broken.",
+          "chunks": [
+            {
+              "ord": 7,
+              "t": 268,
+              "raw": "but now he can forge a commitment that from a validator point of view, it's a valid commitment. But what can do we he can now send chunks of data that are not really valid for that commitment, even"
+            },
+            {
+              "ord": 8,
+              "t": 311,
+              "raw": "though they look like valid. So, in this case the validator will verify the chunk and verify against the commitment and it will be happy. So, it looks good. But the problem is that encoding validity is broken."
+            }
+          ],
+          "edits": [
+            "'But what can do we he can now send' read as 'He can now send'; 'verify the chunk and verify against the commitment' read as 'verify the chunk against the commitment'; 'So,' dropped before 'it looks good'. The adversary is the 'quantum adversary' introduced in the previous sentences of the talk."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s-17",
+      "kind": "quote",
+      "date": "2026-05-08",
+      "date_label": "May 2026",
+      "place": "EthPrague 2026",
+      "speaker": "Daniel Knopik",
+      "speaker_slug": "daniel-knopik",
+      "talk_id": "bd4796f6-9af8-4155-ba10-b7fb76125d52",
+      "talk_slug": "reducing-peerdas-bandwidth-requirements-daniel-knopik",
+      "note": "Where it goes next, from a Lighthouse developer: trimming PeerDAS's bandwidth further. Demand is low, there is no rush to raise blobs, and the gain is for home stakers.",
+      "lines": [
+        {
+          "t": 50,
+          "clean": "Every node had to store and broadcast full blobs, which was actually a lot of traffic and kept the blob limit pretty low. And now we move to [PeerDAS] with Fusaka. So again, we now extend the blobs so that if some part of the blob goes missing, we can reconstruct it, and through that we can allow nodes to only store slices of all the blobs, called columns.",
+          "caption": "Um every node had to store and broadcast full blobs, which was actually, you know, a lot of traffic and uh kept the uh blob limit pretty low. And now we move to PR as with Fusaka. So again, we now extend the blobs so that uh if some part of the blob goes missing, we can reconstruct it and through that we can allow nodes to only store slices of all the blobs called columns",
+          "chunks": [
+            {
+              "ord": 1,
+              "t": 50,
+              "raw": "Um every node had to store and broadcast full blobs, which was actually, you know, a lot of traffic and uh kept the uh blob limit pretty low. And now we move to PR as with Fusaka. So again, we now extend the blobs so that uh if some part of the blob goes missing, we can reconstruct it and through that we can allow nodes to only store slices of all the blobs called columns"
+            }
+          ]
+        },
+        {
+          "t": 168,
+          "clean": "This is where we can optimize with partial messages and partial data columns. With this new protocol, nodes can now communicate between each other and basically tell the other node, \"Hey, I got these blobs and I need these blobs. What do you need?\" And after negotiating this, they send only the parts that the other party is missing, saving a bunch of data and the bandwidth in the process.",
+          "caption": "So, this is uh where we can optimize with uh partial messages and uh partial data columns. So, with this new uh protocol, nodes can now communicate between each other and basically tell the other node, \"Hey, I got these blobs and I need these blobs. Uh what do you need?\" And after negotiating this, they send only the parts that the other party is missing, saving a bunch of data and the bandwidth uh in the process",
+          "chunks": [
+            {
+              "ord": 4,
+              "t": 168,
+              "raw": "So, this is uh where we can optimize with uh partial messages and uh partial data columns. So, with this new uh protocol, nodes can now communicate between each other and basically tell the other node, \"Hey, I got these blobs and I need these blobs. Uh what do you need?\" And after negotiating this, they send only the parts that the other party is missing, saving a bunch of data and the bandwidth uh in the process"
+            }
+          ]
+        },
+        {
+          "t": 272,
+          "clean": "Demand actually goes down right now. There's no need to increase, but there's still a reason to do this thing. Home stakers benefit from it. So, residential connections often suffer from some bandwidth limitations.",
+          "caption": "Demand actually goes down right now. There's no need to increase, but there's still a reason to do this thing. Um home stakers benefit from it. So, residential connections often suffer from some bandwidth limitations",
+          "chunks": [
+            {
+              "ord": 7,
+              "t": 272,
+              "raw": "Demand actually goes down right now."
+            },
+            {
+              "ord": 8,
+              "t": 304,
+              "raw": "There's no need to increase, but there's still a reason to do this thing. Um home stakers benefit from it. So, residential connections often suffer from some bandwidth limitations"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-15",
+      "kind": "quote",
+      "date": "2026-09-29",
+      "date_label": "29 September 2026",
+      "place": "Ethereum Korea One: Genesis",
+      "speaker": "Luca Zanolini",
+      "speaker_slug": "luca-zanolini",
+      "talk_id": "d7796dad-6c5c-4c33-a3d1-bb1ebf29018b",
+      "talk_slug": "ethereum-clients-what-comes-next-ethereum-korea-one-genesis",
+      "note": "After launch, a researcher's measured caution: scaling is real, but it moves assumptions around, onto custodians of the data.",
+      "lines": [
+        {
+          "t": 980,
+          "clean": "I think from a theoretical perspective it seems that the trilemma is solved. From an engineering perspective, what happens from my point of view as a protocol researcher is that we're just moving around assumptions.",
+          "caption": "So I think from a theoretical\nperspective it seems that the trilemma is solved. From an engineering perspective, what happens from my point of view as a\nprotocol researcher is that we're just moving around assumptions",
+          "chunks": [
+            {
+              "ord": 24,
+              "t": 980,
+              "raw": "So I think from a theoretical\nperspective it seems that the trilemma is solved. From an engineering perspective, what happens from my point of view as a\nprotocol researcher is that we're just moving around assumptions"
+            }
+          ]
+        },
+        {
+          "t": 1025,
+          "clean": "What happens is that we are moving around assumptions onto these layers, that we are moving assumptions to [PeerDAS], meaning that there are enough custodians to hold data. We're moving assumptions towards the fact that there exists at least one prover that will be live and will prove something. So I believe these assumptions are much better compared to the assumptions of before this announcement.",
+          "caption": "what happens is that we are moving around assumptions onto these layers, that we are moving assumptions to\nPeerDAS, meaning that there are enough custodians to hold data, we're moving assumptions towards the fact\nthat there exists at least one prover that will be live and\nwill prove something. So I believe these assumptions are much\nbetter compared to the assumptions of before this announcement",
+          "chunks": [
+            {
+              "ord": 25,
+              "t": 1025,
+              "raw": "what happens is that we are moving around assumptions onto these layers, that we are moving assumptions to\nPeerDAS, meaning that there are enough custodians to hold data, we're moving assumptions towards the fact\nthat there exists at least one prover that will be live and\nwill prove something. So I believe these assumptions are much\nbetter compared to the assumptions of before this announcement"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "a-189-kiraly",
+      "kind": "quote",
+      "date": "2026-10-15",
+      "date_label": "15 October 2026",
+      "place": "All Core Devs - Consensus #189",
+      "speaker": "Csaba Kiraly",
+      "speaker_slug": "csaba-kiraly",
+      "talk_id": "f56d4b7c-384d-478b-ae77-b7c86fea34cb",
+      "talk_slug": "all-core-devs-consensus-189",
+      "note": "The newest argument: the author of RowDAS asks Hegota to fix two costs of PeerDAS as shipped, the CPU load on large nodes and the reliance on them, and concedes it is not for everyone.",
+      "speaker_confirmed": true,
+      "lines": [
+        {
+          "t": 3866,
+          "clean": "RowDAS has the goal of fixing a past design decision that we made when we introduced PeerDAS. It's planning to fix two things. One is the excess CPU load that we have on large nodes, and the other one is the reliance on these nodes. I think it's quite important to fix this. But I can accept that it's not for everyone.",
+          "caption": "RowDAS has… The goal of fixing, past design decision that we made when we introduced PeerDAS. It's planning to fix two things. One is the excess… CPU load that we have on. On large nodes, and the other one is, the reliance on these nodes. I think it's quite important to fix this. But I can accept that it's not for everyone.",
+          "chunks": [
+            {
+              "ord": 119,
+              "t": 3866,
+              "raw": "RowDAS has… The goal of fixing, past design decision that we made when we introduced PeerDAS. It's planning to fix two things. One is the excess… CPU load that we have on. On large nodes, and the other one is, the reliance on these nodes. I think it's quite important to fix this. But I can accept that it's not for everyone."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-189-status",
+      "kind": "status",
+      "date": "2026-10-15",
+      "date_label": "15 October 2026",
+      "place": "All Core Devs - Consensus #189",
+      "title": "Where it stands: no PeerDAS redesign in Hegotá yet",
+      "body": "On the 15 October 2026 consensus-layer call, RowDAS (EIP-8371), a proposal to spread blob reconstruction across more nodes, was marked declined for inclusion in Hegotá for now: the chair read out that Teku, Lighthouse and Grandine were against and Nimbus in favour, and said it did not feel like the most urgent proposal given where blob supply and demand are today. The earlier partial reconstruction and 2D PeerDAS proposal was declined for inclusion on 19 February 2026.",
+      "link": "https://forkcast.org/calls/acdc/189/",
+      "link_label": "See the call on Forkcast",
+      "note": "Primary source: our transcript of ACDC #189 (Alex Stokes, segments 124 to 128: client ratings against ('Teku, Lighthouse, Grandine were against'; Nimbus in favour; Lodestar and Prysm not heard), 'I think we go ahead and say DFI this for today ... where supply and demand of blobs are at today. This isn't ... the most urgent EIP'). EIP number 8371 for RowDAS is from the EIP's own page (eips.ethereum.org/EIPS/eip-8371, status Draft); the call does not say the number aloud. Says nothing about blob counts: the transcripts show no BPO3 decision as of ACDC #190 (29 Oct 2026)."
+    }
+  ],
+  "excluded": [
+    {
+      "id": "x-01",
+      "talk_id": "d7796dad-6c5c-4c33-a3d1-bb1ebf29018b",
+      "reason": "Ethereum Korea panel, segments 30 and 31 (PeerDAS still relies on super nodes; a stepping stone): speaker not confirmed. Four panellists, names are not spoken at the handover (an unnamed 'Alex' is addressed), so the voice could be Jun Song or Felix Lange. Only Luca Zanolini's segments 24 and 25 are used."
+    },
+    {
+      "id": "x-02",
+      "talk_id": "20db66f0-a86f-4021-a703-9a74060be14e",
+      "reason": "Staking Nerd Talk (1 May 2025): hardware requirements and BPOs, but no speaker is credited on the talk."
+    },
+    {
+      "id": "x-03",
+      "talk_id": "3c4405b5-77c5-4bfc-98d5-162afa6520ec",
+      "reason": "Staking Nerd Talk (1 May 2025): no speaker credited."
+    },
+    {
+      "id": "x-04",
+      "talk_id": "94606be8-8bc6-457a-9a5b-059a38b84eed",
+      "reason": "Staking Nerd Talk (1 May 2025): no speaker credited."
+    },
+    {
+      "id": "x-05",
+      "talk_id": "5d91b6e3-4c2d-4d92-bf55-b72735426b87",
+      "reason": "EthPrague 2024 'PeerDAS, Ethereum danksharding v0': no speaker credited on the talk."
+    },
+    {
+      "id": "x-06",
+      "talk_id": "a88bf2de-0b83-4a0b-80b2-d6f1237a7afc",
+      "reason": "Max Resnick at ETHDenver 2025 (a third of a gigagas rollup of blobs after Fusaka): the talk credits only the interviewer, Danny Nelson, so the voice cannot be named."
+    },
+    {
+      "id": "x-07",
+      "talk_id": "05964516-1e8a-4540-8a44-8d611911175f",
+      "reason": "Debating Ethereum's Big Decision: the 'solo staking is not sustainable' line is the host reading out someone else's tweet, not the speaker's own position."
+    },
+    {
+      "id": "x-08",
+      "talk_id": "cc538797-e868-45f5-87dc-3f5b5a6fd053",
+      "reason": "Daily Gwei, 7 June 2024 (PeerDAS made it into Pectra, as it stood then): Sassano misstates the custody share ('1/18'), and the Pectra timing is covered by s-04 and s-06."
+    },
+    {
+      "id": "x-09",
+      "talk_id": "86caf4e7-66df-40bd-93f6-58c299553f89",
+      "reason": "Daily Gwei, 14 March 2024 (Dencun live, supply of blobs held back on purpose): dropped after review, because s-02 and s-03 already cover the slow, deliberate rollout. Dencun going live is now its own stop (a-dencun-live)."
+    },
+    {
+      "id": "x-10",
+      "talk_id": "1188e322-d3be-48ae-b41c-95fbd29875a5",
+      "reason": "Daily Gwei, 11 October 2025 (conservative start, blobs at capacity): dropped after review. Sassano says he has not followed the core-dev side closely and is unsure of the numbers, and the point is made first-hand by s-12 and s-13."
+    },
+    {
+      "id": "x-11",
+      "talk_id": "902e0508-d51a-4fb4-bc3e-ce4572c922fd",
+      "reason": "Daily Gwei, 12 January 2026 (second BPO live, blob usage 4.8 against a target of 14): dropped after review in favour of Preston Van Loon's measured figures (s-16) and Daniel Knopik's demand point (s-17). Sassano's own go-slow remark in the same segment is not on the map."
+    },
+    {
+      "id": "x-12",
+      "talk_id": "e8de6d98-dc82-4d4d-9d4b-804d19a6dc00",
+      "reason": "Daily Gwei, 5 January 2026 (the Prysm bug at the Fusaka launch): Sassano misremembers the share of the network affected and corrects himself in the next segment."
+    },
+    {
+      "id": "x-13",
+      "talk_id": "49b8f1c3-ac3a-418a-a3a2-dfbaefb5b4ce",
+      "reason": "Daily Gwei, 17 February 2025 (a Lighthouse developer's post to decouple PeerDAS from Fusaka): secondhand, and the speed question is covered first-hand by s-09."
+    },
+    {
+      "id": "x-14",
+      "talk_id": "1123545d-3de4-4aa2-b4fa-5c6084832108",
+      "reason": "Dankrad Feist on Epicenter, June 2021 (the first appearance of data availability sampling): dropped for length. In 2021 the 'blobs' are Eth2 data shards, not EIP-4844 blobs, and s-02 explains the idea."
+    },
+    {
+      "id": "x-15",
+      "talk_id": "a8b434c8-f10f-4de3-9697-dd7261ca8c33",
+      "reason": "Dankrad Feist on The Rollup (Nov 2025): an interviewer-led recap that repeats other stops."
+    },
+    {
+      "id": "x-16",
+      "talk_id": "d3a1c5c1-6467-48f0-ae53-b5dd4d2bce5f",
+      "reason": "Bell Curve cross-post of the Empire talk: the same words as s-10 and s-11."
+    },
+    {
+      "id": "x-17",
+      "talk_id": "149ad627-2ce6-41ed-b1b2-12c91c184398",
+      "reason": "Francesco D'Amato at Devcon 7: the same design as s-02, in more detail; one Francesco stop is enough."
+    },
+    {
+      "id": "x-18",
+      "talk_id": "d2bc0e64-d63e-4e81-9da6-9d60d4b00179",
+      "reason": "PEEPanEIP EIP-7594 with Francesco D'Amato (Oct 2025): the same material as s-02."
+    },
+    {
+      "id": "x-19",
+      "talk_id": "5394183b-6f9e-445b-81c9-6d1e503cd469",
+      "reason": "EthPandaOps Fusaka testing talk, segments 0 to 11: Barnabas Busa's half of the talk. Only Parithosh Jayanthi's half is used (s-13), because Barnabas hands over at segment 11 ('I will pass it to Parry')."
+    },
+    {
+      "id": "x-20",
+      "talk_id": "f9ec7ad7-6d15-4f8f-ac0d-8822c6d9d639",
+      "reason": "PEEPanEIP on EIP-7691 with Sam Calder-Mason (segments 34 and 35, 'we don't want any home stakers to drop off'): the Pectra blob increase IS part of this map's argument (a-146-decision, w-er21096-samcm), so 'about the Pectra blob increase rather than PeerDAS' is no reason. Still not used: the catalogue date, 23 February 2025, could not be confirmed (a podcast feed lists the episode on 15 March 2025), and the same author's own post gives the data first-hand and dated (w-er21096-samcm)."
+    },
+    {
+      "id": "x-21",
+      "talk_id": "4f70df3a-990d-43a2-8b83-25fafe0e112f",
+      "reason": "Leo on validator performance (Devconnect): mentions concerns about Fusaka in passing without saying what they are."
+    },
+    {
+      "id": "x-r1",
+      "talk_id": "a4cf7900-168e-47a9-bfed-6fd68d5748c6",
+      "reason": "Daily Gwei, 21 June 2024, former s-04: Anthony Sassano on whether to raise blob counts with a quick hard fork or let PeerDAS in Pectra do it. A host's reading of the timing argument, not a call or a builder. The same turn is told first-hand by dapplion (s-06, blobs raised in Pectra without sampling, PeerDAS moved to Fusaka) and Mark Mackey (s-12, blob-parameter-only forks)."
+    },
+    {
+      "id": "x-r2",
+      "talk_id": "17ef77d8-e7f9-4eb6-b8ff-13da39f2a313",
+      "reason": "Empire, 19 May 2025, former s-11: Ryan Berckmans, a guest commentator, replying that Fusaka is an L2-focused upgrade and that L1 gas-limit work runs in parallel. The reply now comes first-hand from Tim Beiko on the All Core Devs call of 24 April 2025 (s-r03). Tom Dunleavy's objection (s-10) stays: no first-hand voice made that critique."
+    },
+    {
+      "id": "x-n01",
+      "talk_id": "e23d8331-e876-4805-a28f-9ab0047b577e",
+      "reason": "Are blobs good for Ethereum? (Devcon 7, 13 Nov 2024): a panel on whether blobs should pay more or be free. That is a blob-pricing and value-capture debate, not how PeerDAS reached Ethereum; the matched passage is only the moderator's introduction."
+    },
+    {
+      "id": "x-n02",
+      "talk_id": "b4014832-16c1-45da-9f89-28da9fcf6a15",
+      "reason": "PeerDAS and BPO hardforks (Fusaka Files, 3 Nov 2025): Tim Beiko explains the blob-parameter-only forks. The same reasoning is told first-hand by Mark Mackey (s-12) and in the EIP-7892 thread; the episode is an explainer, not an argument."
+    },
+    {
+      "id": "x-n03",
+      "talk_id": "d39401db-2a43-4d4a-ba8a-6905fe9a759f",
+      "reason": "Ansgar Dietrichs and Barnabe Monnot at Devconnect (17 Nov 2025): a clear PeerDAS explainer and the aim of 3x blob throughput a year. The pace is already told by Mike Neuder (s-03) and the launch framing by Preston Van Loon (s-14)."
+    },
+    {
+      "id": "x-n04",
+      "talk_id": "142fbe8b-a44a-4112-af8f-3b99d3daf030",
+      "reason": "Danksharding Workshop, Devcon Bogota (14 Oct 2022): six speakers, no speaker labels in the captions, and Danny Ryan, who presents the networking section, is not credited on the talk. The origin of sampling is told by Dankrad Feist (s-18) and in Danny Ryan's own post (w-er16541-djrtwo)."
+    },
+    {
+      "id": "x-n05",
+      "talk_id": "af40b40b-7951-4ec4-9fc2-ae01e7d90b73",
+      "reason": "All Core Devs - Consensus #160 (10 Jul 2025): read. Segments 79 to 87 are the call where the shape of the Fusaka blob rollout was agreed (only two blob-parameter forks scheduled with Fusaka): now a-160-stokes and a-160-decision. The getBlobs API change (Raul Kripalani, Alex Stokes, segments 51 to 52) stays out: engine API, no argument about pace."
+    },
+    {
+      "id": "x-n06",
+      "talk_id": "1aca59f9-05f2-4f25-9119-f85359381ffa",
+      "reason": "All Core Devs - Consensus #155 (17 Apr 2025): read. Segments 60 to 65 are where EIP-7892 was moved to scheduled-for-inclusion in Fusaka (now a-155-decision); the config format and emergency-override argument (segments 16 to 31, Dustin Brody, Parithosh Jayanthi) is client configuration. The builder API blob-size question (segments 127 to 130) is an implementation worry, not on the map."
+    },
+    {
+      "id": "x-n07",
+      "talk_id": "3463dea7-70d8-4da5-9ac5-9cc5cf7d0830",
+      "reason": "All Core Devs - Execution #209 (10 Apr 2025): read. Beyond 'Fusaka scope and the gas-limit order' it holds (a) the finalised list of considered EIPs, with PeerDAS and the EOF EIPs scheduled, (b) the blob-parameter fork EIP accepted as considered, (c) the first call for a blobs-per-transaction cap (Ben Adams, segment 205, broad support) and (d) the first discussion of the blob fee floor (Anders Elowsson and Ansgar Dietrichs, segments 159 to 179, now a-154-anders). Not used as quotes: (a) and (b) are told by s-r02 and a-155-decision, (c) is a size cap (see the EIP-7594 ledger row), (d) is covered by the 3 Apr 2025 pitch."
+    },
+    {
+      "id": "x-n08",
+      "talk_id": "808c4e56-2552-467c-b428-da7f5c0f392f",
+      "reason": "All Core Devs - Execution #222 (9 Oct 2025): scanned. BPO values in the genesis config file and a Lighthouse peer issue at the BPO1 boundary: client configuration, not an argument about PeerDAS."
+    },
+    {
+      "id": "x-n09",
+      "reason": "Talks in the catalogue with no transcript, so not quotable (a gap, not a choice): KZG and EIP 4844 parts 1 and 2 (Qi Zhou, 2022), Distributed data availability sampling with PeerDAS and future developments (Dankrad Feist, Jul 2024), The Journey from Blobs to Data Availability Sampling (Csaba Kiraly, Jul 2024), Are Blobs really blobs? (Giulio Rebuffo, Jul 2024), Standardizing Ethereum metrics: PeerDAS and FOCIL retrospective (Katya Riazantseva, 2025), At the Intersection of Data Availability Sampling and Sharded Mempools (Leo BG, 2025), Mechanisms for Unlocking Idle Blobspace (Raluca Diugan, 2025), Ethereum Fusaka (Mandarin, May 2026)."
+    },
+    {
+      "id": "x-n10",
+      "reason": "Series with speaker labels absent and no credited speakers (The Daily Gwei, Staking Nerd Talk, PeerDAS and ACD testing breakouts) cannot be quoted; the Daily Gwei episodes already considered are listed above (x-08 to x-11)."
+    },
+    {
+      "id": "x-n11",
+      "reason": "Written sources read and left out: Alex Stokes's HackMD 'blob/acc in 2025' (the programmatic doubling schedule that BPO forks followed): the page shows no publication date, so a dated stop cannot be made; Potuz's 'Faster block/blob propagation' (ethresear.ch 21370, Jan 2025): a propagation-layer proposal not tied to the PeerDAS argument; Mike Neuder's 'On the future of the blob mempool' (22613) repeats the point of his EthCC talk (s-22); EIP-7892 thread posts on naming (Sam Wilson, Tim Beiko, felipe): jokes and minor; ethPandaOps 'Fusaka bandwidth estimation' and devnet-5 BPO analysis: measurements already told by Barnabas Busa (s-r05); Hsiao-Wei Wang's EIP-7594 thread (post 1 is links; later posts are bug reports): minor; Prysm's 'Recommendation for Fusaka' (HackMD, shows no date; its position is already on the call, s-r02): minor. The Sigma Prime post on a higher starting blob count was found on 10 Nov 2026 (w-sigma-chen-2025-06-26)."
+    },
+    {
+      "id": "x-a01",
+      "reason": "Fork and test-network logistics, not arguments: Fusaka testnet dates (Holesky 1 Oct, Sepolia 14 Oct, Hoodi 28 Oct 2025) and the BPO dates on each, the Pectra testnet dates (Feb to Mar 2025), the Hegota headliner proposal window, the 'temperature check' calls on the Fusaka mainnet date (ACDC #167, 16 Oct, and ACDE #223, 23 Oct 2025). The mainnet and BPO dates that matter are in s-decision."
+    },
+    {
+      "id": "x-a02",
+      "reason": "Sunnyside Labs devnet measurements quoted inside Jimmy Chen's post (13 and 23 June 2025: block delay above 3 s near 50 blobs and above 4 s near 70): not a separate source; the argument made from them is w-sigma-chen-2025-06-26."
+    },
+    {
+      "id": "x-a03",
+      "reason": "Capacity figures in explainers (12-blob test target, 50 or 72 blobs theoretical, 6 to 48, 8x): restatements; the first-hand numbers are on s-16, s-13 and s-r05."
+    },
+    {
+      "id": "x-a04",
+      "reason": "Christine Kim's April 2025 estimate that Fusaka would ship in 2026: a forecast, not a decision, and overtaken by events (mainnet 3 Dec 2025)."
+    },
+    {
+      "id": "x-a05",
+      "reason": "Fredrik Svantes's Ethereum Protocol Upgrade Process document: process; not an argument about blobs."
+    },
+    {
+      "id": "x-a06",
+      "reason": "Protocol Update 001 (5 Aug 2025): not read; Protocol Update 002 (22 Aug 2025) repeats its blob decisions."
+    },
+    {
+      "id": "x-a07",
+      "reason": "ePBS and FOCIL scoping (Glamsterdam and Hegota): covered by their own maps."
+    },
+    {
+      "id": "x-a08",
+      "reason": "Fusaka security audit competition (announced 26 Sep 2025): no argument on the map."
+    },
+    {
+      "id": "x-a09",
+      "reason": "Libp2p multiplexing (drop mplex for yamux and QUIC): networking implementation, not blob pace."
+    },
+    {
+      "id": "x-a10",
+      "reason": "EIP-7935 (60M default gas limit): L1 gas scaling; the priority argument is s-10 and s-r03."
+    },
+    {
+      "id": "x-a12",
+      "talk_id": "9a82f706-2b7d-46de-89c4-ab90e6bb2cb4",
+      "reason": "All Core Devs - Consensus #144 (17 Oct 2024): the call notes (144.10) record Francis Li of Base presenting the case for raising blob capacity in Pectra (target 5, maximum 8); the matching transcript passage (around segment 171) is unlabeled, so no line can be attributed, and the slides are a Google Doc that was not saved. The Pectra increase is on the map through a-146-decision, w-er21096-samcm and w-er21138-cortze."
+    },
+    {
+      "id": "x-a13",
+      "talk_id": "67d0bbb3-6624-4e8d-b88f-9a2cbfb3f794",
+      "reason": "All Core Devs - Execution #201 (5 Dec 2024): read in the transcript (segments 41 to 56) and the ethereum/pm notes. EIP-7762 (minimum blob price): the case for (price discovery too slow after each change in demand, rollups do not want a volatile first-price market, a speaker urging it: the base fee can rise only 8% per block after the throughput increase) and the case against (very early, do not meddle with the price mechanism yet) are both in unlabeled segments (the talk credits nobody for them), so no line can be attributed. It was deferred a week, later went stagnant (EIPs history, 8 Feb 2026) and EIP-7918 replaced it for Fusaka (a-154-anders). The update fraction for EIP-7691 was chosen on this call (EIP-7691 ledger row)."
+    },
+    {
+      "id": "x-a14",
+      "talk_id": "1e5b9d26-9521-401f-86f1-ef5292b33123",
+      "reason": "All Core Devs - Consensus #143 (3 Oct 2024): read in the ethereum/pm notes (143.8 and 143.9): Ansgar Dietrichs suggests including a blob target increase in Pectra and removing it later if unsafe, Potuz objects that removal is as much work as adding. No decision; the same people argue it again on #146 (a-146-potuz, a-146-ansgar)."
+    },
+    {
+      "id": "x-a15",
+      "talk_id": "667b8006-3fad-470d-98da-f75b96d45354",
+      "reason": "All Core Devs - Consensus #146, other passages: the ethPandaOps presentation (segments 113 to 117) and the Migalabs bandwidth concern (segments 152 to 154) are unlabeled in the transcript, so they are told by the two written posts instead (w-er21096-samcm, w-er21138-cortze); Ahmad Bitar (segments 119 to 120, labelled) adds the gas-limit-and-block-size point, which belongs to the EIP-7623 debate, not this map."
+    },
+    {
+      "id": "x-a16",
+      "talk_id": "faf23666-7a56-495f-8bc2-33aa4255b3f5",
+      "reason": "All Core Devs - Execution #215 (3 Jul 2025): the blob-per-transaction cap moves into the PeerDAS EIP at 6 (Tim Beiko, segments 102 and 112): a size cap, see the EIP-7594 ledger row."
+    },
+    {
+      "id": "x-a17",
+      "talk_id": "9c467048-5af6-467e-afd1-7060bb9cfa8f",
+      "reason": "All Core Devs - Execution #212 (22 May 2025): Tim Beiko's summary (segment 119) that people generally wanted the blob fee floor (EIP-7918) for the Fusaka devnets: the pitch is a-154-anders."
+    },
+    {
+      "id": "x-a18",
+      "talk_id": "5172df1f-4c05-4a35-a8bb-b36eec6affa3",
+      "reason": "All Core Devs - Consensus #174 (5 Feb 2026): Leo presents the partial reconstruction and 2D PeerDAS proposal (segments 80 to 85; the proposal itself is w-mg27652-leobago) and Alex Stokes says cell-level messaging can ship between forks and nobody is rushing another BPO (segment 43): used as context in the note of a-175-decision, not as a quote."
+    }
+  ],
+  "audit": {
+    "date": "2026-11-10",
+    "spec_changes": [
+      {
+        "eip": "EIP-4844",
+        "date": "2022-11-01",
+        "change": "Fee market update: blobs get their own EIP-1559-style price (PR 5707).",
+        "link": "https://github.com/ethereum/EIPs/pull/5707",
+        "agreed_at": "Not identified. Likely one of the EIP-4844 implementers calls of 25 Oct to 8 Nov 2022; those calls were only keyword-scanned.",
+        "why_not": "How the blob price moves, not how many blobs; the map's fee-market argument is the later EIP-7918 (a-154-anders). Blocker: the agreeing call was not identified."
+      },
+      {
+        "eip": "EIP-4844",
+        "date": "2022-11-14",
+        "change": "Reduce Throughput (PR 5863): target 8 and maximum 16 blobs per block cut to a target of 2 and a maximum of 4 (about 0.25 and 0.5 MB).",
+        "link": "https://github.com/ethereum/EIPs/pull/5863",
+        "agreed_at": "Argued on ACDE #149 (10 Nov 2022: Micah Zoltu, Dankrad Feist, Ansgar Dietrichs, Andrew Ashikhmin). The call that agreed the cut was not identified.",
+        "stop": "a-149-decision (with a-149-micah and a-149-dankrad)"
+      },
+      {
+        "eip": "EIP-4844",
+        "date": "2022-11-22",
+        "change": "Disable blob transaction broadcast: nodes announce blob transactions instead of pushing them (PR 5930).",
+        "link": "https://github.com/ethereum/EIPs/pull/5930",
+        "agreed_at": "Not identified (EIP-4844 implementers call #5, 22 Nov 2022, not read).",
+        "why_not": "Mempool DoS mitigation; implementation detail with no argument on the map. Blocker: call not read."
+      },
+      {
+        "eip": "EIP-4844",
+        "date": "2023-02-15",
+        "change": "More sane limits on blobs per transaction (constant 2**24 to 2**12; PR 6500).",
+        "link": "https://github.com/ethereum/EIPs/pull/6500",
+        "agreed_at": "Not identified (EIP-4844 implementers calls of Feb 2023, not read).",
+        "why_not": "A size constant for encoding, not a policy on blob counts."
+      },
+      {
+        "eip": "EIP-4844",
+        "date": "2023-05-15",
+        "change": "Decouple blobs: blobs travel beside the block, not in it (PR 6610).",
+        "link": "https://github.com/ethereum/EIPs/pull/6610",
+        "agreed_at": "Not identified; call #22 (15 May 2023) opens with the spec changes agreed the week before. Not read in full.",
+        "why_not": "Design of how blobs travel; no argument on the map, and Ansgar Dietrichs only refers to it on ACDE #163 as extra robustness. Blocker: call not read in full."
+      },
+      {
+        "eip": "EIP-4844",
+        "date": "2023-06-08",
+        "change": "Increase blob throughput: target 2 and maximum 4 raised to a target of 3 and a maximum of 6 (PR 7154).",
+        "link": "https://github.com/ethereum/EIPs/pull/7154",
+        "agreed_at": "ACDE #163 (8 June 2023): proposed by Dankrad Feist with mainnet load-test data; no objection voiced on that call to trying it on devnet 6 (Tim Beiko); revisited on EIP-4844 implementers call #24 (12 June 2023), where an execution developer says he would vote against but leaves the decision to consensus-layer developers (that call has no speaker labels, so it cannot be quoted).",
+        "stop": "a-163-dankrad"
+      },
+      {
+        "eip": "EIP-4844",
+        "date": "2024-03-29",
+        "change": "Move to Final; blob base fee renamed 'base fee per blob gas'.",
+        "link": "https://github.com/ethereum/EIPs/commit/70471d02",
+        "agreed_at": "Dencun mainnet 13 March 2024.",
+        "stop": "a-dencun-live"
+      },
+      {
+        "eip": "EIP-7594",
+        "date": "2024-05-12",
+        "change": "EIP created: PeerDAS (sampling on gossip and peer requests).",
+        "link": "https://github.com/ethereum/EIPs/pull/8105",
+        "agreed_at": "Design first argued in ethresear.ch (Sep 2023 onward) and scheduled for Pectra, then moved out on ACDC #142 (19 Sep 2024) and into Fulu on ACDC #145 (31 Oct 2024).",
+        "stop": "w-er16541-djrtwo; a-142-decision; a-145-decision"
+      },
+      {
+        "eip": "EIP-7594",
+        "date": "2025-04-01",
+        "change": "Cell proofs are built by the blob-transaction sender and carried in the blob transaction's network wrapper with a wrapper version byte.",
+        "link": "https://github.com/ethereum/EIPs/commit/b447dd78",
+        "agreed_at": "Proposed on ACDC #150 (6 Feb 2025); the version byte confirmed as final on ACDE #208 (27 Mar 2025, Francesco D'Amato and Felix Lange, Alex Stokes: merge as soon as possible).",
+        "stop": "s-r01",
+        "why_not": "The agreeing call (ACDE #208) is not a stop of its own: it only confirms a version byte for a design already told by s-r01. Judgment call, flagged."
+      },
+      {
+        "eip": "EIP-7594",
+        "date": "2025-07-14",
+        "change": "A limit of 6 blobs per transaction is written into the EIP.",
+        "link": "https://github.com/ethereum/EIPs/commit/cf1a3edb",
+        "agreed_at": "Raised by Ben Adams on ACDE #209 (10 Apr 2025: 'do we want to limit the number of blobs per transaction'); moved from the BPO EIP to the PeerDAS EIP and set at 6 on ACDE #215 (3 Jul 2025, Tim Beiko).",
+        "why_not": "A size cap for the pool and for packing blocks, with broad support on both calls; not a dispute about PeerDAS pace or priority."
+      },
+      {
+        "eip": "EIP-7594",
+        "date": "2026-02-02",
+        "change": "Rationale: fix the upper bound probability.",
+        "link": "https://github.com/ethereum/EIPs/commit/a128473e",
+        "agreed_at": "Not a behaviour change.",
+        "why_not": "Corrects the maths in the rationale; no behaviour changes."
+      },
+      {
+        "eip": "EIP-7691",
+        "date": "2024-11-22",
+        "change": "EIP updated with the blob counts: target 6 and maximum 9 (it was drafted in April 2024).",
+        "link": "https://github.com/ethereum/EIPs/commit/a6389a75",
+        "agreed_at": "ACDC #146 (28 Nov 2024): after the ethPandaOps data and objections from Potuz, Alex Stokes said he was hearing a lot of support for 6/9 and listed 7691 for Pectra devnet 5.",
+        "stop": "a-146-decision (with a-146-potuz, a-146-ansgar, w-er21096-samcm, w-er21138-cortze)"
+      },
+      {
+        "eip": "EIP-7691",
+        "date": "2024-12-05",
+        "change": "Update fraction set to 5007716 (the middle sensitivity between the 3 and 6 choices).",
+        "link": "https://github.com/ethereum/EIPs/commit/b45ee372",
+        "agreed_at": "ACDE #201 (5 Dec 2024, Ansgar Dietrichs).",
+        "why_not": "A fee-sensitivity constant that follows from 6/9; the argument for it is a-146-ansgar."
+      },
+      {
+        "eip": "EIP-7691",
+        "date": "2024-12-18",
+        "change": "Decoupled from EIP-7742 (blob count set from the consensus layer); the blob counts are carried by EIP-7840 instead.",
+        "link": "https://github.com/ethereum/EIPs/commit/85442167",
+        "agreed_at": "ACDC #147 (12 Dec 2024), reaffirmed on ACDE #202 (19 Dec 2024); 7742 dropped for complexity and Pectra delay.",
+        "why_not": "Which mechanism sets the counts; it did not change what they were. Blocker: ACDC #147 not read, the account is from the ethereum/pm notes of ACDE #202."
+      },
+      {
+        "eip": "EIP-7892",
+        "date": "2025-03-24",
+        "change": "EIP created: blob-parameter-only forks.",
+        "link": "https://github.com/ethereum/EIPs/commit/216ebd2f",
+        "agreed_at": "Pitched in March 2025; ACDC #154 (3 Apr 2025: everyone wants PeerDAS and BPO) then scheduled for inclusion on ACDC #155 (17 Apr 2025).",
+        "stop": "s-r02; a-155-decision"
+      },
+      {
+        "eip": "EIP-7892",
+        "date": "2025-06-11",
+        "change": "Per-transaction blob limit added to blobSchedule (moved to EIP-7594 on 14 Jul 2025).",
+        "link": "https://github.com/ethereum/EIPs/commit/79adba6a",
+        "agreed_at": "ACDE #209 (10 Apr 2025) and #215 (3 Jul 2025).",
+        "why_not": "Same cap as the EIP-7594 row above."
+      },
+      {
+        "eip": "EIP-7892",
+        "date": "2025-09-30",
+        "change": "Update fractions corrected for the BPO schedule.",
+        "link": "https://github.com/ethereum/EIPs/commit/826b968f",
+        "agreed_at": "Values from the Devnet 5 analysis reported on ACDC #165 (18 Sep 2025).",
+        "stop": "s-r05"
+      },
+      {
+        "eip": "EIP-7892",
+        "date": "2025-10-06",
+        "change": "Clarify how the blob schedule is used in base fee computations.",
+        "link": "https://github.com/ethereum/EIPs/commit/c419cacf",
+        "agreed_at": "ACDE #222 (9 Oct 2025): execution developers (Marius van der Wijden) want an explicit schedule; consensus-layer convention reuses the previous fork's value; agreed to touch the blob schedule only with BPO forks.",
+        "why_not": "Client-configuration convention (x-n08); no dispute about blob counts."
+      },
+      {
+        "eip": "EIP-7918",
+        "date": "2025-05-26",
+        "change": "New specification: blob base fee bounded by execution cost (BLOB_BASE_COST); text and figures rewritten after the first version of 26 Mar 2025.",
+        "link": "https://github.com/ethereum/EIPs/commit/a47d890f",
+        "agreed_at": "Pitched on ACDC #154 (3 Apr 2025, Anders Elowsson) and ACDE #209 (10 Apr 2025); Tim Beiko's ACDE #212 summary (22 May 2025): people generally wanted it; in Fusaka devnets from then.",
+        "stop": "a-154-anders"
+      },
+      {
+        "eip": "EIP-7918",
+        "date": "2025-08-14",
+        "change": "Use the current block's blobSchedule when computing the floor.",
+        "link": "https://github.com/ethereum/EIPs/commit/e29b72f0",
+        "agreed_at": "ACDE #218 (14 Aug 2025, Lightclient).",
+        "why_not": "Fee-computation detail in the same EIP; no argument."
+      },
+      {
+        "eip": "EIP-7918",
+        "date": "2025-08-15",
+        "change": "BLOB_BASE_COST fixed at 2**13 and figures updated.",
+        "link": "https://github.com/ethereum/EIPs/commit/183b8935",
+        "agreed_at": "Not identified.",
+        "why_not": "Tuning of the floor's size. Blocker: the call that set 2**13 was not found; judged minor."
+      }
+    ],
+    "timelines": [
+      {
+        "title": "Road to Shipping PeerDAS to Mainnet in 2025 (Sigma Prime, Jimmy Chen)",
+        "url": "https://sigmaprime.io/blog/shipping-peerdas/",
+        "events": [
+          {
+            "date": "2025-06-13",
+            "event": "Sunnyside devnet: some supernodes above 3 s block delay around 50 blobs, above 4 s around 70",
+            "excluded": "x-a02"
+          },
+          {
+            "date": "2025-06-23",
+            "event": "Sunnyside Labs report on Devnet-1-Mixed (max 128 blobs)",
+            "excluded": "x-a02"
+          },
+          {
+            "date": "2025-06-26",
+            "event": "Post: freeze the spec; Lighthouse proposes 18 blobs at Fusaka and one BPO to 24",
+            "stop": "w-sigma-chen-2025-06-26"
+          },
+          {
+            "date": "2025-07 (early)",
+            "event": "Planned: fusaka-devnet-2, decide spec freeze, decide a tentative blob schedule",
+            "stop": "a-160-decision"
+          },
+          {
+            "date": "2025-07 (mid)",
+            "event": "Planned: private blobs and MEV-flow testing, non-finality testing",
+            "excluded": "x-a01"
+          },
+          {
+            "date": "2025-08 (mid)",
+            "event": "Planned: public testnets (they began on 1 Oct 2025)",
+            "excluded": "x-a01"
+          },
+          {
+            "date": "2025-10 (mid)",
+            "event": "Planned mainnet fork (it happened on 3 Dec 2025)",
+            "stop": "s-decision"
+          }
+        ]
+      },
+      {
+        "title": "Figuring out Fusaka (Christine Kim, 18 April 2025)",
+        "url": "https://christinedkim.substack.com/p/figuring-out-fusaka",
+        "events": [
+          {
+            "date": "2025-04-10",
+            "event": "ACDE #209 finalises the execution-layer list of considered EIPs",
+            "excluded": "x-n07"
+          },
+          {
+            "date": "2025-04-16",
+            "event": "Only PeerDAS and EOF are scheduled for inclusion",
+            "stop": "a-155-decision"
+          },
+          {
+            "date": "2025-04",
+            "event": "Developers unanimous that PeerDAS is the priority and should set the timeline",
+            "stop": "s-r02"
+          },
+          {
+            "date": "2025-04",
+            "event": "Devnet testing at a 12-blob target, theoretical 50",
+            "excluded": "x-a03"
+          },
+          {
+            "date": "2025-04-18",
+            "event": "ACDC #155 to finalise the consensus-layer list",
+            "stop": "a-155-decision"
+          },
+          {
+            "date": "2025-04",
+            "event": "Author estimates Fusaka ships in 2026, not 2025",
+            "excluded": "x-a04"
+          },
+          {
+            "date": "2025-04",
+            "event": "Fredrik Svantes's upgrade-process document",
+            "excluded": "x-a05"
+          }
+        ]
+      },
+      {
+        "title": "Protocol Update 002 (Ethereum Foundation, 22 August 2025)",
+        "url": "https://blog.ethereum.org/2025/08/22/protocol-update-002",
+        "events": [
+          {
+            "date": "2025-08-05",
+            "event": "Protocol Update 001",
+            "excluded": "x-a06"
+          },
+          {
+            "date": "2025-08",
+            "event": "Core developers chose step-wise blob increases through BPO forks over jumping to the theoretical maximum",
+            "stop": "a-160-decision"
+          },
+          {
+            "date": "2025-08",
+            "event": "Several pre-scheduled BPO steps can ship in one client release",
+            "stop": "a-160-decision"
+          },
+          {
+            "date": "2025-08",
+            "event": "PeerDAS raises capacity from 6 to 48 blobs; 8x throughput on paper",
+            "excluded": "x-a03"
+          },
+          {
+            "date": "2026",
+            "event": "Cell-level messaging to ship between forks, before Glamsterdam; a PeerDAS v2 batch expected in Glamsterdam",
+            "stop": "s-17"
+          },
+          {
+            "date": "2025-08",
+            "event": "EIP-7732 scheduled for Glamsterdam",
+            "excluded": "x-a07"
+          }
+        ]
+      },
+      {
+        "title": "Fusaka testnet announcement (Ethereum Foundation, 26 September 2025)",
+        "url": "https://blog.ethereum.org/2025/09/26/fusaka-testnet-announcement",
+        "events": [
+          {
+            "date": "2025-10-01",
+            "event": "Holesky Fusaka (and BPO1 7 Oct, BPO2 13 Oct)",
+            "excluded": "x-a01"
+          },
+          {
+            "date": "2025-10-14",
+            "event": "Sepolia Fusaka (BPO1 21 Oct, BPO2 27 Oct)",
+            "excluded": "x-a01"
+          },
+          {
+            "date": "2025-10-28",
+            "event": "Hoodi Fusaka (BPO1 5 Nov, BPO2 12 Nov)",
+            "excluded": "x-a01"
+          },
+          {
+            "date": "2025-09-26",
+            "event": "Blob target and maximum 6/9 then 10/15 then 14/21",
+            "stop": "s-decision"
+          },
+          {
+            "date": "2025-09-26",
+            "event": "Security audit competition announced",
+            "excluded": "x-a08"
+          }
+        ]
+      },
+      {
+        "title": "Fusaka mainnet announcement (Ethereum Foundation, 6 November 2025)",
+        "url": "https://blog.ethereum.org/2025/11/06/fusaka-mainnet-announcement",
+        "events": [
+          {
+            "date": "2025-12-03",
+            "event": "Fusaka mainnet activation, epoch 411392",
+            "stop": "s-decision"
+          },
+          {
+            "date": "2025-12-09",
+            "event": "BPO1: target 10, maximum 15",
+            "stop": "s-decision"
+          },
+          {
+            "date": "2026-01-07",
+            "event": "BPO2: target 14, maximum 21",
+            "stop": "s-decision"
+          }
+        ]
+      },
+      {
+        "title": "Checkpoint #8 (Ethereum Foundation, 20 January 2026)",
+        "url": "https://blog.ethereum.org/2026/01/20/checkpoint-8",
+        "events": [
+          {
+            "date": "2025-12-03",
+            "event": "Fusaka live with PeerDAS (date not in the post; from Checkpoint 7 onward)",
+            "stop": "s-decision"
+          },
+          {
+            "date": "2025-12",
+            "event": "First BPO a few days after Fusaka; second at the start of January",
+            "stop": "s-decision"
+          },
+          {
+            "date": "2026-01-08",
+            "event": "Hegotá headliner proposal window opens (closes 4 Feb)",
+            "excluded": "x-a01"
+          },
+          {
+            "date": "2026-02-05",
+            "event": "Headliner discussion; decision targeted for 26 Feb 2026",
+            "stop": "a-175-decision"
+          },
+          {
+            "date": "2026-01",
+            "event": "First ePBS devnet still to come",
+            "excluded": "x-a07"
+          }
+        ]
+      },
+      {
+        "title": "Prysm's Recommendation for Fusaka (HackMD; undated, cited on ACDC #154 of 3 Apr 2025)",
+        "url": "https://hackmd.io/@ttsao/fusaka-prysm-rec",
+        "events": [
+          {
+            "date": "undated",
+            "event": "Minimal Fusaka: PeerDAS and BPO forks only, PeerDAS the only consensus change, shipped by end of Q3 2025",
+            "stop": "s-r02"
+          },
+          {
+            "date": "undated",
+            "event": "Fallback: if not by Q3 2025, a larger H1 2026 fork with ePBS and FOCIL",
+            "excluded": "x-a07"
+          },
+          {
+            "date": "undated",
+            "event": "Drop mplex for yamux and QUIC",
+            "excluded": "x-a09"
+          }
+        ]
+      },
+      {
+        "title": "What the Fusaka upgrade changed (growthepie answers page, read 10 Nov 2026)",
+        "url": "https://www.growthepie.com/answers/what-fusaka-upgrade-changed",
+        "events": [
+          {
+            "date": "2024-03-13",
+            "event": "Dencun introduces blobs with a target of 3 and a maximum of 6",
+            "stop": "a-dencun-live"
+          },
+          {
+            "date": "2025-05-07",
+            "event": "Pectra doubles blob capacity to 6/9",
+            "stop": "a-pectra-live"
+          },
+          {
+            "date": "2025-12-03",
+            "event": "Fusaka: PeerDAS, BPO framework, 60M gas limit default, blob fee floor",
+            "stop": "s-decision"
+          },
+          {
+            "date": "2025-12-09",
+            "event": "BPO1 6/9 to 10/15",
+            "stop": "s-decision"
+          },
+          {
+            "date": "2026-01-07",
+            "event": "BPO2 to 14/21",
+            "stop": "s-decision"
+          },
+          {
+            "date": "2025-12",
+            "event": "EIP-7935: 60M default gas limit",
+            "excluded": "x-a10"
+          },
+          {
+            "date": "2025-12",
+            "event": "EIP-7918 blob fee floor",
+            "stop": "a-154-anders"
+          }
+        ]
+      },
+      {
+        "title": "Dencun mainnet announcement (Ethereum Foundation, 27 February 2024)",
+        "url": "https://blog.ethereum.org/2024/02/27/dencun-mainnet-announcement",
+        "events": [
+          {
+            "date": "2024-03-13",
+            "event": "Dencun activates at epoch 269568 (EIP-4844: blobs)",
+            "stop": "a-dencun-live"
+          }
+        ]
+      },
+      {
+        "title": "Pectra mainnet announcement (Ethereum Foundation, 23 April 2025)",
+        "url": "https://blog.ethereum.org/2025/04/23/pectra-mainnet",
+        "events": [
+          {
+            "date": "2025-05-07",
+            "event": "Mainnet activation at epoch 364032; EIP-7691 raises the blob target from 3 to 6 and the maximum from 6 to 9",
+            "stop": "a-pectra-live"
+          },
+          {
+            "date": "2025-02-14",
+            "event": "Pectra testnet announcement; Hoodi activation 18 Mar 2025",
+            "excluded": "x-a01"
+          }
+        ]
+      }
+    ]
+  }
+}

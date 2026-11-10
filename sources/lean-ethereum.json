@@ -1,0 +1,159 @@
+{
+  "map": "lean-ethereum",
+  "sources": [
+    {
+      "url": "https://ethresear.ch/t/20927/1",
+      "read_at": "2026-11-10 15:33:57.589208+00",
+      "read_as": "forum raw text",
+      "sha256": "5fc62002a6ee1d2e23429dc24d2ddb4dab12b91485f5798009dd69ea2d523b23",
+      "quoted_by": [
+        "w-3sf-2024"
+      ],
+      "passages": [
+        "As a result, our protocol achieves a shorter expected confirmation time compared to the previously proposed protocol, at the expense of a slight delay in block finalization, which extends to the time required to propose three additional blocks, rather than finalizing before the next block proposal.",
+        "Also, slot time is a crucial parameter affecting economic leakage in on-chain automated market makers (AMMs) due to arbitrage. Specifically, arbitrage profits -- and consequently, liquidity providers’ (LP) losses -- are proportional to the square root of slot time. Therefore, reducing slot time is highly desirable for financial applications on smart contract blockchains."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/23617/1",
+      "read_at": "2026-11-10 15:33:54.423892+00",
+      "read_as": "forum raw text",
+      "sha256": "c39c3383249301e18ef934d4d97b82f90bfe1984692deaafb64eb7b92601a3f8",
+      "quoted_by": [
+        "w-vbuterin-riscv-2025"
+      ],
+      "passages": [
+        "This post proposes a radical idea for the future of the Ethereum execution layer, one that is equally as ambitious as the beam chain effort is for the consensus layer. It aims to greatly improve the efficiency of the Ethereum execution layer, resolving one of the primary scaling bottlenecks, and can also greatly improve the execution layer's simplicity - in fact, it is perhaps the only way to do so.",
+        "The idea: replace the EVM with RISC-V as the virtual machine language that smart contracts are written in."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/23617/5",
+      "read_at": "2026-11-10 15:33:55.44251+00",
+      "read_as": "forum raw text",
+      "sha256": "be7be778002138588f41f5203980122a142a803eaec9dfda1a442fcc1dc83877",
+      "quoted_by": [
+        "w-levs57-2025"
+      ],
+      "passages": [
+        "Therefore, any change to cryptographic primitives of the base layer will require writing and auditing circuits for these precompiles. This is a severe restriction.",
+        "My recommendation is, instead, constructing a proof-friendly architecture with minimal MMU allowing to run contracts as separate executables; I don't think it should be RISC-V; rather a separate ISA - ideally, aware of limitations dictated by SNARK protocols."
+      ]
+    },
+    {
+      "url": "https://blog.ethereum.org/2025/07/31/lean-ethereum",
+      "read_at": "2026-11-10 16:00:33.745649+00",
+      "read_as": "page text",
+      "sha256": "c1a1f5fad3887b181818d3b2abbce4b0cae9720064275d74df78e25cc6b9e0e3",
+      "quoted_by": [
+        "w-drake-lean-2025"
+      ],
+      "passages": [
+        "lean consensus is beacon chain 2.0: hardened for ultimate security and decentralization, plus finality in seconds; formerly branded as \"beam chain\"\nlean data is blobs 2.0: post-quantum blobs, plus granular blob sizing for a calldata-like developer experience\nlean execution is EVM 2.0: a minimal, SNARK-friendly instruction set (possibly RISC-V; pronounced \"risk five\"), boosting performance while preserving EVM compatibility and its network effects",
+        "A healthy diversity of views across Protocol, the EF, and the broader Ethereum community is expected and welcome. It strengthens us."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/22856/1",
+      "read_at": "2026-11-10 15:33:58.446349+00",
+      "read_as": "forum raw text",
+      "sha256": "9bfddbfb94ea5db70c59c878d8df1a9c1082b6b70461e51c228df237768801e4",
+      "quoted_by": [
+        "w-vbuterin-heartbeat-2025"
+      ],
+      "passages": [
+        "Have an LMD GHOST chain where ~256 validators are randomly selected per slot. Use this as the primary \"heartbeat\"",
+        "Very fast slot times that are good enough for the normal case, without changing any security assumptions (because the \"aggregation\" step is no longer part of the slot time)"
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/23491/1",
+      "read_at": "2026-11-10 15:33:59.514458+00",
+      "read_as": "forum raw text",
+      "sha256": "ac3da66a03d9cc8699906bd1683f8d090580edc987ec60a9690778e2dcd021fc",
+      "quoted_by": [
+        "w-felten-2025"
+      ],
+      "passages": [
+        "We support these goals but question Vitalik’s implicit assumption that one ISA can optimally serve both ZK-proving and smart contract delivery. Since enshrining an ISA on L1 primarily affects how smart contracts are delivered to the chain, we should evaluate ISAs based on their suitability for general delivery and storage on chain, not proving alone.",
+        "RISC-V, as an open standard for hardware, is an impressive and influential technology. RISC-V was designed for simplicity and ease of implementation in hardware. However, there is no reason to expect that RISC-V-based ZK-VMs will be the ultimate arrival point of the evolution of ZK-VMs; more likely, they are just one step along the way."
+      ]
+    },
+    {
+      "url": "https://strawmap.org",
+      "read_at": "2026-11-10 16:00:34.749867+00",
+      "read_as": "page text",
+      "sha256": "6d534349e5f125c2a116806c24a32542778d14f2b3b87526ca1bebfd64e44a39",
+      "quoted_by": [
+        "w-strawmap"
+      ],
+      "passages": [
+        "The strawman roadmap originated as a discussion starter at an EF workshop in Jan 2026, with the aim of helping integrate lean Ethereum with shorter-term initiatives.",
+        "It acknowledges the limits of drafting a roadmap in a highly decentralized ecosystem. An “official” roadmap reflecting all Ethereum stakeholders is effectively impossible. Rough consensus is fundamentally an emergent, continuous, and inherent uncertain process."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/25040/2",
+      "read_at": "2026-11-10 15:34:00.909451+00",
+      "read_as": "forum raw text",
+      "sha256": "9dc793c8948ccec35d8c47c5333dc91ac4dc3863bf0759a4327495912f8d7d8e",
+      "quoted_by": [
+        "w-potuz-2026"
+      ],
+      "passages": [
+        "Why not just then register hashed BLS keys instead? BLS keys are already part of the operator's workflow and are safe as long as they haven't signed anything. We could just keep them and sign with them the move to PQ only after the PQ system has been fully chosen and vetted."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/25040/3",
+      "read_at": "2026-11-10 15:36:13.911177+00",
+      "read_as": "forum raw text",
+      "sha256": "8995a80861307e89108865561a342df089f513000308c16f8a2a3c2d6cd30ae6",
+      "quoted_by": [
+        "w-71104-2026"
+      ],
+      "passages": [
+        "Not sure what you mean by this but remember that a CRQP can recover private BLS keys from the public ones. \n\nIf you're proposing to record hashed public BLS keys then you're effectively treating public BLS keys as secret keys and requiring that their owners don't sign anything, which is pretty much impossible given that BLS pairs are used in the consensus algorithm."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/25040/4",
+      "read_at": "2026-11-10 15:34:02.940645+00",
+      "read_as": "forum raw text",
+      "sha256": "ab76a4eae99d56c56efd4dc07ba2f9d6d4ee59c72976d0ffa4764126a35f4b79",
+      "quoted_by": [
+        "w-coratger-2026"
+      ],
+      "passages": [
+        "As indicated throughout the post and in the open questions, all these topics remain widely open for alternative designs.",
+        "Technically speaking, even the signature scheme itself is not 100% confirmed because if someone comes up with a magical PQ signature scheme with much better aggregation properties, this is certainly something we have to consider."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/25369/3",
+      "read_at": "2026-11-10 15:34:03.878294+00",
+      "read_as": "forum raw text",
+      "sha256": "ff3910cce2aed8cfdc55e879ee2003e1bec906aeae37cadc174fea0c4e1259ae",
+      "quoted_by": [
+        "w-oisinkyne-2026"
+      ],
+      "passages": [
+        "Do you think this design might hide centralisation more than it enables decentralisation? Imo it hides centralisation by way of key rotation, withdrawal credential hiding, etc. It doesn't really enable decentralisation (other than maybe taking pseudonymity to anonymity).",
+        "A particular concern of mine is that so far Lean intends to drop the ability to stake in groups. This has been a design goal since ~2018 for the chain, and not one that we should silently drop. Would you be willing to explain why its no longer a design goal, or to commit to working on an architecture until we can keep it?"
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/25369/6",
+      "read_at": "2026-11-10 15:34:04.746189+00",
+      "read_as": "forum raw text",
+      "sha256": "ecbcefb92e4178630d0ff5feab0efd0a68152fb97a4ee2d472f1f871256d1e60",
+      "quoted_by": [
+        "w-vbuterin-reply-2026"
+      ],
+      "passages": [
+        "I'm personally strongly in favor of this continuing to be a goal.",
+        "Doesn't anything privacy-related enable hiding centralization? eg. even including private payments, or private voting. I feel like it's a genuine issue but a bullet that we have to bite if we are pro-privacy at all."
+      ]
+    }
+  ]
+}

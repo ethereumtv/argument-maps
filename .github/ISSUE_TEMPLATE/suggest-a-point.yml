@@ -1,0 +1,57 @@
+name: Suggest a point
+description: Propose a quote, a correction or a missing turning point for an Argument Map.
+title: 'Suggest a point: '
+labels: ['suggestion']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. Every suggestion is checked against its source and reviewed independently before it reaches a map (see QUALITY.md).
+  - type: input
+    id: map
+    attributes:
+      label: Map
+      description: The map's address on ethereumtv.co, or its name.
+      placeholder: https://ethereumtv.co/maps/glamsterdam
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of suggestion?
+      options:
+        - A missing point (quote, decision or turning point)
+        - A correction to an existing quote or date
+        - Something else
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source link
+      description: A talk link with a timestamp, or the permalink to the exact post, EIP or forum reply.
+      placeholder: https://www.youtube.com/watch?v=...&t=1034
+    validations:
+      required: true
+  - type: textarea
+    id: words
+    attributes:
+      label: The words
+      description: The passage as it was said or written. Exact words, please; no paraphrase.
+    validations:
+      required: true
+  - type: input
+    id: who
+    attributes:
+      label: Who said or wrote it, and when
+      placeholder: Name or handle, date
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it belongs on the map
+      description: What it adds to the story, or what is wrong with what is there now.
+  - type: input
+    id: credit
+    attributes:
+      label: Credit me as (optional)
+      description: The name to show on the stop if your suggestion is added. Leave empty to stay uncredited.

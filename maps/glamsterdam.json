@@ -1,0 +1,1859 @@
+{
+  "slug": "glamsterdam",
+  "title": "How ePBS made it into Glamsterdam",
+  "intro": "In 2022 it was a philosophy: let the protocol, not a trusted middleman, connect the people who build blocks with the people who propose them. This is how that idea, enshrined proposer-builder separation (ePBS, EIP-7732), became the headline of the Glamsterdam upgrade, with block-level access lists (EIP-7928) beside it. It draws on talks, research posts, client-team notes and forum posts.",
+  "eips": [
+    "EIP-7732",
+    "EIP-7928"
+  ],
+  "topic": "upgrades",
+  "stops": [
+    {
+      "id": "s-a3",
+      "kind": "quote",
+      "date": "2022-01-03",
+      "date_label": "3 January 2022",
+      "place": "Bankless",
+      "speaker": "Vitalik Buterin",
+      "speaker_slug": "vitalik-buterin",
+      "talk_id": "93ad191d-b413-4687-ac69-0ab575ce1737",
+      "talk_slug": "99-endgame-vitalik-buterin-bankless",
+      "note": "Where the idea starts: the one who proposes a block and the one who builds it can be different people.",
+      "lines": [
+        {
+          "t": 3551,
+          "clean": "This is basically this idea that the validator that proposes a block and who actually constructs the block do not have to be the same actor. Instead of forcing validators to create blocks, we're going to have an auction, and we're going to auction off the right to create the blocks.",
+          "caption": "this is basically this idea that the validator that proposes a block and who actually constructs the block do not have to be the same actor right and instead of forcing validators to create blocks we're going to have an auction and we're going to auction off the right to create the blocks",
+          "chunks": [
+            {
+              "ord": 83,
+              "t": 3551,
+              "raw": "this is basically this idea that"
+            },
+            {
+              "ord": 84,
+              "t": 3594,
+              "raw": "the validator that proposes a block and who actually constructs the block do not have to be the same actor right and instead of forcing validators to create blocks we're going to have an auction and we're going to auction off the right to create the blocks"
+            }
+          ]
+        },
+        {
+          "t": 3594,
+          "clean": "The reason why we're doing this is because creating a block that gives the creator the highest possible fees, gives them the highest possible [MEV], gives them the highest possible revenue in the long term is a pretty hard problem, and we don't want to force validators to have to figure out the complexities of dealing with that problem, because we want anyone to be able to be a validator.",
+          "caption": "the reason why we're doing this is because creating a block that like really mag gives us the uh the highest gives the creator the highest possible fees gives them the highest possible ibv gives them the highest possible revenue in the long term is a pretty hard problem and we don't want to force validators to have to like figure out the complexities of dealing with that problem because we want anyone to be able to be a validator",
+          "chunks": [
+            {
+              "ord": 84,
+              "t": 3594,
+              "raw": "the reason why we're doing this is because creating a block that like really mag gives us the uh the highest gives the creator the highest possible fees gives them the highest possible ibv gives them the highest possible revenue in the long term is a pretty hard problem and we don't want to force validators to have to like figure out the complexities of dealing with that problem because we want anyone to be able to be a validator"
+            }
+          ],
+          "edits": [
+            "restarted list 'really mag gives us the uh the highest' dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-a0",
+      "kind": "quote",
+      "date": "2022-10-11",
+      "date_label": "11 October 2022",
+      "place": "Devcon 6",
+      "speaker": "Barnabé Monnot",
+      "speaker_slug": "barnabe-monnot",
+      "talk_id": "477409d7-608c-4acb-84d6-a829cc7d3670",
+      "talk_slug": "updates-proposer-builder-separation-monnot",
+      "note": "The idea gets its shape: move the relay's job into the protocol, which then guarantees the proposer is paid.",
+      "lines": [
+        {
+          "t": 565,
+          "clean": "This is the idea of in-protocol PBS: moving this systemic part of a system into the protocol. In the in-protocol PBS design, the protocol becomes the broker and is the one that guarantees that if deals go south, the [proposer] is still compensated for it.",
+          "caption": "this is kind of the idea of in protocol PBS is moving this systemic part of a system into the protocol so in the in protocol PBS design the protocol becomes the broker and is the one that guarantees that if deals go south The Proposal is still compensated for it",
+          "chunks": [
+            {
+              "ord": 13,
+              "t": 565,
+              "raw": "this is kind of the idea of in protocol PBS is moving this systemic part of a system into the protocol so in the in protocol"
+            },
+            {
+              "ord": 14,
+              "t": 607,
+              "raw": "PBS design the protocol becomes the broker and is the one that guarantees that if deals go south The Proposal is still compensated for it"
+            }
+          ]
+        },
+        {
+          "t": 607,
+          "clean": "So the builder in this case, whenever we make a bid, that [bid] is binding: even if they deliver an invalid block or if they don't deliver it at all, they would have to pay the [proposer] up to the bid that they had made.",
+          "caption": "so the Builder in this case whenever we make a bid that bit is binding even if they deliver an invalid block or if they don't deliver it at all they would have to pay the proposal up to the bid that they had made",
+          "chunks": [
+            {
+              "ord": 14,
+              "t": 607,
+              "raw": "so the Builder in this case whenever we make a bid that bit is binding even if they deliver an invalid block or if they don't deliver it at all they would have to pay the proposal up to the bid that they had made"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-neuder-drake-2023",
+      "kind": "written",
+      "date": "2023-05-25",
+      "date_label": "25 May 2023",
+      "place": "ethresear.ch",
+      "author": "mike neuder and justin drake",
+      "source_title": "Why enshrine Proposer-Builder Separation? A viable path to ePBS",
+      "source_url": "https://ethresear.ch/t/why-enshrine-proposer-builder-separation-a-viable-path-to-epbs/15710/1",
+      "note": "The founding written case for ePBS: relays are trusted, centralised and fragile, and the authors answer the obvious objection that MEV-Boost works fine.",
+      "lines": [
+        {
+          "text": "We present the case for ePBS by highlighting (i) that relays are antithetical to Ethereum's core values, (ii) the risks and inefficiences of side-car software, and (iii) the costs and unsustainability of relay operations."
+        },
+        {
+          "text": "Another major censorship event, further attacks, and continued centralization pressures of relays, builders, and searchers pose significant risks to Ethereum."
+        }
+      ]
+    },
+    {
+      "id": "s-a6",
+      "kind": "quote",
+      "date": "2023-05-31",
+      "date_label": "31 May 2023",
+      "place": "Bell Curve",
+      "speaker": "Stephane Gosselin",
+      "speaker_slug": "stephane-gosselin",
+      "talk_id": "298038f4-2e4b-42c1-ac6f-90616bc28503",
+      "talk_slug": "bonus-ep-stephane-gosselin-mev-ofas-frontier-bell-curve",
+      "note": "Why PBS shipped outside the protocol first, as MEV-Boost: the Merge could not wait for the research.",
+      "lines": [
+        {
+          "t": 3718,
+          "clean": "The question at the time was: do we wait until [enshrined] PBS is ready before doing the merge, or do we proceed with some other solution at the merge that doesn't require consensus changes and therefore isn't going to delay the timeline of when the merge happens?",
+          "caption": "the question at the time was okay do we wait until PBS and Shrine PBS is ready before doing the merge or do we proceed with some other solution um at the merge that uh that doesn't you know require consensus changes and therefore isn't going to delay the timeline of when the merge happens",
+          "chunks": [
+            {
+              "ord": 87,
+              "t": 3718,
+              "raw": "the question at the time was okay do we wait until PBS and Shrine PBS is ready before doing the merge or do we proceed with some other solution um at the merge that uh that doesn't you know require consensus changes and therefore isn't going to delay the timeline of when the merge happens"
+            }
+          ],
+          "edits": [
+            "false start 'PBS' before 'and Shrine PBS' -> [enshrined] PBS"
+          ]
+        },
+        {
+          "t": 3718,
+          "clean": "The decision at the end of the day was: we don't think that we can convince protocol developers and development teams to delay the merge and to do the research that's required for PBS to be a thing. We think that there's just too much research there. And so we need to find a solution for having out-of-protocol PBS, and that's where I started designing MEV-Boost.",
+          "caption": "the decision at the end of the day was okay well we don't think that we can convince um protocol developers and development teams to delay the merge and to like do the research that's required for for PBS to be a thing we think that there's just too much research there um and so we need to find a solution for having out of protocol PBS and that's where I started designing Mev boost and over the course of sort of the following year sort of uh brought it to uh to the market um now there are some like very conscious decision in the in the design of of Med boost one of the main goals with it from my perspective was to be able to put a clear price on the value of a block um which was not a thing that existed in the past this like concept of there being a public value of a block and say this block is worth X did not exist because all you had before was a bunch of transactions being routed to a minor a minor constructing that block and it was sort of secure how much value they were they were capturing out of it and you had this issue where the mining",
+          "chunks": [
+            {
+              "ord": 87,
+              "t": 3718,
+              "raw": "the decision at the end of the day was okay well we don't think that we can convince um protocol developers and development teams to delay the merge and to like do the research that's required for for PBS to be a thing we think that there's just too much research there um and so we need to find a solution for having out of protocol PBS and that's"
+            },
+            {
+              "ord": 88,
+              "t": 3763,
+              "raw": "where I started designing Mev boost and over the course of sort of the following year sort of uh brought it to uh to the market um now there are some like very conscious decision in the in the design of of Med boost one of the main goals with it from my perspective was to be able to put a clear price on the value of a block um which was not a thing that existed in the past this like concept of there being a public value of a block and say this block is worth X did not exist because all you had before was a bunch of transactions being routed to a minor a minor constructing that block and it was sort of secure how much value they were they were capturing out of it and you had this issue where the mining"
+            }
+          ],
+          "edits": [
+            "The caption chunk runs on into the design goals of MEV-Boost after the quote ends; nothing there qualifies the quote (reviewed 2 Nov 2026)."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-neuder-2023",
+      "kind": "quote",
+      "date": "2023-07-01",
+      "date_label": "1 July 2023",
+      "place": "EthCC 6",
+      "speaker": "Mike Neuder",
+      "speaker_slug": "mike-neuder",
+      "talk_id": "2c0c5ba3-51ed-4f21-bff5-23a0d0e596c4",
+      "talk_slug": "mike-neuder-towards-enshrined-proposer-builder-separation",
+      "note": "The design turn: the first two-slot design gave the builder a full proposer-style vote, which weakened reorg security, so the team moved to a payload timeliness committee.",
+      "lines": [
+        {
+          "t": 638,
+          "clean": "The builder block is basically given first class status in this model, because they get full attestation weight on their block.",
+          "caption": "the Builder block is is basically given first class status in this in this model because they get full attestation weight on their block",
+          "chunks": [
+            {
+              "ord": 15,
+              "t": 638,
+              "raw": "the Builder block is is basically given first class status in this in this model because they get full attestation weight on their block"
+            }
+          ]
+        },
+        {
+          "t": 638,
+          "clean": "The fact that the builder block has basically full rights of a [proposer] block means that some of the security properties, especially around reorgs, are weakened by this design.",
+          "caption": "the fact that the Builder block has basically full rights of a proposal block means that some of the security properties especially around reorgs are weakened by by this design",
+          "chunks": [
+            {
+              "ord": 15,
+              "t": 638,
+              "raw": "the fact that the Builder block has basically full rights of a proposal block means that some of the security properties especially around reorgs are weakened by"
+            },
+            {
+              "ord": 16,
+              "t": 681,
+              "raw": "by this design"
+            }
+          ],
+          "edits": [
+            "Caption mishears 'proposal' for 'proposer' (reviewed 6 Nov 2026)."
+          ]
+        },
+        {
+          "t": 681,
+          "clean": "This motivated us to think about alternative designs, and this brought us to the payload timeliness committee.",
+          "caption": "this motivated us to think about alternative designs and this brought us to the payload timeliness committee",
+          "chunks": [
+            {
+              "ord": 16,
+              "t": 681,
+              "raw": "this motivated us to think about alternative designs and this brought us to the payload timeliness committee"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-a9",
+      "kind": "quote",
+      "date": "2023-10-21",
+      "date_label": "21 October 2023",
+      "place": "0xResearch",
+      "speaker": "Matt Cutler",
+      "speaker_slug": "matt-cutler",
+      "talk_id": "2d1b956f-c870-4da3-9d99-73ea2120c92a",
+      "talk_slug": "how-wallets-mev-sleeping-giants-matt-cutler-0xresearch",
+      "note": "A caveat that stays open: relays may survive even with ePBS.",
+      "lines": [
+        {
+          "t": 1405,
+          "clean": "But that's not a panacea. Originally the idea was that [enshrined] PBS would eliminate the need for these relays, these trusted intermediaries. It turns out that that doesn't seem to be the case, that there will still need to be relays even in an ePBS world.",
+          "caption": "but that's not a Panacea you know there was originally the idea was that enshrine PBS would eliminate the need for these uh relays these trusted uh uh intermediaries it turns out that that doesn't seem to be the case that there will still need to be relays even in an epbs World",
+          "chunks": [
+            {
+              "ord": 33,
+              "t": 1405,
+              "raw": "but that's not a Panacea you know there was originally the idea was that enshrine PBS would"
+            },
+            {
+              "ord": 34,
+              "t": 1448,
+              "raw": "eliminate the need for these uh relays these trusted uh uh intermediaries it turns out that that doesn't seem to be the case that there will still need to be relays even in an epbs World"
+            }
+          ],
+          "edits": [
+            "false start 'you know there was'"
+          ]
+        },
+        {
+          "t": 1665,
+          "clean": "The truth is, at least according to the latest researches, relays don't go away until we get to this destination called MEV burn.",
+          "caption": "the the truth is at least according to the latest researches relays don't go away until we get to this destination called Mev burn",
+          "chunks": [
+            {
+              "ord": 39,
+              "t": 1665,
+              "raw": "the the truth is at least according to the latest researches relays don't go away until we get to this destination called Mev burn"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-fel",
+      "kind": "quote",
+      "date": "2024-05-01",
+      "date_label": "2024",
+      "place": "DappCon 2024 · date from the event",
+      "speaker": "Felix Leupold",
+      "speaker_slug": "felix-leupold",
+      "talk_id": "cc2441e3-a55c-4d34-bc8a-201239416c6a",
+      "talk_slug": "dappcon-2024-do-we-really-need-pbs-solving-mev-app-leupold",
+      "note": "The clearest objection, from CoW Protocol: more consensus machinery, and big builders may not use it anyway. Taken from his own DappCon recording; the same talk at Devcon 7 sits inside the video of Pascal Stichler's talk.",
+      "lines": [
+        {
+          "t": 608,
+          "clean": "Needless to say, adding another committee adds complexity to the chain, and it's not even clear that enshrined PBS will be adopted, because whenever you try to build something into a peer-to-peer layer you're taking some trade-offs which you don't have in the existing system.",
+          "caption": "needless to say adding another committee adds complexity to the chain and um it's not even clear that enshrined PBS will be adopted because whenever you try to build something into a peer-to-peer layer you're taking some trade-offs which you don't have in uh the existing system",
+          "chunks": [
+            {
+              "ord": 14,
+              "t": 608,
+              "raw": "needless to say adding another committee adds complexity to the chain and um it's not even clear that enshrined PBS will be adopted because whenever you try to build something into a peer-to-peer layer you're taking some trade-offs which you don't have in uh the existing system"
+            }
+          ]
+        },
+        {
+          "t": 608,
+          "clean": "And also more advanced collocation techniques, where you're trying to really shave off milliseconds of latency by being very close to the relay or very close to the builder, are things that just simply do not work in a fully peer-to-peer system. So even if we enshrine PBS into the base layer, it's not clear that big builders and large staking pools will adopt this as the only way of producing blocks.",
+          "caption": "and also more Advanced collocation Techniques where you're trying to really shave off milliseconds of latency by being very close to the relay or very close to um to to the Builder are things that just simply do not work in a fully peer-to-peer system so even if we enshrine PBS into the base layer it's not clear that big Builders and um you know large staking pools will adopt this as the only way of producing blocks",
+          "chunks": [
+            {
+              "ord": 14,
+              "t": 608,
+              "raw": "and also more Advanced collocation Techniques where you're trying to really"
+            },
+            {
+              "ord": 15,
+              "t": 650,
+              "raw": "shave off milliseconds of latency by being very close to the relay or very close to um to to the Builder are things that just simply do not work in a fully peer-to-peer system so even if we enshrine PBS into the base layer it's not clear that big Builders and um you know large staking pools will adopt this as the only way of producing blocks"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-r01",
+      "kind": "quote",
+      "date": "2024-08-15",
+      "date_label": "15 August 2024",
+      "place": "All Core Devs - Execution #194",
+      "speaker": "Potuz",
+      "speaker_slug": "potuz",
+      "talk_id": "04a34fb9-b16c-451f-9523-76d06645da9b",
+      "talk_slug": "all-core-devs-execution-194",
+      "note": "ePBS gets its EIP number and its first pitch to the execution-layer client teams, by the champion: nothing for them to change, and attesters get far longer to validate a block.",
+      "lines": [
+        {
+          "t": 1044,
+          "clean": "The things that I suspect [ELs] would like the most is that you don't need to do anything. The EIP does not include any changes on the EL side, it's purely a consensus change. It doesn't even include changes on the engine API.",
+          "caption": "the things that I suspect eleps would like the most is that you don't need to do anything the EIP does not include any changes on the El side it's purely a consensus change it doesn't even include changes on the engine API",
+          "chunks": [
+            {
+              "ord": 71,
+              "t": 1044,
+              "raw": "the things that I suspect eleps would like the most is that you don't need to do anything the EIP does not include any changes on the El side it's purely a consensus change it doesn't even include changes on the engine API"
+            }
+          ],
+          "edits": [
+            "Caption 'eleps' is 'ELs' (the execution-layer client teams); 'El' written 'EL'."
+          ]
+        },
+        {
+          "t": 1085,
+          "clean": "You don't need to change the EL consensus algorithm, but only changing the CL consensus side, you get for free that attesters, that validators, do not need to have two seconds to validate a block. They now have around nine to 10 seconds to validate a block.",
+          "caption": "you don't need to change the El consensus algorithm uh but only changing the C CL consensus side you get for free that ATT testers that validators do not need to have two seconds to validate a block they now have around nine to 10 seconds to validate a block",
+          "chunks": [
+            {
+              "ord": 72,
+              "t": 1085,
+              "raw": "you don't need to change the El consensus algorithm uh but only changing the C CL consensus side you get for free that ATT testers that validators do not need to have two seconds to validate a block"
+            },
+            {
+              "ord": 73,
+              "t": 1128,
+              "raw": "they now have around nine to 10 seconds to validate a block"
+            }
+          ],
+          "edits": [
+            "Speech-to-text splits 'C CL' and 'ATT testers' are written 'CL' and 'attesters'."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-potuz-2024",
+      "kind": "quote",
+      "date": "2024-11-13",
+      "date_label": "13 November 2024",
+      "place": "Devcon 7",
+      "speaker": "Potuz",
+      "speaker_slug": "potuz",
+      "talk_id": "53387427-093d-4013-9db1-9d2d852013a0",
+      "talk_slug": "what-status-epbs-its-future-iterations-potuz",
+      "note": "The champion explains the reason underneath the auction: split the payload from the consensus block so the slot can be used for execution and blobs, and timing games stop eating the gain.",
+      "lines": [
+        {
+          "t": 174,
+          "clean": "The problem is that validators are incentivized to actually propose their blocks as late as possible, so that they can extract more [MEV] out of them. These timing games make [tweaking] with these timings for attestations an impossible problem to solve. If we gave more time to actually sync better blocks, larger blocks that have more blobs in the network, what would happen is that the validator would just propose later and extract more [MEV].",
+          "caption": "but the problem is that validators are incentivized to actually propose their blocks as late as possible so that they can extract more M out of them and these timing games make twigling with this these timings for attestations a an impossible problem to solve if we gave more time to actually sync better blocks larger blocks have more blobs in the network what would happen is that validator would just propose later and extract more m",
+          "chunks": [
+            {
+              "ord": 4,
+              "t": 174,
+              "raw": "but the problem is that validators are incentivized to actually propose their blocks as late as possible"
+            },
+            {
+              "ord": 5,
+              "t": 219,
+              "raw": "so that they can extract more M out of them and these timing games make twigling with this these timings for attestations a an impossible problem to solve if we gave more time to actually sync better blocks larger blocks have more blobs in the network what would happen is that validator would just propose later and extract more m"
+            }
+          ],
+          "edits": [
+            "Caption mishears 'M' for MEV (twice) and 'twigling' for 'tweaking'; the stray 'this' before 'these timings' is dropped (reviewed 6 Nov 2026)."
+          ]
+        },
+        {
+          "t": 219,
+          "clean": "So why separating them? Since we do not need to validate execution to decide what is our head, why not just broadcast the block, which is a minimal block, which is just consensus: validate consensus, decide what is our status of the chain, and then use the rest of those 12 seconds to validate execution, check if the blobs are available, validate inclusion list.",
+          "caption": "so why separating them since we do not need to validate execution to decide what is our head why not just broadcast the block which is a minimal block which is just consensus validate consensus decide what is our status of the of the chain and then use the rest of those 12 seconds to validate execution check if the blobs are available validate inclusion list",
+          "chunks": [
+            {
+              "ord": 5,
+              "t": 219,
+              "raw": "so why separating them since we do not need to validate execution to decide what is our head why not just broadcast the block which is a minimal block which is just consensus validate consensus decide what is our status of the of the chain and then use the rest of those 12 seconds to validate execution check if"
+            },
+            {
+              "ord": 6,
+              "t": 262,
+              "raw": "the blobs are available validate inclusion list"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-b1",
+      "kind": "quote",
+      "date": "2024-11-15",
+      "date_label": "15 November 2024",
+      "place": "Devcon 7",
+      "speaker": "Jonah Burian",
+      "speaker_slug": "jonah-burian",
+      "talk_id": "d7f94d7e-af75-4a76-9ac1-698269cdea98",
+      "talk_slug": "can-we-fix-mev-burian",
+      "note": "Reports the research objection, then proposes execution auctions instead.",
+      "lines": [
+        {
+          "t": 474,
+          "clean": "Super simple idea: at block N you sell the right to block N, you run proposer-builder separation [in] protocol, maybe we've solved [MEV]. Unfortunately, if you look at the research, and I'm not going to get into all the reasons why, there is real problems with this from an engineering perspective: it's hard to do.",
+          "caption": "super simple idea you just at block n you sell the right to block n you run proposer Builder separation and protocol maybe we've solved me unfortunately if you look at the research and I'm not going to get into all the reasons why there is real problems with this from an engineering perspective it's hard to do",
+          "chunks": [
+            {
+              "ord": 11,
+              "t": 474,
+              "raw": "super simple idea you just at block n you sell the right to block n you run proposer Builder separation and protocol maybe we've solved me unfortunately if you look at the research and I'm not going to get into all the reasons why there is real problems with this from an engineering perspective it's hard to do"
+            }
+          ],
+          "edits": [
+            "False start 'you just' before 'at block N you sell' dropped; one 'you' kept (reviewed 2 Nov 2026)."
+          ]
+        },
+        {
+          "t": 517,
+          "clean": "Selling the right to [MEV] in block N at block N doesn't really work. But what if we could sell the right to a future block? At block N maybe we sell the right to a block 32 blocks later. So the idea here is execution auctions: you sell the right to the monopoly in advance, and having this buffer, from an engineering perspective, might fix the problems associated with ePBS.",
+          "caption": "selling the right to me in Block n at block n doesn't really work but what if we could sell the right to a future block so at block n Maybe we sell the right to a block 32 blocks later so the idea here is execution auctions you sell the right to the Monopoly in advance and having this buffer from an engineering perspective might fix it might fix the problems associated with epbs",
+          "chunks": [
+            {
+              "ord": 12,
+              "t": 517,
+              "raw": "selling the right to me in Block n at block n doesn't really work but what if we could sell the right to a future block so at block n Maybe we sell the right to a block 32 blocks later so the idea here is execution auctions you sell the right to the Monopoly in advance and having this buffer from an engineering perspective might fix it might fix the problems associated with epbs"
+            }
+          ],
+          "edits": [
+            "Restart 'might fix it' dropped; the kept 'might fix the problems' carries the same hedge (reviewed 2 Nov 2026)."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-potuz-case-2025",
+      "kind": "written",
+      "date": "2025-05-22",
+      "date_label": "22 May 2025",
+      "place": "Ethereum Magicians",
+      "author": "potuz",
+      "source_title": "EIP-7732 the case for inclusion in Glamsterdam",
+      "source_url": "https://ethereum-magicians.org/t/eip-7732-the-case-for-inclusion-in-glamsterdam/24306/1",
+      "note": "The champion's headliner proposal: what ePBS buys, and the two objections he says he kept hearing, with his answers.",
+      "lines": [
+        {
+          "text": "Secondary benefits include the removal of trust assumptions on block productions, allowing any validator to be a builder and bid for block production, without the need to be gated by relays."
+        },
+        {
+          "text": "Objections that I have received to the EIP have been varied throughout the last two years but have mostly settled in two: - It changes forkchoice. - Builders need to be staked. The first one is a minor change to allow for empty blocks, it minimally changes forkchoice relying on current mechanisms to protect builders. As for the second one I have approached current builders and they have expressed that this it not an important problem for them."
+        }
+      ]
+    },
+    {
+      "id": "w-prysm-2025",
+      "kind": "written",
+      "date": "2025-07-15",
+      "date_label": "15 July 2025",
+      "place": "HackMD",
+      "author": "Prysm team",
+      "source_title": "Prysm Team's Glamsterdam Headliner",
+      "source_url": "https://hackmd.io/@tchain/prysm-glamsterdam-headliner",
+      "note": "A consensus client team backs ePBS over the 6-second-slot alternative (EIP-7782): bandwidth is the bottleneck. Date: the HackMD page shows no date, so 15 Jul 2025 is its createTime (checked 6 Nov 2026) and the date on its screenshots.",
+      "lines": [
+        {
+          "text": "Today, we allocate a mere 2 seconds of each 12-second slot to the critical work of block and blob propagation."
+        },
+        {
+          "text": "While shorter slots improve UX, they represent a shortsighted optimization that sacrifices long-term scalability for immediate gratification. EIP-7782 only reduces overhead from ⅔ to ½ of slot time. Meanwhile, EIP-7732's slot restructuring minimizes overhead far more effectively, enabling both higher gas limits and more blobs within existing 12-second slots."
+        }
+      ]
+    },
+    {
+      "id": "s-somnath-2025",
+      "kind": "quote",
+      "date": "2025-07-17",
+      "date_label": "17 July 2025",
+      "place": "All Core Devs - Execution #216",
+      "speaker": "Somnath Banerjee",
+      "speaker_slug": "somnath-banerjee",
+      "talk_id": "1f28645a-539f-4161-9ef6-1a5edc9b58f9",
+      "talk_slug": "all-core-devs-execution-216",
+      "note": "The Erigon team's objection stated on the call that opens the headliner scoping: decentralisation concerns about ePBS.",
+      "lines": [
+        {
+          "t": 3370,
+          "clean": "On the [CL] side, we still think [ePBS] is going to be a little bit controversial from a decentralization point of view.",
+          "caption": "Well on the Cl. Side. We still think epbs is going to be a little bit controversial from decentralization point of view. But that's like a debate.",
+          "chunks": [
+            {
+              "ord": 111,
+              "t": 3370,
+              "raw": "Well on the Cl. Side. We still think epbs is going to be a little bit controversial from decentralization point of view. But that's like a debate."
+            }
+          ],
+          "edits": [
+            "The speaker's team name is mistranscribed in the captions before this passage ('Aragon'); the passage itself needs no fix beyond the case of CL and ePBS (reviewed 6 Nov 2026)."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-r12",
+      "kind": "quote",
+      "date": "2025-07-24",
+      "date_label": "24 July 2025",
+      "place": "All Core Devs - Consensus #161",
+      "speaker": "Christoph Schlegel",
+      "speaker_slug": "christoph-schlegel",
+      "talk_id": "63fcb56f-addb-4073-a7ac-5aed7d6e8135",
+      "talk_slug": "all-core-devs-consensus-161",
+      "note": "The main live objection, stated by the Flashbots researcher who presented it to the call: a builder who has won the auction can walk away from a block if the market moves, and it gets worse with more liquidity.",
+      "lines": [
+        {
+          "t": 2034,
+          "clean": "What is a free option problem, and why should you care? It has to do with this optionality of a winning builder in block building auction to invalidate their block if they're not happy with how the world evolved in the meantime.",
+          "caption": "So what is a free option problem? And why should you care? has to do with basically this? this optionality of of a winning builder in in block building, auction to invalidate their block if they're not happy with sort of how the world evolved in the meantime,",
+          "chunks": [
+            {
+              "ord": 70,
+              "t": 2034,
+              "raw": "So what is a free option problem? And why should you care? has to do with basically this? this optionality of of a winning builder in in block building, auction to invalidate their block if they're not happy with sort of how the world evolved in the meantime,"
+            }
+          ],
+          "edits": [
+            "Stutters 'of of', 'in in' reduced; 'basically' and 'sort of' fillers dropped."
+          ]
+        },
+        {
+          "t": 2203,
+          "clean": "We tried to figure out how valuable this option is. And the TLDR is, okay, probably very valuable in some sense. And it creates a bad form of MEV, right? So you basically create the form of MEV where, if you exploit the MEV, in some cases you produce empty blocks, and that has a negative externality on everybody else who wanted to put the transactions in the block.",
+          "caption": "we tried to figure out how valuable. This option is so, and sort of the Tldr is okay, probably very valuable in some some sense. And it creates a bad form of Mev, right? So you basically create the form of Mev, where, if you exploit the Mev, in some cases you produce empty blocks, and that has a negative externality on everybody else wanted to put the transactions in in the block.",
+          "chunks": [
+            {
+              "ord": 73,
+              "t": 2203,
+              "raw": "we tried to figure out how valuable. This option is so, and sort of the Tldr is okay, probably very valuable in some some sense. And it creates a bad form of Mev, right? So you basically create the form of Mev, where, if you exploit the Mev, in some cases you produce empty blocks, and that has a negative externality on everybody else wanted to put the transactions in in the block."
+            }
+          ],
+          "edits": [
+            "Word 'who' supplied before 'wanted to put the transactions' so the sentence stands on its own; stutters 'some some', 'in in' reduced."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-r02",
+      "kind": "quote",
+      "date": "2025-07-24",
+      "date_label": "24 July 2025",
+      "place": "All Core Devs - Consensus #161",
+      "speaker": "Potuz",
+      "speaker_slug": "potuz",
+      "talk_id": "63fcb56f-addb-4073-a7ac-5aed7d6e8135",
+      "talk_slug": "all-core-devs-consensus-161",
+      "note": "The main live objection, the free option problem (a builder can sit on a hidden block and drop it if the market moves), answered by the ePBS champion on the call: the window is a matter of deadlines, and shrinking it costs scaling.",
+      "lines": [
+        {
+          "t": 3517,
+          "clean": "It's not a feature of the commit-reveal process of ePBS, but it is a feature of the difference between the payload deadline and the blob deadline. If you make those early enough, so that the builder only has time to just reveal immediately the block, this problem disappears from ePBS, of course at the cost of scaling, which is the essential trade-off here.",
+          "caption": "and it's not a feature of the commit reveal process of of of epbs. But it is a feature of the difference between the payload deadline and the blob deadline. If you make those too early, very early enough, so that the builder only has time to just reveal immediately the block. This problem disappears from Epbs, of course, at the cost of scaling, which is, which is the essential trade-off here.",
+          "chunks": [
+            {
+              "ord": 107,
+              "t": 3517,
+              "raw": "and it's not a feature of the commit reveal process of of of epbs. But it is a feature of the difference between the payload deadline and the blob deadline. If you make those too early, very early enough, so that the builder only has time to just reveal immediately the block. This problem disappears from Epbs, of course, at the cost of scaling, which is, which is the essential trade-off here."
+            }
+          ],
+          "edits": [
+            "False start 'too early, very' dropped before 'early enough'; stutters 'of of of', 'which is, which is' reduced."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-bitar-2025",
+      "kind": "quote",
+      "date": "2025-07-31",
+      "date_label": "31 July 2025",
+      "place": "All Core Devs - Execution #217",
+      "speaker": "Ahmad Bitar",
+      "speaker_slug": "ahmad-bitar",
+      "talk_id": "889299e9-90a7-4898-a97b-78dbc615d974",
+      "talk_slug": "all-core-devs-execution-217",
+      "note": "The rival design on the table: ePBS against delayed execution, and why a Nethermind developer says delayed execution does not bring the same blob-scaling benefit as ePBS (Francis argued the delayed-execution side on the same call; see excluded).",
+      "lines": [
+        {
+          "t": 4375,
+          "clean": "There is another consideration also about delayed execution versus [ePBS] here, which, as far as I'm concerned: delayed execution does not bring the same scaling benefits as [ePBS] when it comes to blobs, and blobs are important for [L2s]. So this is another consideration: if we want to actually scale blobs higher, we should probably consider [ePBS] over delayed execution.",
+          "caption": "But there is another consideration also about delayed execution versus Apbs here, which, as far as I'm concerned, Apbs delayed execution does not bring the same scaling benefits as Apbs when it comes to blobs. Because the and blobs are important for L twos. So this is another consideration that if we want to actually scale blobs higher, we should probably consider apbs over delayed execution.",
+          "chunks": [
+            {
+              "ord": 146,
+              "t": 4375,
+              "raw": "But there is another consideration also about delayed execution versus Apbs here, which, as far as I'm concerned, Apbs delayed execution does not bring the same scaling benefits as Apbs when it comes to blobs. Because the"
+            },
+            {
+              "ord": 147,
+              "t": 4442,
+              "raw": "and blobs are important for L twos. So this is another consideration that if we want to actually scale blobs higher, we should probably consider apbs over delayed execution."
+            }
+          ],
+          "edits": [
+            "The caption's stray 'Apbs' before 'delayed execution' and the broken-off 'Because the' are dropped; 'Apbs' is ePBS and 'L twos' is L2s (reviewed 6 Nov 2026)."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-r03",
+      "kind": "quote",
+      "date": "2025-08-07",
+      "date_label": "7 August 2025",
+      "place": "All Core Devs - Consensus #162",
+      "speaker": "Ansgar Dietrichs",
+      "speaker_slug": "ansgar-dietrichs",
+      "talk_id": "23a454ca-da16-40f3-9e1c-8b53b6861e30",
+      "talk_slug": "all-core-devs-consensus-162",
+      "note": "The day ePBS is chosen, the sharpest reservation from a researcher on the calls: pairing ePBS with a second consensus-layer headliner (FOCIL) must not hold up the execution-layer work.",
+      "lines": [
+        {
+          "t": 4706,
+          "clean": "Given that we kicked out EOF, we have not had any meaningful features on the [EL] side for basically since [Pectra]. I really would not want us to delay [Glamsterdam] at all from the [EL] side, because the [EL] side is very exciting. It's bringing a lot of scaling features across [block-level] access lists and repricings.",
+          "caption": "given that we kicked out eof we have not had any meaningful features on the El side, for basically, since spectra, I really really really would not want us to delay Glam Saddam at all from from the El side, because the L side is very exciting. It's it's bringing a lot of scaling features across bulk lab access lists and repricings.",
+          "chunks": [
+            {
+              "ord": 149,
+              "t": 4706,
+              "raw": "given that we kicked out eof we have not had any meaningful features on the El side, for basically, since spectra, I really really really would not want us to delay Glam Saddam at all from from the El side, because the L side is very exciting. It's it's bringing a lot of scaling features across bulk lab access lists and repricings."
+            }
+          ],
+          "edits": [
+            "Caption mishears: 'spectra' is Pectra, 'Glam Saddam' is Glamsterdam, 'the L side' is the EL side, 'bulk lab' is block-level (reviewed 4 Nov 2026)."
+          ]
+        },
+        {
+          "t": 4752,
+          "clean": "Whether we call [FOCIL] a co-headliner of the CL or a non-headliner does not really matter for me, but the understanding must be that then CL headliners cannot hold the fork under any circumstances. If the CL headliners are not ready and the [EL] headliners are, of course, by a few weeks we wait. But if it's still two, three months of work left, we would just go ahead and ship Amsterdam with only the [EL] headliners. If that's the understanding, then I personally am perfectly fine with combining these [EIPs].",
+          "caption": "whether we call fossil a co-headliner of the Cl. Or a non-headliner does not really matter for me, but the understanding must be that then Cl. Headliners cannot hold the fork under any circumstances like if the Cl. Headliners are not ready and the yellow headliners are, of course it's by a few weeks we wait. But if it's actually like, still, like 2, 3 months of work left, we would just go ahead and ship Amsterdam with only the El headliners. If that's the understanding, then I, personally am perfectly fine with combining these erps,",
+          "chunks": [
+            {
+              "ord": 150,
+              "t": 4752,
+              "raw": "whether we call fossil a co-headliner of the Cl. Or a non-headliner does not really matter for me, but the understanding must be that then Cl. Headliners cannot hold the fork under any circumstances like if the Cl. Headliners are not ready and the yellow headliners are, of course it's by a few weeks we wait. But if it's actually like, still, like 2, 3 months of work left, we would just go ahead and ship Amsterdam with only the El headliners. If that's the understanding, then I, personally am perfectly fine with combining these erps,"
+            }
+          ],
+          "edits": [
+            "Caption 'fossil' is FOCIL; caption 'the yellow headliners' is the EL headliners (twice 'El' written EL); 'actually like' and 'like' fillers dropped.",
+            "Caption 'erps' is EIPs; stutter 'I,' dropped."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-decision",
+      "kind": "decision",
+      "date": "2025-08-07",
+      "date_label": "7 August 2025",
+      "place": "All Core Devs Consensus call #162",
+      "title": "Chosen for Glamsterdam",
+      "body": "Core developers scheduled ePBS (EIP-7732) for the upgrade then called Amsterdam, now Glamsterdam. A week later, on All Core Devs Execution #218 (14 August 2025), block-level access lists (EIP-7928) were confirmed as its execution-layer headliner.",
+      "link": "https://forkcast.org/calls/acdc/162/",
+      "link_label": "Read the call on Forkcast",
+      "note": "Not in our catalogue; we link to Forkcast and never copy it. Confirmed from the call transcript and the Glamsterdam meta EIP (EIP-7773). On #162 Alex Stokes only proposed ePBS and block-level access lists as the two headliners while the execution-layer side was conditional; Tim Beiko confirmed both on All Core Devs Execution #218 (14 Aug 2025, transcript; Forkcast has no key-decision file for #162 or #218)."
+    },
+    {
+      "id": "s-acde218-bal-headliner",
+      "kind": "quote",
+      "date": "2025-08-14",
+      "date_label": "14 August 2025",
+      "place": "All Core Devs Execution #218",
+      "speaker": "Tim Beiko",
+      "speaker_slug": "tim-beiko",
+      "talk_id": "3eed4ec2-d54d-487c-9161-b67d022a48eb",
+      "talk_slug": "all-core-devs-execution-218",
+      "note": "The execution-layer half of the Glamsterdam headliner decision, a week after ePBS was chosen on ACDC #162: block-level access lists (EIP-7928) become the second headliner, with ePBS. The map names EIP-7928 beside ePBS but had no stop for how it got in.",
+      "lines": [
+        {
+          "t": 3114,
+          "clean": "Any concerns, thoughts? Otherwise, I think we just move forward with block access lists and [ePBS]. Okay, we have some block access list support in the chat. So we'll merge the PR that Alex had opened, so this means we've set both, ePBS and Block Access List as the two headliners for Amsterdam.",
+          "caption": "Any concerns, thoughts? Otherwise, I think we just move forward with block access lists and EPVS. Okay, we have some block access list support in the chat. So we'll merge, we'll merge the PR that Alex had opened, so this means we've set both, EPBS and Block Access List as the, two headliners for Amsterdam.",
+          "chunks": [
+            {
+              "ord": 133,
+              "t": 3114,
+              "raw": "Any concerns, thoughts? Otherwise, I think we just move forward with block access lists and EPVS. Okay, we have some block access list support in the chat. So we'll merge, we'll merge the PR that Alex had opened, so this means we've set both, EPBS and Block Access List as the, two headliners for Amsterdam."
+            }
+          ],
+          "edits": [
+            "'we'll merge, we'll merge' is read as one 'we'll merge'"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-r10",
+      "kind": "quote",
+      "date": "2025-10-02",
+      "date_label": "2 October 2025",
+      "place": "All Core Devs - Consensus #166",
+      "speaker": "Lin Oshitani",
+      "speaker_slug": "lin-oshitani",
+      "talk_id": "1dbd6624-1c29-4c2b-be2d-36d553ecdb0b",
+      "talk_slug": "all-core-devs-consensus-166",
+      "note": "The objection to trustless payments that opens the October discussion: heavy for the wider ecosystem, and pointless if proposers bypass it.",
+      "lines": [
+        {
+          "t": 1351,
+          "clean": "In terms of ecosystem impact, I think it's far from simple. It requires fundamental upgrades across the [tooling], and also staking protocols, their accounting contracts and infrastructure. And it also had a fundamental impact on the builder market that is very unclear.",
+          "caption": "Well, in terms of ecosystem impact, I think it's far from simple. Like, it requires fundamental upgrades across the tool links, taking… And also, like, staking protocols, their accounting contracts and infrastructure. And it also had, like, a fundamental impact on the builder market that is very unclear.",
+          "chunks": [
+            {
+              "ord": 61,
+              "t": 1351,
+              "raw": "Well, in terms of ecosystem impact, I think it's far from simple. Like, it requires fundamental upgrades across the tool links, taking… And also, like, staking protocols, their accounting contracts and infrastructure. And it also had, like, a fundamental impact on the builder market that is very unclear."
+            }
+          ],
+          "edits": [
+            "Caption 'tool links, taking…' is tooling (the false start 'taking' dropped); 'like' fillers dropped."
+          ]
+        },
+        {
+          "t": 1406,
+          "clean": "Complexity may be worth it if trustless payments are actually widely used. However, I think bypassability is an open question, referring to the fact that proposers may be incentivized to bypass an [in-protocol trustless] payment and instead use off-protocol options like [MEV-Boost]. If we have bypassability, rational actors will bypass, hence we'll be introducing this complexity for nothing.",
+          "caption": "So, like, complexity may be worth it if trustless payments are actually widely used, however, I think bypassability is an open question. Like, referring to the fact that proposers may be incentivized to bypass an improtocol justice payment. and instead use off-protocol options like MedBoost, And… If We have, like, bypassability, rational actors will bypass, hence we'll be introducing this complexity for nothing.",
+          "chunks": [
+            {
+              "ord": 62,
+              "t": 1406,
+              "raw": "So, like, complexity may be worth it if trustless payments are actually widely used, however, I think bypassability is an open question. Like, referring to the fact that proposers may be incentivized to bypass an improtocol justice payment. and instead use off-protocol options like MedBoost, And… If We have, like, bypassability, rational actors will bypass, hence we'll be introducing this complexity for nothing."
+            }
+          ],
+          "edits": [
+            "Fillers 'So, like,' dropped; caption 'improtocol justice' is in-protocol trustless, as this transcript mishears 'trustless' and 'MedBoost' is MEV-Boost."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-r04",
+      "kind": "quote",
+      "date": "2025-10-02",
+      "date_label": "2 October 2025",
+      "place": "All Core Devs - Consensus #166",
+      "speaker": "Ansgar Dietrichs",
+      "speaker_slug": "ansgar-dietrichs",
+      "talk_id": "1dbd6624-1c29-4c2b-be2d-36d553ecdb0b",
+      "talk_slug": "all-core-devs-consensus-166",
+      "note": "After the choice, the open fight is over trustless payments, the part of ePBS that pays builders in the protocol. A researcher asks to decide it separately from the scaling case that won the headliner.",
+      "lines": [
+        {
+          "t": 1592,
+          "clean": "Almost all the clients that had a post on their position on ePBS, just before we made the headliner decision, specifically pointed out that they are supporting ePBS for scalability reasons, and so I do think that now puts it in this awkward position where there's this aspect of it, which might still be a good idea. I personally am somewhat skeptical, but the point is, that was not part of the core of why this [EIP] was chosen as the headliner. So I would really appreciate if we were to split out trustless payments and make the decision separately. It could still be included in Glamsterdam, but as a normal EIP.",
+          "caption": "almost all the clients that had a post on their position on EPBS, just before we made the headliner decision, specifically pointed out that they are supporting EPBS for scalability reasons, and so I do think that now puts it in this awkward position where there's this aspect of it, which might still be a good idea. I personally am somewhat skeptical, but the point is, it's kind of not… that was not part of the core of, like, why this ERP was chosen as the headliner. So I would really appreciate if we were to split out trustless payments and make the decision separately. It could still be… included in Glamsterdam, but as a normal EIP,",
+          "chunks": [
+            {
+              "ord": 67,
+              "t": 1592,
+              "raw": "almost all the clients that had a post on their position on EPBS, just before we made the headliner decision, specifically pointed out that they are supporting EPBS for scalability reasons, and so I do think that now puts it in this awkward position where there's this aspect of it, which might still be a good idea. I personally am somewhat skeptical, but the point is, it's kind of not… that was not part of the core of, like, why this ERP was chosen as the headliner. So I would really appreciate if we were to split out trustless payments and make the decision separately. It could still be… included in Glamsterdam, but as a normal EIP,"
+            }
+          ],
+          "edits": [
+            "Caption 'ERP' is EIP; filler 'like' dropped; pause in 'It could still be… included' dropped; the quote stops at 'EIP', before the caption continues 'that then has to basically have one more round of discussion'.",
+            "Abandoned half-sentence 'it's kind of not' dropped."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-r05",
+      "kind": "quote",
+      "date": "2025-10-02",
+      "date_label": "2 October 2025",
+      "place": "All Core Devs - Consensus #166",
+      "speaker": "Potuz",
+      "speaker_slug": "potuz",
+      "talk_id": "1dbd6624-1c29-4c2b-be2d-36d553ecdb0b",
+      "talk_slug": "all-core-devs-consensus-166",
+      "note": "The other side of the same call: the ePBS champion says trustless payments are optional, not forced, and trusted payments still work with no change.",
+      "lines": [
+        {
+          "t": 1890,
+          "clean": "ePBS does not prevent off-protocol payments. It does not prevent a node operator from trusting a builder and whitelisting it.",
+          "caption": "EPBS does not prevent off-protocol payments. It does not prevent a node operator from trusting a builder and whitelisting it.",
+          "chunks": [
+            {
+              "ord": 77,
+              "t": 1890,
+              "raw": "EPBS does not prevent off-protocol payments. It does not prevent a node operator from trusting a builder and whitelisting it."
+            }
+          ]
+        },
+        {
+          "t": 1953,
+          "clean": "ePBS does not try to force an on-protocol payment. ePBS just gives you the option to have a trustless payment.",
+          "caption": "EPBS does not try to force an on-protocol payment. EPBS just gives you the option to have a trustless payment.",
+          "chunks": [
+            {
+              "ord": 78,
+              "t": 1953,
+              "raw": "EPBS does not try to force an on-protocol payment. EPBS just gives you the option to have a trustless payment."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acdc167-lin",
+      "kind": "quote",
+      "date": "2025-10-16",
+      "date_label": "16 October 2025",
+      "place": "All Core Devs Consensus #167",
+      "speaker": "Lin Oshitani",
+      "speaker_slug": "lin-oshitani",
+      "talk_id": "051a3efe-ebd4-4aaf-bba7-4463819ac82d",
+      "talk_slug": "all-core-devs-consensus-167",
+      "note": "The call that settles the trustless-payments fight opened on #166 (the map had no stop between #166 and December). The objector concedes the point: he still thinks the payment part should have been separated, but will not push further, once off-protocol payments are promised proper client support.",
+      "lines": [
+        {
+          "t": 1762,
+          "clean": "While I still [think] that it's better to be separated, and it was better to have been separated, I think we should have had this discussion much earlier.",
+          "caption": "while I still do things that… It's better to be separated, and it was better to have been separated, like… I think we should have had this discussion much earlier.",
+          "chunks": [
+            {
+              "ord": 50,
+              "t": 1762,
+              "raw": "while I still do things that… It's better to be separated, and it was better to have been separated, like… I think we should have had this discussion much earlier."
+            }
+          ]
+        },
+        {
+          "t": 1762,
+          "clean": "Based on [Potuz's] point, and the fact that off-protocol payments is going to be properly supported, I'm not gonna push further on the separation.",
+          "caption": "Based on the portal's point, and that fact that off-protocol payments is going to be properly supported, I'm not gonna push Like, further on the separation?",
+          "chunks": [
+            {
+              "ord": 50,
+              "t": 1762,
+              "raw": "Based on the portal's point, and that fact that off-protocol payments is going to be properly supported, I'm not gonna push Like, further on the separation?"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acdc167-dima",
+      "kind": "quote",
+      "date": "2025-10-16",
+      "date_label": "16 October 2025",
+      "place": "All Core Devs Consensus #167",
+      "speaker": "Dima Gusakov",
+      "speaker_slug": "dima-gusakov",
+      "talk_id": "051a3efe-ebd4-4aaf-bba7-4463819ac82d",
+      "talk_slug": "all-core-devs-consensus-167",
+      "note": "A new argument on the same call, from the side of staking protocols: trustless payments would run next to the off-chain market, so protocols would have two markets to watch instead of one.",
+      "lines": [
+        {
+          "t": 2060,
+          "clean": "The other thing is that since trustless payments do not guarantee that they will be the only way to make payments, we will effectively have two markets, the same as we have right now, which is an off-chain one, and the on-chain one with the [trustless] payments. It basically means that the amount of work that should be done by the protocol to ensure that all of the validators within a protocol behave according to the rules is effectively doubled.",
+          "caption": "the other thing is that since trustless payments do not guarantee that they will be the only way to make payments, and we will effectively have two markets, so the same as we have right now, which is an off-chain one. And the on-chain one with the stressless payments, it basically means that the amount of work that is… that should be done by the protocol to ensure that all of the validators within a protocol maintain… behave according to the rules is effectively doubled",
+          "chunks": [
+            {
+              "ord": 59,
+              "t": 2060,
+              "raw": "the other thing is that since trustless payments do not guarantee that they will be the only way to make payments, and we will effectively have two markets, so the same as we have right now, which is an off-chain one. And the on-chain one with the stressless payments, it basically means that the amount of work that is… that should be done by the protocol to ensure that all of the validators within a protocol maintain… behave according to the rules is effectively doubled"
+            }
+          ],
+          "edits": [
+            "'and' before 'we will effectively have two markets' and 'so' before 'the same as we have right now' are dropped",
+            "the restarts 'that is…' and 'maintain…' are dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acdc167-decision",
+      "kind": "quote",
+      "date": "2025-10-16",
+      "date_label": "16 October 2025",
+      "place": "All Core Devs Consensus #167",
+      "speaker": "Alex Stokes",
+      "speaker_slug": "alex-stokes",
+      "talk_id": "051a3efe-ebd4-4aaf-bba7-4463819ac82d",
+      "talk_slug": "all-core-devs-consensus-167",
+      "note": "The decision on trustless payments, by the call's chair after the round of views: they stay in EIP-7732 as specified. (Forkcast key decision at 00:48:21: keep trustless payments in ePBS, no separate EIP.) Reaffirmed on #171 (s-acdc171-alex).",
+      "lines": [
+        {
+          "t": 2519,
+          "clean": "So, I'd say leave as is. Any final comments? Okay. Then that is settled. We have trustless payments, as is in the [EIP].",
+          "caption": "So, I'd say leave as is. Any final comments? Okay. then that is settled. We have trustless payments, as is in the IP.",
+          "chunks": [
+            {
+              "ord": 73,
+              "t": 2519,
+              "raw": "So, I'd say leave as is. Any final comments? Okay. then that is settled. We have trustless payments, as is in the IP."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-c11",
+      "kind": "quote",
+      "date": "2025-11-17",
+      "date_label": "17 November 2025",
+      "place": "Ethereum Day at Devconnect Argentina 2025",
+      "speaker": "Vitalik Buterin",
+      "speaker_slug": "vitalik-buterin",
+      "talk_id": "3c589e20-ab66-45f0-8b08-836bc4f1f38f",
+      "talk_slug": "ethereum-roadmap-30min-by-vitalik-buterin",
+      "note": "The case is now scaling: more of the slot for execution, and block-level access lists let nodes process a block in parallel.",
+      "lines": [
+        {
+          "t": 1343,
+          "clean": "EIP-7732 enshrines proposer-builder separation. This has a lot of different effects. One of the effects is basically that it makes it possible for nodes to spend a much larger portion of the slot processing a block without this compromising the network's decentralization and heavily favoring centralized nodes over decentralized nodes.",
+          "caption": "EIP7732 enshrines proposer builder separation. This has a lot of different effects. One of the effects is basically that it makes it possible for nodes to spend a much larger portion of the slot processing a block without this uh compromising the network's [snorts] decentralization and like heavily favoring centralized nodes over decentralized nodes.",
+          "chunks": [
+            {
+              "ord": 31,
+              "t": 1343,
+              "raw": "EIP7732 enshrines proposer builder separation. This has a lot of different effects. One of the effects is basically that it makes it possible for nodes to spend a much larger portion of the slot processing a block without this uh compromising the"
+            },
+            {
+              "ord": 32,
+              "t": 1387,
+              "raw": "network's [snorts] decentralization and like heavily favoring centralized nodes over decentralized nodes."
+            }
+          ]
+        },
+        {
+          "t": 1387,
+          "clean": "Block-level access lists basically mean that every node except for the original node that created a block is able to process the block in parallel.",
+          "caption": "block level access lists basically mean that every node except for the original node that created a block is able to process the block in parallel.",
+          "chunks": [
+            {
+              "ord": 32,
+              "t": 1387,
+              "raw": "block level access lists basically mean that every node except for the original node that created a block is able to process the block in parallel."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acdc170-focil-dfi",
+      "kind": "quote",
+      "date": "2025-11-27",
+      "date_label": "27 November 2025",
+      "place": "All Core Devs Consensus #170",
+      "speaker": "Alex Stokes",
+      "speaker_slug": "alex-stokes",
+      "talk_id": "11dcaa9d-073f-4680-94df-44f7a61377c2",
+      "talk_slug": "all-core-devs-consensus-170",
+      "note": "Declined for Glamsterdam. Forkcast ACDC #170 (00:40:02): DFI for Glamsterdam, CFI for Hegota, SFI discussion taken to ACDE; #171 (01:19:01) records FOCIL CFI'd for Hegota. The map's December stops (s-r06, s-r07) speak of FOCIL as already left out; this is where it was decided.",
+      "lines": [
+        {
+          "t": 2187,
+          "clean": "Then let's do that, and just to repeat it to be clear, DFI [FOCIL] for [Glamsterdam].",
+          "caption": "Then let's do that, and just to repeat it to be clear, DFI Fossil for Glenster Dam.",
+          "chunks": [
+            {
+              "ord": 65,
+              "t": 2187,
+              "raw": "Then let's do that, and just to repeat it to be clear, DFI Fossil for Glenster Dam."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acdc170-dima",
+      "kind": "quote",
+      "date": "2025-11-27",
+      "date_label": "27 November 2025",
+      "place": "All Core Devs Consensus #170",
+      "speaker": "Dima Gusakov",
+      "speaker_slug": "dima-gusakov",
+      "talk_id": "11dcaa9d-073f-4680-94df-44f7a61377c2",
+      "talk_slug": "all-core-devs-consensus-170",
+      "note": "The link between the two consensus-layer headliners: ePBS raises bandwidth for home block production, so leaving FOCIL out widens a gap for people running validators from home.",
+      "lines": [
+        {
+          "t": 1288,
+          "clean": "It creates a bit of a problem, again, at least for those running nodes from home, running validators from home, with this increased [uplink] bandwidth for local block production.",
+          "caption": "It creates a bit of a problem, again, at least for those running, nodes from home, running validators from home, with this, increased, Up low at bandwidth for local block production.",
+          "chunks": [
+            {
+              "ord": 39,
+              "t": 1288,
+              "raw": "It creates a bit of a problem, again, at least for those running, nodes from home, running validators from home, with this, increased, Up low at bandwidth for local block production."
+            }
+          ],
+          "edits": [
+            "'Up low at' is read as '[uplink]'"
+          ]
+        },
+        {
+          "t": 1288,
+          "clean": "And if [FOCIL] is not in Glamsterdam, I think it will be a good decision to commit to have it in the next hard [fork], at least.",
+          "caption": "And if Fossil is not in Glamsterdam, I think it's… it will be a good decision to commit to have it in the next hard work, at least.",
+          "chunks": [
+            {
+              "ord": 39,
+              "t": 1288,
+              "raw": "And if Fossil is not in Glamsterdam, I think it's… it will be a good decision to commit to have it in the next hard work, at least."
+            }
+          ]
+        },
+        {
+          "t": 1339,
+          "clean": "So, for me, it's kind of concerning to have ePBS without [FOCIL].",
+          "caption": "So, for me, it's kind of concerning to have EPBS without fossil.",
+          "chunks": [
+            {
+              "ord": 40,
+              "t": 1339,
+              "raw": "So, for me, it's kind of concerning to have EPBS without fossil."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-bruno-2025",
+      "kind": "written",
+      "date": "2025-12-10",
+      "date_label": "10 December 2025",
+      "place": "ethresear.ch",
+      "author": "BrunoMazorra",
+      "source_title": "Trustless payments",
+      "source_url": "https://ethresear.ch/t/trustless-payments/23635/1",
+      "note": "The reply to the October objections: the authors argue for keeping trustless payments; the post says it reflects their views and not a stance for the whole Flashbots organization.",
+      "lines": [
+        {
+          "text": "The only viable long-term choice is to enshrine the builder role in protocol and offer a way for builders and proposers to contract in-protocol trustlessly."
+        },
+        {
+          "text": "Delaying a trustless payments mechanism further into the future will only make it harder to introduce since the surrounding out-of-protocol ecosystem will become further established."
+        }
+      ]
+    },
+    {
+      "id": "s-r07",
+      "kind": "quote",
+      "date": "2025-12-11",
+      "date_label": "11 December 2025",
+      "place": "All Core Devs - Consensus #171",
+      "speaker": "Carl Beekhuizen",
+      "speaker_slug": "carl-beekhuizen",
+      "talk_id": "8aab6cfa-3f04-491f-9c96-5b82f497787f",
+      "talk_slug": "all-core-devs-consensus-171",
+      "note": "The other side of the same call: FOCIL is big enough to be weighed against everything else, not committed to on the side.",
+      "lines": [
+        {
+          "t": 2675,
+          "clean": "Maybe this is just a misconception on my part, but my understanding of headliner is also a lot to do with the size of this, and I do feel like [FOCIL's] pretty big. I feel like it's wrong to be deciding on whether you're [SFI-ing] this or not without it being a headliner, because from my perspective, this is a rather large change. Maybe it's not as large as some of the other things we've had as headliners, but, pretty impactful.",
+          "caption": "Maybe this is just a misconception on my part, but… My understanding of Headliner is also a lot to do with the size of this, and I do feel like the fossil's pretty big. I feel like it's wrong to be deciding. on whether you're SFI- this or not, based, like, without it… being… A headliner, because from my perspective, this is a rather large change. Maybe it's not as large as some of the other things we've had as headliners, but… So, pretty impactful.",
+          "chunks": [
+            {
+              "ord": 83,
+              "t": 2675,
+              "raw": "Maybe this is just a misconception on my part, but… My understanding of Headliner is also a lot to do with the size of this, and I do feel like the fossil's pretty big. I feel like it's wrong to be deciding. on whether you're SFI- this or not, based, like, without it… being… A headliner, because from my perspective, this is a rather large change. Maybe it's not as large as some of the other things we've had as headliners, but… So, pretty impactful."
+            }
+          ],
+          "edits": [
+            "Caption 'fossil's' is FOCIL's; 'SFI-' written SFI-ing; 'based, like,' dropped."
+          ]
+        },
+        {
+          "t": 2761,
+          "clean": "It's clear the devs do want something like [FOCIL], but it still needs to be considered within the greater picture.",
+          "caption": "it's clear the devs do want something like Fossil, but It still needs to be considered within the greater picture",
+          "chunks": [
+            {
+              "ord": 85,
+              "t": 2761,
+              "raw": "it's clear the devs do want something like Fossil, but It still needs to be considered within the greater picture"
+            }
+          ],
+          "edits": [
+            "Caption 'Fossil' is FOCIL."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-r06",
+      "kind": "quote",
+      "date": "2025-12-11",
+      "date_label": "11 December 2025",
+      "place": "All Core Devs - Consensus #171",
+      "speaker": "Vitalik Buterin",
+      "speaker_slug": "vitalik-buterin",
+      "talk_id": "8aab6cfa-3f04-491f-9c96-5b82f497787f",
+      "talk_slug": "all-core-devs-consensus-171",
+      "note": "ePBS is in; FOCIL, the other consensus-layer headliner, is left out of Glamsterdam. Here the case for committing to it anyway.",
+      "lines": [
+        {
+          "t": 2808,
+          "clean": "We definitely do have a history of pushing things back more and more, and I think in this situation there's a lot of value in showing that we are able to hold to commitments if we decide to do them.",
+          "caption": "we definitely do have a history of pushing things back more and more, and, I, I think in this situation, there's a lot of, a lot of value in, like, actually, yeah. showing that we are able to, like, hold ticket… to commitments if we decide… if we decide to do them.",
+          "chunks": [
+            {
+              "ord": 87,
+              "t": 2808,
+              "raw": "we definitely do have a history of pushing things back more and more, and, I, I think in this situation, there's a lot of, a lot of value in, like, actually, yeah. showing that we are able to, like, hold ticket… to commitments if we decide… if we decide to do them."
+            }
+          ],
+          "edits": [
+            "False start 'ticket' dropped; repeated 'if we decide' reduced."
+          ]
+        },
+        {
+          "t": 2874,
+          "clean": "The process needs some kind of defense against things continually getting pushed back more and more until they eventually don't happen.",
+          "caption": "the process needs, some kind of defense against, like, things, continually getting put… getting pushed back more and more until they, until they eventually don't happen",
+          "chunks": [
+            {
+              "ord": 88,
+              "t": 2874,
+              "raw": "the process needs, some kind of defense against, like, things, continually getting put… getting pushed back more and more until they, until they eventually don't happen"
+            }
+          ],
+          "edits": [
+            "False start 'put' before 'getting pushed back' dropped; stutter 'until they, until they' reduced."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acdc171-potuz",
+      "kind": "quote",
+      "date": "2025-12-11",
+      "date_label": "11 December 2025",
+      "place": "All Core Devs Consensus #171",
+      "speaker": "Potuz",
+      "speaker_slug": "potuz",
+      "talk_id": "8aab6cfa-3f04-491f-9c96-5b82f497787f",
+      "talk_slug": "all-core-devs-consensus-171",
+      "note": "The design change that followed the trustless-payments decision: builders become non-validating staked actors (spec PR consensus-specs#4788, merged 5 Jan 2026), because existing builders asked to avoid the deposit churn. The champion sets out the trade-off it carries. The change went into the spec as 'builders are not validators'.",
+      "lines": [
+        {
+          "t": 1476,
+          "clean": "The problem of doing this, removing the builders from the validator [set], is that it also removes the ability for validators to submit bids. I'm not sure if this is a trade-off that we're willing to make, because this was the feature that allowed us to remove the self-building property. We were hoping that this set of validators would still be decentralized enough, that we can just remove the self-building requirement.",
+          "caption": "The problem of doing this, like, removing the builders from the validator slides, is that it also removes the ability for validators to submit bids. I'm not sure if this is a trade-off that we're willing to make, because this was the feature that allowed us to remove the self-building property. We were hoping that this set of validators would still be decentralized enough, that we can just remove the self-building requirement.",
+          "chunks": [
+            {
+              "ord": 53,
+              "t": 1476,
+              "raw": "The problem of doing this, like, removing the builders from the validator slides, is that it also removes the ability for validators to submit bids. I'm not sure if this is a trade-off that we're willing to make, because this was the feature that allowed us to remove the self-building property. We were hoping that this set of validators would still be decentralized enough, that we can just remove the self-building requirement."
+            }
+          ]
+        },
+        {
+          "t": 1476,
+          "clean": "I think this is an honest request from builders to avoid the churn.",
+          "caption": "I think this is an honest request from builders to avoid the churn.",
+          "chunks": [
+            {
+              "ord": 53,
+              "t": 1476,
+              "raw": "I think this is an honest request from builders to avoid the churn."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acdc171-alex",
+      "kind": "quote",
+      "date": "2025-12-11",
+      "date_label": "11 December 2025",
+      "place": "All Core Devs Consensus #171",
+      "speaker": "Alex Stokes",
+      "speaker_slug": "alex-stokes",
+      "talk_id": "8aab6cfa-3f04-491f-9c96-5b82f497787f",
+      "talk_slug": "all-core-devs-consensus-171",
+      "note": "The chair's summary of why trustless payments stay, when the topic returns on #171 after builders and relays raised design concerns (Forkcast key decision: trustless payments stay in ePBS, to be revisited only for a clear security issue).",
+      "lines": [
+        {
+          "t": 995,
+          "clean": "There have not been any arguments to the point that trustless payments are, like, actually negative or bad for the protocol. There are some arguments that might suggest they're not being used, or, like, wouldn't be used, but then we have to take into account the fact of what we gain.",
+          "caption": "There have not been any arguments to the point that trustless payments are, like, actually negative or bad for the protocol? There are some arguments that might suggest they're not being used, or, like, wouldn't be used, but then we have to take into account the fact of what we gain.",
+          "chunks": [
+            {
+              "ord": 40,
+              "t": 995,
+              "raw": "There have not been any arguments to the point that trustless payments are, like, actually negative or bad for the protocol? There are some arguments that might suggest they're not being used, or, like, wouldn't be used, but then we have to take into account the fact of what we gain."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-c20",
+      "kind": "quote",
+      "date": "2026-02-01",
+      "date_label": "February 2026",
+      "place": "ETHDenver 2026 · date from the event",
+      "speaker": "Terence Tsao",
+      "speaker_slug": "terence-tsao",
+      "talk_id": "981d69f2-1723-4c92-b8b5-00133cb850ab",
+      "talk_slug": "inside-glamsterdam-how-eip-7732-redefines-ethereum-terence",
+      "note": "A Prysm developer on the reframing: the market-structure benefit stays, the pitch became scaling.",
+      "lines": [
+        {
+          "t": 345,
+          "clean": "But if you see the later proposal, which was proposed in [Glamsterdam], we emphasize more about the key benefit being better [slot] utilization because of scaling. It wasn't so much about we want to improve the market structure, which is still there. The benefit is still there, but the proposal becomes more like the scaling proposal, which we end up realizing.",
+          "caption": "But if you see the later proposal which was proposed in glam sedan we emphasize more about the key benefit being better slug utilization because of scaling. It wasn't so much about like we want to improve the market structure which is still there. The benefit is still there but the proposal becomes more like the scaling proposal which we end up realizing.",
+          "chunks": [
+            {
+              "ord": 8,
+              "t": 345,
+              "raw": "But if you see the later proposal which was proposed in glam sedan we emphasize more about the key benefit being better slug utilization because of scaling. It wasn't so much about like we want to improve the market structure which is still there. The benefit is still there but the proposal becomes more like the scaling proposal which we end up realizing."
+            }
+          ]
+        },
+        {
+          "t": 345,
+          "clean": "ePBS is the least resistant way, the most efficient way we can do today to scale the execution, to scale the blob, and then it was finalized as a headliner last year.",
+          "caption": "EPBS is the least resistant way the most efficient way we can do today to scale the execution to scale the blob and then it was uh finalized as a headliner last uh last year.",
+          "chunks": [
+            {
+              "ord": 8,
+              "t": 345,
+              "raw": "EPBS is the least resistant way the most efficient way we can do today to scale the execution to scale the blob and then it was uh finalized as a headliner last uh last year."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acdc177-alex",
+      "kind": "quote",
+      "date": "2026-04-16",
+      "date_label": "16 April 2026",
+      "place": "All Core Devs Consensus #177",
+      "speaker": "Alex Stokes",
+      "speaker_slug": "alex-stokes",
+      "talk_id": "c2efaed4-4041-40b0-bccd-e36c020ce885",
+      "talk_slug": "all-core-devs-consensus-177",
+      "note": "The spec change that defers execution-payload processing to the next block (consensus-specs#5094, merged 16 Apr): one state transition per slot instead of two states per block, and a fix for checkpoint sync. Agreed here, with the objection to duplicated deposit requests parked.",
+      "lines": [
+        {
+          "t": 267,
+          "clean": "This came up, I think there was an issue with checkpoint sync and just the intricacies here of finalization with the change in ePBS that breaks apart the payload from the block.",
+          "caption": "this came up, I think there was an issue with checkpoint sync and just the intricacies here of finalization with the change in ePBS that breaks apart the payload from the block.",
+          "chunks": [
+            {
+              "ord": 8,
+              "t": 267,
+              "raw": "this came up, I think there was an issue with checkpoint sync and just the intricacies here of finalization with the change in ePBS that breaks apart the payload from the block."
+            }
+          ]
+        },
+        {
+          "t": 1607,
+          "clean": "Then, it sounds like we're all in agreement to go ahead and merge 5094 to get past this issue. There may be an ask down the line to add this optimization that [Raúl's] proposing. And is everyone okay with that? Okay. Okay, got some thumbs up.",
+          "caption": "Then, it sounds like we're all in agreement to go ahead and merge 5094 to get past this issue. There may be an ask down the line to add this optimization that Rule's proposing. And is everyone okay with that? Okay. Okay, got some thumbs up.",
+          "chunks": [
+            {
+              "ord": 64,
+              "t": 1607,
+              "raw": "Then, it sounds like we're all in agreement to go ahead and merge 5094 to get past this issue. There may be an ask down the line to add this optimization that Rule's proposing. And is everyone okay with that? Okay. Okay, got some thumbs up."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-schlegel-2026",
+      "kind": "written",
+      "date": "2026-06-08",
+      "date_label": "8 June 2026",
+      "place": "ethresear.ch",
+      "author": "jcschlegel",
+      "source_title": "Trustless payments and relays",
+      "source_url": "https://ethresear.ch/t/trustless-payments-and-relays/25125/1",
+      "note": "What trustless payments do to the auction and to relays, from the researchers who had argued for keeping them.",
+      "lines": [
+        {
+          "text": "We predict that trustless payments in-protocol will ossify a first-price block auction."
+        },
+        {
+          "text": "Even though we predict that relays will remain to exist in an ePBS world that doesn’t mean that a trustless payment channel in-protocol wouldn’t shape what relays can and can’t do going forward."
+        }
+      ]
+    },
+    {
+      "id": "s-r09",
+      "kind": "quote",
+      "date": "2026-06-15",
+      "date_label": "15 June 2026",
+      "place": "All Core Devs - Testing #83",
+      "speaker": "Dragan Rakita",
+      "speaker_slug": "dragan-rakita",
+      "talk_id": "95f40738-04be-4cb0-bee3-09d6c2e21aee",
+      "talk_slug": "all-core-devs-testing-83",
+      "note": "The other side of the same call: an execution-layer developer says a modest gas limit increase does not need ePBS.",
+      "lines": [
+        {
+          "t": 1466,
+          "clean": "You can increase the gas limit by some amount, because the split between the state gas and the regular gas is basically there. I do agree that probably you cannot ship it, increase it by five times that we want to do, but you can at least do something, basically unblock EL from CL in this form.",
+          "caption": "You can increase gas limit by some amount, because the split between the state gas and the regular gas is basically there. I do agree that probably you cannot ship it, increase it by… like, 5 times that we, like, want to do, but you can at least do something, basically unblock EL from CL in this form.",
+          "chunks": [
+            {
+              "ord": 48,
+              "t": 1466,
+              "raw": "You can increase gas limit by some amount, because the split between the state gas and the regular gas is basically there. I do agree that probably you cannot ship it, increase it by… like, 5 times that we, like, want to do, but you can at least do something, basically unblock EL from CL in this form."
+            }
+          ],
+          "edits": [
+            "Fillers 'like' dropped; word 'the' supplied before 'gas limit'."
+          ]
+        },
+        {
+          "t": 1508,
+          "clean": "We don't even need to go to 200, we can go to 100. That would be a big bump, and all the things that we are basically working on will be basically deployed. I think it's a good idea if, basically, CL needs more time.",
+          "caption": "we don't even need to, like, go to 200, we can go to, like. 100. That would be, like, big bump, and we will have all… all the things that we are basically working on will be basically deployed. I think it's a good idea if, basically, CL needs more time.",
+          "chunks": [
+            {
+              "ord": 50,
+              "t": 1508,
+              "raw": "we don't even need to, like, go to 200, we can go to, like. 100. That would be, like, big bump, and we will have all… all the things that we are basically working on will be basically deployed. I think it's a good idea if, basically, CL needs more time."
+            }
+          ],
+          "edits": [
+            "False start 'we will have all…' dropped before 'all the things'; word 'a' supplied before 'big bump'; 'like' fillers dropped."
+          ]
+        },
+        {
+          "t": 1720,
+          "clean": "Even if block is bigger, there's a lot of time to propagate and everything to do.",
+          "caption": "Even if block is bigger, there's a lot of time to, like, propagate and everything to do.",
+          "chunks": [
+            {
+              "ord": 67,
+              "t": 1720,
+              "raw": "Even if block is bigger, there's a lot of time to, like, propagate and everything to do."
+            }
+          ],
+          "edits": [
+            "The caption sentence just before, 'But I don't see the point, basically, that we need… ePBS to increase the gas For any match', is garbled and is not quoted; 'like' filler dropped."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-r08",
+      "kind": "quote",
+      "date": "2026-06-15",
+      "date_label": "15 June 2026",
+      "place": "All Core Devs - Testing #83",
+      "speaker": "Potuz",
+      "speaker_slug": "potuz",
+      "talk_id": "95f40738-04be-4cb0-bee3-09d6c2e21aee",
+      "talk_slug": "all-core-devs-testing-83",
+      "note": "Where ePBS meets the gas limit: the champion argues a higher gas limit cannot ship ahead of ePBS, because blocks get bigger while propagation time stays fixed.",
+      "lines": [
+        {
+          "t": 1550,
+          "clean": "Today, we have two seconds for both propagation and execution. If we increase the gas limit, we're still going to be working on the same two seconds for propagation plus execution, and on top of that, we're going to be broadcasting a block that is not 90% smaller, it's going to be twice as large as today. So I think it's just crazy to try to ship any gas limit now without ePBS.",
+          "caption": "Today, we have 2 seconds for both propagations and execution. If we increase the gas limit, we're still going to be working on that. the same 2 seconds for propagation plus execution, and on top of that, we're going to be broadcasting a block that is not 90% smaller, it's going to be twice as large as today. So I think it's just crazy to try to ship any gas limit now without ePBS.",
+          "chunks": [
+            {
+              "ord": 52,
+              "t": 1550,
+              "raw": "Today, we have 2 seconds for both propagations and execution. If we increase the gas limit, we're still going to be working on that. the same 2 seconds for propagation plus execution, and on top of that, we're going to be broadcasting a block that is not 90% smaller, it's going to be twice as large as today. So I think it's just crazy to try to ship any gas limit now without ePBS."
+            }
+          ],
+          "edits": [
+            "Singular 'propagation' for caption 'propagations'; false start 'working on that.' dropped before 'the same two seconds'."
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-neuder-distilled-2026",
+      "kind": "written",
+      "date": "2026-08-24",
+      "date_label": "24 August 2026",
+      "place": "ethresear.ch",
+      "author": "mikeneuder",
+      "source_title": "ePBS, distilled",
+      "source_url": "https://ethresear.ch/t/epbs-distilled/25800/1",
+      "note": "A design lead predicts that builders will not use the trustless payment path that ePBS is partly built around.",
+      "lines": [
+        {
+          "text": "From my point of view, I see no reason why the builders would use trustless payments, nor any reason for proposers to require them to."
+        },
+        {
+          "text": "The process of continually shuffling capital from the execution layer into the consensus layer to pay the proposers for trustless bids just seems capital inefficient and unnecessarily complex from the builder's point of view."
+        }
+      ]
+    },
+    {
+      "id": "s-status",
+      "kind": "status",
+      "date": "2026-11-06",
+      "date_label": "6 November 2026",
+      "place": "Forkcast",
+      "title": "Scheduled, not shipped",
+      "body": "ePBS (EIP-7732) is scheduled for Glamsterdam, which has not shipped. Forkcast lists the upgrade as upcoming with no activation date set. Call ACDE 248 postponed the Hoodi testnet fork so a security disclosure affecting the repricing EIPs can be analysed, and no new date is set. The block gas limit at the fork was settled after the debate above: ACDE #243 (13 Aug 2026) confirmed 200 million gas for Glamsterdam and ACDE #246 (24 Sep 2026) scheduled it at the fork on Sepolia (Forkcast).",
+      "link": "https://forkcast.org/upgrade/glamsterdam",
+      "link_label": "Follow Glamsterdam on Forkcast",
+      "note": "Primary source: Forkcast, re-read 6 Nov 2026 (ethereum/forkcast: src/data/eips/7732.json shows Glamsterdam status Scheduled, headliner; src/data/upgrades.ts shows Glamsterdam status Upcoming, activationDate TBD; src/components/network-upgrade/OverviewSection.tsx says ACDE 248 postponed the Oct 26 Hoodi fork to analyse a security disclosure affecting the repricing EIPs, no new date). The earlier tagline 'Rollout paused while a security disclosure is analyzed' is no longer on the page, so it is not repeated. The disclosure is described by Forkcast as affecting the repricing EIPs, not ePBS. EF Protocol's 7 Sep 2026 post says December 2026 and Justin Drake said January 2027 at Devcon 8, so no date is stated here. Forkcast key decisions: ACDE #243 at 00:11:34 (200M gas limit confirmed for Glamsterdam) and ACDE #246 at 00:30:08 (200M gas limit signaled at the Glamsterdam fork for Sepolia)."
+    }
+  ],
+  "excluded": [
+    {
+      "id": "s-c18",
+      "talk_id": "1f5e397a-7191-49b6-aefe-da19036923a6",
+      "reason": "Speaker not confirmed: The run-up: core devs lean to ePBS while many in the community want six-second slots. The voice is most likely Marc Arjoon (the host calls him Mark)."
+    },
+    {
+      "id": "x-r1",
+      "talk_id": "841d7b23-95af-4c35-98fd-c868187e639b",
+      "reason": "Danny Ryan at EthStaker Devconnect Buenos Aires (1 Nov 2025), former s-c110: he says himself that he is now an observer of proof of stake, not someone working on ePBS, and the quote is a general view, not an argument. Removed in the revisit that moved the map to first-hand call voices; the call stops after it (s-r06, s-r07) carry the open questions."
+    },
+    {
+      "id": "x-r2",
+      "talk_id": "a3c08891-2954-4657-be9b-ff98bc54e6b6",
+      "reason": "ACDE #243 (13 Aug 2026): Nixo asks whether the repricing numbers are final and Jochem Brouwer signs them off (Forkcast: numbers final, 200M gas limit confirmed); the gas limit itself was then scheduled at the fork on ACDE #246 (24 Sep). 'Nobody on the call approved a gas limit' is not accurate; the point belongs to the gas-repricing map (stop s-acde243-signoff there), not to this one."
+    },
+    {
+      "id": "x-r3",
+      "talk_id": "52c889c9-2841-486f-b7a9-21590f9ee60f",
+      "reason": "Marek Moraczynski at Devcon 7 (14 Nov 2024), former s-b4: a passing mention that ePBS and APS are two designs under consideration, with no reason or argument of his own. Cut for size; the design question is told by s-b1."
+    },
+    {
+      "id": "x-r4",
+      "talk_id": "e5326210-f60c-4f8f-8e20-c0d0623782f5",
+      "reason": "Zsolt Felfoldi at ETHDenver 2026, former s-c213: argues state cannot scale as fast as compute, a point for his own proposal and off the ePBS story. Cut for size."
+    },
+    {
+      "id": "x-r5",
+      "talk_id": "54bdc37c-aa5e-42e1-a229-e5e58e318332",
+      "reason": "Mark Mackey at PEEPanEIP (6 Aug 2025), former s-c10: calls EIP-7732 the most underrated EIP, praise without a reason. Cut for size; his reasons are on the call stops."
+    },
+    {
+      "id": "x-r6",
+      "talk_id": "066a7ead-dbd9-4de6-9f88-fbef9aa45002",
+      "reason": "Stefan Bratanov at ETHSofia 2025 (10 Oct 2025), former s-c14: a plain explainer of what changes after ePBS (relays and MEV-Boost obsolete) that repeats points made by other stops. Cut for size."
+    },
+    {
+      "id": "x-e-uncommon-core",
+      "talk_id": "4b1be044-5bdd-4e15-a923-2201f668405b",
+      "reason": "Uncommon Core, 2 Sep 2023 (Hasu, Jon Charbonneau, Chris Hager, Mike Neuder): four credited voices and no speaker labels. The ePBS case and design stretches by Neuder are covered by his written post and his EthCC talk; the passage on enshrinement complexity (ord 45 to 46) cannot be tied to one of the four voices, so it is not quoted."
+    },
+    {
+      "id": "x-e-tsao-2022",
+      "talk_id": "20f5d95d-673c-49ba-9a14-00860d5a57cb",
+      "reason": "Terence Tsao, Devcon 6 (14 Oct 2022), hybrid PBS from the consensus layer: latency, relay faults and censorship (ord 11 to 12 and 15 to 17). A clear first-hand account of why relays are a risk, but the same case is made first-hand and more fully by the 25 May 2023 post, so it is redundant."
+    },
+    {
+      "id": "x-e-tsao-2026",
+      "talk_id": "b1d7f5fd-4fd2-57e8-943b-6d065f86ffc4",
+      "reason": "Terence Tsao, EthCC 9 (1 Apr 2026) From MEV-Boost to ePBS, and the same speaker's ePBS: What EthStakers Need to Know (e4903b31-645a-503a-aebc-13cab5e7955a): the pipelining and scaling pitch, which the existing stop s-c20 (Feb 2026) already makes."
+    },
+    {
+      "id": "x-e-dunne",
+      "talk_id": "491010ce-b989-47d6-8007-9541d2b1da1f",
+      "reason": "Jolene Dunne, Devcon 6 (15 Oct 2022), early MEV-Boost market data: background on the builder market, not an argument for or against ePBS. Minor."
+    },
+    {
+      "id": "x-e-leupold-2",
+      "talk_id": "a9101181-ff95-4ae9-8f14-baead001b557",
+      "reason": "Felix Leupold, Devcon 7 (27 Nov 2024), a second telling of the DappCon 2024 argument already on the map as s-fel. Redundant."
+    },
+    {
+      "id": "x-e-capponi",
+      "talk_id": "85653f5e-9821-486a-aa43-c6b76bedbb23",
+      "reason": "Agostino Capponi on a16z crypto (25 Oct 2024): an academic view of PBS and order-flow payments with no labels between host and guest and no position on ePBS. Minor."
+    },
+    {
+      "id": "x-e-patel",
+      "talk_id": "30b8e23e-4c12-4c96-8546-abf6d2c71216",
+      "reason": "Shyam Patel, Devcon 7 (13 Nov 2024), EIP-7732 explained from the Nimbus implementer's view: a walk-through of the design without a reason or objection that other stops lack. Redundant."
+    },
+    {
+      "id": "x-e-explainers",
+      "talk_id": "1af0d8d8-6b78-4e4f-8dda-a551da85838b",
+      "reason": "Explainer talks about the Glamsterdam fork that repeat the case made by stops already on the map: Maria Sliva (Jan 2026), Preston Van Loon at ETHDenver 2026 (6237bddb-c156-4b3c-96d4-7a17868ead15), Milos Stankovic (f7bed534-8f63-42a7-8e20-040cdabff2f2), Hudson Jang (80341839-3805-5f62-ae8d-08c4a95f7616), Ioannis Sachinoglou and Rahul Kothari at Devcon 8, Anthony Sassano's Daily Gwei episodes, the Staking Nerd Talk episodes (no labels). Redundant or unlabelled."
+    },
+    {
+      "id": "x-e-epbs-breakouts",
+      "talk_id": "9ee457d0-538f-4f15-aa16-d769f73407a7",
+      "reason": "ePBS Breakout #28 (5 Dec 2025) and #29 (19 Dec 2025) have speaker labels; #29 is where Justin Traglia presents the change that makes builders non-validating (consensus-specs#4788), and #28 holds the Titan Builder case that validators will connect to builders directly. The reason 'no speaker labels' is true only of the unlabelled ones (the 2025 breakouts before #28 and the April 2026 ePBS breakouts in ACDT #74, #77 and #78). The builder change is now told by s-acdc171-potuz; the deferred-payload spec change by s-acdc177-alex. Forkcast's ACDC #173 line 'cannot ship ePBS without partial slot proofs in all clients' is a mis-summary: in the #173 transcript Barnabas Busa says 'we cannot ship BPOS3 without it' (BPO3, not ePBS)."
+    },
+    {
+      "id": "x-e-bal-repricing",
+      "talk_id": "8ae8edf9-1ac9-4080-bf0d-ac341371c642",
+      "reason": "BAL breakouts #1 to #13 and the Glamsterdam repricings breakouts: transcripts not re-read for ETV-913 (a named gap). EIP-7928 spec changes are in the audit ledger with reasons, the repricing debate is on the gas-repricing map, and EIP-7928's only argument stops here are s-acde218-bal-headliner and s-c11."
+    },
+    {
+      "id": "x-e-acd-scoping",
+      "talk_id": "3eed4ec2-d54d-487c-9161-b67d022a48eb",
+      "reason": "The listed scoping calls hold two decisions the map had no stop for: ACDE #218 (14 Aug 2025) sets ePBS and block-level access lists as the two Glamsterdam headliners and drops the six-second-slot proposal (now s-acde218-bal-headliner), and Consensus #170 (27 Nov 2025) takes FOCIL out of Glamsterdam (now s-acdc170-focil-dfi, s-acdc170-dima). Say so and drop the words 'scoping, FOCIL timing and implementation detail'."
+    },
+    {
+      "id": "x-e-no-transcript",
+      "talk_id": "7bf59b16-9b89-4bef-883d-1ce4171b2e9e",
+      "reason": "Talks with no transcript, a gap rather than a choice: Kydo, Censorship Resistance Before ePBS (Istanbul 2023); the ePBS panel at Devconnect Istanbul (df655d40-d5c2-4613-b0e5-8bb480c1e320); Barnabe Monnot, Overload the Execution Proposer instead (ZuBerlin 2024, 12c9bfb9-4710-4045-a1be-ef6c3354b007); Michael Moser, The cost of artificial latency in PBS context (ETHCC 7, 1d677dbf-7a65-5300-8353-4182fb2da6d7); Parithosh Jayanthi, Berlin meetup (1c2e2892-657a-4ef5-b96d-373a472e72e0); ePBS and Glamsterdam, ETHTaipei (663b5303-a705-403f-95ed-688807f905a3); and two Chinese-language talks (c0ae7e0c-bcf9-5d39-add3-1a1bf784f4b6, 682f2694-f0a8-54cd-b49f-13f74dd2d358). Their Livepeer or StreamETH sources are not covered by the transcript run."
+    },
+    {
+      "id": "x-w-neuder-2023-relays",
+      "source_url": "https://ethresear.ch/t/relays-in-a-post-epbs-world/16278",
+      "reason": "Mike Neuder, Relays in a post-ePBS world (4 Aug 2023): that relays may survive ePBS. The point is already on the map as s-a9 (Matt Cutler) and, from the 2026 posts, as the Schlegel stop. Redundant."
+    },
+    {
+      "id": "x-w-potuz-design",
+      "source_url": "https://ethresear.ch/t/epbs-design-constraints/18728",
+      "reason": "Potuz, ePBS design constraints (27 Feb 2024): a long design note. Its reasons are on the map in his own words at Devcon 7 and in his Glamsterdam post. Redundant."
+    },
+    {
+      "id": "x-w-terence-timing",
+      "source_url": "https://ethresear.ch/t/builder-reveal-timing-game-in-epbs/19424",
+      "reason": "terence, Builder Reveal Timing Game in ePBS (30 Apr 2024): timing games before and after ePBS; the same point is made by Potuz at Devcon 7. Minor."
+    },
+    {
+      "id": "x-w-flashbots-free-option",
+      "source_url": "https://collective.flashbots.net/t/the-free-option-problem-in-epbs/5115",
+      "reason": "Flashbots Collective, The free option problem in ePBS: the objection is on the map in the words of the researcher who presented it (s-r12) and the champion's reply (s-r02). Redundant."
+    },
+    {
+      "id": "x-w-magicians-7732",
+      "source_url": "https://ethereum-magicians.org/t/eip-7732-enshrined-proposer-builder-separation-epbs/19634",
+      "reason": "Ethereum Magicians thread for EIP-7732: a handful of replies; the useful one (potuz, 13 Apr 2024, 'The current bug is the existence of a forced trusted player') repeats the Neuder and Drake case. One other reply is sarcasm and not a position. Redundant."
+    },
+    {
+      "id": "x-w-other-clients",
+      "source_url": "https://hackmd.io/@RoboCopsGoneMad/Ski-5cHLge",
+      "reason": "Other client-team headliner posts (Besu, Reth, Geth, Lighthouse, Lodestar, Nimbus, Teku, Nethermind, Grandine): Besu and Reth back ePBS with BALs and FOCIL; the Prysm and Erigon posts already carry the two sides. Redundant."
+    },
+    {
+      "id": "x-w-erigon-2025",
+      "reason": "Erigon team HackMD, Erigon Team’s perspective on Glamsterdam Headliners (16 Jul 2025): the ePBS verdict is a table row (NO, with two short notes), not prose, and the only prose sentence ties to it (slot re-structuring without enshrined payload separation may be better) is a fragment that does not stand alone. The Erigon objection is told in the speaker’s own words by s-somnath-2025."
+    },
+    {
+      "id": "x-acdc172-potuz",
+      "talk_id": "bc2ebf15-973e-4540-92d8-d380dca9ceb9",
+      "reason": "ACDC #172, 8 Jan 2026: Potuz says builders-not-validators was decided 'at the very last minute', merged the week before, and that more bugs are expected until interop. A process complaint about the same change as s-acdc171-potuz, with no new reason; minor. ACDC #172 also holds Potuz's proposal (ords 33-44) to add a Boolean to the Engine API new-payload call so the consensus layer can see that a builder's block was censoring; Toni Wahrstätter objects that it depends on each node's mempool; no decision, Potuz says he will take it to ACDE and the ePBS channel. None of the ACDE calls in the catalogue that mention censorship (#229, #230, #234, #240, #245) takes it up, so no stop is needed."
+    },
+    {
+      "id": "x-acdc171-sophia",
+      "talk_id": "051a3efe-ebd4-4aaf-bba7-4463819ac82d",
+      "reason": "ACDC #167, 16 Oct 2025: Mark Mackey (separating the features would slow the fork), Sophia Gold (decide on the severity of the free option problem first; would need a dual PTC deadline) and Francesco D'Amato (a version without trustless payments is not complicated to specify) give further views on the same decision; each overlaps a stop already on the map (s-r05, s-r12, s-r02) or on the call; minor."
+    },
+    {
+      "id": "x-acdt58-59-ptc",
+      "reason": "ACDT #58 (20 Oct 2025, keep trustless payments as specified) and ACDT #59 (27 Oct 2025, a proposed change to attestation structure rejected): follow-ups to the 16 Oct decision on testing calls; the rejected attestation change is a design alternative with no argument recorded in the decision list. Minor."
+    },
+    {
+      "id": "x-consensus-specs-ledger",
+      "reason": "Gloas spec changes with no dispute behind them, listed in the audit ledger: KZG commitments moved into the bid (30 Jan 2026), EIP-7928 specs merged into the Gloas specs (16 Apr), builder deposit and withdrawal parameters and EIP-8282 builder requests (Jun-Jul), settle builder payment before parent requests (5 Oct), gas limit schedule EIP-8261 (13 Aug). Also not stops: ACDC #181 (25 Jun 2026) ePBS circuit breakers track missing payloads, client-specific, no standard needed (an operational safeguard, no argument); ACDE #240 (2 Jul 2026) the disable-deposits switch for the builder deposit contract accepted for devnet 7 (an implementation safeguard, no objection); the devnet 7 ePBS slot deadlines of 3 s attestation, 6 s payload and 9 s PTC, to be confirmed at ACDT (devnet parameters, not a design dispute)."
+    },
+    {
+      "id": "x-svalbard-epbs",
+      "reason": "Svalbard interop, ePBS week (EF blog recap, 2 May 2026): devnet progress (4x4 slipped to 4x3 stable, builder API breakout simplified the spec, nearly all clients on glamsterdam-devnet-2 with external builders) and two open questions for ACD (whether a request signature should commit to the receiving builder; keeping a 1 ETH-staked builder design resilient to P2P Sybil liveness attacks). In-person, no recording; status, not argument."
+    }
+  ],
+  "audit": {
+    "date": "2026-11-10",
+    "spec_changes": [
+      {
+        "eip": "EIP-7732",
+        "date": "2024-07-03",
+        "change": "EIP added; the design lives in the consensus-specs repository, which the EIP file only points to.",
+        "link": "https://github.com/ethereum/EIPs/commit/e469fd6c8",
+        "agreed_at": "ACDE #194 (15 Aug 2024) introduces it.",
+        "stop": "s-r01"
+      },
+      {
+        "eip": "EIP-7732",
+        "date": "2025-08-12",
+        "change": "Updated to the latest consensus spec version (the EIP file's later edits, to 20 Oct 2026, change links and authors only).",
+        "link": "https://github.com/ethereum/EIPs/commit/105ac0656",
+        "agreed_at": "ACDC #162 (7 Aug 2025) chose it.",
+        "stop": "s-decision"
+      },
+      {
+        "eip": "EIP-7732",
+        "date": "2025-09-11",
+        "change": "Spec: payment aborted on proposer equivocation; payload header renamed bid (12 Sep).",
+        "link": "https://github.com/ethereum/consensus-specs/pull/4562",
+        "agreed_at": "ePBS breakouts #23-24; no call decision recorded.",
+        "why_not": "Spec hardening found while implementing; no argument on the calls."
+      },
+      {
+        "eip": "EIP-7732",
+        "date": "2025-11-11",
+        "change": "Spec: bids carry an off-protocol payment value (consensus-specs#4733).",
+        "link": "https://github.com/ethereum/consensus-specs/pull/4733",
+        "agreed_at": "Follows ACDC #167 (16 Oct 2025): trustless payments stay, with off-protocol payments supported in clients.",
+        "stop": "s-acdc167-decision"
+      },
+      {
+        "eip": "EIP-7732",
+        "date": "2026-01-05",
+        "change": "Spec: builders become non-validating staked actors (consensus-specs#4788), after builders asked to avoid the deposit queue.",
+        "link": "https://github.com/ethereum/consensus-specs/pull/4788",
+        "agreed_at": "Raised on ACDC #171 (11 Dec 2025); presented on ePBS breakout #29 (19 Dec).",
+        "stop": "s-acdc171-potuz"
+      },
+      {
+        "eip": "EIP-7732",
+        "date": "2026-01-30",
+        "change": "Spec: KZG commitments moved into the bid (consensus-specs#4875).",
+        "link": "https://github.com/ethereum/consensus-specs/pull/4875",
+        "agreed_at": "ACDT #68 (2 Feb): devnet 0 targets alpha-2.",
+        "why_not": "Spec iteration for devnet 0; no dispute recorded."
+      },
+      {
+        "eip": "EIP-7732",
+        "date": "2026-04-16",
+        "change": "Spec: execution-payload processing deferred to the next block (consensus-specs#5094).",
+        "link": "https://github.com/ethereum/consensus-specs/pull/5094",
+        "agreed_at": "ACDC #177 (16 Apr 2026).",
+        "stop": "s-acdc177-alex"
+      },
+      {
+        "eip": "EIP-7732",
+        "date": "2026-04-16",
+        "change": "Spec: EIP-7928 specs merged into the Gloas specs (consensus-specs#5117).",
+        "link": "https://github.com/ethereum/consensus-specs/pull/5117",
+        "agreed_at": "ACDC #177 / ACDT #78 (20 Apr): bal-devnet-4 becomes glamsterdam devnet 0.",
+        "why_not": "Integration of the two headliners; no argument recorded."
+      },
+      {
+        "eip": "EIP-7732",
+        "date": "2026-06-19",
+        "change": "Spec: builder execution requests (EIP-8282), 8282 parameters in July, deposits restricted to payload builders (7 Jul).",
+        "link": "https://github.com/ethereum/consensus-specs/pull/5359",
+        "agreed_at": "ACDE #238 (4 Jun) and ACDT #83 (15 Jun): EIP-8282 in devnet 6.",
+        "why_not": "Builder onboarding mechanics; no dispute recorded in the calls read."
+      },
+      {
+        "eip": "EIP-7732",
+        "date": "2026-10-05",
+        "change": "Spec: builder payment settled before parent requests (consensus-specs#5695).",
+        "link": "https://github.com/ethereum/consensus-specs/pull/5695",
+        "agreed_at": "Not matched to a call (see notes).",
+        "why_not": "Spec fix, not matched to a call; no argument found."
+      },
+      {
+        "eip": "EIP-7928",
+        "date": "2025-08-14",
+        "change": "Block-level access lists confirmed as the second Glamsterdam headliner with ePBS.",
+        "link": "https://forkcast.org/calls/acde/218",
+        "agreed_at": "ACDE #218 (14 Aug 2025).",
+        "stop": "s-acde218-bal-headliner"
+      },
+      {
+        "eip": "EIP-7928",
+        "date": "2025-08-16",
+        "change": "System contract handling and encoding changed from SSZ to RLP.",
+        "link": "https://github.com/ethereum/EIPs/commit/1e2741c16",
+        "agreed_at": "BAL breakouts #1-2 (27 Aug, 10 Sep); no ACD decision found.",
+        "why_not": "Encoding choice; not argued on the calls read. BAL has no argument stops on this map (see notes)."
+      },
+      {
+        "eip": "EIP-7928",
+        "date": "2026-02-16",
+        "change": "BAL item cap and anti-DoS rule enforced outside the EVM (16-19 Feb).",
+        "link": "https://github.com/ethereum/EIPs/commit/f1b1370a4",
+        "agreed_at": "ACDT #70 (16 Feb).",
+        "why_not": "Safety rule for oversized lists; no objection recorded."
+      },
+      {
+        "eip": "EIP-7928",
+        "date": "2026-07-02",
+        "change": "7702 tracking reverted; SSTORE access cost check (4 Jul); storage-read gas-feasibility check amended (9 Sep).",
+        "link": "https://github.com/ethereum/EIPs/commit/6666fcc04",
+        "agreed_at": "ACDE #237 (21 May) deferred the 7702 change; ACDE #239 (18 Jun) soft-committed Tony's proposal; ACDC #182 (9 Jul) put it in devnet 7.",
+        "why_not": "Failure-path edge cases; clients said they had no strong views (ACDE #239 ord 34-39)."
+      },
+      {
+        "eip": "EIP-7928",
+        "date": "2026-10-19",
+        "change": "BAL retention aligned with the history expiry window (14,299 epochs).",
+        "link": "https://github.com/ethereum/EIPs/commit/068e50ad2",
+        "agreed_at": "ACDT #97 (21 Sep) tabled three options; ACDT #101 (19 Oct) merged.",
+        "why_not": "Parameter choice; no argument stops needed."
+      }
+    ],
+    "timelines": [
+      {
+        "title": "Glamsterdam headliner recaps (Etherworld, ethereum-magicians call notes; Jul-Aug 2025)",
+        "url": "https://etherworld.co/glamsterdam-headliners-finalised",
+        "events": [
+          {
+            "date": "2025-05-29",
+            "event": "ACDC #158: ePBS headliner presentation; review continues with the other headliners.",
+            "excluded": "x-e-acd-scoping"
+          },
+          {
+            "date": "2025-07-24",
+            "event": "ACDC #161: ePBS, six-second slots and FOCIL advance for consideration; free option problem presented.",
+            "stop": "s-r12"
+          },
+          {
+            "date": "2025-08-07",
+            "event": "ACDC #162: ePBS chosen as the consensus-layer headliner.",
+            "stop": "s-decision"
+          },
+          {
+            "date": "2025-08-14",
+            "event": "ACDE #218: block-level access lists confirmed as the second headliner; six-second slots dropped; FOCIL stays CFI.",
+            "stop": "s-acde218-bal-headliner"
+          },
+          {
+            "date": "2025-07-01",
+            "event": "Lido and Reth stakeholder feedback on headliners (Lido favours BAL, worries about ePBS implementation risk).",
+            "excluded": "x-e-acd-scoping"
+          }
+        ]
+      },
+      {
+        "title": "Forkcast key decisions for ePBS and trustless payments (ACDC/ACDT, recap index; calls are the primary source)",
+        "url": "https://github.com/ethereum/forkcast/tree/main/public/artifacts",
+        "events": [
+          {
+            "date": "2025-10-02",
+            "event": "ACDC #166: trustless-payments split decision deferred two weeks.",
+            "stop": "s-r04"
+          },
+          {
+            "date": "2025-10-16",
+            "event": "ACDC #167: trustless payments stay in EIP-7732, no separate EIP.",
+            "stop": "s-acdc167-decision"
+          },
+          {
+            "date": "2025-10-20",
+            "event": "ACDT #58: keep trustless payments as specified.",
+            "excluded": "x-acdt58-59-ptc"
+          },
+          {
+            "date": "2025-10-27",
+            "event": "ACDT #59: proposed change to attestations rejected.",
+            "excluded": "x-acdt58-59-ptc"
+          },
+          {
+            "date": "2025-11-27",
+            "event": "ACDC #170: FOCIL DFI for Glamsterdam, CFI for Hegota.",
+            "stop": "s-acdc170-focil-dfi"
+          },
+          {
+            "date": "2025-12-11",
+            "event": "ACDC #171: trustless payments stay unless a security issue; builders-as-non-validators raised.",
+            "stop": "s-acdc171-alex"
+          },
+          {
+            "date": "2026-01-22",
+            "event": "Forkcast lists 'cannot ship ePBS without partial slot proofs'; the #173 transcript says BPO3, a Forkcast mis-summary.",
+            "excluded": "x-e-epbs-breakouts"
+          },
+          {
+            "date": "2026-04-16",
+            "event": "ACDC #177: ePBS devnet 1 abandoned; deferred payload processing (5094) merged.",
+            "stop": "s-acdc177-alex"
+          },
+          {
+            "date": "2026-06-25",
+            "event": "ACDC #181: ePBS circuit breakers track missing payloads; client-specific.",
+            "excluded": "x-consensus-specs-ledger"
+          },
+          {
+            "date": "2026-07-02",
+            "event": "ACDE #240: disable-deposits switch for the builder deposit contract accepted for devnet 7.",
+            "excluded": "x-consensus-specs-ledger"
+          }
+        ]
+      },
+      {
+        "title": "Soldøgn interop recap (EF blog, 2 May 2026)",
+        "url": "https://blog.ethereum.org/2026/05/02/soldogn-interop-recap",
+        "events": [
+          {
+            "date": "2026-04-28",
+            "event": "ePBS devnets (4x4 slipped to 4x3), Builder API breakout simplifies the spec, stable CL ePBS by Thursday, external builders end to end on glamsterdam-devnet-2.",
+            "excluded": "x-svalbard-epbs"
+          },
+          {
+            "date": "2026-05-01",
+            "event": "BAL track: separate devnets, each optimisation behind a flag; target of a 200M gas-limit floor.",
+            "excluded": "x-svalbard-epbs"
+          }
+        ]
+      },
+      {
+        "title": "Press recap: 'Glamsterdam slips: ePBS runs late' (BlockEden, 18 Apr 2026)",
+        "url": "https://blockeden.xyz/blog/2026/04/18/glamsterdam-epbs-delay-ethereum-mev-reform-slip/",
+        "events": [
+          {
+            "date": "2026-04-16",
+            "event": "ePBS devnet reset and slip.",
+            "stop": "s-acdc177-alex"
+          }
+        ]
+      }
+    ]
+  }
+}

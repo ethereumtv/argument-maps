@@ -1,0 +1,2123 @@
+{
+  "slug": "eof",
+  "title": "How EOF came out of Fusaka",
+  "intro": "EOF, the EVM object format, was a plan to let Ethereum improve the EVM without breaking the contracts already live, by adding a new, validated kind of contract. Its champions saw faster code and simpler tools; others worried about complexity, risk and whether builders could use it. This map follows the debate from the first forum post in 2021 to the call that took EOF out of the Fusaka upgrade, and what came after, in talks from the client developers who argued it on the All Core Devs calls and in the research posts, forum replies and blogs that carried much of the argument.",
+  "eips": [
+    "EIP-7692",
+    "EIP-3540"
+  ],
+  "topic": "evm",
+  "excluded": [
+    {
+      "id": "x-breakouts",
+      "talk_id": "08426926-686d-4cc5-8440-0a600e3cd705",
+      "reason": "Devcon 6 EOF breakout rooms #1 to #5 (talks 08426926, 84187c06, d220383c, 24e2bf1e, ed60a665): rich on Shanghai scope and design arguments, but no speaker is credited and voices change constantly. Speaker not confirmed."
+    },
+    {
+      "id": "x-murashkin-qa",
+      "talk_id": "fb55efaa-4999-4e5f-b7d1-4965b83d66c1",
+      "reason": "Alex Murashkin Devcon 7 Q&A (ord 35 to 36, \"What are the arguments against EOF?\"): the answer reads as the moderator's own take (\"Danno's talk on Tuesday\"), so speaker not confirmed. Replaced by his own conclusion at ord 29."
+    },
+    {
+      "id": "x-zurich-panel",
+      "talk_id": "c59204a7-711a-4f46-8326-b1ec495b675e",
+      "reason": "EthereumZuri.ch 2023 panel (five speakers): has a line that EOF was pushed from Shanghai to Cancun or Prague and fragmentation worries, but the speaker of each turn cannot be confirmed."
+    },
+    {
+      "id": "x-bankless-panel",
+      "talk_id": "7c74a710-dab6-4fba-95ee-31e8116d5dfa",
+      "reason": "Bankless 2025-05-07: \"eof is dead for fusaka\" is a panel take from one of three credited speakers, not confirmed which, and the tone is flippant."
+    },
+    {
+      "id": "x-bell-curve",
+      "talk_id": "e8ce465e-170a-4080-8307-302c92bc0566",
+      "reason": "Bell Curve L1 governance (three speakers): concern that EOF could break contracts; speaker not confirmed."
+    },
+    {
+      "id": "x-dappcon-panel",
+      "talk_id": "8d4f12be-e5f0-47c6-8460-a49c29358fcc",
+      "reason": "DappCon 2025 panel: the answer that EIP-7701 was rebuilt without EOF is most likely Alex Forshtat, who is not credited on that talk. Speaker not confirmed. His own EthPrague 2025 talk (e4a996a2) says 7701 has no dependency on EOF and is available if wanted."
+    },
+    {
+      "id": "x-laura-shin",
+      "talk_id": "1e340978-b1c8-4a9c-8204-070a306f63d4",
+      "reason": "Unchained recaps (1e340978 and e56a8979): host reading a news summary that says developers \"voted\" to exclude EOF; the call notes describe a different process. Not used as a quote."
+    },
+    {
+      "id": "x-sassano-characterisations",
+      "talk_id": "cc538797-e868-45f5-87dc-3f5b5a6fd053",
+      "reason": "Several Daily Gwei lines (2024-06-07, 2025-03-17, 2025-03-28) describe the other side as people who \"may not understand it\" or core devs \"willing to die on the hill\". Left out as gotcha-prone characterisations of named or identifiable people."
+    },
+    {
+      "id": "x-ballet",
+      "talk_id": "98088181-3c98-492d-86ac-08c3f45dfcab",
+      "reason": "Guillaume Ballet 2026-06-15: \"If you think of EOF, and there's no accountability\" is a fragment that reads as blame and cannot be completed without changing it."
+    },
+    {
+      "id": "x-qi-zhou",
+      "talk_id": "1f36e450-5510-40e9-9f37-fbf13371e00b",
+      "reason": "Qi Zhou on EIP-7907: caption around the EOF answer is too garbled to clean without guessing."
+    },
+    {
+      "id": "x-rakita",
+      "talk_id": "effd8a01-65df-4c20-8941-e05618fe891e",
+      "reason": "Dragan Rakita 2023-11-14: says jump-table analysis will \"probably\" be fixed by EOF, but the caption renders EOF as \"ter object format\", more than the bracket rule allows."
+    },
+    {
+      "id": "x-acdt34",
+      "talk_id": "2486da81-201a-4b9c-87f9-204bd064c641",
+      "reason": "Interop Testing (ACDT) #34, 28 Apr 2025, the decision call itself: its transcript is auto-captions with no speaker names (14 EOF passages) and many voices, so no line can be tied to a confirmed speaker. The decision stop cites the call notes instead. Same for Interop Testing #33 and #35 (3f4b5e8a, 15dc7f2a) and the EOF Implementers Calls #67 to #71 (e.g. 2560c181): auto-captions, no speaker labels."
+    },
+    {
+      "id": "x-acde-208-210-spare",
+      "talk_id": "3d882db6-3875-4116-8c50-040a65c119f6",
+      "reason": "Confirmed-speaker passages read and left out to avoid repeating a point: Ansgar Dietrichs on the asymmetry of removing versus adding introspection (#208 ord 88, #210 ord 73), Charles Cooper on complexity and on maintaining two source codes for L2s without EOF (#208 ord 93, #210 ord 94 and 120), Dan Cline on developer experience and PeerDAS as the priority (#210 ord 57 and 70), Ahmad Bitar on why removing introspection is a net positive (#210 ord 66 to 67), Guillaume Ballet on RISC-V not being a reason to drop EOF (#210 ord 135 to 136), Matthew Keil on block-builder implications (#208 ord 102 to 104, answered by Tim Beiko), Danno Ferrin's option walk-through (#208 ord 109 to 111). At most four stops per call kept the map readable."
+    },
+    {
+      "id": "x-unmapped-208-210",
+      "talk_id": "ee38dcdf-d400-470c-be58-7e1bb3da67eb",
+      "reason": "Voices on the key calls not quoted: 'Maksim | Nethermind' (#210, no confirmed speaker profile), 'Yoav' (#208 ord 106, EOF and account abstraction) and 'pcaversaccio' (#208 ord 125 to 126, the application-developer objection) are not credited on those talks, and a first name alone is not an identity. Alex Beregszaszi (Ipsilon, #210 ord 90 and 92) is now confirmed and quoted at s-17."
+    },
+    {
+      "id": "x-greg-211",
+      "talk_id": "5783a9a0-6bf5-42a0-921e-cccf296b67f6",
+      "reason": "Greg Colvin, ACDE #211 ord 152 to 176: his case for removing dynamic jumps and his frustration after the EOF removal. Left out: the sentences that carry the reason ('get rid of this') depend on context the reader cannot see, and the rest is heated language and fragments that would read as a gotcha."
+    },
+    {
+      "id": "x-sassano-commentary",
+      "talk_id": "c6caefa2-898e-4c76-bfad-6f612f941a71",
+      "reason": "Round-1 commentator stops replaced by first-hand call voices: Anthony Sassano on EOF being punted (2024-02-03), on Geth as the holdout (2024-07-26) and on the process lesson (2025-05-09); the Bankless Tim Beiko stops on Fusaka's scope and complexity (2025-03-24), Ansgar Dietrichs' L2 versioning talk (Devcon 7), vectorized on CLZ (2025-07-31) and Nixo on RISC-V (2026-02-13). The facts they carried are now first-hand at ACDE #208 to #211."
+    },
+    {
+      "id": "x-s03-redundant",
+      "talk_id": "fb55efaa-4999-4e5f-b7d1-4965b83d66c1",
+      "reason": "Stop s-03 (Alex Murashkin, Devcon 7, 14 Nov 2024) removed in the 6 Nov 2026 extension: its one sentence, that the drawbacks are mostly complexity and every new opcode needs testing, is made more clearly and first-hand by Marius van der Wijden's July 2024 post (w-marius-2024) and Hubert Ritzdorf's Devcon 7 talk (s-21)."
+    },
+    {
+      "id": "x-vitalik-acde152",
+      "talk_id": "5ef6bb2a-1952-4274-894c-80426fac0e73",
+      "reason": "Vitalik Buterin, All Core Devs #152 (5 Jan 2023), ord 72 to 85: the same case as his 12 Dec 2022 forum post (w-vitalik-2022), which is earlier and shorter. The EOF team's reply on that call is kept (s-18)."
+    },
+    {
+      "id": "x-acde-189",
+      "talk_id": "067b744e-2dc8-49ec-94cf-cc34438c5930",
+      "reason": "All Core Devs Execution #189 (6 Jun 2024) is the call that put EOF into Pectra: now stops s-31 (Guillaume Ballet, why EOF is not urgent against Verkle) and s-32 (Tim Beiko, the decision). Not quoted: Matt Nelson (ord 32 to 33, opportunity cost of delaying EOF past the Verkle transition), Dragan Rakita (ord 22 to 23 and 45), Kamil Sliwak for the Solidity compiler (ord 47 to 49), Gajinder Singh (ord 35 to 37), Potuz on testing growing quadratically (ord 111 to 113): none of them credited on this talk, plus Georgios Konstantopoulos (ord 59 to 63) who repeats his April 2025 stop s-10, Andrew Ashikhmin and Greg Colvin (heated, history already in s-02)."
+    },
+    {
+      "id": "x-danno-devcon7-history",
+      "talk_id": "a8c5acf9-4ab4-4878-8e4f-6e22c7c9d25d",
+      "reason": "Danno Ferrin, EOF history and motivation, Devcon 7 (12 Nov 2024), solo talk read in full: the reasons for EOF (immediates break old code, versioning was tried, features come as a bundle) are the ones kept at s-02 from his earlier interview; his account of how Vitalik's introspection ban widened the scope (ord 20 to 21) is covered first-hand by the 12 Dec 2022 post and Alex Beregszaszi at s-18."
+    },
+    {
+      "id": "x-danno-devcon7-future",
+      "talk_id": "c1d76310-2bb8-46be-a20f-7ab85bf7c8fb",
+      "reason": "Danno Ferrin, The Future of EOF, Devcon 7 (19 Nov 2024): forward-looking (vector math, account abstraction entry points under EIP-7701, metadata); a roadmap, not an argument in the debate."
+    },
+    {
+      "id": "x-louis-tsai",
+      "talk_id": "5b89389f-58c1-5347-b0e3-b336dcd595f3",
+      "reason": "Louis Tsai, COSCUP 2025 (10 Aug 2025) and ETHTaipei 2025 (19 Apr 2025), solo talks: the complexity, tooling and missing-benchmarks points repeat Marius van der Wijden (w-marius-2024) and Moody Salem (w-moody-2025), the COSCUP talk is a recap after the removal, and the ETHTaipei talk is a tool demo whose pro-EOF point (easier program analysis) is made first-hand by Mate Soos (w-msoos-2025)."
+    },
+    {
+      "id": "x-no-eof-mention",
+      "talk_id": "9f8d309c-c4a5-4b4e-bc71-e1b5e00f93a5",
+      "reason": "Tony Valentine (Dedaub), How to predict the impact of EVM upgrades, ETHTaipei 2024: the transcript never mentions EOF."
+    },
+    {
+      "id": "x-devcon7-small",
+      "talk_id": "b650836a-bfdc-41f6-a65f-fc709feb461e",
+      "reason": "Other Devcon 7 EOF talks read and left out: Andrei Maiboroda on stack validation (one Q&A answer on ZK), Nebojsa Urosevic and Pavle Drobnjak on debugging tooling (pitch), Vishwa Mehta on Solidity tying its IR upgrade to EOF (the same support Solidity states in w-solidity-2025), vectorized on Solady (a plan to ship an EOF directory), rodiazet on EVMMAX (EOF as a dependency), and the Changes to the L1 EVM versus L2s panel (five speakers, turns unlabelled). The duplicate upload of the Ritzdorf talk (9abf923f, Feb 2025) has no transcript; the earlier upload is quoted at s-21."
+    },
+    {
+      "id": "x-subroutines",
+      "talk_id": "1503f15d-165f-44c4-bd9c-1e3d85a0d805",
+      "reason": "Subroutines for the EVM #1 (30 Jun 2026): Greg Colvin on how his proposal differs from EIP-2315 and EOF. Same proposal and same speaker as s-15, whose passage already says it reworks EIP-2315; his sentence on past objections to EOF depends on the 'validation' the previous speaker had just named."
+    },
+    {
+      "id": "x-acde-scoping",
+      "reason": "The old reason called these calls 'process rather than argument'. Read for this audit: #150 to #152 (Shanghai: EOF stays in only if ready, then comes out), #160 (EOF out of Cancun), #185 to #189 (Prague/Pectra: EOF made considered, then included) are decisions, now stops s-22 to s-32. Still left out as scoping/devnet planning: #148, #149, #157, #158 (the mega-EOF presentation is carried by s-18 and w-vitalik-2022), #186 (apart from s-27), #200, #203, #204; #205 has no speaker labels (see x-acde-205)."
+    },
+    {
+      "id": "x-eof-calls-unlabelled",
+      "reason": "EOF Implementers Calls #6 to #72 and the Devcon 6 breakout rooms, Interop Testing #33 to #35, ACDE #205: auto-captions with no speaker labels and no credited speakers, so no line can be tied to a confirmed voice (already noted for the breakouts and #34 above)."
+    },
+    {
+      "id": "x-written-redundant",
+      "reason": "Written sources read and left out as redundant or minor (6 Nov 2026): Danno Ferrin's replies in the labyrinth thread (posts 16, 18, 32), which repeat the Ipsilon options document and s-02; Charles Cooper (Vyper) in that thread and on thread 5727 (posts 28, 35, 92, 138), whose stability and cross-chain points overlap Ramana Kumar and Moody Salem; Julie B. on stack validation without EOF and Artem Chystiakov (Arvolear) on L2 adoption, the second answered in the Solidity post; Duncancmt (posts 7 and 33, and his July 2025 Glamsterdam feedback), Tim Daubenschütz, Justin Florentine and Daniel Lehrner, whose points the kept replies carry; Tim Beiko's 8 May 2025 post on process (the decision stop carries his reasons); the Besu Glamsterdam position paper (undated); the Ipsilon library-compatibility report (undated); pcaversaccio's longer HackMD deep dive (the same case as his forum post); Vitalik Buterin's RISC-V post (it does not discuss EOF; Lightclient's s-12 carries that argument)."
+    },
+    {
+      "id": "x-acde-192",
+      "talk_id": "8afc4628",
+      "reason": "All Core Devs Execution #192 (18 Jul 2024): the call where Marius van der Wijden presented his blog post, with the 'two EVMs forever' exchange (Peter, Ansgar, Danno, Daniel of Solidity). The transcript has no speaker labels and no credited speakers, and first names alone do not identify anyone, so no line can be attributed. Marius's argument is carried by w-marius-2024; Solidity's by w-solidity-2025; Danno's reply that it is one execution loop by s-02."
+    },
+    {
+      "id": "x-acde-195",
+      "talk_id": "e3bb6be6",
+      "reason": "All Core Devs Execution #195 (29 Aug 2024): Francisco Giordano's concerns (EXTCODESIZE/EXTCODEHASH for ERC-721/1155 callbacks, EXTDELEGATECALL into legacy, bricked proxies) and the EOF team's reply (strip everything unnecessary; is-contract opcode planned, which became EIP-7761). No speaker labels and no credited speakers, so no line can be attributed. Carried by w-frangio-2025. A first-hand quote could be added if the transcript gains labels."
+    },
+    {
+      "id": "x-acde-205",
+      "talk_id": "2698b047",
+      "reason": "All Core Devs Execution #205 (13 Feb 2025): Fusaka scope freeze, an unlabelled speaker saying EOF on the EL 'does not really make much sense', Danno Ferrin's update restoring TXCREATE (ord 84). No speaker labels and no credited speakers, so no line can be attributed."
+    },
+    {
+      "id": "x-acde-178-180",
+      "talk_id": "b6558851",
+      "reason": "All Core Devs Execution #178 (4 Jan 2024), #179 (18 Jan) and #180 (1 Feb): Prague planning. #180 ord 265 to 271, where Tim Beiko commits Verkle as the main thing for Osaka and leaves Prague's scope (EOF) for the next call, is now stop s-33 (Ansgar Dietrichs's 'not a hard commitment', ord 268 to 269, is left out: same call, one stop). Also left out: EOF as the 'driver' (Justin Florentine, #178 ord 181 to 182), Guillaume Ballet's Verkle-first case (#179 ord 249 to 250, #180 ord 160 to 166), carried by s-19, and Danno Ferrin's reply (#180 ord 150 to 154, #179 ord 233 to 234), carried by s-02."
+    },
+    {
+      "id": "x-acde-196",
+      "talk_id": "2117736b",
+      "reason": "All Core Devs Execution #196 (12 Sep 2024): the call where the Pectra split started. Danno Ferrin's proposal to close the door on devnet 3 and start Fusaka's devnet zero with EOF (ord 202 to 203) is now stop s-34; Tim Beiko's endorsement (ord 205, 231 to 232), Alex Stokes (ord 208) and the split-or-not decision set for the next week (ord 240) lead into s-20 and are not quoted separately. Guillaume Ballet's 'completely unacceptable' remark (ord 221) is heated and would read as a gotcha."
+    },
+    {
+      "id": "x-acde-193",
+      "talk_id": "33c8c430",
+      "reason": "All Core Devs Execution #193 (1 Aug 2024): EOF tabled for another two weeks, devnet 2 without EOF (Mario Vega on test interaction with 7702); devnet scheduling only. It also holds the 7702 versus EOF-account interaction question (Ahmad Bitar and Danno Ferrin, ord 20 to 29), parked until EOF decides."
+    },
+    {
+      "id": "x-acde-218",
+      "talk_id": "3eed4ec2",
+      "reason": "All Core Devs Execution #218 (14 Aug 2025): Forkcast's 'EOF declined for Glamsterdam' date. The transcript never mentions EOF; the headliners were set to ePBS and block-level access lists."
+    }
+  ],
+  "stops": [
+    {
+      "id": "w-axic-2021",
+      "kind": "written",
+      "date": "2021-03-16",
+      "date_label": "16 March 2021",
+      "place": "Ethereum Magicians",
+      "author": "axic",
+      "source_title": "EVM Object Format (EOF)",
+      "source_url": "https://ethereum-magicians.org/t/evm-object-format-eof/5727/1",
+      "note": "The first appearance of EOF as a forum thread: a container format for EVM code, from the thread that carries the debate for the next four years. The handle axic is named as Alex Beregszaszi (@axic) in the author lists of EIP-7692.",
+      "lines": [
+        {
+          "text": "Last week I have shared a document on the Eth R&D discord explaining some background on why some EVM changes are hard and motivation for improving the situation:"
+        },
+        {
+          "text": "It also suggests a container format for EVM, which would enable further improvements, such as removing jumpdests, moving to static jumps, etc."
+        }
+      ]
+    },
+    {
+      "id": "s-01",
+      "kind": "quote",
+      "date": "2022-04-18",
+      "date_label": "18 April 2022",
+      "place": "ETH Day at Devconnect Amsterdam",
+      "speaker": "Tim Beiko",
+      "speaker_slug": "tim-beiko",
+      "talk_id": "9f5dfd88-70c1-4885-a207-a622b88a608b",
+      "talk_slug": "allcoredevs-ethereum-protocol-beiko",
+      "note": "Where the idea starts, as the Shanghai plan was drawn up: improve the EVM without breaking the contracts already live, by adding a new, validated type of contract.",
+      "lines": [
+        {
+          "t": 1008,
+          "clean": "The second big thing we're working on is this idea called EVM object format. Everybody wants to improve the EVM, and the challenge we always get when we do it is finding a way to improve the EVM without breaking every contract that's live on mainnet.",
+          "caption": "the second big thing that that we're working on is this idea called evm object format um so everybody wants to improve the evm and the challenge we always get when we do it is finding a way to improve the evm without breaking every contract that's live on mainnet",
+          "chunks": [
+            {
+              "ord": 24,
+              "t": 1008,
+              "raw": "the second big thing that that we're working on is this idea called evm object format um so everybody wants to improve the evm and the challenge we always get when we do it is finding a way to improve the evm without breaking every contract that's live on mainnet"
+            }
+          ]
+        },
+        {
+          "t": 1008,
+          "clean": "If we add new functionality it kind of interacts with contracts that are currently there; if we change functionality it might change how current contracts behave, and we want to avoid that. So we finally found a way to do it, where we can have a new type of contract that people can use, which the EVM is able to recognize and execute under these different rules.",
+          "caption": "if we add new functionality it kind of interacts with contracts that are currently there if we change functionality might change how current contracts behave and we want to avoid that so we finally found like a way to do it where we can have a new kind of type of contract that people can use which the evm is able to recognize and execute under these different rules",
+          "chunks": [
+            {
+              "ord": 24,
+              "t": 1008,
+              "raw": "if we add new functionality it kind of interacts with contracts that are currently there if we change functionality might change how current contracts behave and we want to avoid that so we finally found like a way to do it where we can have a new kind of type of contract that people can use which the evm is able to recognize and execute under these different rules"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-22",
+      "date": "2022-12-08",
+      "date_label": "8 December 2022",
+      "place": "All Core Devs Execution call #151",
+      "speaker": "Tim Beiko",
+      "speaker_slug": "tim-beiko",
+      "note": "Shanghai scope: EOF stays in the plan next to withdrawals, on the condition that it is ready in January; if not, it comes out and nothing else replaces it. The decision that Jan 2023 (s-23) then applies. Speaker labelled by the call transcript.",
+      "lines": [
+        {
+          "t": 3703,
+          "clean": "On the EL side, teams feel they can do something alongside withdrawals and generally feel EOF is possible. If we go that route and EOF is not ready, what this means then is we've basically [removed] EOF from Shanghai, and none of the other potentially smaller EIPs we've been discussing will make it into Shanghai either. That's the trade-off: we need to be okay with saying in January, EOF is not ready, let's just do withdrawals.",
+          "caption": "so clearly you know on the El side teams feel like they can do something alongside withdrawals and and like generally feel like eof is possible um if so if we go that route and eof like is not ready I think the what this means then is we've basically remove eof from Shanghai and also that none of the other potentially smaller eips that you know we've been discussing will make it in Shanghai and I think that's basically kind of the the the trade-offs there like where we need to be okay with saying in January like eof is not ready let's just do withdrawals",
+          "chunks": [
+            {
+              "ord": 215,
+              "t": 3703,
+              "raw": "so clearly you know on the El side teams feel like they can do something alongside withdrawals and and like generally feel like eof is possible um if so if we go that route and eof like is not ready I think the what this means then is we've basically remove eof from Shanghai and also that"
+            },
+            {
+              "ord": 216,
+              "t": 3748,
+              "raw": "none of the other potentially smaller eips that you know we've been discussing will make it in Shanghai and I think that's basically kind of the the the trade-offs there like where we need to be okay with saying in January like eof is not ready let's just do withdrawals"
+            }
+          ],
+          "edits": [
+            "Supplied the bracketed 'removed' for the caption 'remove'.",
+            "Dropped the stutters 'the the', 'and and' and the aside 'and also that' that the next segment completes as 'none of the other ... EIPs'."
+          ]
+        }
+      ],
+      "kind": "quote",
+      "talk_id": "a80220a5-abd8-4801-971d-319a6b191104",
+      "talk_slug": "all-core-devs-execution-151",
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-vitalik-2022",
+      "kind": "written",
+      "date": "2022-12-12",
+      "date_label": "12 December 2022",
+      "place": "Ethereum Magicians",
+      "author": "vbuterin",
+      "source_title": "EOF proposal: ban code introspection of EOF accounts",
+      "source_url": "https://ethereum-magicians.org/t/eof-proposal-ban-code-introspection-of-eof-accounts/12113/1",
+      "note": "The argument that made EOF bigger: if the EVM can be converted from one version to the next, it can keep improving without piling up old rules, but only if code cannot read itself. Handle shown as the forum shows it (vbuterin); no real name appears in the post, so no speaker link. Tim Beiko names Vitalik as the author of this thread on All Core Devs #152.",
+      "lines": [
+        {
+          "text": "One of the arguments against any EVM changes is that it's much harder to add features to the EVM than to remove them (eg. the complexities around even removing a little-used opcode like SELFDESTRUCT), and so if the EVM keeps changing, ever-increasing ugliness and complexity is likely to be the outcome."
+        },
+        {
+          "text": "One way to greatly reduce this tradeoff is to find a way to automatically convert version n EVM code to version n+1 EVM code every time there is an upgrade (not necessarily immediately; perhaps convert when old code is \"touched\", and make sure that all version n code is converted to version n+1 before attempting to implement version n+2)."
+        },
+        {
+          "text": "Ban EOF-formatted code from being read with CODECOPY, CODESIZE, EXTCODECOPY, EXTCODESIZE and EXTCODEHASH"
+        }
+      ]
+    },
+    {
+      "id": "s-18",
+      "kind": "quote",
+      "date": "2023-01-05",
+      "date_label": "5 January 2023",
+      "place": "All Core Devs - Execution #152",
+      "speaker": "Alex Beregszaszi",
+      "speaker_slug": "alex-beregszaszi",
+      "talk_id": "5ef6bb2a-1952-4274-894c-80426fac0e73",
+      "talk_slug": "all-core-devs-execution-152",
+      "note": "The EOF side's own reply, on the call where the scope was argued after Vitalik's proposal to ban code introspection: the disagreement is about how many changes one upgrade can safely carry.",
+      "lines": [
+        {
+          "t": 2183,
+          "clean": "I think the main disagreement may be around the sheer size of these changes. Last year we never imagined that we would get to this point, that all of these changes are considered at the same time, because it feels like this many changes were never applied in the same upgrade to the EVM.",
+          "caption": "I think the main the main disagreement may be in around the the sheer size of these changes um I think last year we never imagined that the we would get to this point that you have all of these changes are considered at the same time um because that many changes were never actually at least it feels like this many changes were never applied in the same upgrade to the evm",
+          "chunks": [
+            {
+              "ord": 89,
+              "t": 2183,
+              "raw": "I think the main the main disagreement may be in around the the sheer size of these changes um I think last year we never imagined"
+            },
+            {
+              "ord": 90,
+              "t": 2225,
+              "raw": "that the we would get to this point that you have all of these changes are considered at the same time um because that many changes were never actually at least it feels like this many changes were never applied in the same upgrade to the evm"
+            }
+          ],
+          "edits": [
+            "dropped the repeats \"the main\" and \"the\", the \"in\" of \"may be in around\", and the false start \"that the\"; \"that you have all of these changes are considered\" is read as \"that all of these changes are considered\"; dropped the half-sentence \"that many changes were never actually at least\" before \"it feels like\""
+          ]
+        },
+        {
+          "t": 2225,
+          "clean": "I think the understanding is that we are probably at the limit of the number of changes we can safely make. It's not really just about testing time, but rather having confidence that we can cover all of these.",
+          "caption": "I think the understanding is that we are probably at the the limit of uh the number of changes we can safely make it's it's not really just about you know testing time but rather having confidence that we can cover all these",
+          "chunks": [
+            {
+              "ord": 90,
+              "t": 2225,
+              "raw": "I think the understanding is that we are probably at the the limit of uh the number of changes we can safely make it's it's not really just about you know testing time but rather having confidence that we can cover all these"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-23",
+      "date": "2023-01-05",
+      "date_label": "5 January 2023",
+      "place": "All Core Devs Execution call #152",
+      "speaker": "Tim Beiko",
+      "speaker_slug": "tim-beiko",
+      "note": "The call where EOF came out of Shanghai: the chair reads the room after Nethermind and others say they would rather push it to Cancun, and holds off deciding Cancun. Sits next to s-18 (the EOF side's reply on the same call). Speaker labelled by the call transcript.",
+      "lines": [
+        {
+          "t": 3352,
+          "clean": "I think it's pretty clear that [EOF is] not included in Shanghai; it seems to be the consensus. Anyone strongly disagree with that? Because there are all these proposals floating around, it's probably a bit early to make a decision about if and what we include in Cancun. I'd rather we at least wait a call or two before deciding.",
+          "caption": "so I think it's pretty clear that uh yeah not like not included in UF and Shanghai it seems to be the consensus uh so anyone like strongly disagree with that so I think it seems like because there's all these proposals that are kind of floating around it's probably a bit early to make a decision about like if and what we include in Cancun I'd rather we at least wait like a call or two before deciding",
+          "chunks": [
+            {
+              "ord": 139,
+              "t": 3352,
+              "raw": "so I think it's pretty clear that uh yeah not like not included in UF and Shanghai it seems to be the consensus uh so anyone like strongly disagree with that"
+            },
+            {
+              "ord": 140,
+              "t": 3390,
+              "raw": "so I think it seems like because there's all these proposals that are kind of floating around it's probably a bit early to make a decision about like if and what we include in Cancun I'd rather we at least wait like a call or two before deciding"
+            }
+          ],
+          "edits": [
+            "Supplied 'EOF is' (caption: 'uh yeah not like not included in UF and Shanghai'; 'UF' is the caption's mishearing of EOF).",
+            "'so anyone like strongly disagree' read as the question 'Anyone strongly disagree'."
+          ]
+        }
+      ],
+      "kind": "quote",
+      "talk_id": "5ef6bb2a-1952-4274-894c-80426fac0e73",
+      "talk_slug": "all-core-devs-execution-152",
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-24",
+      "date": "2023-04-27",
+      "date_label": "27 April 2023",
+      "place": "All Core Devs Execution call #160",
+      "speaker": "Danno Ferrin",
+      "speaker_slug": "danno-ferrin",
+      "note": "EOF comes out of Cancun (Tim Beiko removes all EOF EIPs from the considered list on this call, ord 152 and 176), and EOF's lead champion agrees it is the right call. Speaker labelled by the call transcript.",
+      "lines": [
+        {
+          "t": 3065,
+          "clean": "I am in support of moving EOF out of Cancun. One of the things that's going to give us is more time to get some core deep questions right. We're still working on whether gas observability should be in, how create should be [handled], and a couple of other issues, and pulling it out of Cancun solves a lot of the time pressure. So we can focus on getting [it right] instead of getting it ready for Q3 shipment. As much as it hurts, I think it's the right decision.",
+          "caption": "I am in support of moving eof out of Cancun one of the things that's going to give us time is more time to get some some core deep questions right um we're still working on questions around whether or not gas observability should be in and um about you know how create should be handling and a couple of other issues and pulling it out of Cancun solves a lot of the time pressure um so we can we can focus on getting a ride instead of getting it ready for uh Q3 shipment so as much as it hurts I think it's the right decision",
+          "chunks": [
+            {
+              "ord": 162,
+              "t": 3065,
+              "raw": "I am in support of moving eof out of Cancun one of the things that's going to"
+            },
+            {
+              "ord": 163,
+              "t": 3077,
+              "raw": "give us time is more time to get some some core deep questions right um we're still working on questions around whether or not gas observability should be in and um about you know how create should be handling and a couple of other issues and pulling it out of Cancun solves a lot of the time pressure um so we can we can focus on getting a ride instead of getting it ready for uh Q3 shipment so as much as it hurts I think it's the right decision"
+            }
+          ],
+          "edits": [
+            "Bracketed 'handled' for the caption 'handling' and 'it right' for the caption 'a ride' (misheard).",
+            "Dropped the repeated 'some some' and the aside 'um about you know'."
+          ]
+        }
+      ],
+      "kind": "quote",
+      "talk_id": "5221dc66-76db-4c05-97c5-15b6ebde2636",
+      "talk_slug": "all-core-devs-execution-160",
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-19",
+      "kind": "quote",
+      "date": "2023-10-12",
+      "date_label": "12 October 2023",
+      "place": "All Core Devs - Execution #172",
+      "speaker": "Guillaume Ballet",
+      "speaker_slug": "guillaume-ballet",
+      "talk_id": "57a9b157-409b-4fe8-b86a-ae5d6f6111c6",
+      "talk_slug": "all-core-devs-execution-172",
+      "note": "The first sustained objection on a call, when EOF was proposed as the headliner for the next fork: not that it is bad, but that Verkle should come first and EOF's scope should shrink.",
+      "lines": [
+        {
+          "t": 4358,
+          "clean": "The problem with [Verkle] is that the clock is ticking. All those advantages that have been touted by EOF are very nice to have; I want to make that clear. I am a supporter of EOF. I just don't think it should be coming before [Verkle], because with [Verkle] we have to go through the transition, and the more we wait, the worse it's going to get.",
+          "caption": "the problem with veral is that the clock is ticking uh whereas all those U advantages that have been touted by brought by eof they are very nice to have I I I mean I want to make that clear I am a supporter of eof I just don't think it should be coming before veral because veral we have to go through the transition and the more we wait the worse it's going to get",
+          "chunks": [
+            {
+              "ord": 181,
+              "t": 4358,
+              "raw": "the problem with veral is that the clock is ticking uh whereas all those U advantages that have been touted by brought by eof they are very nice to have I I I mean I want to make that clear I am a supporter of eof I just don't think it should be coming before veral because veral we have to go through the transition and the more we wait the worse it's going to get"
+            }
+          ],
+          "edits": [
+            "\"touted by brought by eof\" is read as \"touted by EOF\" (the speaker restarts mid-phrase); dropped \"whereas\" at the start of the second sentence; \"veral\" is [Verkle], as in the call notes' Verkle discussion"
+          ]
+        },
+        {
+          "t": 4400,
+          "clean": "If EOF was a very simple container, if that was the only thing the fork was about, I'd have no problem having it delivered before [Verkle]. But because of that complexity, I think it's very important to focus on [Verkle] right now and deliver EOF afterwards, or simplify greatly the scope of that first [EOF] fork.",
+          "caption": "if eof was a very simple container like if that was the only thing the fork was about I'd have no problem delivering having it delivered before uh before veral but because of that complexity I think it's very important to focus on veral right now and deliver uh deliver eof afterwards or simplify greatly the scope of of that first e fork",
+          "chunks": [
+            {
+              "ord": 182,
+              "t": 4400,
+              "raw": "if eof was a very simple container like if that was the only thing the fork was about I'd have no problem delivering having it delivered before uh before veral but because of that complexity I think it's very important to focus on veral right now and deliver uh deliver"
+            },
+            {
+              "ord": 183,
+              "t": 4445,
+              "raw": "eof afterwards or simplify greatly the scope of of that first e fork"
+            }
+          ],
+          "edits": [
+            "dropped the false start \"delivering\" before \"having it delivered\"; \"veral\" is [Verkle] and \"e fork\" is [EOF] fork"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-33",
+      "date": "2024-02-01",
+      "date_label": "1 February 2024",
+      "place": "All Core Devs Execution call #180",
+      "speaker": "Tim Beiko",
+      "speaker_slug": "tim-beiko",
+      "note": "The decision s-29 and s-31 argue from: Verkle is committed as the main thing for Osaka, with the Prague scope (and EOF in it) left for the next call. Ansgar Dietrichs adds on the call that it should not be a hard commitment. Speaker labelled by the call transcript.",
+      "lines": [
+        {
+          "t": 5201,
+          "clean": "Anyone object to committing to have [Verkle] be the main thing for Osaka, and figuring out on the next call a bit more the exact scope of Prague and what we want to include there, knowing that we already committed [Verkle] for Osaka? Last chance if there's objections, otherwise I'll open a PR for the Osaka spec later today.",
+          "caption": "anyone object to committing to have veral be the main thing for Osaka um and figuring out on the next call a bit more um the the exact scope of Prague and what we want to include there um knowing that like we already committed the veral for Osaka last chance if there's objections otherwise I'll open a PR for the Osaka spec uh later today",
+          "chunks": [
+            {
+              "ord": 265,
+              "t": 5201,
+              "raw": "anyone object to committing to"
+            },
+            {
+              "ord": 266,
+              "t": 5244,
+              "raw": "have veral be the main thing for Osaka um and figuring out on the next call a bit more um the the exact scope of Prague and what we want to include there um knowing that like we already committed the veral for Osaka last chance if there's objections otherwise I'll open a PR for the Osaka spec uh later today"
+            }
+          ],
+          "edits": [
+            "Bracketed 'Verkle' for the caption 'veral' (misheard).",
+            "Dropped 'uh', 'um', 'like' and the repeated 'the the'."
+          ]
+        }
+      ],
+      "kind": "quote",
+      "talk_id": "b6558851-e665-48bc-abc9-48210f7426da",
+      "talk_slug": "all-core-devs-execution-180",
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-02",
+      "kind": "quote",
+      "date": "2024-02-05",
+      "date_label": "5 February 2024",
+      "place": "Strange Water",
+      "speaker": "Danno Ferrin",
+      "speaker_slug": "danno-ferrin",
+      "talk_id": "c3530b84-5e95-4854-9db0-355d2dfb174f",
+      "talk_slug": "evm-evm-object-format-eof-w-danno-ferrin-strange-water",
+      "note": "The core technical case from the lead champion: an immediate argument for static jumps is only safe if code is validated first.",
+      "lines": [
+        {
+          "t": 2266,
+          "clean": "We can't replace dynamic jumps with static jumps unless we can have an immediate argument. And that gets into the problem why we need EOF.",
+          "caption": "we can't replace Dynamic jumps jumps with static jumps unless we can have an immediate argument and so that gets into the problem why we need eof",
+          "chunks": [
+            {
+              "ord": 53,
+              "t": 2266,
+              "raw": "we can't replace Dynamic jumps jumps with static jumps"
+            },
+            {
+              "ord": 54,
+              "t": 2307,
+              "raw": "unless we can have an immediate argument and so that gets into the problem why we need eof"
+            }
+          ]
+        },
+        {
+          "t": 2307,
+          "clean": "It is because, well, if we just introduce an immediate argument, what if there's old code that has that old opcode, and that immediate argument then contains a jump destination? Then you've changed the meaning of the code just by upgrading the software, and that's bad for long-term stability.",
+          "caption": "is because well if we just introduce an immediate argument um what if there's old code that has that old op code and that immediate argument then contains a jump destination then you've changed the meaning of the code just by upgrading the software and that's bad for long-term stability",
+          "chunks": [
+            {
+              "ord": 54,
+              "t": 2307,
+              "raw": "is because well if we just introduce an immediate argument um what if there's old code that has that old op code and that immediate argument then contains a jump destination then you've changed the meaning of the code just by upgrading the software and that's bad for long-term stability"
+            }
+          ]
+        },
+        {
+          "t": 2307,
+          "clean": "Because of that, we need to have validated code that needs to exist in the container. From that we can get rid of dynamic jumps and only have static jumps.",
+          "caption": "because because of that we need to have validated code that needs to exist in the container from that we can get rid of dynamic jumps and only have static jumps",
+          "chunks": [
+            {
+              "ord": 54,
+              "t": 2307,
+              "raw": "because because of that we need to have validated code that needs to exist in the container from that we can get rid of dynamic jumps and only have static jumps"
+            }
+          ],
+          "edits": [
+            "dropped the repeated \"because\""
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-25",
+      "date": "2024-04-11",
+      "date_label": "11 April 2024",
+      "place": "All Core Devs Execution call #185",
+      "speaker": "Danno Ferrin",
+      "speaker_slug": "danno-ferrin",
+      "note": "The lead champion's summary of where the objections to EOF for Prague sit, just before the chair makes EOF 'considered for inclusion'. Speaker labelled by the call transcript.",
+      "lines": [
+        {
+          "t": 4716,
+          "clean": "All the concerns and objections are around scheduling and complexity and difficulty, not about the merits of EOF. If there's any talk about merits, it's generally positive. Does this warrant moving EOF to CFI, but not necessarily scheduling it for Prague, and we can extend the Prague discussion to see how testing and implementation is developed?",
+          "caption": "all the concerns and objections are around scheduling and complexity and difficulty not about the merits of eof and there's any talk about merits it's generally positive does this warrant moving e F to CFI but not necessarily scheduling it for Prague and we can extend the Prague discussion to see how testing and implementation is developed",
+          "chunks": [
+            {
+              "ord": 235,
+              "t": 4716,
+              "raw": "all the concerns and objections are around scheduling and complexity and difficulty not about the merits of eof and there's any talk about merits it's generally positive does this warrant moving e F to CFI but not necessarily scheduling it for Prague and we can extend the Prague discussion to"
+            },
+            {
+              "ord": 236,
+              "t": 4740,
+              "raw": "see how testing and implementation is developed"
+            }
+          ],
+          "edits": [
+            "'and there's any talk' read as 'if there's any talk'; 'e F' read as 'EOF'."
+          ]
+        }
+      ],
+      "kind": "quote",
+      "talk_id": "5d77cf06-155c-4893-9737-3909282f1487",
+      "talk_slug": "all-core-devs-execution-185",
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-26",
+      "date": "2024-04-11",
+      "date_label": "11 April 2024",
+      "place": "All Core Devs Execution call #185",
+      "speaker": "Tim Beiko",
+      "speaker_slug": "tim-beiko",
+      "note": "The first formal step for the Prague/Pectra plan: EOF is made 'considered for inclusion' (not scheduled), kept out of the first devnet while the testing needs are worked out. Speaker labelled by the call transcript.",
+      "lines": [
+        {
+          "t": 4836,
+          "clean": "What I would do is CFI EOF, and then have the teams working on [devnet] zero in parallel to the testing stuff being figured out.",
+          "caption": "and then what I would do is CFI eof um and then have the teams working on devet zero in parallel to um the testing stuff being figured out",
+          "chunks": [
+            {
+              "ord": 241,
+              "t": 4836,
+              "raw": "and then what I would do is CFI eof um and then have the teams working on devet zero in parallel to um the testing stuff being figured out"
+            }
+          ],
+          "edits": [
+            "Bracketed 'devnet' for the caption 'devet'."
+          ]
+        },
+        {
+          "t": 4879,
+          "clean": "Then if we're confident with EOF, we can add it to the [devnet] after that.",
+          "caption": "then then if we're confident with eof we can take we can add it to like the dev net after that",
+          "chunks": [
+            {
+              "ord": 242,
+              "t": 4879,
+              "raw": "then then if we're confident with eof we can take we can add it to like the dev net after that"
+            }
+          ],
+          "edits": [
+            "Bracketed 'devnet' for the caption 'dev net'; dropped the false start 'we can take'."
+          ]
+        },
+        {
+          "t": 4923,
+          "clean": "No objections, so let's move forward with that: CFI EOF.",
+          "caption": "okay no objections so um yeah no objections so let's move forward with that um so CFI eof",
+          "chunks": [
+            {
+              "ord": 243,
+              "t": 4923,
+              "raw": "okay no objections so um yeah no objections so let's move forward with that um so CFI eof"
+            }
+          ],
+          "edits": [
+            "Dropped the repeated 'no objections'."
+          ]
+        }
+      ],
+      "kind": "quote",
+      "talk_id": "5d77cf06-155c-4893-9737-3909282f1487",
+      "talk_slug": "all-core-devs-execution-185",
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-27",
+      "date": "2024-04-25",
+      "date_label": "25 April 2024",
+      "place": "All Core Devs Execution call #186",
+      "speaker": "Ansgar Dietrichs",
+      "speaker_slug": "ansgar-dietrichs",
+      "note": "A proposal from Ansgar Dietrichs, with Vitalik Buterin in the call chat, to ship a smaller EOF: only what can be added later without a new version. The same call records that the EOF team agreed the day before to drop the contract-creation transaction (ord 270 to 271, unlabelled); s-28 carries it. Speaker labelled by the call transcript.",
+      "lines": [
+        {
+          "t": 4454,
+          "clean": "If we can slim down the scope of [EOF] by just removing features that can be later on added to the existing version without breaking things, for example we could initially just not ship a specific opcode and then later on add the opcode, which usually does not require a new version bump, that makes much more sense, because then we can ship [small EOF now] and still by later on adding the remaining features we would not need a new version.",
+          "caption": "if we can basically slim down the scope of UF by just removing features that can be later on added to the existing version without breaking things um that like for example right we could initially just not ship a specific op code and then we later on add the op code that usually does not require a new version bump um that makes much more sense because then we can ship small of now and still by later on adding the remaining features we would not need a new version",
+          "chunks": [
+            {
+              "ord": 244,
+              "t": 4454,
+              "raw": "if we can basically slim down the scope of UF by just removing features that can be later on added to the existing version without breaking things um that like for example right we could initially just not ship a specific op code and then we later on add the op code that usually does not require a new version bump um that makes much more sense because then we can ship small of now and still by later on adding the remaining features we would not need a new version"
+            }
+          ],
+          "edits": [
+            "Bracketed 'EOF' for the caption 'UF' and 'small EOF now' for the caption 'small of now' (misheard).",
+            "Dropped the stutters 'that that', 'um that like for example right'."
+          ]
+        }
+      ],
+      "kind": "quote",
+      "talk_id": "1603c9b6-ff39-475e-a084-9f71c1c97adf",
+      "talk_slug": "all-core-devs-execution-186",
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-28",
+      "date": "2024-05-09",
+      "date_label": "9 May 2024",
+      "place": "All Core Devs Execution call #187",
+      "speaker": "Alex Beregszaszi",
+      "speaker_slug": "alex-beregszaszi",
+      "note": "A spec change agreed by the EOF implementers the day before and reported here: the contract-creation transaction and its special creator contract come out of EOF version 1 (EIP-7620 edited on 13 May 2024; new EIP-7698). It later returned as EIP-7873 (Feb 2025). Speaker labelled by the call transcript.",
+      "lines": [
+        {
+          "t": 3213,
+          "clean": "For those unaware, TX create was the way to create contracts and that relied on a creator contract, basically, which needs to exist in the state. Instead of this we came up with a more simplified approach: it doesn't require a new transaction type, doesn't require the special contract, it uses the existing creation process used in legacy, but the design is forward compatible, so we could introduce TX create in the future.",
+          "caption": "for those unaware the TX create was the the way to create contracts and that uh relied on a um Creator contract basically which needs to exist in the state um instead of this we came up with a more simplified approach it doesn't require new transaction type doesn't require the special contract uh it uses the existing uh creation process uh used in Legacy um but the design is forward compatible so we could introduce TX create in the future",
+          "chunks": [
+            {
+              "ord": 169,
+              "t": 3213,
+              "raw": "for those unaware the TX create was the the way to create contracts and that uh relied on a um Creator contract basically which needs to exist in the state um instead of this we came up with a more simplified approach it doesn't require new transaction type doesn't require the"
+            },
+            {
+              "ord": 170,
+              "t": 3253,
+              "raw": "special contract uh it uses the existing uh creation process uh used in Legacy um but the design is forward compatible so we could introduce TX create in the future"
+            }
+          ],
+          "edits": [
+            "Dropped 'um' and the repeated 'uh'."
+          ]
+        }
+      ],
+      "kind": "quote",
+      "talk_id": "4aabb46b-6341-4879-8249-feab6e3c5c6f",
+      "talk_slug": "all-core-devs-execution-187",
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-29",
+      "date": "2024-05-23",
+      "date_label": "23 May 2024",
+      "place": "All Core Devs Execution call #188",
+      "speaker": "Alex Beregszaszi",
+      "speaker_slug": "alex-beregszaszi",
+      "note": "The 'now or never' case for putting EOF into Pectra, from the EOF team's side, on the call where the Pectra scope was argued. Speaker labelled by the call transcript (both quoted segments carry no label; they continue his labelled turn at ord 232 up to the chair's 'thanks').",
+      "lines": [
+        {
+          "t": 5234,
+          "clean": "I kind of feel, as Andrew said, if [EOF] right now wouldn't be included in Pectra, then I don't really see that it would ever be included, because another fork with [EOF] wouldn't be just a one or two or three month delay to Pectra, it would be a full fork with however many months that takes. Because of that I feel this is the only opportunity to really introduce [EOF], maybe at the cost of one or two or three months' delay. I don't think it would be introduced otherwise.",
+          "caption": "I do have a question because I kind of feel like what Andrew said if e right now wouldn't be included in Petra then I don't really see that it would ever be included because then having another Fork withf uh there wouldn't be just like a one or two or three month delay to Petra that would be a full for with you know however many months that takes and that in that case that would extremely delay work um because of that I kind of feel like this is the the only opportunity to to Really introduce UF um maybe at the cost of one or two or three months delays I don't think it would be introduced otherwise",
+          "chunks": [
+            {
+              "ord": 233,
+              "t": 5234,
+              "raw": "I do have a question because I kind of feel like what Andrew said if e right now wouldn't be included in Petra then I don't really see that it would ever be included because then having another Fork withf uh there wouldn't be just like a one or two or three month delay to Petra that would be a full for with you know however many months that takes and that in that case that would extremely delay work um because of that I kind of feel like this"
+            },
+            {
+              "ord": 234,
+              "t": 5275,
+              "raw": "is the the only opportunity to to Really introduce UF um maybe at the cost of one or two or three months delays I don't think it would be introduced otherwise"
+            }
+          ],
+          "edits": [
+            "Bracketed 'EOF' for the captions 'e', 'withf' and 'UF'.",
+            "Dropped the aside 'and that in that case that would extremely delay work'."
+          ]
+        }
+      ],
+      "kind": "quote",
+      "talk_id": "ea2c3a09-2305-4709-839b-afce50709c51",
+      "talk_slug": "all-core-devs-execution-188",
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-30",
+      "date": "2024-05-23",
+      "date_label": "23 May 2024",
+      "place": "All Core Devs Execution call #188",
+      "speaker": "Marius van der Wijden",
+      "speaker_slug": "marius-van-der-wijden",
+      "note": "The reply from the Geth side, seconding Guillaume Ballet: if this is EOF's only chance, it is not worth shipping; and he still thinks EOF is a good feature. Speaker labelled by the call transcript.",
+      "lines": [
+        {
+          "t": 5344,
+          "clean": "I wanted to say exactly the same thing: if we think this is the only time that [EOF] can ever happen, then it's not a good [feature] and we should just drop it. There's no point in shipping something if we're not convinced that we can also ship it six months later and it's still important. So yeah, do whatever you want, but I also think [EOF] is a good feature and it should be shipped at some point.",
+          "caption": "I wanted to say exactly the same thing if we if we think this is the only this is the only time um that e can ever happen then it's not a good future and we should just drop it um like there's no point in shipping something um if we don't if we're not convinced that um that we can also ship it 6 months later and it's still important um so yeah do what with that whatever you you you you want but um I think I also think UF is a good feature and it should be shipped at some point",
+          "chunks": [
+            {
+              "ord": 239,
+              "t": 5344,
+              "raw": "I wanted to say exactly the same thing if we if we think this is the only this is the only time um that e can ever happen then it's not a good future and we should just drop it um like there's no point in shipping something um if we don't if we're not convinced that um"
+            },
+            {
+              "ord": 240,
+              "t": 5363,
+              "raw": "that we can also ship it 6 months later and it's still important um so yeah do what with that whatever you you you you want but um I think I also think UF is a good feature and it should be shipped at some point"
+            }
+          ],
+          "edits": [
+            "Bracketed 'EOF' for the captions 'e' and 'UF'.",
+            "Dropped the stutters 'if we if we', 'the only this is the only', 'you you you you'; '6 months' written as 'six months'.",
+            "Bracketed 'feature' for the caption 'future' (misheard; the next sentences say 'good feature')."
+          ]
+        }
+      ],
+      "kind": "quote",
+      "talk_id": "ea2c3a09-2305-4709-839b-afce50709c51",
+      "talk_slug": "all-core-devs-execution-188",
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-31",
+      "date": "2024-06-06",
+      "date_label": "6 June 2024",
+      "place": "All Core Devs Execution call #189",
+      "speaker": "Guillaume Ballet",
+      "speaker_slug": "guillaume-ballet",
+      "note": "The Verkle team's case against putting EOF into Pectra, on the call that decided the scope (s-32). Speaker labelled by the call transcript.",
+      "lines": [
+        {
+          "t": 548,
+          "clean": "My fear is that the more we wait, the longer the [Verkle] translation will take. Is [EOF] really that urgent? I don't think so.",
+          "caption": "my fear is that the more we wait the the bigger the the veral translation will take the longer the veral translation will take uh is e really that urgent I don't think so",
+          "chunks": [
+            {
+              "ord": 15,
+              "t": 548,
+              "raw": "my fear is that the more we wait the the bigger the the veral translation will take the longer the veral translation will take uh is e really that urgent I don't think so"
+            }
+          ],
+          "edits": [
+            "Bracketed 'EOF' for the caption 'e' and 'Verkle' for the caption 'veral' (misheard).",
+            "Dropped the false start 'the bigger the veral translation will take'."
+          ]
+        },
+        {
+          "t": 548,
+          "clean": "My understanding is that everything can be done without [EOF]. I think [EOF] still doesn't have a very strong case.",
+          "caption": "my understanding is that everything can be done without EF I think e still doesn't have a very uh strong case",
+          "chunks": [
+            {
+              "ord": 15,
+              "t": 548,
+              "raw": "my understanding is that everything can be done without EF I think e still doesn't have a very uh strong case"
+            }
+          ],
+          "edits": [
+            "Bracketed 'EOF' for the captions 'EF' and 'e' (misheard)."
+          ]
+        }
+      ],
+      "kind": "quote",
+      "talk_id": "067b744e-2dc8-49ec-94cf-cc34438c5930",
+      "talk_slug": "all-core-devs-execution-189",
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-32",
+      "date": "2024-06-06",
+      "date_label": "6 June 2024",
+      "place": "All Core Devs Execution call #189",
+      "speaker": "Tim Beiko",
+      "speaker_slug": "tim-beiko",
+      "note": "The Pectra decision for EOF: after every client team and the Solidity team had spoken, the chair moves EOF (the whole list of EIPs, relisted in EIP-7692) into Pectra, with the first devnet kept free of it. He adds elsewhere on the call that it can still be taken out later. Speaker labelled by the call transcript.",
+      "lines": [
+        {
+          "t": 2691,
+          "clean": "Unless there's any strong objection now, I would move forward with including [EOF in] Pectra. Again, this is the entire list of EIPs; they're all relisted in 7692.",
+          "caption": "unless there's any like strong objection now I would move forward with including e and pectra um again this is the entire list of eips um they're all relisted in 7692",
+          "chunks": [
+            {
+              "ord": 136,
+              "t": 2691,
+              "raw": "unless there's any like strong objection now I would move forward with including e and pectra um again this is the entire list of eips um they're all relisted in 7692"
+            }
+          ],
+          "edits": [
+            "Bracketed 'EOF in' for the caption 'e and' (misheard)."
+          ]
+        }
+      ],
+      "kind": "quote",
+      "talk_id": "067b744e-2dc8-49ec-94cf-cc34438c5930",
+      "talk_slug": "all-core-devs-execution-189",
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-marius-2024",
+      "kind": "written",
+      "date": "2024-07-12",
+      "date_label": "12 July 2024",
+      "place": "Marius van der Wijden blog",
+      "author": "Marius van der Wijden",
+      "author_slug": "marius-van-der-wijden",
+      "source_title": "Why I am against EOF in Pectra",
+      "source_url": "https://mariusvanderwijden.github.io/blog/2024/07/12/EOF/",
+      "note": "The Geth side in writing, while EOF was planned for Pectra: complexity and consensus risk, no impact analysis, and a preference for Verkle. Tim Beiko's May 2025 post links to it as the strong opposition from core developers.",
+      "lines": [
+        {
+          "text": "The biggest issue I see is that EOF is extremely complex."
+        },
+        {
+          "text": "All-in-all EOF introduces 19 new opcodes. Additionally it removes 16 opcodes present in the existing EVM from EOF and changes the behavior of multiple opcodes in both versions."
+        },
+        {
+          "text": "Additionally EOF introduces the code and stack validation. This means that the code is verified before it’s being deployed. Therefore the code validity now becomes part of consensus which means that bugs in the code or stack validation will result in consensus bugs."
+        },
+        {
+          "text": "I personally believe that L1 should stop shipping small incremental improvements and should focus on big unlocks like 4844 and Verkle. These changes will really enable new things to be built on Ethereum, while EOF in my opinion only makes existing things slightly faster or slightly cheaper."
+        }
+      ]
+    },
+    {
+      "id": "s-34",
+      "date": "2024-09-12",
+      "date_label": "12 September 2024",
+      "place": "All Core Devs Execution call #196",
+      "speaker": "Danno Ferrin",
+      "speaker_slug": "danno-ferrin",
+      "note": "Where the Pectra split started: EOF's lead champion proposes to close the door on devnet 3 as the Pectra set and make the next devnet the start of Fusaka's, with EOF in it. Tim Beiko endorses it (ord 205) and sets a split-or-not decision for the next week; s-20 follows. The call transcript spells Fusaka as 'buaka'. Speaker labelled by the call transcript.",
+      "lines": [
+        {
+          "t": 3925,
+          "clean": "The model we should probably consider is: is it in the devnet, then it's set to go for the next fork. And we could just close the door on [devnet] 3 right now, polish it up, bug fix it, only have absolutely essential changes, and start [devnet] zero on [Fusaka].",
+          "caption": "the model we should probably consider is is basically what you've been talking about is it in the devnet um then it's set to go for the next fork and we could just close the door on devet 3 right now um polish it up fix it bug fix it only had absolutely essential changes and start um devet zero on buaka",
+          "chunks": [
+            {
+              "ord": 202,
+              "t": 3925,
+              "raw": "the model we should probably consider is is basically what you've been talking about is it in the devnet um then it's set to go for the next fork and we could just close the door on devet 3 right now um polish it up fix it bug fix it only had absolutely essential changes and start um devet zero on buaka"
+            }
+          ],
+          "edits": [
+            "Bracketed 'devnet' for the caption 'devet' and 'Fusaka' for 'buaka' (misheard).",
+            "Dropped the false starts 'is is basically what you've been talking about'."
+          ]
+        },
+        {
+          "t": 3950,
+          "clean": "We put [EOF] in there, we put all the other things that are ready to go in, we start testing that in parallel.",
+          "caption": "we put e in there we put all the other things that are ready to go in we start testing that in parallel",
+          "chunks": [
+            {
+              "ord": 203,
+              "t": 3950,
+              "raw": "we put e in there we put all the other things that are ready to go in we start testing that in parallel"
+            }
+          ],
+          "edits": [
+            "Bracketed 'EOF' for the caption 'e' (misheard)."
+          ]
+        }
+      ],
+      "kind": "quote",
+      "talk_id": "2117736b-d561-4c38-9c1d-b2ef3fa34aa8",
+      "talk_slug": "all-core-devs-execution-196",
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-20",
+      "kind": "quote",
+      "date": "2024-09-26",
+      "date_label": "26 September 2024",
+      "place": "All Core Devs - Execution #197",
+      "speaker": "Tim Beiko",
+      "speaker_slug": "tim-beiko",
+      "talk_id": "914cb65f-028a-472e-bb47-a591cee59f7b",
+      "talk_slug": "all-core-devs-execution-197",
+      "note": "How EOF came to be a headliner of Fusaka: with Pectra split in two, Tim Beiko proposes that the second fork is EOF and PeerDAS, and nothing else until both work on a devnet. Beiko has the call to himself here.",
+      "lines": [
+        {
+          "t": 4207,
+          "clean": "And then for [Pectra B], which I think we should just accept as effectively Fusaka at this point, which is the next fork.",
+          "caption": "and then for pectra B which I think we should just accept as effectively fusaka at this point which is the next Fork",
+          "chunks": [
+            {
+              "ord": 228,
+              "t": 4207,
+              "raw": "and then for pectra B which I think we should just accept as"
+            },
+            {
+              "ord": 229,
+              "t": 4251,
+              "raw": "effectively fusaka at this point which is the next Fork"
+            }
+          ]
+        },
+        {
+          "t": 4339,
+          "clean": "My proposal is that [Pectra B] is EOF and [PeerDAS], and we don't add anything else until both of those two things work on a [devnet] and we feel confident that we can actually add a bunch of other EIPs.",
+          "caption": "so like my proposal is that pectra V is eof and P Das and we don't add anything else until both those two things work on devet and we feel confident that we can actually add a bunch of other eips",
+          "chunks": [
+            {
+              "ord": 231,
+              "t": 4339,
+              "raw": "so like my proposal is that pectra V is eof and P Das and we don't add anything else until both those two things work on devet and we feel confident that we can actually add a bunch of other eips"
+            }
+          ],
+          "edits": [
+            "dropped \"so like\"; \"pectra V\" is [Pectra B], \"P Das\" is [PeerDAS] and \"devet\" is [devnet]; \"both of those\" for \"both those\""
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-21",
+      "kind": "quote",
+      "date": "2024-11-14",
+      "date_label": "14 November 2024",
+      "place": "Devcon 7",
+      "speaker": "Hubert Ritzdorf",
+      "speaker_slug": "hubert-ritzdorf",
+      "talk_id": "c8176476-d3e0-4072-9076-fb52d1852414",
+      "talk_slug": "emilie-making-sure-eof-done-right-ritzdorf",
+      "note": "The risk case from a security team that wants EOF to ship: any change this big can hide bugs, and the way to find them is real contracts replayed on EOF. Solo talk.",
+      "lines": [
+        {
+          "t": 45,
+          "clean": "[EOF] is a big change in the EVM. What is the problem with that? With any big change in the EVM, a lot can go wrong.",
+          "caption": "UF is a big change in evm so what is the problem with that because with as in um with any big change in evm a lot can go wrong",
+          "chunks": [
+            {
+              "ord": 1,
+              "t": 45,
+              "raw": "UF is a big change in evm so what is the problem with that because with as in um with any big change in evm a lot can go wrong"
+            }
+          ],
+          "edits": [
+            "\"UF\" is [EOF], as the talk's title and the next lines show; dropped \"because with as in\" before \"with any big change\""
+          ]
+        },
+        {
+          "t": 87,
+          "clean": "We have a horribly big search space to look for things that can go wrong, and experience shows that things do go wrong.",
+          "caption": "so we have a horribly big search space to look for things that can go wrong right and um experience shows that things do go wrong",
+          "chunks": [
+            {
+              "ord": 2,
+              "t": 87,
+              "raw": "so we have a horribly big search space to look for things that can go wrong right and um experience shows that things do go wrong"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-04",
+      "kind": "quote",
+      "date": "2025-01-16",
+      "date_label": "16 January 2025",
+      "place": "The Rollup",
+      "speaker": "Mark Tyneway",
+      "speaker_slug": "mark-tyneway",
+      "talk_id": "1062ff89-9b6c-42fa-a926-8435e47480b0",
+      "talk_slug": "superchain-2025-economic-outlook-mark-tyneway-rollup",
+      "note": "The gas-savings argument in a builder's words: a reported benchmark of up to 25% faster contracts, meaning more transactions per block.",
+      "lines": [
+        {
+          "t": 1691,
+          "clean": "EOF is an improvement to the EVM, and some benchmarks have shown that smart contracts that are written using the EOF version of the EVM are sometimes 25% faster than contracts using the legacy-style EVM. So really, that is also a scalability throughput to Ethereum, because now contracts are using less gas, meaning more transactions can fit in a block.",
+          "caption": "eof is like an improvement to the evm and you know some benchmarks have shown that um smart contracts that are written using the eof version of the E evm are um sometimes 25% faster than um contracts using the Legacy style evm so really you know that is also a scalability throughput to ethereum because now contracts are using less gas meaning you know more transactions can fit in a block",
+          "chunks": [
+            {
+              "ord": 38,
+              "t": 1691,
+              "raw": "eof is like an improvement to the evm and you know some benchmarks have shown that um smart contracts that are written using the eof version of the E evm are um sometimes 25% faster than um contracts using the Legacy style evm so really you know that is also a scalability throughput to"
+            },
+            {
+              "ord": 39,
+              "t": 1737,
+              "raw": "ethereum because now contracts are using less gas meaning you know more transactions can fit in a block"
+            }
+          ],
+          "edits": [
+            "dropped \"like\", \"you know\" and \"um\" and the stray caption letter \"E\" in \"the E evm\""
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-pcaversaccio-2025",
+      "kind": "written",
+      "date": "2025-03-13",
+      "date_label": "13 March 2025",
+      "place": "Ethereum Magicians",
+      "author": "pcaversaccio",
+      "source_title": "Ethereum is turning into a labyrinth of unnecessary complexity with EOF - Let's reconsider EOF",
+      "source_url": "https://ethereum-magicians.org/t/ethereum-is-turning-into-a-labyrinth-of-unnecessary-complexity-with-eof-lets-reconsider-eof/23136/1",
+      "note": "The post that opened the public complexity argument days before All Core Devs #208 reaffirmed EOF: the benefits do not need EOF, and the costs do. Tim Beiko's May 2025 post cites this thread. Handle shown as the forum shows it; no identity is stated in the post.",
+      "lines": [
+        {
+          "text": "Furthermore, the purported benefits don't require EOF, they could be implemented in the current EVM in much less invasive ways."
+        },
+        {
+          "text": "In other words, all the benefits of EOF can be introduced in more piecemeal, less invasive updates to the EVM."
+        },
+        {
+          "text": "EOF has been a moving target: EOF is looking to get shipped even though parts of the spec keep changing, making it difficult for compiler and app devs to review the entire package."
+        }
+      ]
+    },
+    {
+      "id": "w-ramana-2025",
+      "kind": "written",
+      "date": "2025-03-13",
+      "date_label": "13 March 2025",
+      "place": "Ethereum Magicians",
+      "author": "Ramana Kumar",
+      "source_title": "Ethereum is turning into a labyrinth of unnecessary complexity with EOF - Let's reconsider EOF",
+      "source_url": "https://ethereum-magicians.org/t/ethereum-is-turning-into-a-labyrinth-of-unnecessary-complexity-with-eof-lets-reconsider-eof/23136/3",
+      "note": "A different objection from the complexity one: whether the EVM should be changing at all, because builders value a stable VM. Posted as a reply the same day.",
+      "lines": [
+        {
+          "text": "I would argue that a stable VM, on which people can invest in building up excellent tooling and apps with confidence, is much more valuable than the ability to evolve the VM to compete with other VMs, since this has the cost of scaring away investment in something that's gonna potentially change in the future."
+        }
+      ]
+    },
+    {
+      "id": "w-moody-2025",
+      "kind": "written",
+      "date": "2025-03-20",
+      "date_label": "20 March 2025",
+      "place": "Ethereum Magicians",
+      "author": "Moody Salem",
+      "author_slug": "moody-salem",
+      "source_title": "Ethereum is turning into a labyrinth of unnecessary complexity with EOF - Let's reconsider EOF",
+      "source_url": "https://ethereum-magicians.org/t/ethereum-is-turning-into-a-labyrinth-of-unnecessary-complexity-with-eof-lets-reconsider-eof/23136/42",
+      "note": "The application developer's cost-benefit answer to the 'immediate' gas savings Daniel Lehrner cited for Uniswap V3. He says in the post that he wrote a lot of Uniswap V3.",
+      "lines": [
+        {
+          "text": "I wrote a lot of Uniswap V3 so let me comment on this. O(10%) is not a good ROI for the amount of mental overhead EOF introduces for me as a dapp developer."
+        },
+        {
+          "text": "I don't argue with the benefits of EOF, I take issue with the immeasurable complexity cost of those improvements."
+        }
+      ]
+    },
+    {
+      "id": "w-ipsilon-2025",
+      "kind": "written",
+      "date": "2025-03-24",
+      "date_label": "24 March 2025",
+      "place": "Ethereum notes",
+      "author": "Ipsilon",
+      "source_title": "EOF Fusaka Options",
+      "source_url": "https://notes.ethereum.org/@ipsilon/eof_fusaka_options",
+      "note": "The EOF team's own answer to the piecemeal alternative, in the decision tree it wrote for All Core Devs at Tim Beiko's request. The document is published under the Ipsilon account; its date is the one it gives for itself.",
+      "lines": [
+        {
+          "text": "Piecemeal solutions—introducing EOF features incrementally via separate EIPs across multiple forks—might seem to ease immediate complexity but ultimately yield a more convoluted, resource-intensive EVM once complete, as the lack of a unified structure magnifies integration woes."
+        },
+        {
+          "text": "Worse, their staggered rollouts amplify scheduling risks: EVM changes are consistently deprioritized in fork planning, often delayed by other upgrades, rendering deployment of all pieces in a timely fashion unlikely."
+        }
+      ]
+    },
+    {
+      "id": "w-msoos-2025",
+      "kind": "written",
+      "date": "2025-03-25",
+      "date_label": "25 March 2025",
+      "place": "Ethereum Magicians",
+      "author": "Mate Soos",
+      "affiliation": "Works on hevm",
+      "author_slug": "mate-soos",
+      "source_title": "Ethereum is turning into a labyrinth of unnecessary complexity with EOF - Let's reconsider EOF",
+      "source_url": "https://ethereum-magicians.org/t/ethereum-is-turning-into-a-labyrinth-of-unnecessary-complexity-with-eof-lets-reconsider-eof/23136/59",
+      "note": "The tool-builder's case for EOF: formal verification. He says in the post that he works on hevm.",
+      "lines": [
+        {
+          "text": "I work on hevm, a symbolic execution framework for EVM with over 5k commits. What I can say is that EOF will significantly lower the burden of doing formal verification of contracts."
+        },
+        {
+          "text": "Based on these experiences, my opinion is that (1) we need formal verification or bugs will slip through and (2) without EOF, formal verification of contracts is gonna keep on being harder than it needs to be."
+        }
+      ]
+    },
+    {
+      "id": "s-05",
+      "kind": "quote",
+      "date": "2025-03-27",
+      "date_label": "27 March 2025",
+      "place": "All Core Devs - Execution #208",
+      "speaker": "Lightclient",
+      "speaker_slug": "lightclient",
+      "talk_id": "3d882db6-3875-4116-8c50-040a65c119f6",
+      "talk_slug": "all-core-devs-execution-208",
+      "note": "First-hand objection on the call where core devs were asked to settle EOF's shape: a bigger change than past ones that went wrong.",
+      "lines": [
+        {
+          "t": 2762,
+          "clean": "But there are many risks to doing this. And we, even on much simpler proposals like TSTORE and [TLOAD], have had issues where there are things that we simply did not consider during the design and implementation that ended up becoming problematic.",
+          "caption": "But there are many risks to doing this. And we. you know, even on much simpler proposals like Tstore and T. Load, have had issues where there are things that we simply did not consider during the design and implementation that ended up becoming problematic",
+          "chunks": [
+            {
+              "ord": 95,
+              "t": 2762,
+              "raw": "But there are many risks to doing this. And we. you know, even on much simpler proposals like Tstore and T. Load, have had issues where there are things that we simply did not consider during the design and implementation that ended up becoming problematic"
+            }
+          ]
+        },
+        {
+          "t": 2762,
+          "clean": "EOF is a much bigger change, and there is almost certainly things that are going to be negatively impacted. And this is one of the reasons I've been against EOF.",
+          "caption": "So eof is a much bigger change. And there is almost certainly things that are going to negatively going to be negatively impacted. And this is, you know, why I have kind of one of the reasons I've been against Eof",
+          "chunks": [
+            {
+              "ord": 95,
+              "t": 2762,
+              "raw": "So eof is a much bigger change. And there is almost certainly things that are going to negatively going to be negatively impacted. And this is, you know, why I have kind of one of the reasons I've been against Eof"
+            }
+          ],
+          "edits": [
+            "dropped the false start \"why I have kind of\" before \"one of the reasons\""
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-06",
+      "kind": "quote",
+      "date": "2025-03-27",
+      "date_label": "27 March 2025",
+      "place": "All Core Devs - Execution #208",
+      "speaker": "Felix Lange",
+      "speaker_slug": "felix-lange",
+      "talk_id": "3d882db6-3875-4116-8c50-040a65c119f6",
+      "talk_slug": "all-core-devs-execution-208",
+      "note": "A Geth developer who says he personally supports one EOF option (keeping introspection) and argues against removing gas and code introspection: the objection is to scope, not to the idea.",
+      "lines": [
+        {
+          "t": 2249,
+          "clean": "My main concern is just knowing that people do all kinds of stuff. It's pretty strange, for example, to remove the gas introspection, because it's something that exists right now, and it is pretty heavily used. So creating a new model where it's not possible is just something that is gonna raise some issues.",
+          "caption": "my main concern is just that. basically just knowing that people do all kinds of stuff. It's I feel like it's pretty strange, for example, to remove the gas introspection because it's something that exists right now, and it is pretty heavily used. So creating a new model where it's not possible is just something that is gonna raise some issues",
+          "chunks": [
+            {
+              "ord": 80,
+              "t": 2249,
+              "raw": "my main concern is just that. basically just knowing that people do all kinds of stuff. It's I feel like it's pretty strange, for example, to remove the gas introspection because it's something that exists right now, and it is pretty heavily used. So creating a new model where it's not possible is just something that is gonna raise some issues"
+            }
+          ],
+          "edits": [
+            "dropped the false start \"I feel like\" before \"it's pretty strange\""
+          ]
+        },
+        {
+          "t": 2344,
+          "clean": "It's somehow simpler to not do these changes to the model of the EVM, and just only focus on the encoding of the bytecode. Some of cleaning up some of the basic access to the stack and the memory, and the jumps, and so on, but leaving the fundamental feature set of the EVM kind of the same.",
+          "caption": "It's somehow simpler to not do these changes to the, to the model of the Evm. And just only focus on the encoding of the bytecode. Some of like cleaning up some of the basic access to the stack and the memory, and the jumps, and so on, but leaving the fundamental feature set of the Evm. Kind of the same",
+          "chunks": [
+            {
+              "ord": 82,
+              "t": 2344,
+              "raw": "It's somehow simpler to not do these changes to the, to the model of the Evm. And just only focus on the encoding of the bytecode. Some of like cleaning up some of the basic access to the stack and the memory, and the jumps, and so on, but leaving the fundamental feature set of the Evm. Kind of the same"
+            }
+          ],
+          "edits": [
+            "dropped the stutter \"to the,\" and the filler \"like\" in \"Some of like cleaning up\""
+          ]
+        },
+        {
+          "t": 2344,
+          "clean": "Whereas with the proposed changes of removing code introspection, removing gas introspection, it really cuts a lot of things out of the model that exists right now.",
+          "caption": "whereas with this the proposed changes of removing code introspection, removing gas introspection. It really cuts like a lot of things out of the model that exists right now",
+          "chunks": [
+            {
+              "ord": 82,
+              "t": 2344,
+              "raw": "whereas with this the proposed changes of removing code introspection, removing gas introspection. It really cuts like a lot of things out of the model that exists right now"
+            }
+          ],
+          "edits": [
+            "dropped the stray \"this\" in \"with this the proposed changes\""
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-07",
+      "kind": "quote",
+      "date": "2025-03-27",
+      "date_label": "27 March 2025",
+      "place": "All Core Devs - Execution #208",
+      "speaker": "Ben Adams",
+      "speaker_slug": "ben-adams",
+      "talk_id": "3d882db6-3875-4116-8c50-040a65c119f6",
+      "talk_slug": "all-core-devs-execution-208",
+      "note": "The scale argument from a Nethermind developer: EOF is small next to what already goes into a fork.",
+      "lines": [
+        {
+          "t": 2869,
+          "clean": "Since the last hard fork, Geth, for instance, has had 1,430 changes with 160,000 lines changed. EOF is in Geth. It's like a thousand line change. So compared to how much goes into a fork, it is a small change.",
+          "caption": "Since the last hard fork. Geth, for instance, has had a hundred and sorry. 1,430 changes with 160,000 lines changed. Never mind, because I had about the same scale. Eof is in Geth. It's like a thousand line change. So you know, compared to how much goes into a fork. It is a small change",
+          "chunks": [
+            {
+              "ord": 100,
+              "t": 2869,
+              "raw": "Since the last hard fork. Geth, for instance, has had a hundred and sorry. 1,430 changes with 160,000 lines changed. Never mind, because I had about the same scale. Eof is in Geth. It's like a thousand line change. So you know, compared to how much goes into a fork. It is a small change"
+            }
+          ],
+          "edits": [
+            "dropped the abandoned figure \"a hundred and sorry\" and the garbled caption fragment \"Never mind, because I had about the same scale\", which cannot be recovered"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-08",
+      "kind": "quote",
+      "date": "2025-03-27",
+      "date_label": "27 March 2025",
+      "place": "All Core Devs - Execution #208",
+      "speaker": "Tim Beiko",
+      "speaker_slug": "tim-beiko",
+      "talk_id": "3d882db6-3875-4116-8c50-040a65c119f6",
+      "talk_slug": "all-core-devs-execution-208",
+      "note": "The outcome of #208 as the chair stated it: go ahead with the full version (option A) plus the PAY opcode, split into small devnet steps so PeerDAS is not held up. Cut before his closing remarks.",
+      "lines": [
+        {
+          "t": 4075,
+          "clean": "The decision would be: move forward with option A for EOF, include the [PAY opcode] change, and then break this down into manageable chunks for the devnet implementation so that we're not holding off. We're not holding all of [PeerDAS].",
+          "caption": "the decision would be, move forward with option. A for eof include the pay off code, change and then break this down into manage manageable chunks for the Devnet implementation so that we're not holding off. We're not holding all of peered ass.",
+          "chunks": [
+            {
+              "ord": 134,
+              "t": 4075,
+              "raw": "the decision would be, move forward with option. A for eof include the pay off code, change and then break this down into manage manageable chunks for the Devnet implementation so that we're not holding off. We're not holding all of peered ass."
+            }
+          ],
+          "edits": [
+            "dropped the stutter \"manage\" before \"manageable\""
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-solidity-2025",
+      "kind": "written",
+      "date": "2025-03-27",
+      "date_label": "27 March 2025",
+      "place": "Solidity blog",
+      "author": "Kamil Śliwak",
+      "author_slug": "kamil-sliwak",
+      "source_title": "The Case for EOF",
+      "source_url": "https://soliditylang.org/blog/2025/03/27/the-case-for-eof/",
+      "note": "Solidity's written case, posted on the day of All Core Devs #208 and linked from the Magicians thread. It concedes the client cost before answering it.",
+      "lines": [
+        {
+          "text": "The EVM Object Format is a long awaited upgrade that modernizes the EVM and removes obstacles that have wide-ranging effects on the entire language, tooling and application ecosystem on Ethereum. Solidity is in full support of the proposal and in this post we would like to explain why."
+        },
+        {
+          "text": "It is undeniable that the Ethereum clients bear most of the maintenance burden of this change as they will have to support both EOF and the legacy EVM for the foreseeable future. The benefits to clients of adopting EOF are also much less obvious."
+        },
+        {
+          "text": "However, we suspect that the burden is largely overstated. EOF is not a completely new VM design. It shares a lot more with the legacy EVM than it differs."
+        },
+        {
+          "text": "If the argument is that there should be no changes on the execution layer at all, our opinion is that it is way too early to ossify it."
+        }
+      ]
+    },
+    {
+      "id": "s-09",
+      "kind": "quote",
+      "date": "2025-04-24",
+      "date_label": "24 April 2025",
+      "place": "All Core Devs - Execution #210",
+      "speaker": "Ben Adams",
+      "speaker_slug": "ben-adams",
+      "talk_id": "ee38dcdf-d400-470c-be58-7e1bb3da67eb",
+      "talk_slug": "all-core-devs-execution-210",
+      "note": "The new problem that reopened the version question: big libraries cannot be compiled for EOF without the introspection opcodes. Ben hedges that it may be a compiler issue.",
+      "lines": [
+        {
+          "t": 1179,
+          "clean": "I don't think we're ready to [deprecate] the introspection [opcodes], because you can't compile Uniswap contracts. You can't compile [OpenZeppelin]. You can't compile [Solady]. I mean, this may be perhaps a compiler thing. Maybe it's pulling in too much of the libraries. But nevertheless, the developer experience isn't there yet for these updates to be [deprecated].",
+          "caption": "I don't think we're ready to depreciate the the introspection OP codes because you can't compile uniswap contracts. You can't compile open Zeppelin. You can't compile. So, lady, I mean, this may be perhaps a compiler thing. Maybe it's pulling in too much of the libraries. But nevertheless, the developer experience isn't, isn't there yet for these updates to be depreciated",
+          "chunks": [
+            {
+              "ord": 43,
+              "t": 1179,
+              "raw": "I don't think we're ready to depreciate the the introspection OP codes because you can't compile uniswap contracts. You can't compile open Zeppelin. You can't compile. So, lady, I mean, this may be perhaps a compiler thing. Maybe it's pulling in too much of the libraries. But nevertheless, the developer experience isn't, isn't there yet for these updates to be depreciated"
+            }
+          ],
+          "edits": [
+            "dropped the repeated \"isn't\""
+          ]
+        },
+        {
+          "t": 1179,
+          "clean": "So the suggestion is, we bring back those [opcodes], and at a later stage we could do EOF supports versioning, so we could do a EOF 2, second version, that [deprecates] them.",
+          "caption": "So the suggestion is, we bring back those up codes, and at a later stage we could do eof supports versioning so we could do a eof 2 second version that depreciates them",
+          "chunks": [
+            {
+              "ord": 43,
+              "t": 1179,
+              "raw": "So the suggestion is, we bring back those up codes, and at a later stage we could do eof supports versioning so we could do a eof 2 second version that depreciates them"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-10",
+      "kind": "quote",
+      "date": "2025-04-24",
+      "date_label": "24 April 2025",
+      "place": "All Core Devs - Execution #210",
+      "speaker": "Georgios Konstantopoulos",
+      "speaker_slug": "georgios-konstantopoulos",
+      "talk_id": "ee38dcdf-d400-470c-be58-7e1bb3da67eb",
+      "talk_slug": "all-core-devs-execution-210",
+      "note": "A client-team voice that wanted EOF but put PeerDAS first and said what has to work for builders; shows the objection was readiness, not the idea.",
+      "lines": [
+        {
+          "t": 1978,
+          "clean": "I was really hopeful for EOF as a general improvement. It seems to me that we can still get the benefits of it if we get rid of the [code, gas] introspection [bans]. But I think it's totally fine if we don't have the testing budget or time allocation to get things done.",
+          "caption": "I was really hopeful for Eof as a general like improvement. It seems to me that we can still get the benefits of it if we get rid of the cold gas introspection bands. But I think it's totally fine if we don't have the testing budget or time allocation to get things done",
+          "chunks": [
+            {
+              "ord": 76,
+              "t": 1978,
+              "raw": "I was really hopeful for Eof as a general like improvement. It seems to me that we can still get the benefits of it if we get rid of the cold gas introspection bands. But I think it's totally fine if we don't have the testing budget or time allocation to get things done"
+            }
+          ]
+        },
+        {
+          "t": 1978,
+          "clean": "But if anything ends up compromising [PeerDAS], I think it's going to be a gigantic failure. So it's so important to make sure that whatever we ship doesn't compromise that goal.",
+          "caption": "But if anything like ends up compromising period. I think it's going to be gigantic failure. So it's just so so important to like, make sure that, like whatever we ship doesn't compromise that goal",
+          "chunks": [
+            {
+              "ord": 76,
+              "t": 1978,
+              "raw": "But if anything like ends up compromising period. I think it's going to be gigantic failure. So it's just so so important to like, make sure that, like whatever we ship doesn't compromise that goal"
+            }
+          ]
+        },
+        {
+          "t": 2057,
+          "clean": "The complexity part, I don't think is the important thing. The important thing is contracts need to work and compile. And there's too much code that uses all of this stuff, right?",
+          "caption": "the complexity part, I don't think is like the important thing. The important thing is like contracts need to work and compile. And there's too much code that uses all of this stuff right?",
+          "chunks": [
+            {
+              "ord": 80,
+              "t": 2057,
+              "raw": "the complexity part, I don't think is like the important thing. The important thing is like contracts need to work and compile. And there's too much code that uses all of this stuff right?"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-11",
+      "kind": "quote",
+      "date": "2025-04-24",
+      "date_label": "24 April 2025",
+      "place": "All Core Devs - Execution #210",
+      "speaker": "Danno Ferrin",
+      "speaker_slug": "danno-ferrin",
+      "talk_id": "ee38dcdf-d400-470c-be58-7e1bb3da67eb",
+      "talk_slug": "all-core-devs-execution-210",
+      "note": "The lead champion's answer the same day: restore the opcodes (option D) and EOF gets smaller, not bigger.",
+      "lines": [
+        {
+          "t": 1459,
+          "clean": "There was an option called Option D, where we would return all of these opcodes that were related to gas introspection and ext code introspections with the restriction that you wouldn't be able to introspect into EOF contracts.",
+          "caption": "there was an option called Option D, where we would return all of these opcodes that were related to gas introspection and ext code introspections with the restriction that you wouldn't be able to introspect into Eof contracts",
+          "chunks": [
+            {
+              "ord": 59,
+              "t": 1459,
+              "raw": "there was an option called Option D, where we would return all of these opcodes that were related to gas introspection and ext code introspections with the restriction that you wouldn't be able to introspect into Eof contracts"
+            }
+          ]
+        },
+        {
+          "t": 1502,
+          "clean": "When we went with the [ban on] gas introspection, that the gas would be broken in these contracts was the design intent. So this is the outcome of it, it is not terribly surprising.",
+          "caption": "when we went with the the band gas introspection. That the gas would be broken in these contracts was the design intent? So that this is the outcome of it is not terribly surprising.",
+          "chunks": [
+            {
+              "ord": 60,
+              "t": 1502,
+              "raw": "when we went with the the band gas introspection. That the gas would be broken in these contracts was the design intent? So that this is the outcome of it is not terribly surprising."
+            }
+          ],
+          "edits": [
+            "starts after \"but\" and \"Those would all then work\" (the opcodes that would let contracts compile); the caption \"the the band gas introspection\" is read as \"the ban on gas introspection\", as the same call uses \"bands\" for \"bans\""
+          ]
+        },
+        {
+          "t": 1603,
+          "clean": "[EOF] Devnet 2. We would get rid of most of the features, and instead just enable the [opcodes], and for most of the clients that should be a really small lift, because they just need to go into their tables and change a few values.",
+          "caption": "uf Devnet 2. We would get rid of most of the features, and instead just enable the OP. Codes, and for most of the clients that should be a really small lift, because they just need to go into their tables and change a few values.",
+          "chunks": [
+            {
+              "ord": 63,
+              "t": 1603,
+              "raw": "uf Devnet 2. We would get rid of most of the features, and instead just enable the OP. Codes, and for most of the clients that should be a really small lift, because they just need to go into their tables and change a few values."
+            }
+          ],
+          "edits": [
+            "starts at \"Devnet 2\" so that \"the features\" is clear: Danno has just said the first devnet stays as it is and means the features of the second devnet"
+          ]
+        },
+        {
+          "t": 1637,
+          "clean": "So going with this option does result in less scope and less work that needs to be done.",
+          "caption": "So this going with this option does result in in less scope and less work that needs to be done.",
+          "chunks": [
+            {
+              "ord": 64,
+              "t": 1637,
+              "raw": "So this going with this option does result in in less scope and less work that needs to be done."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-17",
+      "kind": "quote",
+      "date": "2025-04-24",
+      "date_label": "24 April 2025",
+      "place": "All Core Devs - Execution #210",
+      "speaker": "Alex Beregszaszi",
+      "speaker_slug": "alex-beregszaszi",
+      "talk_id": "ee38dcdf-d400-470c-be58-7e1bb3da67eb",
+      "talk_slug": "all-core-devs-execution-210",
+      "note": "The first-hand Solidity side of the readiness question that day: Ipsilon, the team behind the Solidity compiler work, rewrote parts of the Solady library for EOF and found nothing it could not do, with the assembly parts changed by hand. Answers Georgios and Ben's worry that big libraries cannot be compiled for EOF.",
+      "lines": [
+        {
+          "t": 2205,
+          "clean": "In [Ipsilon] internally, we actually did change the [Solady] implementation. Most of the pieces, to prove that it can be compiled with [EOF]. Not talking about the gas parameter, but rather the [CREATE2]-style cases, which look a bit more complex to be accomplished, and those can also be accomplished with [EOF]. And those are the pieces we have rewritten. So far, we haven't really found a feature which cannot be accomplished with [EOF].",
+          "caption": "Just wanted to highlight that in epsilon internally, we actually did change the solely the implementation. Like most of the the pieces. To prove that it can be compiled with us. not talking about the the gas parameter, but rather the create 2 style cases which look a bit more complex to to be accomplished, and those can also be accomplished with the Uf. And those are the pieces we have rewritten. So so far, you know, haven't really found a feature which cannot be accomplished with Uf",
+          "chunks": [
+            {
+              "ord": 90,
+              "t": 2205,
+              "raw": "Just wanted to highlight that in epsilon internally, we actually did change the solely the implementation. Like most of the the pieces. To prove that it can be compiled with us. not talking about the the gas parameter, but rather the create 2 style cases which look a bit more complex to to be accomplished, and those can also be accomplished with the Uf. And those are the pieces we have rewritten. So so far, you know, haven't really found a feature which cannot be accomplished with Uf"
+            }
+          ],
+          "edits": [
+            "\"the solely the implementation\" is read as \"the [Solady] implementation\" (the Solady library, confirmed by his chat message on the call: \"we have rewritten some of the Solady features\"), dropping the second \"the\"; \"we\" is supplied before \"haven't really found\" (the caption starts \"So so far, you know, haven't\"); \"create 2 style\" is written \"[CREATE2]-style\"; ends before the caption's next sentence, which says the source code has to be changed, and that point is in the next line"
+          ]
+        },
+        {
+          "t": 2254,
+          "clean": "Obviously, you cannot automatically translate the assembly part in Solidity, because the commitment of Solidity is that the assembly part is left intact. That's controlled by the author. So that's why we manually have to change it. But all of these changes I mentioned have been done in the assembly parts. None of the other parts have to be adjusted.",
+          "caption": "obviously, you cannot like automatically translate the assembly, part in solidity, because the commitment of solidity is that the assembly part is left intact. That's controlled by the the author. So that's why, you know, we manually have to change it. But all of these changes I mentioned have been done in the assembly parts. None of the other parts have to be adjusted.",
+          "chunks": [
+            {
+              "ord": 92,
+              "t": 2254,
+              "raw": "obviously, you cannot like automatically translate the assembly, part in solidity, because the commitment of solidity is that the assembly part is left intact. That's controlled by the the author. So that's why, you know, we manually have to change it. But all of these changes I mentioned have been done in the assembly parts. None of the other parts have to be adjusted."
+            }
+          ],
+          "edits": [
+            "starts at \"obviously\", after the answer opener \"No, I mean, these are the assembly parts\" to Tim Beiko's question whether the assembly stuff is fundamentally impossible"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-12",
+      "kind": "quote",
+      "date": "2025-04-24",
+      "date_label": "24 April 2025",
+      "place": "All Core Devs - Execution #210",
+      "speaker": "Lightclient",
+      "speaker_slug": "lightclient",
+      "talk_id": "ee38dcdf-d400-470c-be58-7e1bb3da67eb",
+      "talk_slug": "all-core-devs-execution-210",
+      "note": "The second concern raised that day: whether to ship EOF at all if a RISC-V execution layer is on the horizon. Guillaume Ballet and Tim Beiko answered it on the call (not quoted here).",
+      "lines": [
+        {
+          "t": 2901,
+          "clean": "In the past we've said EOF is better for [ZK] proving, and that seems true. But we're talking about marginal improvements over legacy, [10, 20], 30% improvements. And they're talking about [RISC-V] being orders of magnitude faster.",
+          "caption": "And in the past we've said Eof is better for Zk proving, and that seems true. But we're talking about marginal improvements over legacy, 1020, 30% improvements. And they're talking about risk 5 being orders of magnitude faster",
+          "chunks": [
+            {
+              "ord": 124,
+              "t": 2901,
+              "raw": "And in the past we've said Eof is better for Zk proving, and that seems true. But we're talking about marginal improvements over legacy, 1020, 30% improvements. And they're talking about risk 5 being orders of magnitude faster"
+            }
+          ]
+        },
+        {
+          "t": 2901,
+          "clean": "So if we're already talking about switching to a different execution substrate, and we haven't even shipped EOF, I worry about the amount of work that client teams are putting in. I worry about the work the community is going to have to put in just to support EOF when in a few years we're going to say we really want to do [RISC-V] now, because we need to support [zero-knowledge] proving. And we deprecate all of that work.",
+          "caption": "So if we're already talking about. you know, switching to a different execution substrate. and we haven't even shipped eof. I worry about the amount of work that client teams are putting in. I worry about the work the community is going to have to put in just to support Eof when in a few years we're going to say we really want to do risk 5 now, because we need to support 0 knowledge proving. And we deprecate all of that work.",
+          "chunks": [
+            {
+              "ord": 124,
+              "t": 2901,
+              "raw": "So if we're already talking about."
+            },
+            {
+              "ord": 125,
+              "t": 2956,
+              "raw": "you know, switching to a different execution substrate. and we haven't even shipped eof. I worry about the amount of work that client teams are putting in. I worry about the work the community is going to have to put in just to support Eof when in a few years we're going to say we really want to do risk 5 now, because we need to support 0 knowledge proving. And we deprecate all of that work."
+            }
+          ],
+          "edits": [
+            "dropped the filler \"you know\""
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-decision",
+      "kind": "decision",
+      "date": "2025-04-28",
+      "date_label": "28 April 2025",
+      "place": "All Core Devs Testing call #34 (Interop Testing)",
+      "title": "Removed from Fusaka",
+      "body": "Core developers decided on this call to take EOF out of the Fusaka upgrade, and the notes record it as Declined for Inclusion. Tim Beiko's written reasons: the risk to Fusaka's timeline when shipping PeerDAS quickly came first, a variant whose implications some on the call realised they did not understand, and objections raised each time EOF was approved that the process never resolved. Several client teams had backed EOF, and its champions could make the case again for Glamsterdam.",
+      "link": "https://ethereum-magicians.org/t/interop-testing-34-april-28-2025/23822",
+      "link_label": "Read the call notes",
+      "note": "Confirmed from the Interop Testing #34 notes on Ethereum Magicians (opened 3 Nov 2026): \"EOF removed from Fusaka upgrade (Declined for Inclusion)\". The reasons are those copied into the notes from Tim Beiko's text in EIPs PR #9703 (EIP-7607 update). Notes list the call stream as youtube.com/watch?v=GcA-sVRSCHc; the recording link in the brief was M3DWaWbIB3s. Re-read on 6 Nov 2026: EIPs PR #9703 (\"Update EIP-7607: Remove EOF from Fusaka\", closed with the change merged on 28 Apr 2025) carries the three reasons quoted; EIP-7607 is now Final and does not list EOF; EIP-7692 is marked Stagnant."
+    },
+    {
+      "id": "s-13",
+      "kind": "quote",
+      "date": "2025-05-05",
+      "date_label": "5 May 2025",
+      "place": "Bankless",
+      "speaker": "Tomasz Stańczak",
+      "speaker_slug": "tomasz-stanczak",
+      "talk_id": "ea04949e-8370-49f6-a2b0-12d7dc0cc2e8",
+      "talk_slug": "new-chapter-ethereum-bankless",
+      "note": "A week after: the then new Ethereum Foundation co-director, who founded the Nethermind client, on what the removal was and was not, and the application-builder objection.",
+      "lines": [
+        {
+          "t": 2905,
+          "clean": "Many people actually got confused and believe that this discussion about release that is coming the 7th of May, but it's actually Fusaka we talking about, the thing six months from now. So it's not really a last-moment removal. It's a removal of the feature that is designed to go in a fork that is not even fully scheduled.",
+          "caption": "many people actually got confused and believe that this discussion about release that is coming the 7th of May but it's it's actually Fusaka we talking about the thing six months from now so it's not really a a last last moment removal it's a removal of the feature uh that is that is designed to go in a fork that is not even fully scheduled",
+          "chunks": [
+            {
+              "ord": 68,
+              "t": 2905,
+              "raw": "many people actually got confused and believe that this discussion about release that is coming the 7th of May but it's it's actually Fusaka we talking about the thing six months from now so it's not really a a last last moment removal it's a removal of the feature uh that is that is designed to go in a fork that is not even fully scheduled"
+            }
+          ],
+          "edits": [
+            "dropped the repeated words \"it's\", \"a\", \"last\" and \"that is\""
+          ]
+        },
+        {
+          "t": 2948,
+          "clean": "Now we have a discussion about, actually, after we decide it goes in, then the ecosystem, application builders, say, \"Look, we want you to prioritize other things for a few months from now. We want you to remove it, because we're absolutely not convinced that this is what we need.\"",
+          "caption": "and now we have discussion about actually after after we decide it goes in then the ecosystem like application builder say look like we want you to prioritize other things for a few months from now. We want you to to remove it because we're absolutely not convinced that this is what we need",
+          "chunks": [
+            {
+              "ord": 69,
+              "t": 2948,
+              "raw": "and now we have discussion about actually after after we decide it goes in then the ecosystem like application builder say look like we want you to prioritize other things for a few months from now. We want you to to remove it because we're absolutely not convinced that this is what we need"
+            }
+          ],
+          "edits": [
+            "\"application builder say\" in the caption is written \"application builders say\""
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-14",
+      "kind": "quote",
+      "date": "2025-05-08",
+      "date_label": "8 May 2025",
+      "place": "All Core Devs - Execution #211",
+      "speaker": "Marius van der Wijden",
+      "speaker_slug": "marius-van-der-wijden",
+      "talk_id": "5783a9a0-6bf5-42a0-921e-cccf296b67f6",
+      "talk_slug": "all-core-devs-execution-211",
+      "note": "Two weeks after the removal, asked whether static jumps (the idea EOF carried) can come back on their own: a Geth developer likes it but ranks it below other work.",
+      "lines": [
+        {
+          "t": 4858,
+          "clean": "I think it's a nice feature to have only static jumps. I also see the problem with the dynamic jumps. I dislike the [jumpdest] analysis, and all of this. But I don't see this as a priority over other features.",
+          "caption": "I think it's a it's a nice feature to have only static jumps. I also I see the problem with the dynamic jumps. I dislike the jump, desk analysis, and all of this. but I don't see this as a priority over other features",
+          "chunks": [
+            {
+              "ord": 165,
+              "t": 4858,
+              "raw": "I think it's a it's a nice feature to have only static jumps. I also I see the problem with the dynamic jumps. I dislike the jump, desk analysis, and all of this. but I don't see this as a priority over other features"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-wei-2025",
+      "kind": "written",
+      "date": "2025-06-05",
+      "date_label": "5 June 2025",
+      "place": "Ethereum Magicians",
+      "author": "Wei Tang",
+      "source_title": "Glamsterdam headliner proposal: EOF",
+      "source_url": "https://ethereum-magicians.org/t/glamsterdam-headliner-proposal-eof/24464/1",
+      "note": "The champions' answer to the invitation in the Fusaka removal: the case for EOF made again, for Glamsterdam. The post copies the Ipsilon options document.",
+      "lines": [
+        {
+          "text": "This is a headliner proposal for EOF for Glamsterdam. EOF was SFI'd and then DFI'd for Fusaka. This proposal repropose it for Glamsterdam."
+        }
+      ]
+    },
+    {
+      "id": "w-frangio-2025",
+      "kind": "written",
+      "date": "2025-09-27",
+      "date_label": "27 September 2025",
+      "place": "Ethereum Magicians",
+      "author": "Francisco Giordano",
+      "author_slug": "francisco-giordano",
+      "source_title": "EVM Immediates",
+      "source_url": "https://ethereum-magicians.org/t/evm-immediates/25605/1",
+      "note": "After the removal, the problem EOF solved is restated without it: how to add instructions with immediate operands without breaking old code. Written by a co-author of the backward-compatible stack instructions (EIP-8024) now scheduled for Glamsterdam. The post names EOFv1 and says bytecode versioning is the way to add immediates.",
+      "lines": [
+        {
+          "text": "Many instructions have been proposed in the past that would've liked to use immediate operands, where the operand value is a constant hardcoded in the bytecode instead. No such instruction has been accepted yet because of concerns about breaking existing EVM bytecode."
+        },
+        {
+          "text": "The simplest way to introduce immediates without breaking existing code is to use EOF-like bytecode versioning"
+        }
+      ]
+    },
+    {
+      "id": "w-stokes-2025",
+      "kind": "written",
+      "date": "2025-11-12",
+      "date_label": "12 November 2025",
+      "place": "Ethereum Magicians",
+      "author": "ralexstokes",
+      "source_title": "Delivering an impactful 2026",
+      "source_url": "https://ethereum-magicians.org/t/delivering-an-impactful-2026/26532/1",
+      "note": "A core developer's own reading of why EOF was not selected, written before Glamsterdam scoping decisions. The post says it gives personal views. Handle shown as the forum shows it.",
+      "lines": [
+        {
+          "text": "These are only my personal views, and I wanted to get something out in writing ahead of upcoming ACD calls where we will be making scoping decisions."
+        },
+        {
+          "text": "By way of summary, Verkle was not selected due to technical risk (different state schemes became more attractive given other technological developments) and EOF was not selected due to social risk (the change was deemed too big by the community for something so central as Ethereum’s core virtual machine)."
+        }
+      ]
+    },
+    {
+      "id": "s-15",
+      "kind": "quote",
+      "date": "2026-04-23",
+      "date_label": "23 April 2026",
+      "place": "All Core Devs - Execution #235",
+      "speaker": "Greg Colvin",
+      "speaker_slug": "greg-colvin",
+      "talk_id": "763cee75-b1f5-4265-8c13-68a2dbff1e0c",
+      "talk_slug": "all-core-devs-execution-235",
+      "note": "A year on, the author of the simple-subroutines proposal for Glamsterdam says where EOF stands and asks the people who oppose him to say why.",
+      "lines": [
+        {
+          "t": 4304,
+          "clean": "Everything before EOF is basically dead. Has been for a long time. [EOF] is still there. So far as I know, it has no champions. So it's on life support at best. And so this is pretty much a resurrection and reworking of EIP-2315 from long ago, attempting to answer all the criticisms there that I felt were legitimate.",
+          "caption": "Everything… Everything before EOF is basically dead. Has been for a long time. Uf is still there. So far as I know, it has no champions. So, it's on life support at best. And, so this is… this is pretty much a resurrection and reworking of, EIP2315 from long ago, attempting to answer all of the… all the criticisms there that I felt were legitimate",
+          "chunks": [
+            {
+              "ord": 174,
+              "t": 4304,
+              "raw": "Everything… Everything before EOF is basically dead. Has been for a long time. Uf is still there. So far as I know, it has no champions. So, it's on life support at best. And, so this is… this is pretty much a resurrection and reworking of, EIP2315 from long ago, attempting to answer all of the… all the criticisms there that I felt were legitimate"
+            }
+          ],
+          "edits": [
+            "dropped the repeated \"all of the\" before \"all the criticisms\""
+          ]
+        },
+        {
+          "t": 4371,
+          "clean": "I would really like to hear there, or one-on-one, or on the breakout, from people who are just really opposed to this, because over the years there's been certain people who've just been really opposed, and I'd like to understand why and see if there's changes that'll make a difference, or if the opposition is essentially unresolvable.",
+          "caption": "I would really like to hear there, or one-on-one, or on the breakout. from people who are just really opposed to this, because over the years, there's been certain people who've just been really opposed, and I'd like to understand why and see if there's changes that'll make a difference, or if the opposition is essentially unresolvable.",
+          "chunks": [
+            {
+              "ord": 175,
+              "t": 4371,
+              "raw": "I would really like to hear there, or one-on-one, or on the breakout. from people who are just really opposed to this, because over the years, there's been certain people who've just been really opposed, and I'd like to understand why and see if there's changes that'll make a difference, or if the opposition is essentially unresolvable."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-16",
+      "kind": "quote",
+      "date": "2026-04-23",
+      "date_label": "23 April 2026",
+      "place": "All Core Devs - Execution #235",
+      "speaker": "Marius van der Wijden",
+      "speaker_slug": "marius-van-der-wijden",
+      "talk_id": "763cee75-b1f5-4265-8c13-68a2dbff1e0c",
+      "talk_slug": "all-core-devs-execution-235",
+      "note": "A Geth developer's answer: what moved him on EOF was a compiler team committing to use it; he wants the same signal again.",
+      "lines": [
+        {
+          "t": 4410,
+          "clean": "That was the main reason why we removed the first one [EIP-2315] out of the fork, is because Solidity said that they're not going to use it.",
+          "caption": "That was the main reason why we removed the first one out of the fork, is because Solidity said that they're not going to use it",
+          "chunks": [
+            {
+              "ord": 176,
+              "t": 4410,
+              "raw": "That was the main reason why we removed the first one out of the fork, is because Solidity said that they're not going to use it"
+            }
+          ],
+          "edits": [
+            "added \"[EIP-2315]\" after \"the first one\": Greg Colvin has just said he is reviving EIP-2315, and Marius is answering him, so \"the first one\" is that earlier proposal and not the first version of EOF"
+          ]
+        },
+        {
+          "t": 4410,
+          "clean": "With EOF, that was different, because Solidity said that they are behind EOF, and that they are going to use it. So I would really like to have Solidity's opinion again on this one.",
+          "caption": "With EOF, that was different, because Solidity said that they are behind EOF, and that they are going to use it. So I… would really like to have, Solidity's opinion again on this one.",
+          "chunks": [
+            {
+              "ord": 176,
+              "t": 4410,
+              "raw": "With EOF, that was different, because Solidity said that they are behind EOF, and that they are going to use it. So I…"
+            },
+            {
+              "ord": 177,
+              "t": 4464,
+              "raw": "would really like to have, Solidity's opinion again on this one."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-status",
+      "kind": "status",
+      "date": "2026-11-06",
+      "date_label": "6 November 2026",
+      "place": "EIP-7773 (Glamsterdam)",
+      "title": "Not in the next upgrade",
+      "body": "The meta EIP for Glamsterdam, EIP-7773, which is still under review, does not list EOF among the EIPs scheduled for inclusion. Fusaka, now final in EIP-7607, does not include it either, and EIP-7692, the EOF meta, is marked Stagnant. The Glamsterdam list does include EIP-8024, a backward-compatible version of the SWAPN, DUPN and EXCHANGE stack instructions that EIP-7692 had counted among EOF's EIPs. We found no upgrade that lists EOF.",
+      "link": "https://eips.ethereum.org/EIPS/eip-7773",
+      "link_label": "Read EIP-7773",
+      "note": "Primary sources, read on 6 Nov 2026: EIP-7773 (status Review, last edited 22 Oct 2026), section EIPs Scheduled for Inclusion: no EOF EIP; EIP-8024 listed. EIP-7607 (Final since 4 Feb 2026) lists no EOF EIP. EIP-7692 header: Stagnant Meta; it lists EIP-663 (SWAPN, DUPN and EXCHANGE) among the EOFv1 EIPs. EIP-8024 abstract: SWAPN, DUPN and EXCHANGE lifting the stack-depth limit of 16; its rationale notes that the alternative needed bytecode versioning (EOF). Glamsterdam headliners ePBS and BALs are named in ralexstokes's post of 12 Nov 2025 (stop w-stokes-2025). The Besu Glamsterdam position paper (undated) says its EOF implementation is complete but defers it; not quoted."
+    }
+  ],
+  "audit": {
+    "date": "2026-11-10",
+    "spec_changes": [
+      {
+        "eip": "EIP-3540",
+        "date": "2021-03-16",
+        "change": "EOF first proposed as a container format for EVM code (forum thread; EIP-3540 drafted in 2021).",
+        "link": "https://ethereum-magicians.org/t/evm-object-format-eof/5727/1",
+        "agreed_at": "Forum thread",
+        "stop": "w-axic-2021"
+      },
+      {
+        "eip": "EIP-4750",
+        "date": "2022-12-01",
+        "change": "Dynamic jumps disallowed in EOF code (EIP PR 6044); static relative jumps via EIP-4200, functions via CALLF/RETF.",
+        "link": "https://github.com/ethereum/EIPs/commit/1eac0a7a",
+        "agreed_at": "EOF breakout room #3 (2022-12-02) and All Core Devs Execution #150 and #151 (Nov to Dec 2022)",
+        "stop": "s-02"
+      },
+      {
+        "eip": "EIP-4750 / EIP-6206",
+        "date": "2022-12-08",
+        "change": "JUMPF added (EIP-4750 PR 6023; own EIP-6206 on 2022-12-22).",
+        "link": "https://github.com/ethereum/EIPs/commit/49c14e30",
+        "agreed_at": "EOF breakouts of Dec 2022; Lightclient's update on All Core Devs Execution #152",
+        "why_not": "Instruction addition inside a spec the debate was not about."
+      },
+      {
+        "eip": "EIP-3540 family",
+        "date": "2023-01-05",
+        "change": "Proposal to ban code and gas introspection, which later grew into the 'mega EOF' spec (presented 2023-03-30, All Core Devs Execution #158).",
+        "link": "https://github.com/ethereum/EIPs/commit/201ac960",
+        "agreed_at": "All Core Devs Execution #152 (2023-01-05): Vitalik's proposal, EOF team's reply",
+        "stop": "w-vitalik-2022, s-18"
+      },
+      {
+        "eip": "EIP-3540 family",
+        "date": "2023-01-05",
+        "change": "EOF removed from Shanghai: the chair reads the consensus on the call that it is not included.",
+        "link": "https://github.com/ethereum/EIPs/commits/master/EIPS/eip-3540.md",
+        "agreed_at": "All Core Devs Execution #152 (2023-01-05), ord 139; preceded by #151 (2022-12-08) where it stayed in only if ready",
+        "stop": "s-22, s-23"
+      },
+      {
+        "eip": "EIP-3540 family",
+        "date": "2023-04-27",
+        "change": "All EOF EIPs removed from Cancun's considered list; Danno Ferrin (lead champion) supports it.",
+        "link": "https://github.com/ethereum/EIPs/commits/master/EIPS/eip-3540.md",
+        "agreed_at": "All Core Devs Execution #160 (2023-04-27), ord 152 and 162",
+        "stop": "s-24"
+      },
+      {
+        "eip": "EIP-7069",
+        "date": "2023-06-05",
+        "change": "Revamped CALL instructions (EXTCALL family): gas is no longer passed, removing gas observability (EIP-7069 added; opcodes renumbered 2023-07-13).",
+        "link": "https://github.com/ethereum/EIPs/commit/131bc905",
+        "agreed_at": "Presented by Alex Beregszaszi on All Core Devs Execution #162 (2023-05-25), ord 172 to 245",
+        "stop": "s-06",
+        "why_not": "The gas-introspection loss is what Felix Lange objects to in March 2025 (s-06) and what option A keeps (s-08)."
+      },
+      {
+        "eip": "EIP-3540",
+        "date": "2023-06-05",
+        "change": "EOF1 contracts can only DELEGATECALL EOF1 contracts (EXTDELEGATECALL to legacy forbidden).",
+        "link": "https://github.com/ethereum/EIPs/commit/201ac960",
+        "agreed_at": "EOF implementers calls (June 2023, unlabelled transcripts)",
+        "why_not": "The objection (proxies, ERC-721/1155 is-contract checks) was first argued on All Core Devs Execution #195 (2024-08-29), which has no speaker labels or credited speakers, so no line can be attributed; Francisco Giordano's later post carries it (w-frangio-2025). Logged as x-acde-195."
+      },
+      {
+        "eip": "EIP-3670 / EIP-4750 / EIP-7480",
+        "date": "2024-03-12",
+        "change": "Specs aligned to the 'EOF Megaspec' (several EIP updates, Mar to Apr 2024), the bundle later listed in EIP-7692.",
+        "link": "https://github.com/ethereum/EIPs/commit/3014992e",
+        "agreed_at": "EOF implementers calls (unlabelled)",
+        "why_not": "Consolidation of earlier changes; no argument turns on it."
+      },
+      {
+        "eip": "EIP-7620 / EIP-7698",
+        "date": "2024-05-13",
+        "change": "Contract-creation transaction (TXCREATE), initcode transaction and the creator contract removed from EOF v1; EIP-7698 (EOF creation transaction) added 2024-05-01 for the simplified route.",
+        "link": "https://github.com/ethereum/EIPs/commit/4badb4ae",
+        "agreed_at": "EOF implementers call (2024-05-08), reported on All Core Devs Execution #187 (2024-05-09) by Danno Ferrin and Alex Beregszaszi; first floated on #186 (2024-04-25)",
+        "stop": "s-27, s-28"
+      },
+      {
+        "eip": "EIP-7692",
+        "date": "2024-06-06",
+        "change": "EOF (the whole EIP list in EIP-7692) moved into Pectra: 'I would move forward with including EOF in Pectra', devnet 1 kept free of it.",
+        "link": "https://github.com/ethereum/EIPs/commit/ad9bf2bd",
+        "agreed_at": "All Core Devs Execution #189 (2024-06-06), ord 136 (also ord 95 to 98)",
+        "stop": "s-31, s-32"
+      },
+      {
+        "eip": "EIP-7761",
+        "date": "2024-09-09",
+        "change": "HASCODE instruction added (renamed EXTCODETYPE on 2025-01-23): answer to the loss of EXTCODESIZE/EXTCODEHASH for NFT callbacks and proxies.",
+        "link": "https://github.com/ethereum/EIPs/commit/72f871d6",
+        "agreed_at": "All Core Devs Execution #195 (2024-08-29), where Francisco Giordano's concerns were raised",
+        "why_not": "The call has no speaker labels and no credited speakers, so no line can be attributed (x-acde-195). The argument is carried by w-frangio-2025."
+      },
+      {
+        "eip": "EIP-7873",
+        "date": "2025-02-13",
+        "change": "TXCREATE and the initcode transaction restored as a new EIP, reversing the May 2024 removal (7698 to be dropped).",
+        "link": "https://github.com/ethereum/EIPs/commit/ffb1c704",
+        "agreed_at": "All Core Devs Execution #205 (2025-02-13), Danno Ferrin's EOF update (ord 84); same call froze the Fusaka scope",
+        "why_not": "The transcript has no speaker labels and no credited speakers (x-acde-205); the outcome is visible in s-08's option A and in the Ipsilon options document (w-ipsilon-2025)."
+      },
+      {
+        "eip": "EIP-3540 family",
+        "date": "2025-03-27",
+        "change": "Option A (full EOF) plus the PAY opcode chosen for Fusaka, split into devnet steps.",
+        "link": "https://notes.ethereum.org/@ipsilon/eof_fusaka_options",
+        "agreed_at": "All Core Devs Execution #208 (2025-03-27)",
+        "stop": "s-08"
+      },
+      {
+        "eip": "EIP-5450 / EIP-6206 / EIP-3540 / EIP-7620 / EIP-7692",
+        "date": "2025-04-03",
+        "change": "Eof-devnet-2 refinements during the Fusaka window: EOF-only opcodes banned in legacy code (04-03), EOFCREATE hashing and stack args (04-07, 04-08), max_stack_increase (04-09), kind_data 0xff (04-09), container section size 4 bytes (04-11), simpler stack checks (04-17), eof-devnet-2 EIPs listed in 7692 (04-17), clarifying rewrite of all EOF EIPs (04-27).",
+        "link": "https://github.com/ethereum/EIPs/commit/c3336fd9",
+        "agreed_at": "EOF implementers calls #70 and #71 (April 2025, unlabelled) and All Core Devs Execution #209",
+        "why_not": "Refinements inside option A/D devnets, not argued on the calls we can attribute; the one that mattered to the debate (option D, restoring the opcodes) is s-11."
+      },
+      {
+        "eip": "EIP-7692",
+        "date": "2025-04-28",
+        "change": "EOF removed from Fusaka (EIP-7607 PR 9703).",
+        "link": "https://github.com/ethereum/EIPs/pull/9703",
+        "agreed_at": "Interop Testing #34 (2025-04-28)",
+        "stop": "s-decision"
+      },
+      {
+        "eip": "EIP-7701",
+        "date": "2025-05-09",
+        "change": "Native account abstraction EIP rewritten to remove its dependency on EOF.",
+        "link": "https://github.com/ethereum/EIPs/commit/7e26ce09",
+        "agreed_at": "Not tied to a call",
+        "why_not": "Covered by x-dappcon-panel (a call that could not be attributed) and by the Magicians thread; the EOF debate does not turn on it."
+      },
+      {
+        "eip": "EIP-7692",
+        "date": "2025-06-05",
+        "change": "EOF proposed again as a Glamsterdam headliner (forum post 24464).",
+        "link": "https://ethereum-magicians.org/t/glamsterdam-headliner-proposal-eof/24464",
+        "agreed_at": "Magicians thread",
+        "stop": "w-wei-2025"
+      },
+      {
+        "eip": "EIP-7692",
+        "date": "2025-08-14",
+        "change": "Forkcast records EOF as Declined for Glamsterdam at acde/218.",
+        "link": "https://forkcast.org/eips/7692",
+        "agreed_at": "All Core Devs Execution #218 (2025-08-14)",
+        "why_not": "Checked: the #218 transcript never mentions EOF (the headliners were set to ePBS and block-level access lists), so there is no EOF passage to quote; w-stokes-2025 and s-status carry the outcome."
+      }
+    ],
+    "timelines": [
+      {
+        "title": "Forkcast EIP-7692 page (data file src/data/eips/7692.json)",
+        "url": "https://forkcast.org/eips/7692",
+        "events": [
+          {
+            "date": "undated",
+            "event": "Fusaka: Declined (no call recorded)",
+            "stop": "s-decision"
+          },
+          {
+            "date": "2025-06-05",
+            "event": "Glamsterdam headliner proposal",
+            "stop": "w-wei-2025"
+          },
+          {
+            "date": "2025-08-14",
+            "event": "Declined for Glamsterdam at acde/218",
+            "excluded": "UNMATCHED but checked: no EOF passage in the call; see spec_changes row 2025-08-14"
+          }
+        ]
+      },
+      {
+        "title": "Forkcast pages for EIP-3540, 4200, 4750, 5450, 6206, 3670, 7480, 663 (src/data/eips)",
+        "url": "https://forkcast.org/eips/3540",
+        "events": [
+          {
+            "date": "undated",
+            "event": "Pectra: Considered, then Declined (no call, no date)",
+            "stop": "s-20"
+          }
+        ]
+      },
+      {
+        "title": "Christine Kim, ACDE #210 minutes and 'Figuring out Fusaka'",
+        "url": "https://christinedkim.substack.com/p/acde-210-minutes",
+        "events": [
+          {
+            "date": "2025-04-24",
+            "event": "All Core Devs Execution #210: option D proposed (Ben Adams, Dan Cline backs, Danno Ferrin: less scope); no consensus; decision deferred to Monday",
+            "stop": "s-09, s-11, s-10, s-17, s-12"
+          },
+          {
+            "date": "2025-04-25",
+            "event": "Vitalik's 'Replace the EVM with RISC-V' post",
+            "excluded": "x-written-redundant (the post does not discuss EOF; Lightclient's s-12 carries the argument)"
+          },
+          {
+            "date": "2025-04-28",
+            "event": "Interop Testing #34: EOF version for Fusaka decided",
+            "stop": "s-decision"
+          },
+          {
+            "date": "earlier",
+            "event": "'Developers previously decided to scope out the most ambitious version of EOF from Fusaka'",
+            "stop": "s-08"
+          }
+        ]
+      },
+      {
+        "title": "Ipsilon notes 'EVM Object Format overview'",
+        "url": "https://notes.ethereum.org/@ipsilon/evm-object-format-overview",
+        "events": [
+          {
+            "date": "2021-06",
+            "event": "PEEPanEIP explainer",
+            "excluded": "UNMATCHED: an explainer, not a debate event"
+          },
+          {
+            "date": "undated",
+            "event": "London (EIP-3541), Shanghai (EIP-3540, 3670 stretch), Cancun and later (EOF2: JUMPDEST table, EIP-4200, EIP-4750)",
+            "stop": "s-01"
+          }
+        ]
+      },
+      {
+        "title": "Press recaps of the Fusaka removal (Cointelegraph, The Defiant, Blockworks, CryptoSlate, Unlock Blockchain, Tim Beiko's post on X)",
+        "url": "https://x.com/TimBeiko/status/1916920037715382293",
+        "events": [
+          {
+            "date": "2025-02-13",
+            "event": "All Core Devs Execution #205: Geth team opposes EOF in Fusaka; Beiko sets a timeline (EIP deadline 13 Mar, preferences 27 Mar, scope 10 Apr)",
+            "excluded": "x-acde-205 (new): transcript has no speaker labels and no credited speakers"
+          },
+          {
+            "date": "2025-03-13",
+            "event": "pcaversaccio's complexity post",
+            "stop": "w-pcaversaccio-2025"
+          },
+          {
+            "date": "2025-04-28",
+            "event": "EOF removed from Fusaka; Beiko's rationale in EIP PR 9703",
+            "stop": "s-decision"
+          }
+        ]
+      },
+      {
+        "title": "All Core Devs Execution call transcripts swept for the audit (catalogue)",
+        "url": "https://github.com/ethereum/pm",
+        "events": [
+          {
+            "date": "2024-02-01",
+            "event": "All Core Devs Execution #180: Verkle committed as the main thing for Osaka, Prague scope left open",
+            "stop": "s-33"
+          },
+          {
+            "date": "2024-09-12",
+            "event": "All Core Devs Execution #196: EOF's champion proposes starting Fusaka's devnet zero with EOF, the start of the Pectra split",
+            "stop": "s-34"
+          }
+        ]
+      }
+    ]
+  }
+}

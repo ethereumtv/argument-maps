@@ -1,0 +1,83 @@
+{
+  "map": "glamsterdam",
+  "sources": [
+    {
+      "url": "https://ethresear.ch/t/why-enshrine-proposer-builder-separation-a-viable-path-to-epbs/15710/1",
+      "read_at": "2026-11-06 21:52:32.832948+00",
+      "read_as": "forum raw text",
+      "sha256": "9d61d9c89a122060ad0513df69e566008f7563a00c18ed846e2c9642a68d2f89",
+      "quoted_by": [
+        "w-neuder-drake-2023"
+      ],
+      "passages": [
+        "We present the case for ePBS by highlighting (i) that relays are antithetical to Ethereum's core values, (ii) the risks and inefficiences of side-car software, and (iii) the costs and unsustainability of relay operations.",
+        "Another major censorship event, further attacks, and continued centralization pressures of relays, builders, and searchers pose significant risks to Ethereum."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-7732-the-case-for-inclusion-in-glamsterdam/24306/1",
+      "read_at": "2026-11-06 21:52:35.869628+00",
+      "read_as": "forum raw text",
+      "sha256": "30624fce1f963cc73de8d9f687c17c4cf12bb4cfb795772d93e1f14559a2683d",
+      "quoted_by": [
+        "w-potuz-case-2025"
+      ],
+      "passages": [
+        "Secondary benefits include the removal of trust assumptions on block productions, allowing any validator to be a builder and bid for block production, without the need to be gated by relays.",
+        "Objections that I have received to the EIP have been varied throughout the last two years but have mostly settled in two: - It changes forkchoice. - Builders need to be staked. The first one is a minor change to allow for empty blocks, it minimally changes forkchoice relying on current mechanisms to protect builders. As for the second one I have approached current builders and they have expressed that this it not an important problem for them."
+      ]
+    },
+    {
+      "url": "https://hackmd.io/@tchain/prysm-glamsterdam-headliner",
+      "read_at": "2026-11-06 21:52:36.311008+00",
+      "read_as": "page text",
+      "sha256": "8ee0b7905a1d0f7279c3ce5155edd898f12388ef5d06e82871f4b99aca7b8439",
+      "quoted_by": [
+        "w-prysm-2025"
+      ],
+      "passages": [
+        "Today, we allocate a mere 2 seconds of each 12-second slot to the critical work of block and blob propagation.",
+        "While shorter slots improve UX, they represent a shortsighted optimization that sacrifices long-term scalability for immediate gratification. EIP-7782 only reduces overhead from ⅔ to ½ of slot time. Meanwhile, EIP-7732's slot restructuring minimizes overhead far more effectively, enabling both higher gas limits and more blobs within existing 12-second slots."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/trustless-payments/23635/1",
+      "read_at": "2026-11-06 21:52:33.490264+00",
+      "read_as": "forum raw text",
+      "sha256": "5aadbcf2850714400417d47ebade90b6eb7fbc3825bcf6147787acb98d1e1fe9",
+      "quoted_by": [
+        "w-bruno-2025"
+      ],
+      "passages": [
+        "The only viable long-term choice is to enshrine the builder role in protocol and offer a way for builders and proposers to contract in-protocol trustlessly.",
+        "Delaying a trustless payments mechanism further into the future will only make it harder to introduce since the surrounding out-of-protocol ecosystem will become further established."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/trustless-payments-and-relays/25125/1",
+      "read_at": "2026-11-06 21:52:34.070895+00",
+      "read_as": "forum raw text",
+      "sha256": "940e3da28287b18e7de828c6112dcea7a45f4ae3c6a9b8a6f41d6acc0d532892",
+      "quoted_by": [
+        "w-schlegel-2026"
+      ],
+      "passages": [
+        "We predict that trustless payments in-protocol will ossify a first-price block auction.",
+        "Even though we predict that relays will remain to exist in an ePBS world that doesn’t mean that a trustless payment channel in-protocol wouldn’t shape what relays can and can’t do going forward."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/epbs-distilled/25800/1",
+      "read_at": "2026-11-06 21:52:35.084784+00",
+      "read_as": "forum raw text",
+      "sha256": "5ab8a3cc8a690bbef8920ec4e3e440236dbd577878e04dda5db6c93e7ce0f03e",
+      "quoted_by": [
+        "w-neuder-distilled-2026"
+      ],
+      "passages": [
+        "From my point of view, I see no reason why the builders would use trustless payments, nor any reason for proposers to require them to.",
+        "The process of continually shuffling capital from the execution layer into the consensus layer to pay the proposers for trustless bids just seems capital inefficient and unnecessarily complex from the builder's point of view."
+      ]
+    }
+  ]
+}

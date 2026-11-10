@@ -1,0 +1,1229 @@
+{
+  "slug": "lean-ethereum",
+  "title": "Lean Ethereum",
+  "intro": "In November 2024 Justin Drake proposed redoing Ethereum's consensus layer from a clean slate, first called the beam chain. By 2025 the name had widened to lean Ethereum, with the same idea applied to data and execution too. This is how it was argued: why start over, the worry that it should not arrive as one big upgrade, the tension between the lean research branch and the rest of protocol work, the hard parts of post-quantum signatures, and the Devcon 8 pull-forward. It is a proposal and a plan, not a scheduled upgrade.",
+  "eips": [],
+  "topic": "protocol",
+  "stops": [
+    {
+      "id": "s-01",
+      "kind": "quote",
+      "date": "2023-11-01",
+      "date_label": "November 2023",
+      "place": "EthStaker at Devconnect Istanbul",
+      "speaker": "Justin Drake",
+      "speaker_slug": "justin-drake",
+      "talk_id": "61af6bee-6d78-47f3-b412-3cb2f11c8e52",
+      "talk_slug": "justin-drake-beacon-chain-design-mistakes",
+      "note": "Where the idea starts, a year before Bangkok: a talk on beacon chain design mistakes ends with the thought that replacing quantum-vulnerable cryptography could add up to a Beacon chain 2.0, a chance to clear technical debt.",
+      "lines": [
+        {
+          "t": 994,
+          "clean": "BLS signatures have been really successful, but the one thing that will come to bite us in maybe 10 to 15 years is that they're not quantum secure. We're going to have to rip everything out and also remove other pieces of cryptography which are not quantum secure. It's possible that we have to rip out so much cryptography and redo so much of the internals that we kind of have Beacon chain 2.0 or Ethereum 3.0, and I guess at that point there will be an opportunity to just clean up all the technical debt and have a design which is essentially close to perfect.",
+          "caption": "BLS signatures have been been really successful but the one thing that will come bite Us in maybe 10 15 years is that they're they're not Quantum secure uh and so we're going to have to kind of rip everything out and also remove other pieces of cryptography which are not uh Quantum secure um and you know it's possible that we have to rip out so much cryptography and and redo so so much of the internals uh that we kind of have like Beacon chain 2.0 or ethereum 3.0 uh and I guess at that point there will be an opportunity to just clean up all the technical debt and have a design which is you know essentially you know close close to perfect",
+          "chunks": [
+            {
+              "ord": 23,
+              "t": 994,
+              "raw": "BLS signatures have been been really successful but the one thing that will come bite Us in maybe 10 15 years is that they're they're not Quantum secure uh and so we're going to have to kind of rip everything out and also remove other pieces of cryptography which are not uh Quantum secure um and you know it's possible that we have to rip out so much cryptography and and redo so so much of the internals uh that we kind of have like Beacon chain 2.0 or ethereum 3.0 uh and I guess at that point there will be an opportunity to just clean up all the technical debt and have a design which is you know essentially you know close close to perfect"
+            }
+          ],
+          "edits": [
+            "\"10 15 years\" read as 10 to 15 years"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "kind": "written",
+      "id": "w-3sf-2024",
+      "date": "2024-11-04",
+      "date_label": "4 November 2024",
+      "place": "ethresear.ch",
+      "author": "Roberto Saltini",
+      "source_title": "3-Slot-Finality: SSF is not about \"Single\" Slot",
+      "source_url": "https://ethresear.ch/t/20927/1",
+      "note": "An early fast-finality design, a week before Devcon 7: finalise in about three slots rather than one, so slots can stay short. Posted by Roberto Saltini; the post lists Francesco D'Amato, Roberto Saltini, Thanh-Hai Tran and Luca Zanolini as its authors.",
+      "lines": [
+        {
+          "text": "As a result, our protocol achieves a shorter expected confirmation time compared to the previously proposed protocol, at the expense of a slight delay in block finalization, which extends to the time required to propose three additional blocks, rather than finalizing before the next block proposal."
+        },
+        {
+          "text": "Also, slot time is a crucial parameter affecting economic leakage in on-chain automated market makers (AMMs) due to arbitrage. Specifically, arbitrage profits -- and consequently, liquidity providers’ (LP) losses -- are proportional to the square root of slot time. Therefore, reducing slot time is highly desirable for financial applications on smart contract blockchains."
+        }
+      ]
+    },
+    {
+      "id": "s-02",
+      "kind": "quote",
+      "date": "2024-11-12",
+      "date_label": "12 November 2024",
+      "place": "Devcon 7, Bangkok",
+      "speaker": "Justin Drake",
+      "speaker_slug": "justin-drake",
+      "talk_id": "4c66f77a-d0dd-40b5-94a4-920de64e04dc",
+      "talk_slug": "keynote-title-redacted-drake",
+      "note": "The proposal itself, as made at Devcon 7: a redesign of the consensus layer, offered as a proposal that goes forward only with rough consensus.",
+      "lines": [
+        {
+          "t": 1,
+          "clean": "The beam chain is a proposed redesign of the [consensus] layer that incorporates all of the latest and greatest ideas from the research roadmap, and the goal is to try and transition in a safe and fast manner from the beacon chain that we have today to this beam chain, which is much closer to the final design of Ethereum. This is just a proposal. This is my proposal, and the proposal will only go forward if there is rough consensus.",
+          "caption": "the beam chain is a proposed redesign of the consens layer that incorporates all of the latest and greatest ideas from the research road map and the goal is to try and transition in a safe and fast manner from the beacon chain that we have today to this beam chain which is much much closer to the final design of ethereum now before I share more information I have two disclosers um disclaimers disclaimer number one one is that this is just a proposal this is my proposal and the proposal will only go forward if there is rough consensus",
+          "chunks": [
+            {
+              "ord": 0,
+              "t": 1,
+              "raw": "the beam chain is a proposed redesign of the consens layer that incorporates all of the latest and greatest ideas from the research road map and the goal is to try and transition in a safe and fast manner from the beacon chain that we have today"
+            },
+            {
+              "ord": 1,
+              "t": 44,
+              "raw": "to this beam chain which is much much closer to the final design of ethereum now before I share more information I have two disclosers um disclaimers disclaimer number one one is that this is just a proposal this is my proposal and the proposal will only go forward if there is rough consensus"
+            }
+          ],
+          "edits": [
+            "dropped \"Now before I share more information I have two disclaimers, disclaimer number one is that\" between the two sentences, and the closing \"with it going forward\"; \"consens\" in the caption fixed to [consensus]"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-03",
+      "kind": "quote",
+      "date": "2024-11-12",
+      "date_label": "12 November 2024",
+      "place": "Devcon 7, Bangkok",
+      "speaker": "Justin Drake",
+      "speaker_slug": "justin-drake",
+      "talk_id": "4c66f77a-d0dd-40b5-94a4-920de64e04dc",
+      "talk_slug": "keynote-title-redacted-drake",
+      "note": "The case for starting over: the beacon chain spec is old, and its mistakes and technical debt are sticky.",
+      "lines": [
+        {
+          "t": 133,
+          "clean": "It basically boils down to the fact that the beacon chain is kind of old. The spec was frozen 5 years ago, and in those 5 years so much has happened.",
+          "caption": "it basically boils down to the fact that the beacon chain is kind of old the the spec uh was frozen 5 years ago and in those five years so much has happened",
+          "chunks": [
+            {
+              "ord": 3,
+              "t": 133,
+              "raw": "it basically boils down to the fact that the beacon chain is kind of old the the spec uh was frozen 5 years ago and in those five years so much has happened"
+            }
+          ]
+        },
+        {
+          "t": 179,
+          "clean": "And then finally, with the benefit of hindsight, we now know what mistakes we made with the beacon chain, and we have a bunch of technical debt which is extremely sticky and tends to [pile on] over time. Maybe now we have an opportunity to clear this technical debt.",
+          "caption": "and then finally with the benefit of the of hindsight we now know what the mistakes we made with the beacon chain and we have a bunch of technical debt which is extremely sticky and tends to Pyon over time and maybe now we have an opportunity to clear this technical debt",
+          "chunks": [
+            {
+              "ord": 4,
+              "t": 179,
+              "raw": "and then finally with the benefit of the of hindsight we now know what the"
+            },
+            {
+              "ord": 5,
+              "t": 223,
+              "raw": "mistakes we made with the beacon chain and we have a bunch of technical debt which is extremely sticky and tends to Pyon over time and maybe now we have an opportunity to clear this technical debt"
+            }
+          ],
+          "edits": [
+            "\"Pyon\" in the caption fixed to [pile on]"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-04",
+      "kind": "quote",
+      "date": "2024-11-15",
+      "date_label": "15 November 2024",
+      "place": "Devcon 7, Programmable Cryptography session",
+      "speaker": "Vitalik Buterin",
+      "speaker_slug": "vitalik-buterin",
+      "talk_id": "6f86f61f-058e-4015-949d-6197fcf83439",
+      "talk_slug": "cls-programmable-cryptography",
+      "note": "The first public pushback on the framing, from Vitalik in the Q&A: this is not Ethereum 3.0, it covers one layer, and the parts that matter to users could come sooner.",
+      "lines": [
+        {
+          "t": 1288,
+          "clean": "Can we call beam chain Ethereum 3.0? I think no. I think this is an important misconception, because a lot of people got this weird Twitter impression that the beam chain will only happen in 2029 and only gives you these nice ivory tower properties about the [consensus] layer, so it doesn't even mean anything for users, and this is Ethereum 3.0. The reality is very different from that. The beam chain is only covering the Ethereum consensus layer, which is only maybe one third or one quarter of the Ethereum stack.",
+          "caption": "can we call beam chain ethereum 3.0 I think no and I think this is like an important misconception right because I think like a lot of people like got this weird Twitter impression that like oh you know in the be the beam chain it will only happen in 2029 and it only happen gives you these nice Ivory Tower Properties about the consent layer and so it doesn't even mean anything for users and like this is ethereum 3.0 right and the reality is like very different from that right the beam chain is only covering the ethereum consensus layer which is only like maybe one third or one quarter",
+          "chunks": [
+            {
+              "ord": 30,
+              "t": 1288,
+              "raw": "can we call beam chain ethereum 3.0 I think no and I think this is like an important misconception right because I think like a lot of people like got this weird Twitter impression that like oh you know in the be the beam chain it will only happen in 2029 and it only happen gives you these nice Ivory Tower Properties about the consent layer and so it doesn't even mean anything for users and like this is ethereum 3.0 right and the reality is like very different from that right the beam chain is only covering the ethereum consensus layer which is only like maybe one third"
+            },
+            {
+              "ord": 31,
+              "t": 1331,
+              "raw": "or one quarter"
+            }
+          ],
+          "edits": [
+            "\"consent layer\" in the caption fixed to [consensus] layer",
+            "dropped the lead-in \"oh you know in the\" before \"the beam chain will only happen in 2029\""
+          ]
+        },
+        {
+          "t": 1331,
+          "clean": "Even on the consensus side, all of the key things that are actually meaningful for users, especially getting [Danksharding] up, I think can happen a lot sooner than 2029.",
+          "caption": "and uh even on the consensus side all of the key things that are actually meaningful for users so ESP especially getting dank charting um up I think can happen a lot sooner than uh 2029",
+          "chunks": [
+            {
+              "ord": 31,
+              "t": 1331,
+              "raw": "and uh even on the consensus side all of the key things that are actually meaningful for users so ESP especially getting dank charting um up I think can happen a lot sooner than uh 2029"
+            }
+          ],
+          "edits": [
+            "dropped \"ESP\" before \"especially\"; \"dank charting\" in the caption fixed to [Danksharding]"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-05",
+      "kind": "quote",
+      "date": "2024-12-02",
+      "date_label": "2 December 2024",
+      "place": "Bankless",
+      "speaker": "Justin Drake",
+      "speaker_slug": "justin-drake",
+      "talk_id": "47efd6b7-3635-4d76-ae93-38f88bd4d866",
+      "talk_slug": "ethereums-three-front-war-justin-drake-bankless",
+      "note": "Weeks later, the proposer says what the beam chain is for: a way to coordinate and speed up the existing roadmap, and an invitation, not a fixed plan.",
+      "lines": [
+        {
+          "t": 2985,
+          "clean": "The beam chain upgrade is trying to take the slowest parts of the roadmap and accelerate them so that we can complete the full Ethereum roadmap in a timely fashion. You can think of the beam chain as being this [memetic] social coordination tool to ultimately accelerate the roadmap and try and avoid Ethereum [ossifying] prematurely.",
+          "caption": "the beam chain up upgrade is trying to take the slowest parts of the road map and accelerate them so that we can complete the full etherum road map in a in a timely fashion and you can think of the beam chain as being this mimetic social coordination tool to ultimately accelerate the road map and try and avoid ethereum aify prematurely",
+          "chunks": [
+            {
+              "ord": 69,
+              "t": 2985,
+              "raw": "the beam chain up upgrade is trying to take the slowest parts of the road map and accelerate"
+            },
+            {
+              "ord": 70,
+              "t": 3027,
+              "raw": "them so that we can complete the full etherum road map in a in a timely fashion and you can think of the beam chain as being this mimetic social coordination tool to ultimately accelerate the road map and try and avoid ethereum aify prematurely"
+            }
+          ],
+          "edits": [
+            "the caption spells Ethereum \"etherum\"; the stutter \"up\" in \"up upgrade\" dropped; \"aify\" in the caption fixed to [ossifying]",
+            "\"mimetic\" in the caption fixed to [memetic]"
+          ]
+        },
+        {
+          "t": 3027,
+          "clean": "In the short term, because it's just a proposal, you can think of it as being an invitation to think strategically about the [Ethereum] roadmap and to widen the discourse and the [Overton] window around it. In some sense the beam chain is not about changing the content, the fundamentals of what we want to change. It's about changing metadata around it, about how we would ship the roadmap.",
+          "caption": "in the short term you know because it's just a proposal you can think of it it as being an invitation to think strategically about the airm road map and to widen the discourse and the overturn window uh around it in some sense the the the beam chain is not about changing the the content the fundamentals of what we want to change it's about changing metadata around it about how how we would ship the the road map",
+          "chunks": [
+            {
+              "ord": 70,
+              "t": 3027,
+              "raw": "in the short term you know because it's just a proposal you can think of it it as being an invitation to think strategically about the airm road map and to widen the discourse and the overturn window uh around it in some sense the the the beam chain is not"
+            },
+            {
+              "ord": 71,
+              "t": 3069,
+              "raw": "about changing the the content the fundamentals of what we want to change it's about changing metadata around it about how how we would ship the the road map"
+            }
+          ],
+          "edits": [
+            "\"airm\" in the caption is Ethereum, fixed to [Ethereum]; \"overturn\" fixed to [Overton]; the caption spells Ethereum \"etherum\" in places"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "kind": "written",
+      "id": "w-vbuterin-riscv-2025",
+      "date": "2025-04-20",
+      "date_label": "20 April 2025",
+      "place": "Ethereum Magicians",
+      "author": "vbuterin",
+      "source_title": "Long-term L1 execution layer proposal: replace the EVM with RISC-V",
+      "source_url": "https://ethereum-magicians.org/t/23617/1",
+      "note": "Lean execution begins as a written proposal: the same ambition for the execution layer as the beam chain has for the consensus layer.",
+      "lines": [
+        {
+          "text": "This post proposes a radical idea for the future of the Ethereum execution layer, one that is equally as ambitious as the beam chain effort is for the consensus layer. It aims to greatly improve the efficiency of the Ethereum execution layer, resolving one of the primary scaling bottlenecks, and can also greatly improve the execution layer's simplicity - in fact, it is perhaps the only way to do so."
+        },
+        {
+          "text": "The idea: replace the EVM with RISC-V as the virtual machine language that smart contracts are written in."
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-levs57-2025",
+      "date": "2025-04-20",
+      "date_label": "20 April 2025",
+      "place": "Ethereum Magicians",
+      "author": "levs57",
+      "source_title": "Long-term L1 execution layer proposal: replace the EVM with RISC-V",
+      "source_url": "https://ethereum-magicians.org/t/23617/5",
+      "note": "The sharpest substantive reply in the first hours of the RISC-V thread: precompiles stay, so the simplicity gain is smaller than hoped, and RISC-V may not be the right instruction set.",
+      "lines": [
+        {
+          "text": "Therefore, any change to cryptographic primitives of the base layer will require writing and auditing circuits for these precompiles. This is a severe restriction."
+        },
+        {
+          "text": "My recommendation is, instead, constructing a proof-friendly architecture with minimal MMU allowing to run contracts as separate executables; I don't think it should be RISC-V; rather a separate ISA - ideally, aware of limitations dictated by SNARK protocols."
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-drake-lean-2025",
+      "date": "2025-07-31",
+      "date_label": "31 July 2025",
+      "place": "Ethereum Foundation Blog",
+      "author": "Justin Drake",
+      "author_slug": "justin-drake",
+      "source_title": "lean Ethereum",
+      "source_url": "https://blog.ethereum.org/2025/07/31/lean-ethereum",
+      "note": "The proposer's own written definition: the beam chain becomes lean consensus, and the idea widens to data and execution. He also names the diversity of views as welcome.",
+      "lines": [
+        {
+          "text": "lean consensus is beacon chain 2.0: hardened for ultimate security and decentralization, plus finality in seconds; formerly branded as \"beam chain\"\nlean data is blobs 2.0: post-quantum blobs, plus granular blob sizing for a calldata-like developer experience\nlean execution is EVM 2.0: a minimal, SNARK-friendly instruction set (possibly RISC-V; pronounced \"risk five\"), boosting performance while preserving EVM compatibility and its network effects"
+        },
+        {
+          "text": "A healthy diversity of views across Protocol, the EF, and the broader Ethereum community is expected and welcome. It strengthens us."
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-vbuterin-heartbeat-2025",
+      "date": "2025-08-01",
+      "date_label": "1 August 2025",
+      "place": "ethresear.ch",
+      "author": "vbuterin",
+      "source_title": "LMD GHOST with ~256 validators and a fast-following finality gadget",
+      "source_url": "https://ethresear.ch/t/22856/1",
+      "note": "Marked \"early exploration\": a proposal to separate slots from finality, with a small sampled committee running the fast chain and a finality gadget following.",
+      "lines": [
+        {
+          "text": "Have an LMD GHOST chain where ~256 validators are randomly selected per slot. Use this as the primary \"heartbeat\""
+        },
+        {
+          "text": "Very fast slot times that are good enough for the normal case, without changing any security assumptions (because the \"aggregation\" step is no longer part of the slot time)"
+        }
+      ]
+    },
+    {
+      "id": "s-06",
+      "kind": "quote",
+      "date": "2025-11-12",
+      "date_label": "12 November 2025",
+      "place": "Bankless",
+      "speaker": "Justin Drake",
+      "speaker_slug": "justin-drake",
+      "talk_id": "874e90b4-48cf-42d6-a4cb-c4526cbbb904",
+      "talk_slug": "ethereum-beast-mode-scaling-l1-10k-beyond-justin-bankless",
+      "note": "The rename, in the proposer's words: lean consensus is the beam chain rebranded, with the slot-time ambition revised.",
+      "lines": [
+        {
+          "t": 6033,
+          "clean": "In the beam chain talk less than a year ago, I was trying to advertise 4 seconds. Recently we had this workshop in Cambridge with a bunch of researchers, and we actually came up with a new idea that could unlock even faster slots, potentially two second slots. I don't want to overpromise this, but I do think we'll be able to go under 6 seconds in the context of lean consensus, which is a rebranding of the beam chain.",
+          "caption": "in the the the the beam chain talk less than a year ago, uh I was trying to advertise 4 seconds and um recently we had this this workshop in Cambridge with a bunch of researchers and we we we actually came up with a new idea that could unlock fast even faster slots, potentially two second slots. So I don't want to like overpromise this uh but I I do think we'll be able to to go uh under 6 seconds in the context of lean consensus which is a rebranding of of of of the beam chain",
+          "chunks": [
+            {
+              "ord": 147,
+              "t": 6033,
+              "raw": "in the the the the beam chain talk less than a year ago, uh I was trying to advertise 4 seconds and um recently we had this this workshop in Cambridge with"
+            },
+            {
+              "ord": 148,
+              "t": 6077,
+              "raw": "a bunch of researchers and we we we actually came up with a new idea that could unlock fast even faster slots, potentially two second slots. So I don't want to like overpromise this uh but I I do think we'll be able to to go uh under 6 seconds in the context of lean consensus which is a rebranding of of of of the beam chain"
+            }
+          ],
+          "edits": [
+            "dropped \"fast\" before \"even faster\" (a false start)"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-07",
+      "kind": "quote",
+      "date": "2025-11-12",
+      "date_label": "12 November 2025",
+      "place": "Bankless",
+      "speaker": "Justin Drake",
+      "speaker_slug": "justin-drake",
+      "talk_id": "874e90b4-48cf-42d6-a4cb-c4526cbbb904",
+      "talk_slug": "ethereum-beast-mode-scaling-l1-10k-beyond-justin-bankless",
+      "note": "The consensus-layer headliners of lean Ethereum in the proposer's words: post-quantum signatures, much faster finality and shorter slots.",
+      "lines": [
+        {
+          "t": 7305,
+          "clean": "The headliners are one, replacing BLS aggregate signatures with a post-quantum equivalent, and two, having much faster finality. So instead of it taking two epochs, which is 64 slots, it might take only two slots or three slots. Another big improvement is significantly reducing the slot duration.",
+          "caption": "The headliners are one um replacing BLS aggregate signatures with a postquantum equivalent. Two um having much faster finality. So instead of it taking two epochs which is 64 slots, it might take only sorry two slots or three slots. Another big improvement is significantly reducing the the the slot duration.",
+          "chunks": [
+            {
+              "ord": 177,
+              "t": 7305,
+              "raw": "The headliners are one um replacing BLS aggregate signatures with a postquantum equivalent. Two um having much faster finality. So instead of it taking two epochs which is 64 slots, it might take only sorry two slots or three slots."
+            },
+            {
+              "ord": 178,
+              "t": 7341,
+              "raw": "Another big improvement is significantly reducing the the the slot duration."
+            }
+          ],
+          "edits": [
+            "dropped the self-correction \"sorry\" in \"only, sorry, two slots\"; the preceding \"Um\" fillers only"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "kind": "quote",
+      "speaker_confirmed": true,
+      "id": "s-15",
+      "date": "2025-11-17",
+      "date_label": "November 2025",
+      "place": "EthStaker at Devconnect Buenos Aires 2025",
+      "speaker": "Francesco D'Amato",
+      "speaker_slug": "francesco-d-amato",
+      "talk_id": "dfa30e3f-f000-48bb-9ab9-60677eae931a",
+      "talk_slug": "francesco-damato-fast-finality-faster-blocks",
+      "note": "How the fast-finality design moved from 3SF to separate layers, from a researcher on both: a committee on the available chain used to break security, and now a design without that coupling exists. Single credited speaker.",
+      "lines": [
+        {
+          "t": 574,
+          "clean": "Something that's kind of a recent, I don't say discovery, but essentially something that we didn't know before: for quite a long time, we thought it would be nice if you could do something like this. But there's problems once you try to use committees on the available chain. This was this key part that just didn't really seem to work. Whenever you try to put committees on the available chain, security properties would just break essentially.",
+          "caption": "something that's kind of a recent um, I [snorts] don't say discovery, but uh, yeah, essentially something that we we didn't know before, like for for um, quite a long time, we thought uh, yeah, it would be nice if you could do something like this. U, but there's problems once you try to use committees on the available chain. Like this was this key part that just didn't really seem to work. like whenever you try to put committees on the available chain, security properties would just break essentially.",
+          "chunks": [
+            {
+              "ord": 14,
+              "t": 574,
+              "raw": "something that's kind of a recent um, I [snorts] don't say discovery, but uh, yeah, essentially something that we we didn't know before, like for for um, quite a long time, we thought uh, yeah, it would be nice if you could do something like this. U, but there's problems once you try to use committees"
+            },
+            {
+              "ord": 15,
+              "t": 616,
+              "raw": "on the available chain. Like this was this key part that just didn't really seem to work. like whenever you try to put committees on the available chain, security properties would just break essentially."
+            }
+          ],
+          "edits": [
+            "Dropped a '[snorts]' noise and the fillers 'um' and 'uh'; 'Like this was' read as 'This was'."
+          ]
+        },
+        {
+          "t": 616,
+          "clean": "So we didn't really think that we could actually do this. But as of recently, we actually have a design that essentially achieves this, that gets the same kind of properties that 3SF does, or whatever properties you want to write down for the kind of protocol that we want, that has this available chain and finality component. You start with this and you define some security properties, and we now have a design that actually achieves all the security properties that we would like, without actually needing this tight coupling between the two layers.",
+          "caption": "So we didn't really think that we could actually do this. Um but as of recently, we actually have a design that essentially achieves this that gets like the same kind of properties that 3SF does or you know whatever u properties you want to write down for the kind of protocol that we want that has this like available chain and finality component there's you start with this and you define some security properties. Um and essentially we we now have a design that actually achieves the all the security property properties that we would like uh without actually needing this um tight coupling essentially between the the two layers",
+          "chunks": [
+            {
+              "ord": 15,
+              "t": 616,
+              "raw": "So we didn't really think that we could actually do this. Um but as of recently, we actually have a design that essentially achieves this that gets like the same kind of properties that 3SF does or you know whatever u properties you want to write down for the kind of protocol that we want that has this like available chain and finality component there's you start with this and you define some security properties. Um and essentially we we now have a design that actually achieves the all the security property properties that we would like uh without actually needing this um tight coupling essentially between the the two layers"
+            }
+          ],
+          "edits": [
+            "Dropped the repeated 'there's' and the repeated 'we', and the repeated 'property' in 'property properties'. No claim changed."
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-felten-2025",
+      "date": "2025-11-21",
+      "date_label": "21 November 2025",
+      "place": "ethresear.ch",
+      "author": "Ed Felten",
+      "affiliation": "Offchain Labs",
+      "source_title": "Why RISC-V Is Not a Good Choice for an L1 Delivery ISA, and Why WASM Is a Better One",
+      "source_url": "https://ethresear.ch/t/23491/1",
+      "note": "A reasoned alternative to RISC-V for lean execution. The post says it expresses the view of Offchain Labs and names four authors (Mario Alvarez, Matteo Campanelli, Tsahi Zidenberg, Daniel Lumi); it was posted by the Ed Felten account.",
+      "lines": [
+        {
+          "text": "We support these goals but question Vitalik’s implicit assumption that one ISA can optimally serve both ZK-proving and smart contract delivery. Since enshrining an ISA on L1 primarily affects how smart contracts are delivered to the chain, we should evaluate ISAs based on their suitability for general delivery and storage on chain, not proving alone."
+        },
+        {
+          "text": "RISC-V, as an open standard for hardware, is an impressive and influential technology. RISC-V was designed for simplicity and ease of implementation in hardware. However, there is no reason to expect that RISC-V-based ZK-VMs will be the ultimate arrival point of the evolution of ZK-VMs; more likely, they are just one step along the way."
+        }
+      ]
+    },
+    {
+      "id": "s-08",
+      "kind": "quote",
+      "date": "2025-11-26",
+      "date_label": "26 November 2025",
+      "place": "The Rollup",
+      "speaker": "Dankrad Feist",
+      "speaker_slug": "dankrad-feist",
+      "talk_id": "a8b434c8-f10f-4de3-9697-dd7261ca8c33",
+      "talk_slug": "dankrad-feist-i-joined-tempo-why-i-left-eth-rollup",
+      "note": "The strongest voice on the other side of the open argument: credit for the post-quantum work, but doubt that it should arrive as one big upgrade.",
+      "lines": [
+        {
+          "t": 1366,
+          "clean": "Lean Ethereum is a big initiative on consensus, and a very important part of it is the post-quantum roadmap. It's absolutely very important that someone figures out how to do that. So that's amazing for lean Ethereum. My personal opinion on it is I don't believe it should come as one big upgrade like the merge or something. I think it's great that Justin tries to build this consistent chain, but what we should probably try doing is to iteratively pick and choose the improvements that it brings to us and bring them on a much shorter time scale to Ethereum.",
+          "caption": "So lean ethereum is a big initiative on consensus and um and I think like I mean so for me like a huge like a very important part of it is like the postquantum road map like that's absolutely uh very important that someone like um really figures that out how to do that. So that's amazing for lean Ethereum. My personal opinion on it is like I I don't believe it should come as like one big upgrade like the merge or something. I think like it's great that Justin tries to build this like consistent like chain, but I think like um what we should probably try doing is to iteratively uh pick and choose the improvements that it brings to us and like bring them on a much shorter time scale to like to Ethereum",
+          "chunks": [
+            {
+              "ord": 34,
+              "t": 1366,
+              "raw": "So lean ethereum is a big initiative on consensus and um and I think like I mean so for me like a huge like a very important part of it is like the postquantum road map like that's absolutely uh very important that someone like um really figures that out how to do that. So that's amazing for lean Ethereum. My personal opinion on it is like I I don't believe it should come as like one big upgrade like the merge or something. I think like it's great that Justin tries to build this like"
+            },
+            {
+              "ord": 35,
+              "t": 1409,
+              "raw": "consistent like chain, but I think like um what we should probably try doing is to iteratively uh pick and choose the improvements that it brings to us and like bring them on a much shorter time scale to like to Ethereum"
+            }
+          ],
+          "edits": [
+            "dropped \"that\" after \"figures\" (\"figures that out how to do that\") so the sentence reads cleanly; dropped \"I think like\" before \"what we should probably try doing\", a false start"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-09",
+      "kind": "quote",
+      "date": "2026-02-01",
+      "date_label": "February 2026",
+      "place": "ETHDenver 2026",
+      "speaker": "Tomasz Stańczak",
+      "speaker_slug": "tomasz-stanczak",
+      "talk_id": "dc0a67c0-7547-4133-964a-7798dece16b8",
+      "talk_slug": "post-quantum-money-tomasz-stanczak-ethereum-foundation",
+      "note": "From inside the Foundation: the lean research branch had run separately from protocol development, which caused unease, and the two paths were now being merged.",
+      "lines": [
+        {
+          "t": 1068,
+          "clean": "The lean Ethereum was totally separate from everything else that we were doing, and many people were feeling very uneasy, saying, this Ethereum is totally different, why these researchers are not working with the rest of researchers? Those tensions, when you manage the teams and you say just go two paths, and now those paths are merging.",
+          "caption": "the lean ethereum was totally separate from everything else that we were doing and many people were very and feeling very uneasy saying like oh this ethereum is totally different they operating like it's it's different Ethereum why these researchers are not working with the rest of researchers you know those tensions when you manage the teams and and you say just go two paths and now those paths are merging",
+          "chunks": [
+            {
+              "ord": 26,
+              "t": 1068,
+              "raw": "the lean ethereum was totally separate from everything else that we were doing and many people were very and feeling very uneasy saying like oh this ethereum is totally different they operating like it's it's different Ethereum why these researchers are not working with the rest of researchers you know those tensions when you manage the teams and and you say just go two paths and now those paths are merging"
+            }
+          ],
+          "edits": [
+            "dropped the stutter \"very and\", the opening \"oh\" and the clause \"they operating like it's it's different Ethereum\" between \"different\" and \"why\""
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-strawmap",
+      "kind": "written",
+      "date": "2026-02-25",
+      "date_label": "25 February 2026",
+      "place": "strawmap.org",
+      "author": "EF Protocol (strawmap.org)",
+      "author_slug": null,
+      "source_title": "L1 Strawmap — Ethereum Draft Roadmap",
+      "source_url": "https://strawmap.org",
+      "note": "The Strawmap, the document most later stops refer to, published as strawmap.org on 25 Feb 2026 (site source github.com/ethereum/strawmap: first commit 23 Feb, FAQ finalised 25 Feb; the page itself carries no date). Started as an EF workshop discussion starter in Jan 2026 (the page says so). Author line on the page: 'by EF protocol', 'maintained by EF Architecture'.",
+      "lines": [
+        {
+          "text": "The strawman roadmap originated as a discussion starter at an EF workshop in Jan 2026, with the aim of helping integrate lean Ethereum with shorter-term initiatives."
+        },
+        {
+          "text": "It acknowledges the limits of drafting a roadmap in a highly decentralized ecosystem. An “official” roadmap reflecting all Ethereum stakeholders is effectively impossible. Rough consensus is fundamentally an emergent, continuous, and inherent uncertain process."
+        }
+      ]
+    },
+    {
+      "id": "s-10",
+      "kind": "quote",
+      "date": "2026-03-23",
+      "date_label": "23 March 2026",
+      "place": "Bankless",
+      "speaker": "Justin Drake",
+      "speaker_slug": "justin-drake",
+      "talk_id": "b2776675-1086-434d-bb60-3f03727b2522",
+      "talk_slug": "ethereums-quantum-plan-before-q-day-justin-drake-bankless",
+      "note": "The sharpest form of the objection, put to the proposer by the host: rewrites never work. His answer: the merge shows it can be done, and the cryptography change is forcing the issue anyway.",
+      "lines": [
+        {
+          "t": 4405,
+          "clean": "One piece of good news is that in some sense we have already done this type of large rewrites with the merge. We completely changed the consensus foundations of Ethereum from proof of work to proof of stake. So that's in some sense is an existence proof that it can be done.",
+          "caption": "One piece of good news is that in some sense we have already done this type of large rewrites as you alluded to with the merge. Like we completely changed the consensus foundations of Ethereum from proof of work uh to to to proof of stake. So, that's in some sense is an existence proof uh that it can be done.",
+          "chunks": [
+            {
+              "ord": 109,
+              "t": 4405,
+              "raw": "One piece of good news is"
+            },
+            {
+              "ord": 110,
+              "t": 4447,
+              "raw": "that in some sense we have already done this type of large rewrites as you alluded to with the merge. Like we completely changed the consensus foundations of Ethereum from proof of work uh to to to proof of stake. So, that's in some sense is an existence proof uh that it can be done."
+            }
+          ],
+          "edits": [
+            "dropped \"as you alluded to\" (a reference to the host's question, which is not on the map)"
+          ]
+        },
+        {
+          "t": 4479,
+          "clean": "Another piece of good news is that we have no choice. We have to change the cryptography. It is a very strong forcing function, and that alone, I would argue, is an 80% rewrite anyway. That makes the coordination and coming to consensus much simpler.",
+          "caption": "Um another piece of good news is that we have no choice. Uh like we have to, you know, change the cryptography. It is a very strong uh forcing function and that alone, you know, I would argue is is a, you know, 80% rewrite uh anyway. So, um that that is that makes the the the coordination and coming to consensus uh much simpler.",
+          "chunks": [
+            {
+              "ord": 111,
+              "t": 4479,
+              "raw": "Um another piece of good news is that we have no choice. Uh like we have to, you know, change the cryptography. It is a very strong uh forcing function and that alone, you know, I would argue is is a, you know, 80% rewrite uh anyway. So, um that that is that makes the the the coordination and coming to consensus uh much simpler."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-11",
+      "kind": "quote",
+      "date": "2026-04-01",
+      "date_label": "1 April 2026",
+      "place": "EthCC[9]",
+      "speaker": "Gajinder Singh",
+      "speaker_slug": "gajinder-singh",
+      "talk_id": "18428258-81cf-5577-8c49-812ad9c8e190",
+      "talk_slug": "deep-dive-into-lean-ethereum-spec-implementation-ethcc-9-18428258",
+      "note": "Why post-quantum signatures are hard, from a client builder: hash-based signatures do not aggregate the way BLS does, so a proof system has to, and the proofs are still about 3 kilobytes against a 1 kilobyte target.",
+      "lines": [
+        {
+          "t": 403,
+          "clean": "This is hash-based signatures. So BLS keys have a more elegant [way] in terms of aggregation and verification, but that is not the case over here. And that is why we will basically do them through Lean VM.",
+          "caption": "This is hash-based signatures. So BLS keys have a more elegant in terms of aggregation and verification, but that is not the case over here. And that is why we will basically do them through Lean VM.",
+          "chunks": [
+            {
+              "ord": 11,
+              "t": 403,
+              "raw": "This is hash-based signatures. So BLS keys have a more elegant in terms of aggregation and verification, but that is not the case over here. And that is why we will basically do them through Lean VM."
+            }
+          ],
+          "edits": [
+            "\"have a more elegant in terms of\" read as \"have a more elegant way in terms of\" (a supplied word in [brackets], the speaker lost the noun)"
+          ]
+        },
+        {
+          "t": 735,
+          "clean": "Coming to aggregate, what aggregators are producing are lean VM proofs, and they are roughly 3 kilobytes. We want again to target them to a proof of 1 kilobyte. And it is possible, researchers are working on it.",
+          "caption": "Coming to aggregate, so what what aggregators are producing, uh so, which basically are lean VM proof, and they are roughly 3 kilobytes. And uh we want to again target them uh to a proof of 1 kilobyte. And it is possible, researchers are working on it.",
+          "chunks": [
+            {
+              "ord": 20,
+              "t": 735,
+              "raw": "Coming to aggregate, so what what aggregators are producing, uh so, which basically are lean VM proof, and they are roughly 3 kilobytes. And uh we want to again target them uh to a proof of 1 kilobyte. And it is possible, researchers are working on it."
+            }
+          ],
+          "edits": [
+            "\"which basically are lean VM proof\" read as \"are lean VM proofs\" (the plural matches \"they are\"); dropped \"so\", \"basically\" and a repeated \"what\""
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-12",
+      "kind": "quote",
+      "date": "2026-04-01",
+      "date_label": "1 April 2026",
+      "place": "EthCC[9]",
+      "speaker": "Gajinder Singh",
+      "speaker_slug": "gajinder-singh",
+      "talk_id": "18428258-81cf-5577-8c49-812ad9c8e190",
+      "talk_slug": "deep-dive-into-lean-ethereum-spec-implementation-ethcc-9-18428258",
+      "note": "Where it sits in the Strawmap, from a client builder who runs the Zeam lean consensus client: post-quantum attestations and leanVM aggregation sit in a late fork, with one-slot finality after.",
+      "lines": [
+        {
+          "t": 39,
+          "clean": "Looking at the strawmap and coming to the topic, if you look at [L*] hard fork, this is where we want to get to post-quantum security. We have post-quantum attestations, we have lean VM aggregation, we want to reset some tech debt, and we want to start introducing endgame finality over here. But that doesn't stop here. After that, we want to do one slot finality, and we want to go to 1 million attestations per slot.",
+          "caption": "looking at the straw map and coming to the topic. So, if you look at El Star hard fork, this is where we want to get to post quantum uh security. We have post quantum attestations, we have lean VM aggregation, we want to reset some tech debt, and we want to start introducing what end game finality over here. But, that doesn't stop over here. Then, after that, we want to do one slot finality, and we want to go to 1 million attestations per slot.",
+          "chunks": [
+            {
+              "ord": 1,
+              "t": 39,
+              "raw": "looking at the straw map and coming to the topic. So, if you look at El Star hard fork, this is where we want to get to post quantum uh security. We have post quantum attestations, we have lean VM aggregation, we want to reset some tech debt, and we want to start introducing what end game finality over here. But, that doesn't stop over here. Then, after that, we want to do one slot finality, and we want to go to 1 million attestations per slot."
+            }
+          ],
+          "edits": [
+            "\"El Star hard fork\" in the caption fixed to [L*] hard fork (the Strawmap's name for that fork)"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "kind": "written",
+      "id": "w-potuz-2026",
+      "date": "2026-06-03",
+      "date_label": "3 June 2026",
+      "place": "ethresear.ch",
+      "author": "Potuz",
+      "source_title": "Exploring the Design Space for a Post-Quantum Public Key Registry for Ethereum Validators",
+      "source_url": "https://ethresear.ch/t/25040/2",
+      "note": "A pace objection from inside the discussion: register something already trusted now and choose the post-quantum scheme later, once it is vetted.",
+      "lines": [
+        {
+          "text": "Why not just then register hashed BLS keys instead? BLS keys are already part of the operator's workflow and are safe as long as they haven't signed anything. We could just keep them and sign with them the move to PQ only after the PQ system has been fully chosen and vetted."
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-71104-2026",
+      "date": "2026-06-03",
+      "date_label": "3 June 2026",
+      "place": "ethresear.ch",
+      "author": "71104",
+      "source_title": "Exploring the Design Space for a Post-Quantum Public Key Registry for Ethereum Validators",
+      "source_url": "https://ethresear.ch/t/25040/3",
+      "note": "The reply to the hashed-BLS-keys idea: a quantum computer can recover BLS private keys from public ones, so those keys cannot be treated as secret.",
+      "lines": [
+        {
+          "text": "Not sure what you mean by this but remember that a CRQP can recover private BLS keys from the public ones. \n\nIf you're proposing to record hashed public BLS keys then you're effectively treating public BLS keys as secret keys and requiring that their owners don't sign anything, which is pretty much impossible given that BLS pairs are used in the consensus algorithm."
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-coratger-2026",
+      "date": "2026-06-03",
+      "date_label": "3 June 2026",
+      "place": "ethresear.ch",
+      "author": "Thomas Coratger",
+      "author_slug": "thomas-coratger",
+      "source_title": "Exploring the Design Space for a Post-Quantum Public Key Registry for Ethereum Validators",
+      "source_url": "https://ethresear.ch/t/25040/4",
+      "note": "The authors' answer: the design is open, and even the signature scheme is not final. Posted by Thomas Coratger, whose post lists five authors.",
+      "lines": [
+        {
+          "text": "As indicated throughout the post and in the open questions, all these topics remain widely open for alternative designs."
+        },
+        {
+          "text": "Technically speaking, even the signature scheme itself is not 100% confirmed because if someone comes up with a magical PQ signature scheme with much better aggregation properties, this is certainly something we have to consider."
+        }
+      ]
+    },
+    {
+      "kind": "quote",
+      "speaker_confirmed": true,
+      "id": "s-16",
+      "date": "2026-06-08",
+      "date_label": "June 2026",
+      "place": "ETHConf 2026",
+      "speaker": "Ansgar Dietrichs",
+      "speaker_slug": "ansgar-dietrichs",
+      "talk_id": "432c83e6-be4a-46c0-81dd-0a9ea81a569d",
+      "talk_slug": "ethereum-decade-adoption-dietrichs",
+      "note": "A defender's view of the long bet, from inside the Foundation: post-quantum was not a big topic when the beam chain was announced, and now other chains are scrambling. Solo talk, single credited speaker.",
+      "lines": [
+        {
+          "t": 823,
+          "clean": "Some of you might remember, I think it's by now a year and a half ago or something, when Justin Drake first announced the beam chain for Ethereum. It was called that back then and people were a little bit confused. It was a heavy focus on post-quantum, and back then it was not a big topic.",
+          "caption": "Some of you might remember I think it's by now a year and a half ago or something when Justin Drake first announced like the beam chain on for Ethereum. Like it was called that back then and people were a little bit confused like it was a heavy focus on post quantum back then there was not a big topic.",
+          "chunks": [
+            {
+              "ord": 20,
+              "t": 823,
+              "raw": "Some of you might remember I think it's by now a year and a half ago or something when Justin Drake first announced like the beam chain on for Ethereum. Like it was called that back then and people were a little bit confused like it was a heavy focus on post quantum back then there was not a big topic."
+            }
+          ],
+          "edits": [
+            "Dropped 'on' before 'for Ethereum' (a false start) and 'like' fillers; 'there was not a big topic' read as 'it was not a big topic'."
+          ]
+        },
+        {
+          "t": 859,
+          "clean": "Ethereum cares a lot because these big technological shifts need time, and now it turns out every other chain out there is scrambling. What is the answer to post-quantum? It turns out it's hard. It's not so easy. Ethereum has a clear plan. Ethereum is working towards that plan. We have a timeline. We will get there in time.",
+          "caption": "Ethereum cares a lot because you need to these these topics often these like big technological shifts they need time and now it turns out every other chain out there scrambling. Like what is the answer to post quantum? Like it's it's a it turns out it's hard. It's not so easy. Ethereum has a clear plan. Ethereum is working towards that plan. We have a timeline. We will get there in time. I I don't think there's any other chain that I have like full confidence. I think many of them will make it but like they all have to scramble. Ethereum does it the proper way and I think that is time and again Ethereum insists on doing it its way the proper way. It sometimes in the short term looks a bit confusing and then I think in the in the fullness of",
+          "chunks": [
+            {
+              "ord": 21,
+              "t": 859,
+              "raw": "Ethereum cares a lot because you need to these these topics often these like big technological shifts they need time and now it turns out every other chain out there scrambling. Like what is the answer to post quantum? Like it's it's a it turns out it's hard. It's not so easy. Ethereum has a clear plan. Ethereum is working towards that plan. We have a timeline. We will get there in time. I I don't think there's any other chain that I have like full confidence. I think many of them will make it but like they all have to scramble. Ethereum does it the proper way and I think that is time and again Ethereum insists on doing it its way the proper way. It sometimes in the short term looks a bit confusing and then I think in the in the fullness of"
+            }
+          ],
+          "edits": [
+            "Dropped the false start 'you need to these topics often' and the repeated 'they' before 'need time'; supplied 'is' before 'scrambling'."
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-oisinkyne-2026",
+      "date": "2026-07-06",
+      "date_label": "6 July 2026",
+      "place": "ethresear.ch",
+      "author": "OisinKyne",
+      "source_title": "The Extremely Lean Chain",
+      "source_url": "https://ethresear.ch/t/25369/3",
+      "note": "The decentralisation worry about the lean consensus direction, in a reply to Vitalik's 'extremely lean chain' post: a small minority controlling the chain, and the loss of staking in groups.",
+      "lines": [
+        {
+          "text": "Do you think this design might hide centralisation more than it enables decentralisation? Imo it hides centralisation by way of key rotation, withdrawal credential hiding, etc. It doesn't really enable decentralisation (other than maybe taking pseudonymity to anonymity)."
+        },
+        {
+          "text": "A particular concern of mine is that so far Lean intends to drop the ability to stake in groups. This has been a design goal since ~2018 for the chain, and not one that we should silently drop. Would you be willing to explain why its no longer a design goal, or to commit to working on an architecture until we can keep it?"
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-vbuterin-reply-2026",
+      "date": "2026-07-08",
+      "date_label": "8 July 2026",
+      "place": "ethresear.ch",
+      "author": "vbuterin",
+      "source_title": "The Extremely Lean Chain",
+      "source_url": "https://ethresear.ch/t/25369/6",
+      "note": "Vitalik says he is personally strongly in favor of group staking continuing to be a goal, and names the privacy trade-off as real.",
+      "lines": [
+        {
+          "text": "I'm personally strongly in favor of this continuing to be a goal."
+        },
+        {
+          "text": "Doesn't anything privacy-related enable hiding centralization? eg. even including private payments, or private voting. I feel like it's a genuine issue but a bullet that we have to bite if we are pro-privacy at all."
+        }
+      ]
+    },
+    {
+      "kind": "quote",
+      "speaker_confirmed": true,
+      "id": "s-17",
+      "date": "2026-10-10",
+      "date_label": "10 October 2026",
+      "place": "PQ Ethereum Workshop 2026",
+      "speaker": "Justin Drake",
+      "speaker_slug": "justin-drake",
+      "talk_id": "f933c942-0dd5-4b96-a3ca-8e20a2e5abab",
+      "talk_slug": "defensive-acceleration-drake",
+      "note": "A hard part of the post-quantum plan, in the proposer's words: signature schemes cannot be changed once launched, while the proving machine can be upgraded at every fork. Solo talk, single credited speaker.",
+      "lines": [
+        {
+          "t": 545,
+          "clean": "For the signature schemes in particular, once we've launched them, there's no going back. Most likely they will be extremely sticky, and the designs that we launch with will persist for many years to come, but possibly decades or centuries. On the other hand, [leanVM], it's okay if it's not perfect, because it's infrastructure that's hidden behind the scenes that we can upgrade at every hard fork.",
+          "caption": "for the signature schemes in particular, once we've launched them, there's no going back. Um the most likely they will be extremely sticky and the designs that we launch with will uh will persist for for for many years to come. But possibly possibly decades or centuries. On the other hand, LinVM, it's okay if it's not perfect because it's infrastructure that's hidden behind the scenes that we can upgrade at every hard fork.",
+          "chunks": [
+            {
+              "ord": 13,
+              "t": 545,
+              "raw": "for the signature schemes in particular, once we've launched them, there's no going back. Um the most likely they will be extremely sticky and the designs that we launch with will uh will persist for for for many years to come."
+            },
+            {
+              "ord": 14,
+              "t": 582,
+              "raw": "But possibly possibly decades or centuries. On the other hand, LinVM, it's okay if it's not perfect because it's infrastructure that's hidden behind the scenes that we can upgrade at every hard fork."
+            }
+          ],
+          "edits": [
+            "'LinVM' corrected to [leanVM] (misheard caption); dropped 'the' before 'most likely'."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s-14",
+      "kind": "quote",
+      "date": "2026-11-03",
+      "date_label": "3 November 2026",
+      "place": "Devcon 8",
+      "speaker": "Justin Drake",
+      "speaker_slug": "justin-drake",
+      "talk_id": "02fe851e-3be9-449e-9cd4-4abda19e3e9d",
+      "talk_slug": "post-quantum-transition",
+      "note": "After the Sept status point: at Devcon 8 the proposer announces a further Strawmap update that pulls the post-quantum work earlier; no published text of it was found. Drake also set a \"mission 2028\" of the full post-quantum transition by December 2028 (same talk, ord 15 to 17: he hopes to wrap up the full transition by December 2028).",
+      "lines": [
+        {
+          "t": 568,
+          "clean": "We today are announcing a material update to the strawmap. We're pushing timelines forward very significantly to the to the [J*] fork. More specifically, we would like to have all three layers of L1, the [EL] with post-quantum transactions, the CL with post-quantum attestations, and the DL with post-quantum sampling, all wrapped up by [J*].",
+          "caption": "we today are um announcing an up a material update to the straw map. We're pushing timelines forward very significantly to the to the jar fork. More specifically, we would like to have all three layers of L1, the E with postquantum transactions, the CL with postquantum attestations, and the DL with postquantum sampling. all wrapped up uh by JAR.",
+          "chunks": [
+            {
+              "ord": 14,
+              "t": 568,
+              "raw": "we today are um announcing an up a material update to the straw map. We're pushing timelines forward very significantly to the to the jar fork. More specifically, we would like to have all three layers of L1, the E with postquantum transactions, the CL with postquantum attestations, and the DL with postquantum sampling. all wrapped up uh by JAR."
+            }
+          ],
+          "edits": [
+            "\"jar fork\" and \"JAR\" in the caption read as [J*]: a few seconds later he says it was \"in LAR\" (L*) before, and the Strawmap's later placeholder forks are J* and L*; \"the E\" in the caption fixed to [EL]; \"an up a\" stutter dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "kind": "quote",
+      "speaker_confirmed": true,
+      "id": "s-18",
+      "date": "2026-11-04",
+      "date_label": "4 November 2026",
+      "place": "Devcon 8",
+      "speaker": "Justin Drake",
+      "speaker_slug": "justin-drake",
+      "talk_id": "3aac1063-d856-43fc-b584-e924fafcaa6b",
+      "talk_slug": "pq-ethereum-q-drake",
+      "note": "How the idea moved, in the proposer's words, answering an audience question: post-quantum was once the excuse for a bigger revamp; with quantum timelines earlier it is now taken on its own. Q&A with a moderator; the answers are Justin Drake's.",
+      "lines": [
+        {
+          "t": 288,
+          "clean": "Two years ago, I gave a presentation at [Devcon] on the beam chain, and the idea back then was to use post-quantum as a [Schelling] point for doing an ambitious revamp of the whole consensus layer. The argument back then was that if we're going to do a very invasive change like post-quantum, we might as well also do all the other things that we've been wanting to do, for example have a much better finality mechanism and clean up all the technical debt. You can think of it as being proof of stake 2.0. In some sense what I'm saying today, two years later, is the exact opposite.",
+          "caption": "So, two years ago, I gave a presentation at Defcon on the the beam chain and the idea back then was to use Postquantum as a shelling point for doing an ambitious revamp of the whole consensus layer. Um, and the the argument back then was that if we're going to do a very invasive change like Postquantum, we might as well also do all the other things that we've been wanting to do. uh for example have a much better finality mechanism and clean up all the technical debt um and you can think of it as being proof of stake uh 2.0 You know in some sense what I'm saying today 2 years later is the exact opposite. >> Oh [laughter]",
+          "chunks": [
+            {
+              "ord": 7,
+              "t": 288,
+              "raw": "So, two years ago, I gave a presentation at Defcon on the the beam chain and the idea back then was to use Postquantum as a shelling point for doing an ambitious revamp of the whole consensus layer. Um, and the the argument back then was that if we're going to do a very invasive change like Postquantum, we might as well also do all the other things that we've been wanting to do. uh for example have a much better finality mechanism and clean up all the technical debt um and you can think of it as being proof of stake uh 2.0 You know in some sense what I'm saying today 2 years later is the exact"
+            },
+            {
+              "ord": 8,
+              "t": 331,
+              "raw": "opposite. >> Oh [laughter]"
+            }
+          ],
+          "edits": [
+            "'Defcon' corrected to [Devcon] and 'shelling' to [Schelling] (misheard captions); dropped the repeated 'the'. The caption after 'opposite.' continues with the host's reaction, which is not quoted."
+          ]
+        },
+        {
+          "t": 331,
+          "clean": "The context has changed. Back then when I gave the talk, the timeline for post-quantum was 2032 at the earliest and the expected timeline was 2035. Now the earliest timeline for quantum is 2029 and the expected is 2032. So we've kind of shifted everything forwards by 3 years. This sudden and unexpected acceleration means that we really do need to take the post-quantum threat in isolation and address this with more urgency than the other stuff.",
+          "caption": "So the the context has changed. Back then when I gave the talk the timeline for postquantum was 2032 at the earliest and the expected timeline was 2035. Now the earliest timeline for for for for quantum is 2029 and the expected is 2032. So we've kind of shifted everything forwards by 3 years. And you know this sudden and unexpected acceleration means that we we really do need to take the postquantum threat in isolation and address this um you know with with more urgency than the other stuff. >> Yeah. Yeah.",
+          "chunks": [
+            {
+              "ord": 8,
+              "t": 331,
+              "raw": "So the the context has changed. Back then when I gave the talk the timeline for postquantum was 2032 at the earliest and the expected timeline was 2035. Now the earliest timeline for for for for quantum is 2029 and the expected is 2032. So we've kind of shifted everything forwards by 3 years. And you know this sudden and unexpected acceleration means that we we really do need to take the postquantum threat in isolation and address this um you know with with more urgency than the other"
+            },
+            {
+              "ord": 9,
+              "t": 374,
+              "raw": "stuff. >> Yeah. Yeah."
+            }
+          ],
+          "edits": [
+            "Dropped the leading 'So' and the repeated 'the'/'we'/'for'; the caption after 'stuff.' continues with the host's 'Yeah. Yeah.', which is not quoted."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s-status",
+      "kind": "status",
+      "date": "2026-11-04",
+      "date_label": "4 November 2026",
+      "place": "EF Protocol priorities, 7 September 2026",
+      "title": "A plan, not a scheduled upgrade",
+      "body": "According to the EF Protocol post of 7 September 2026, fast-finality research now decouples finality from block production, with decoupled consensus the leading headliner candidate for I*. The post sets December 2029 as the target for a quantum-resistant L1 across all three layers, a deadline it calls non-negotiable at least until January 2027, and says the Strawmap may swap K* and L*, moving lean consensus forward by one fork. The Strawmap drawing on strawmap.org is now dated 2 November 2026: it places post-quantum transactions in the fork called I*, post-quantum attestations and post-quantum data sampling in J*, and the post-quantum L1 goal in J*, matching the update Justin Drake announced at Devcon 8 on 3 November. Earlier versions (July, 19 August) put full post-quantum readiness later.",
+      "link": "https://blog.ethereum.org/2026/09/07/protocol-priorities",
+      "link_label": "Read the EF Protocol post",
+      "note": "Primary sources: EF Protocol, Current and Emerging Priorities, blog.ethereum.org/2026/09/07/protocol-priorities (December 2029 target, 'non-negotiable at least until January 2027', the possible K*/L* swap); strawmap.org (EF Architecture, seven forks by 2029, timelines are a guide; Glamsterdam and Hegota are the named forks, later ones placeholders). Status read on 4 Nov 2026. strawmap.org drawing read 10 Nov 2026, 'updated Nov 2, 2026' (I*: leanSPHINCS post-quantum transactions, decoupled consensus; J*: leanXMSS post-quantum attestations, leanDA sampling, post-quantum L1 north star). This matches the Devcon 8 update of 3 Nov 2026 (stop s-14). Press says Drake called December 2028 an aspiration at Devcon 8; that is not an official change and the body does not state it."
+    }
+  ],
+  "excluded": [
+    {
+      "id": "x-coratger-49",
+      "talk_id": "440fd9bb-3014-4929-83e9-5be033b1f1cc",
+      "reason": "Thomas Coratger, Post-Quantum Interop Call #49, 29 Jul 2026 (confirmed speaker; drafted as stop s-13, then cut after the independent check): a devnet testing note with unexplained jargon (sub-MTU XMSS, the main LeanVM branch) that repeats the signature-size point Gajinder Singh makes at EthCC[9]. Stop id s-13 is left unused so other ids stay stable."
+    },
+    {
+      "id": "x-pectra-unchained",
+      "talk_id": "d069b882-de6b-4c4f-a7e8-3804f8d606da",
+      "reason": "Unchained, 25 Mar 2025 (Alex Stokes and Barnabe Monnot, both credited, no per-speaker labels): one guest says the beam chain is 'a very nice thought experiment' and 'a terminal vision', the other that 'it's not enough to have great designs for 2029, you also need to beef up what you currently have'. The best objection by people who are not Drake, but which of the two speaks each turn cannot be confirmed from the captions."
+    },
+    {
+      "id": "x-korea-clients-panel",
+      "talk_id": "d7796dad-6c5c-4c33-a3d1-bb1ebf29018b",
+      "reason": "Ethereum Korea One clients panel, 29 Sep 2026, ord 35 to 38: a panelist prefers reusing BLS for transient post-quantum safety (the Offchain Labs paper) over replacing it with hash-based signatures. A real alternative to the lean approach, but the four panelists are credited without labels and the speaker of that turn (not Luca Zanolini) is not confirmed."
+    },
+    {
+      "id": "x-benedikt-wagner-29",
+      "talk_id": "1e4e1f27-abfe-4758-bcbf-7dce734617bb",
+      "reason": "Post-Quantum Interop Call #29, Benedikt Wagner, ord 65 (confirmed speaker): with SNARKs one can aggregate signatures over different messages if the relation proven in leanVM is designed right. Replying to a spec question, it does not stand alone as a reason why aggregation is hard. Gajinder Singh's #36 ord 28 to 29 is about not testing fork mechanisms in devnets yet, not signatures."
+    },
+    {
+      "id": "x-zk-394-tradeoffs",
+      "talk_id": "5195ee7d-1ef3-4771-95fe-49fb9c410de2",
+      "reason": "Zero Knowledge Ep. 394, ord 43 to 44: the trade-offs between XMSS aggregated per second, recursion time and network cost of exchanging post-quantum objects. Thomas Coratger and Emil are both credited and the transcript has no speaker labels, so the voice is not confirmed."
+    },
+    {
+      "id": "x-zk-391-size",
+      "talk_id": "cf26da5e-a3c2-4415-b696-8e1a45ed24f4",
+      "reason": "Justin Drake, Zero Knowledge Ep. 391, ord 9 to 10 (drafted, then replaced): post-quantum signatures about ten times larger than BLS. Replaced by Gajinder Singh's EthCC[9] lines to reduce Drake's share. The Bankless 23 Mar 2026 rewrite-is-already-needed stop was also cut because the 'rewrites never work' answer carries the same point."
+    },
+    {
+      "id": "x-sassano-reaction",
+      "talk_id": "617acb9c-0139-4047-8bd9-b6dfcc4ad352",
+      "reason": "Anthony Sassano, The Daily Gwei 19 Nov 2024, ord 36 to 45 (confirmed, drafted, then cut for length): argues the timeline slide was Justin Drake's biggest mistake and that recruiting new client teams makes sense. A commentator, and the map is capped at 18 stops."
+    },
+    {
+      "id": "x-vitalik-edcon",
+      "talk_id": "34c89f3f-29eb-5f09-8a59-91121f2a72f7",
+      "reason": "Vitalik Buterin, EDCON 2025, ord 42 to 43 (confirmed, drafted, then cut for length): 'lean Ethereum will be Ethereum 3.0', every piece simple, secure, optimal. Overlaps Justin Drake's definition on Bankless, and set beside the Programmable Cryptography stop (Vitalik: 'Can we call beam chain Ethereum 3.0? I think no') it would read as a gotcha. Do not bring back."
+    },
+    {
+      "id": "x-reth",
+      "talk_id": "a1b37139-892a-4367-ba33-202430fafab7",
+      "reason": "Georgios Konstantopoulos (Reth), Devcon 7 Q&A: asked whether Reth should build a beam chain client he answers 'not many' thoughts, then 'I don't know', 'we maintain so much code'. A candid capacity remark, not a position on the redesign, and the flat tone reads as a gotcha. Not used."
+    },
+    {
+      "id": "x-infinite-endgames",
+      "talk_id": "72f2d1a0-1d8f-4ed2-8b30-0ec0c1e01d16",
+      "reason": "Devcon 7 Infinite Endgames panel (only Lightclient credited, several voices): the best sceptical lines on the map's theme (fossil before the beam chain, 'people will say too complex, let's do it during the beam chain', 'we're not going to ship the beam chain if we're not equally confident', 'at the moment it's nothing, it's just an idea', ords 78 to 82). Voices change without handover cues, so the speaker of each turn cannot be confirmed."
+    },
+    {
+      "id": "x-lean-consensus-calls",
+      "talk_id": "cfcc0382-a999-42fa-910b-a917dd3840fc",
+      "reason": "leanConsensus Calls #1 to #5 and #7 (e.g. cfcc0382, d15df1b0, 21794f94, 5b336755, f3efb71b, 97ae8278), the Beam Day talks at EthCC[8] (e.g. 25e27ecf, 28d408a9, 2a9c66f8, 8587c115), Native Rollups Calls and the 2025 Post-Quantum Interop Calls #1 to #18: auto-captions with no speaker labels and no credited speaker, so no voice can be confirmed. Only call #6 (labelled) is quoted."
+    },
+    {
+      "id": "x-client-skeptics",
+      "talk_id": "127103b4-8572-4db6-ad5b-f368a127eea6",
+      "reason": "No confirmed client-team voice sceptical of a rewrite, its timeline or its distraction from nearer work was found, despite searches for misheard forms (beam chain, bean chain, lean consensus with each client name, rewrite, ossification, from scratch). The doubts on the map come from Dankrad Feist, Vitalik Buterin and Tomasz Stanczak. ACD calls #158, #187 and ACDE #238 mention leanVM or the lookahead only in passing."
+    },
+    {
+      "id": "x-reaction-commentary",
+      "talk_id": "c259c91b-caee-4240-8e37-a66adb394dd0",
+      "reason": "Bankless 15 Nov 2024, Unchained recaps (eb9294f6, d22f5e05) and Chopping Block shows (6cf0875a, 5ec8fc7d, e468378c): hosts and guests describing the hostile reaction ('big refactoring', 'we may reach Mars before beam chain goes live') or the shifting names (beam chain, strawmap). Second-hand reporting and characterisations of named people, not used. Haseeb Qureshi (3e2d1606) calls the beam chain a concession that the rollup-centric roadmap was a mistake: a commentator's take, not used."
+    },
+    {
+      "id": "x-ballet-verkle",
+      "talk_id": "ba5a1be4-183c-4569-8f79-374af7535e33",
+      "reason": "Guillaume Ballet (Geth), Devcon 7 verkle talk, ord 19 to 20: says the beam chain shows the end game keeps changing and warns of two transitions instead of one. It is about verkle versus binary trees, not about the consensus redesign, so left out."
+    },
+    {
+      "id": "x-staking-strawmap",
+      "talk_id": "c742797f-4c16-5236-a9fc-03bb08b2911e",
+      "reason": "Justin Drake, EthCC[9] Staking Strawmap, ord 33 to 36: finishing the post-quantum migration by 2029, ten client teams and four devnets. Confirmed speaker, left out to avoid repeating points already made by Justin's Bankless stops and Gajinder Singh's."
+    },
+    {
+      "id": "x-lean-data",
+      "talk_id": "1238d443-6486-4158-b388-1bc11365adea",
+      "reason": "P2P Networking Call #6, Kamil Salakhiev, ord 122 to 148: lean data (replacing KZG with Merkle commitments plus a leanVM proof of 128 to 512 kilobytes). Confirmed speaker but the captions are too garbled to clean without guessing."
+    },
+    {
+      "id": "x-acde-238",
+      "talk_id": "0f0f0795-1ca3-4556-8258-e72140a95267",
+      "reason": "All Core Devs - Execution #238, Mo Jahanara, ord 140: private withdrawals are 'very unlikely' for Hegota because leanVM must be mature and audited. About a privacy proposal, not the lean consensus argument."
+    },
+    {
+      "id": "x-pq-interop-spare",
+      "talk_id": "4c216a7e-38cc-4a04-839e-47799cb81126",
+      "reason": "Post-Quantum Interop Calls #28 to #49 (labelled speakers): many confirmed status updates (Benedikt Wagner on aggregating different messages in #29 ord 65, Gajinder Singh on not adding forks to devnets yet in #36 ord 28 to 29, Thomas Coratger on DevNets). None of #28 to #49 is quoted (#49 is x-coratger-49); they are progress logs that repeat the same point."
+    },
+    {
+      "id": "x-call-6-3sf",
+      "talk_id": "031e84a5-eaf9-4cbd-94eb-181ab4de84d7",
+      "reason": "leanConsensus Call #6: 3-slot finality (16 May 2025; Francesco D'Amato, Luca Zanolini, Vitalik Buterin and Roberto Saltini, labelled speakers): presents 3SF and Vitalik's 3SF-mini prototype. Redundant with the 3SF post (stop w-3sf-2024), which says the same more clearly."
+    },
+    {
+      "id": "x-ethproofs-4",
+      "talk_id": "e87d34cb-f5e0-46c4-9e91-9b409b28f7fd",
+      "reason": "Ethproofs Call #4: Enshrine RISC-V? (22 Aug 2025): the live debate on lean execution, but no credited speaker and no labels in the captions, so no voice can be confirmed. The written RISC-V stops (Vitalik, levs57, Offchain Labs) carry the argument."
+    },
+    {
+      "id": "x-charbonneau",
+      "talk_id": "3a461d7f-7273-4821-ad99-ae1597fd51c2",
+      "reason": "Can Ethereum Compete with Bitcoin, Solana & Celestia? (9 Dec 2024, ord 128 to 132): the two credited hosts criticise the beam chain talk (no clear 'why', wrong priorities). Two voices without labels, so the speaker of each line cannot be confirmed."
+    },
+    {
+      "id": "x-koppelmann",
+      "talk_id": "0c72437e-dc25-4014-a78c-e1fafaea4b57",
+      "reason": "What's the Best Way for Ethereum to Grow? Two Ethereans Debate (26 Nov 2024; Justin Drake and Martin Koppelmann, ord 73 to 78): Drake explains the clean-slate beam chain. Two voices without labels and he says the same on Bankless (stop s-05)."
+    },
+    {
+      "id": "x-vitalik-core-tech",
+      "talk_id": "34c89f3f-29eb-5f09-8a59-91121f2a72f7",
+      "reason": "Vitalik Buterin, EDCON 2025 (The Next Five Years of Ethereum Core Technology), ord 42 to 44: lean Ethereum as the long-term future, with a quantum estimate. Confirmed speaker, left out for the same reason as x-vitalik-edcon (overlaps Justin Drake's definition and the Ethereum 3.0 line reads as a gotcha beside stop s-04)."
+    },
+    {
+      "id": "x-getting-to-lean",
+      "talk_id": "9393ca5a-d7ae-4010-84e6-29adad494cbb",
+      "reason": "Getting to Lean Ethereum (Devcon 8, 4 Nov 2026; Leandro Ferrigno and Ivan Litteri of LambdaClass): a client team explains that lean features no longer ship as one hard fork and the old and new roadmaps are meeting. Two credited speakers with a handover that the captions do not label, so the speaker of each line is unconfirmed."
+    },
+    {
+      "id": "x-federico",
+      "talk_id": "a4bdad12-a1ac-4b58-a1ea-300db6767111",
+      "reason": "Federico Carrone, Next 10 Years of Ethereum (Devconnect 2025), ord 39: praise for lean Ethereum as 'a cathedral'. Supportive colour rather than an argument."
+    },
+    {
+      "id": "x-ben-adams",
+      "talk_id": "6a4c4bed-a546-43e4-8542-aec44196b6fe",
+      "reason": "Ben Adams, An Ethereum Validator in Every Home (Devcon 8, 4 Nov 2026): a design talk for very light validators built on lean pieces (leanVM numbers, decoupled consensus). Not an argument about the lean plan itself."
+    },
+    {
+      "id": "x-beam-bankless-2024",
+      "talk_id": "5fd45ed5-4022-4e73-b211-619cc7ad9b92",
+      "reason": "Bankless 18 Nov 2024 (Justin Drake) and the Empire show of the same day (aa813c5c, three credited voices, no labels): the same beam chain pitch as the Devcon keynote and the 2 Dec 2024 Bankless interview already on the map."
+    },
+    {
+      "id": "x-gap-vitalik-riscv",
+      "talk_id": "ccd4e0f5-b8ed-4d51-874f-ba3cb3869bfb",
+      "reason": "GAP, no transcript: Long-term L1 Proposal: Replacing the EVM with RISC-V (Vitalik Buterin, 13 Jun 2025). His written proposal is on the map instead (w-vbuterin-riscv-2025)."
+    },
+    {
+      "id": "x-gap-lean-ethereum-talk",
+      "talk_id": "b44034e9-2de4-455a-b8c8-ef7a1d3fb8bb",
+      "reason": "GAP, no transcript: 'Lean Ethereum' (4 May 2026)."
+    },
+    {
+      "id": "x-gap-strawmap-berlin",
+      "talk_id": "1c2e2892-657a-4ef5-b96d-373a472e72e0",
+      "reason": "GAP, no transcript: Ethereum's Future: The Strawmap, Glamsterdam & Hegota (Parithosh Jayanthi, Berlin Ethereum Day, 15 Jun 2026). A draft of the same title, 'From strawmap to reality' (92bf2e9b), is unpublished and has no transcript."
+    },
+    {
+      "id": "x-gap-fast-finality-jan-2026",
+      "talk_id": "6fdbc137-1222-46ae-b207-ba7dfc01e69d",
+      "reason": "GAP, unpublished draft with no transcript: Fast Finality, Faster blocks (Francesco, January 2026). The published Devconnect 2025 version is on the map (s-15)."
+    },
+    {
+      "id": "x-gap-hash-based-proofs",
+      "talk_id": "0c8ecebc-8800-48f2-af78-6d738bb52b84",
+      "reason": "GAP, no transcript: Introduction to hash-based proof systems (Diego Kingston, Devcon 7)."
+    },
+    {
+      "id": "x-written-not-used",
+      "talk_id": "",
+      "reason": "Written candidates read and left out as minor or redundant: Justin Drake's reply on beam chain client teams and proof sizes (ethresear.ch/t/21027/2), benaadams on 256-bit arithmetic (Magicians 23617/2), gcolvin on replacing the EVM (ethresear.ch/t/23491/17), Luca Zanolini on dynamic availability and the replies (ethresear.ch/t/24418), Vitalik Buterin's opening post of 'The Extremely Lean Chain' (ethresear.ch/t/25369/1), the 3SF and registry posts' remaining paragraphs, and Pardis Toolabi's lattice-or-hash guide (ethresear.ch/t/26003), a field guide rather than a position."
+    }
+  ],
+  "audit": {
+    "date": "2026-11-10",
+    "spec_changes": [
+      {
+        "eip": "none",
+        "date": "2025-07-31",
+        "change": "Lean Ethereum unveiled by Justin Drake on the EF blog: three layers (lean consensus = beacon chain 2.0, formerly beam chain; lean data; lean execution) and hash-based cryptography as the common thread. Not an EIP; the roadmap's own milestone.",
+        "link": "https://blog.ethereum.org/2025/07/31/lean-ethereum",
+        "agreed_at": "No call; a personal vision post that states a diversity of views across Protocol is expected",
+        "stop": "w-drake-lean-2025"
+      },
+      {
+        "eip": "none",
+        "date": "2026-02-25",
+        "change": "Strawmap published at strawmap.org (seven forks through 2029, five north stars; originated at an EF workshop in January 2026). Date from the ethereum/strawmap commits (first 23 Feb, FAQ final 25 Feb) and press.",
+        "link": "https://strawmap.org",
+        "agreed_at": "No call; EF Architecture draft",
+        "stop": "w-strawmap"
+      },
+      {
+        "eip": "none",
+        "date": "2026-08-19",
+        "change": "Strawmap update adds the MV-PQ milestone at J*; superseded by the Strawmap drawing dated 2 Nov 2026, which s-status now describes.",
+        "link": "https://blog.ethereum.org/2026/09/07/protocol-priorities",
+        "agreed_at": "No call",
+        "stop": "s-status"
+      },
+      {
+        "eip": "none",
+        "date": "2026-09-07",
+        "change": "EF Protocol priorities: Dec 2029 quantum-resistant L1 target, possible K*/L* swap, Hegota has little appetite for more consensus scope.",
+        "link": "https://blog.ethereum.org/2026/09/07/protocol-priorities",
+        "agreed_at": "No call",
+        "stop": "s-status"
+      },
+      {
+        "eip": "none",
+        "date": "2025-10 to 2026-03",
+        "change": "pq-devnet-0 to pq-devnet-4 milestones on leanroadmap.org (leanroadmap.org page read May 2026 version).",
+        "link": "https://leanroadmap.org",
+        "agreed_at": "Interop calls, no decisions",
+        "why_not": "Progress log, no argument or decision."
+      },
+      {
+        "eip": "none",
+        "date": "2026-11-02",
+        "change": "Strawmap drawing updated 2 Nov 2026 (post-quantum items in J*), announced by Justin Drake at Devcon 8 on 3 Nov.",
+        "link": "https://strawmap.org",
+        "agreed_at": "No call",
+        "stop": "s-14 (announcement), s-status (published form)"
+      }
+    ],
+    "timelines": [
+      {
+        "title": "leanroadmap.org Lean Consensus R&D Progress",
+        "url": "https://leanroadmap.org",
+        "events": [
+          {
+            "date": "2025-01",
+            "event": "Poseidon cryptanalysis bounties; hash-based multi-signature paper",
+            "excluded": "x-pq-interop-spare (research track log; no argument)"
+          },
+          {
+            "date": "2025-10 to 2026-03",
+            "event": "pq-devnet-0 to -4",
+            "excluded": "x-pq-interop-spare"
+          },
+          {
+            "date": "2026-01",
+            "event": "'Aborting Random Oracles' paper",
+            "excluded": "research log; not argued on the map (unchecked, minor)"
+          }
+        ]
+      },
+      {
+        "title": "EF Protocol priorities post (7 Sep 2026)",
+        "url": "https://blog.ethereum.org/2026/09/07/protocol-priorities",
+        "events": [
+          {
+            "date": "2026-07",
+            "event": "July Strawmap published",
+            "stop": "s-status (superseded by the 2 Nov 2026 drawing)"
+          },
+          {
+            "date": "2026-08-19",
+            "event": "Strawmap update adds MV-PQ at J*",
+            "stop": "s-status"
+          },
+          {
+            "date": "2026-09-07",
+            "event": "Priorities post",
+            "stop": "s-status"
+          }
+        ]
+      },
+      {
+        "title": "EF blog: lean Ethereum",
+        "url": "https://blog.ethereum.org/2025/07/31/lean-ethereum",
+        "events": [
+          {
+            "date": "2025-07-31",
+            "event": "lean Ethereum unveiled",
+            "stop": "w-drake-lean-2025"
+          }
+        ]
+      },
+      {
+        "title": "Press timeline of Strawmap (The Block, Decrypt)",
+        "url": "https://www.theblock.co/news/ecosystems/2026-02-26-ethereum-foundation-researchers-publish-strawmap-outlining-seven-forks-through-2029-391406",
+        "events": [
+          {
+            "date": "2026-02-25",
+            "event": "Strawmap published",
+            "stop": "w-strawmap"
+          },
+          {
+            "date": "2026-01",
+            "event": "EF workshop where it started",
+            "stop": "w-strawmap (page says so)"
+          }
+        ]
+      }
+    ]
+  }
+}

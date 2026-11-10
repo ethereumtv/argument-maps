@@ -1,0 +1,456 @@
+{
+  "map": "glamsterdam-gas-repricing",
+  "sources": [
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/15",
+      "read_at": "2026-11-08 10:37:17.110009+00",
+      "read_as": "forum raw text",
+      "sha256": "1dfc31d22642be2ab37f9002f7fa689a82a0b1735e44d318f1883997677ae4f0",
+      "quoted_by": [
+        "w-ryley-o"
+      ],
+      "passages": [
+        "However, the proposed increases in storage costs — roughly 10x for SSTORE-style immutable blob storage and 3x for general slot storage — seem likely to push many applications off of L1. That feels somewhat counter to Ethereum’s broader goal of remaining a decentralized and viable platform for EVM applications."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/28",
+      "read_at": "2026-11-08 10:37:18.105196+00",
+      "read_as": "forum raw text",
+      "sha256": "3c10f58d4da74ce76e476cc8ae61821a16bbd2f974e7c737bc0a6ad9121685bb",
+      "quoted_by": [
+        "w-anton-chainsecurity"
+      ],
+      "passages": [
+        "The pattern: a contract calls a child via try/catch and, on revert, performs state changes. The catch path cannot distinguish a legitimate revert from an out-of-gas revert.",
+        "Today, forcing the catch via OOG also depletes the regular gas that the catch's SSTOREs need, so the whole tx OOGs and the state change does not persist.",
+        "Catch paths that previously did not fit within a tx (multi-SSTORE shutdown / liquidation / freeze state changes) now do, because most of their cost is paid from the reservoir rather than the inner-call gas budget."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/29",
+      "read_at": "2026-11-08 10:37:18.997204+00",
+      "read_as": "forum raw text",
+      "sha256": "0bc7d9b97a24a8dc7cad1e06094180e2ea0d05c37edf20b44e2a164c6a8361d6",
+      "quoted_by": [
+        "w-abc-123-c"
+      ],
+      "passages": [
+        "This problem has existed since eip1884, it is now an anti-pattern. The protocol strongly discourages the deployment of static gas usage contracts because they are highly susceptible by repricing. The best approach is to migrate them before the upgrade ships."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/31",
+      "read_at": "2026-11-08 10:37:20.999267+00",
+      "read_as": "forum raw text",
+      "sha256": "5bd36ed6a76fd500855a534146267a449adbb79133e4e2c78d2ead8fc38704fa",
+      "quoted_by": [
+        "w-hirako2000"
+      ],
+      "passages": [
+        "The question is does Ethereum favours ensuring backward compatibility or move forward. Some contracts simply cannot be updated."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8038-state-access-gas-cost-update/25693/10",
+      "read_at": "2026-11-08 10:37:31.308625+00",
+      "read_as": "forum raw text",
+      "sha256": "b474ef3862c2c1358ebe011c431a91b2088884705136a8c3c8ade4d2f52d5e1d",
+      "quoted_by": [
+        "w-atiselsts"
+      ],
+      "passages": [
+        "Results show that the dominant effect is SLOAD repricing (EIP-8038) and that the gas cost increase is around 50% with 3x multiplier, and >200% with 10x multiplier."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/33",
+      "read_at": "2026-11-08 10:37:22.016749+00",
+      "read_as": "forum raw text",
+      "sha256": "f0578e4c638ecade6bccbcacc3741539ba97a7c13ec83cdc1490758b5078caf8",
+      "quoted_by": [
+        "w-jat9292"
+      ],
+      "passages": [
+        "However, the current direction to include ERC-8037 in Glamsterdam creates an unreasonable timeframe to solve this complex issue that we believe the standard authors were not aware of. This will impact an entire category of privacy solutions while keeping non-private transactions cheap.",
+        "At the current rates, the state-gas component of a confidential transfer roughly increases by x5 in absolute terms while existing ERC-20 transfer is mostly unaffected - making privacy much more expensive for all Ethereum users."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/34",
+      "read_at": "2026-11-08 10:37:23.027766+00",
+      "read_as": "forum raw text",
+      "sha256": "9717207dc79e1f42731701f26063990dc9915df34878971df2e06ee58c13c1a9",
+      "quoted_by": [
+        "w-misilva73-blocker"
+      ],
+      "passages": [
+        "This EIP is currently Scheduled for Inclusion. It is already part of the glamsterdam devnets and it is a blocker for us to increase the gas limit further, so it is very unlikely to be declined at this point."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/36",
+      "read_at": "2026-11-08 10:37:23.914241+00",
+      "read_as": "forum raw text",
+      "sha256": "db3ab54ad04c7d36057b913f13c293e64ca072cdaffe4128203d53887f46b765",
+      "quoted_by": [
+        "w-arikg"
+      ],
+      "passages": [
+        "Regarding this EIP, understandably the EIP is already in SFI state which is obviously not easy to reopen conversation and a lot of effort has been put into it. From our point of view it seems to be fast-tracked to this state and we believe that it happened without deep enough understanding of impact on the application layer - so although it’s a bit late, we believe it is a good enough argument to reconsider the approach and timing.",
+        "There are multiple ways to make this better, a delay of one fork to do deeper work with the application layer is one way to go. Another way is making the increase more gradual, with small impact on the first fork (to not waste implemetnation/testing time) and a bigger impact on the second fork."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/38",
+      "read_at": "2026-11-08 10:37:24.883978+00",
+      "read_as": "forum raw text",
+      "sha256": "ef3f1e6cb1e1fd000d983228b1eda935d1e10cf82139d6155fb60808443fb300",
+      "quoted_by": [
+        "w-amxx"
+      ],
+      "passages": [
+        "First of all, I understand this change is needed to ensure the sustainability and security of the L1. This is obviously not something we want to compromise on.",
+        "However, I cannot deny that some smart contracts are going to be significantly affected, while others not so much."
+      ]
+    },
+    {
+      "url": "https://github.com/ethereum/EIPs/pull/11858",
+      "read_at": "2026-11-10 16:07:23.88405+00",
+      "read_as": "page text",
+      "sha256": "db7d0dd9c5583e3b69575d3284ff57e246ba70b8a9bc3528dc58d00cbbddd61b",
+      "quoted_by": [
+        "w-pr11858-create"
+      ],
+      "passages": [
+        "Replace the unconditional-charge-with-refill model for CREATE/CREATE2 with a conditional charge applied at the single destination access that also performs the EIP-7610 collision check - the access EIP-7928 already sanctions and records.",
+        "Creations failing the balance/nonce/depth checks never read the destination and charge nothing; pre-existing destinations (e.g. pre-funded deterministic-deployment addresses) charge nothing and their create frame is no longer temporarily under-budgeted; only a creation that writes a new account pays, in the creating frame before the 63/64ths split, exactly as the CALL* family."
+      ]
+    },
+    {
+      "url": "https://blog.ethereum.org/2026/08/24/glamsterdam-repricing-testing",
+      "read_at": "2026-11-10 16:07:22.631265+00",
+      "read_as": "page text",
+      "sha256": "9adf199a20aa48aac3b3a9482a5b8c72cb833d22ed0048394d1bb299efddb0bd",
+      "quoted_by": [
+        "w-ef-repricing-notice"
+      ],
+      "passages": [
+        "Most flagged issues are fixed with a gas-limit increase, and the large majority of smart contracts are unaffected.",
+        "Potentially broken: Fails even with a substantially raised gas limit. Contracts in the last group typically rely on hardcoded gas assumptions, such as fixed stipends (Solidity's transfer/send 2,300 gas), hardcoded gas values in calls, logic that branches on gasleft(), or presigned transactions with fixed gas limits."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/50",
+      "read_at": "2026-11-08 10:37:26.696608+00",
+      "read_as": "forum raw text",
+      "sha256": "d093f35d8df510aca5442a98afa4628ce0dea216dda9886c0945596bafc21194",
+      "quoted_by": [
+        "w-pyravim-sepolia"
+      ],
+      "passages": [
+        "Glamsterdam went live on Sepolia at 13:53:36 UTC on Oct 6. I recorded every Sepolia transaction for two days before the fork and since. In the first 10.5 hours after the fork, failures went from 1.91% to 10.97% of transactions (against the 10.5 hours before), and transactions that burned their whole gas limit from 0.15% to 2.02%.",
+        "About a third of the extra failures are bots repeating the same failing call."
+      ]
+    },
+    {
+      "url": "https://www.chainsecurity.com/blog/glamsterdam-gas",
+      "read_at": "2026-11-08 10:38:06.813054+00",
+      "read_as": "page text",
+      "sha256": "737822eade66e8ec922b46df48c57be052ea8382e14e60bc749d434c0def51e3",
+      "quoted_by": [
+        "w-chainsecurity-blog"
+      ],
+      "passages": [
+        "Glamsterdam changes what happens after a failed call. Gas refills and repricing can let failure handlers complete where they once reverted, undermining assumptions behind existing gas checks.",
+        "The reservoir travels with calls in full; EIP-150’s 63/64 rule applies only to gas_left. The GAS opcode reports only gas_left, so a small gasleft() value does not mean that there is not enough gas remaining to pay for state creation."
+      ]
+    },
+    {
+      "url": "https://github.com/ethereum/pm/issues/2267#issuecomment-6320847921",
+      "read_at": "2026-11-08 10:38:08.337747+00",
+      "read_as": "page text",
+      "sha256": "92fcfe831ff2d52361b1fcd98af0c697855648c87566d59b16789046885019c7",
+      "quoted_by": [
+        "w-pcaversaccio-agenda"
+      ],
+      "passages": [
+        "The fundamental \"broken\" thing is that gasleft() can increase. It's important that the core devs are aware of these findings and discuss this in tomorrow's ACDE. IMHO these findings call for a reassessment of this hard fork but that's not for me to decide of course."
+      ]
+    },
+    {
+      "url": "https://x.com/lightclients/status/2113606207252611307",
+      "read_at": "2026-11-10 15:18:41.04143+00",
+      "read_as": "page text",
+      "sha256": "5c5cb5404f6543977f46003eed501836b33db5cf06aaf1962614e117aaad0b32",
+      "quoted_by": [
+        "w-lightclient-x"
+      ],
+      "passages": [
+        "tldr; I really don't like these EIPs. They only allow us to increase gas limit without solving the fundamental problem of ever an growing state."
+      ]
+    },
+    {
+      "url": "https://github.com/ethereum/EIPs/pull/12581#issuecomment-6396720099",
+      "read_at": "2026-11-08 10:38:13.1667+00",
+      "read_as": "page text",
+      "sha256": "9b46825187b911cd21e7a70734cbc5db5c2ca4e68d9733df1715293f0d093363",
+      "quoted_by": [
+        "w-svlachakis-callstatus"
+      ],
+      "passages": [
+        "The root cause, contracts inferring the cause of a failure from gasleft(), is addressed for code written after Hegota by #12586 (CALLSTATUS): the outcome of a call becomes readable, including a halt behind proxies and wrappers, so no new contract needs a gas threshold for this, and the next repricing or reservoir change does not reopen the class. EIP-8141's explicit per-frame budgets remove the fixed-budget pattern itself for frame transactions."
+      ]
+    },
+    {
+      "url": "https://github.com/ethereum/EIPs/pull/12581#issuecomment-6436393641",
+      "read_at": "2026-11-08 10:38:11.265398+00",
+      "read_as": "page text",
+      "sha256": "85af75027975f583ccaf14c30661c8e72b192cc7e189ecd6c94c0094828ff541",
+      "quoted_by": [
+        "w-gurukamath"
+      ],
+      "passages": [
+        "Problem 1 outlined in the article (a new slot cheaper in gas_left) is a \"repricing-class\" break imo. These contracts would have run into the same issue if glamsterdam had simply reduced the SSTORE cost (no reservoir dynamics needed). So this is the same class of assumptions that have been repeatedly warned against. I'm not entirely sure we should be defending it, especially by carrying Osaka prices forward.",
+        "Having said that, refills and reverts crediting the reservoir, is a nice thing to have since it only restores the \"gas left never increases\" invariant that has held since Frontier and simplifies the accounting somewhat(?)."
+      ]
+    },
+    {
+      "url": "https://github.com/ethereum/EIPs/pull/12581#issuecomment-6592071584",
+      "read_at": "2026-11-08 10:38:11.864602+00",
+      "read_as": "page text",
+      "sha256": "769da61071b48074ba901902e3127b8e6d851cef3d8e16c14b479168b7fb41b3",
+      "quoted_by": [
+        "w-gretzke-pr"
+      ],
+      "passages": [
+        "The same call with the same calldata and the same state takes a different code path depending on a number the user picks in their wallet.",
+        "Wallets and eth_estimateGas look for the lowest limit that does not revert, and that is exactly the path where caught calls fail."
+      ]
+    },
+    {
+      "url": "https://blog.ethereum.org/2026/11/06/glamsterdam-8037-8038",
+      "read_at": "2026-11-08 10:38:07.446807+00",
+      "read_as": "page text",
+      "sha256": "71bd2e3e2c665651c81ff0ffdcc3dd8fe3b11c81acad9d767c6f4a5a14a33a12",
+      "quoted_by": [
+        "w-ef-blog"
+      ],
+      "passages": [
+        "During these tests Chainsecurity has found a few projects that would be vulnerable after Glamsterdam since they rely on certain invariants.",
+        "Based on these findings, ACD has decided to delay the hardfork process and not fork Hoodi until the issues are resolved. During this delay, the work on Hegota is not affected and is continuing in parallel in full force.",
+        "In order to reach a pragmatic decision on the next AllCoreDev calls, we need to know what might be broken post-Glamsterdam and if there are any potential spec changes that would prevent these issues."
+      ]
+    },
+    {
+      "url": "https://x.com/me_jango/status/2118817578789298648",
+      "read_at": "2026-11-08 10:34:12.391718+00",
+      "read_as": "page text",
+      "sha256": "3526892fa141b1e3d1ce67525dd433fe2549cf6e41d580d99a4d1ae4748f4d79",
+      "quoted_by": [
+        "w-jango"
+      ],
+      "passages": [
+        "Regardless of if this affects the protocols I work on or not, if breaking invariants what we’re up to, I’m out. That’s my line."
+      ]
+    },
+    {
+      "url": "https://x.com/z0r0zzz/status/2118925021871820893",
+      "read_at": "2026-11-08 10:34:13.692752+00",
+      "read_as": "page text",
+      "sha256": "63c1cc53b0c35223c9a25de39f8fe9af71ecf66998b5fbffa84a57eadb7a09b3",
+      "quoted_by": [
+        "w-ross-wei"
+      ],
+      "passages": [
+        "smart contract developers are underrepresented in the planning around critical upgrades to the smart contract chain, and the social layer of ethereum generally"
+      ]
+    },
+    {
+      "url": "https://x.com/ryanberckmans/status/2119097450203873687",
+      "read_at": "2026-11-08 10:34:14.345137+00",
+      "read_as": "page text",
+      "sha256": "f9a120df1cf67eb34421b0c743e9ea7d8b50ead542268225458a6458a62f6fa6",
+      "quoted_by": [
+        "w-berckmans-1"
+      ],
+      "passages": [
+        "imo ethereum's commitments to apps do not extend to gas pricing, or to total ETH fee levels, or to USD fees. And also not to opcode pricing or gas introspection that depends on those prices. We guarantee maximally credibly neutral, maximally live access to the correct state transition function.",
+        "However, pricing opcodes can't use a neutral mechanism, we need to pick magic number opcode gas prices. Some of our best people researched this extensively and picked updated magic numbers, and that's something imo we should stick with now and continue our larger plans that are on track to grow to global ubiquity."
+      ]
+    },
+    {
+      "url": "https://x.com/GiulioRebuffo/status/2119097876290703493",
+      "read_at": "2026-11-08 10:34:11.735466+00",
+      "read_as": "page text",
+      "sha256": "26dc3bb24042815de62fca4ddf08f1d2bef431713b3c15083dd4bbf52dbb7f9d",
+      "quoted_by": [
+        "w-rebuffo"
+      ],
+      "passages": [
+        "fwiw, this barely affects anyone on-chain, if you read the report from chain security, you will see that the affected contract use very esoteric mechanisms that are not present in the 99.99% of smart contracts.",
+        "also you will get more better gas costs from scaling so you wont pay more anyways."
+      ]
+    },
+    {
+      "url": "https://x.com/ryanberckmans/status/2119113238671470708",
+      "read_at": "2026-11-08 10:34:15.121294+00",
+      "read_as": "page text",
+      "sha256": "bf8ab33570f1014c1ea53ea084614a7a17f91937f4cc6feccdd2762ca0795ba0",
+      "quoted_by": [
+        "w-berckmans-2"
+      ],
+      "passages": [
+        "I'm not advocating to push forward recklessly. That would be stupid as everybody including me is well aware that ethereum's maximal reliability is our unique value proposition.",
+        "Currently I don't think it's clear to the community whether gas introspection behavior was ever one of our guarantees. I currently don't think it ever was or is. Nor is it clear what the impact of guaranteeing it forever, or breaking it now for these contracts, would be."
+      ]
+    },
+    {
+      "url": "https://x.com/pcaversaccio/status/2119102976325214694",
+      "read_at": "2026-11-10 15:18:39.771237+00",
+      "read_as": "page text",
+      "sha256": "663e1c50284a4fb6fb69e63e5cfff5b2c232e91ed76f07fb157c91b62453d28c",
+      "quoted_by": [
+        "w-pcaversaccio-crops"
+      ],
+      "passages": [
+        "until it's activated on mainnet it's not too late. core devs have not done proper analysis over the last 1.5 years and i'm not gonna push for a fork that breaks invariants that were unknown until ~2 weeks ago."
+      ]
+    },
+    {
+      "url": "https://x.com/duncancmt/status/2119117136492728436",
+      "read_at": "2026-11-10 15:18:36.983922+00",
+      "read_as": "page text",
+      "sha256": "7a2363ae1e777ae55596c5bfa3b3363cc6114f67646fec17fe0957d04f0ebb33",
+      "quoted_by": [
+        "w-duncan-introspection"
+      ],
+      "passages": [
+        "Gas introspection is the only way to achieve some functionality (e.g. \"did this call OOG or normal revert?\" or \"how much should I reimburse the related?\") without introducing additional trust assumptions."
+      ]
+    },
+    {
+      "url": "https://x.com/banteg/status/2119117966134452341",
+      "read_at": "2026-11-10 15:18:33.432135+00",
+      "read_as": "page text",
+      "sha256": "0daa381c27fb93513b8e9d3cc6874567493efb0d1ccfd183256a1608412a2c61",
+      "quoted_by": [
+        "w-banteg"
+      ],
+      "passages": [
+        "besides the already huge list of 200,000 affected contracts in ethereum/repricing-impact, i found multiple methodological issues that make it miss many more.",
+        "it affects deployment and operation of several high profile protocols, not just some random devs misusing opcodes that were given to them."
+      ]
+    },
+    {
+      "url": "https://x.com/newmichwill/status/2119166409532232037",
+      "read_at": "2026-11-10 15:18:38.334559+00",
+      "read_as": "page text",
+      "sha256": "bb0ec52522b263fdb7c0f9f09666078ebc195967acbcd853f224394d56671ed0",
+      "quoted_by": [
+        "w-egorov"
+      ],
+      "passages": [
+        "It does look like Glamsterdam in the current form would lead to another emergency hard fork back, with a lot of drama.\n\nI am sure, it can be made without breaking immutable contracts which hold funds"
+      ]
+    },
+    {
+      "url": "https://x.com/atiselsts_eth/status/2119350667756089396",
+      "read_at": "2026-11-10 15:18:34.743436+00",
+      "read_as": "page text",
+      "sha256": "04ce8b2563f10a000e45002713de251def5f9fabed9058d3d044cea3419dc75d",
+      "quoted_by": [
+        "w-atis-x"
+      ],
+      "passages": [
+        "Yet, gas repricing has always been part of Ethereum. That's why Solidity's send and transfer were deprecated.",
+        "The choice is between:\n1) Limiting L1 execution scaling - leaves L1 too expensive for many use cases\n2) State expiry - violates CROPS, L1's core promises\n3) Repricing state growth - a compromise",
+        "That said, the current design is flawed in some nasty ways.",
+        "Let's fix those problems, but let's not throw the baby out with the bathwater."
+      ]
+    },
+    {
+      "url": "https://x.com/functi0nZer0/status/2119379629274222919",
+      "read_at": "2026-11-10 15:18:34.116617+00",
+      "read_as": "page text",
+      "sha256": "b97d5122408003c4f8caa2e3af7fd4b5d85410dd63b0af1d3feb861d7e954b3e",
+      "quoted_by": [
+        "w-laurence-day"
+      ],
+      "passages": [
+        "Nothing in our contracts changed: the chain reprices bytecode deposits by 7.65x underneath already-audited code.",
+        "Under EIP-8037, the GAS opcode no longer reports the reservoir, so a Safe's execution check (GS010) can never be satisfied for a transaction that needs more than the execution cap.",
+        "It is a consensus change that silently invalidates a safety check in the most widely deployed smart-contract wallet on Ethereum, with no deprecation path, and as of today nobody owns fixing it.",
+        "The cost - and the apparent lesson - of being an early, careful team on Ethereum is that you run the risk of needing to audit twice: once against the chain you deploy to, and once against the chain it becomes."
+      ]
+    },
+    {
+      "url": "https://x.com/duncancmt/status/2119394472840618478",
+      "read_at": "2026-11-10 15:18:36.206222+00",
+      "read_as": "page text",
+      "sha256": "064f23c4f68921a846d21e4dcc8cf9ef9434cc907311bde79d6216cf380f171b",
+      "quoted_by": [
+        "w-duncan-safe"
+      ],
+      "passages": [
+        "@safe's Safe{Wallet} gas sponsorship feature depends on the ability to meter the gas paid by a call. Under EIP-8037, this is no longer possible.",
+        "I don't mean that the specific implementation doesn't work correctly. I mean the entire \"meter the gas consumed by a call\" concept is removed from the EVM."
+      ]
+    },
+    {
+      "url": "https://x.com/kankodu/status/2119414649204699528",
+      "read_at": "2026-11-10 15:18:37.676258+00",
+      "read_as": "page text",
+      "sha256": "ce4a068e18ab09df2b589aaf5c5e3a5be46ee311fe878dd42a7b46fa639101ca",
+      "quoted_by": [
+        "w-kankodu"
+      ],
+      "passages": [
+        "Uniswap V4 Position Manager is being used as an example of highly used contract that will be broken after Glamsterdam. \n\nYes, the contract itself is highly used but I couldn't find any immutable contract using the subscribe pattern in the wild for rewards distribution that will be broken. Protocols (including Uniswap Foundation) just use Merkl to provide rewards and they do calculations off-chain."
+      ]
+    },
+    {
+      "url": "https://x.com/me_jango/status/2119485122554523895",
+      "read_at": "2026-11-10 15:18:35.415269+00",
+      "read_as": "page text",
+      "sha256": "812176d7af02d1e12bc6ae97b874230a2c44f63a2b3736f1216c2520db382fec",
+      "quoted_by": [
+        "w-jango-email"
+      ],
+      "passages": [
+        "L1CrossDomainMessenger reserves 40k gas to record a failed relay, which is less than a new slot now costs. If the target runs out of gas, the failure may go unrecorded. The portal finalizes the withdrawal with no replay, and the ETH stays in the L1 bridge.",
+        "The messenger cause is inferred from the code and the numbers, not traced.",
+        "It's impossible to trust an immutable protocol like Juicebox and Revnets if failures caused by changes to the underlying network are fair game."
+      ]
+    },
+    {
+      "url": "https://x.com/LaLiLuLeL0x/status/2119855220926644693",
+      "read_at": "2026-11-10 15:18:40.38745+00",
+      "read_as": "page text",
+      "sha256": "76416c083642ec5fcdcfdade17aabca0c40c4f1fb15967d8b3bfdba7102168c5",
+      "quoted_by": [
+        "w-lalilulelo"
+      ],
+      "passages": [
+        "My personal advice for the EF:\n\nCreate a bible of good practices in building on Ethereum and what deltas (like gas price, block time, etc.) and what behaviors (gasLeft etc.) can change and should not be relied on as core logic of non-upgradable smart contracts from now to J* / Lean Ethereum.",
+        "Also asking all auditors in the space to add a new section “Expiry Date” basically based on good practice, giving the audited code a possible vote on when the code can be broken (or not) due to not being compliant with the best practices, specified on what next fork the protocol can start to be in danger.",
+        "Then, after J* / Lean Ethereum, working on the core ossification and establishing once and for all the final limits on what can change and what MUST be always be retrocompatible."
+      ]
+    },
+    {
+      "url": "https://ethlabs.org/writings/tracking-glamsterdam.html",
+      "read_at": "2026-11-10 15:18:32.772157+00",
+      "read_as": "page text",
+      "sha256": "dcf2ed4eb244b5cbfd6b33a59ec460ca0650c483023623893a5c7f8aa381bf9e",
+      "quoted_by": [
+        "w-ethlabs"
+      ],
+      "passages": [
+        "It is expected that simple repricings break contracts that have hard-coded parameters.",
+        "In our view, there is no other way around these simple repricings, and they are legitimate to do as application developers were broadly expected not to condition on the fixed cost of these operations in order to derive their contract execution. This does not mean that the impacts we’ve seen so far are small, and we’ve also seen appropriate mitigations discussed with teams facing this issue.",
+        "On the other hand, beyond these simple repricings, accounting changes were also proposed as part of Glamsterdam. Some of these changes led to genuine, unforeseen problems. The task is to understand the magnitude of these issues.",
+        "Our recommendation: Do not proceed with spec changes or Hoodi scheduling until publication of findings and until findings lead to a clear position."
+      ]
+    }
+  ]
+}

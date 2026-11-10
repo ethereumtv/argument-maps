@@ -1,0 +1,165 @@
+{
+  "map": "peerdas",
+  "sources": [
+    {
+      "url": "https://ethresear.ch/t/peerdas-a-simpler-das-approach-using-battle-tested-p2p-components/16541/1",
+      "read_at": "2026-11-06 21:51:50.832389+00",
+      "read_as": "forum raw text",
+      "sha256": "2ceb8b758dfbb7b3e14911e834255efaefa471eb2929296e489fa2af7a36cd51",
+      "quoted_by": [
+        "w-er16541-djrtwo"
+      ],
+      "passages": [
+        "The intent of a PeerDAS design is to reuse well known, battle-tested p2p components already in production in Ethereum to bring additional DA scale beyond that of 4844 while keeping the minimum amount of work of honest nodes in the same realm as 4844 (downloading < 1MB per slot).",
+        "Importantly, any DAS solution will rely upon nodes of various types and the assumptions we can make about them."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/subnetdas-an-intermediate-das-approach/17169/7",
+      "read_at": "2026-11-06 21:51:52.00275+00",
+      "read_as": "forum raw text",
+      "sha256": "09a0f4453830e679417ec16a051d0776be62b752c6c7dfe24e114bb6d33e738e",
+      "quoted_by": [
+        "w-er17169-dankrad"
+      ],
+      "passages": [
+        "Once the DA threshold (e.g. 50% in this proposal) is reached, we want all nodes to agree that the data is available. This property should be robust even if a majority of validators is malicious, for obvious reasons.",
+        "Note that under the given construction, it suffices to disrupt a single row subnet to completely stop reconstruction -- all samples would be incomplete if that subnet is not able to do its part."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/from-4844-to-danksharding-a-path-to-scaling-ethereum-da/18046/1",
+      "read_at": "2026-11-06 21:51:52.675648+00",
+      "read_as": "forum raw text",
+      "sha256": "27554e07ad749de56c062558ab7139c0cf2b01d4d18054785b72ee7b79182b4f",
+      "quoted_by": [
+        "w-er18046-fradamt"
+      ],
+      "passages": [
+        "Given its ambitious nature, we think it is best to further break down the road from 4844 to Danksharding into more manageable steps, reducing the complexity and risk of each upgrade and allowing us to gradually scale the data layer throughput.",
+        "A possible path goes through intermediate stages, where we gradually introduce all cryptographic and networking components, and gradually obtain more scalability and feature-completeness, while at most minimally increasing the bandwidth requirements compared to 4844."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/block-arrivals-home-stakers-bumping-the-blob-count/21096/1",
+      "read_at": "2026-11-10 16:07:35.826594+00",
+      "read_as": "forum raw text",
+      "sha256": "023c1db57560bf659be868a4dc48d7e75ee2990820d70566ad2a763e48bc1895",
+      "quoted_by": [
+        "w-er21096-samcm"
+      ],
+      "passages": [
+        "Our analysis indicates that block arrival performance surpasses initial expectations for nodes with limited bandwidth.",
+        "While we naively assumed a linear relationship between blob count and arrival time, this is a simplified view of a highly complex distributed system.",
+        "Based on block/blob arrival metrics alone, increasing the blob count from (target 3/max 6) to (target 4/max 8) or (target 6/max 9) appears to be viable."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/bandwidth-availability-in-ethereum-regional-differences-and-network-impacts/21138/1",
+      "read_at": "2026-11-10 16:07:36.960198+00",
+      "read_as": "forum raw text",
+      "sha256": "099d6c6bce5ceb01480e34c59b689ed9a4e80fd577700af14779bfccc9bb1b34",
+      "quoted_by": [
+        "w-er21138-cortze"
+      ],
+      "passages": [
+        "60% of nodes deployed in Europe or the US have bandwidth availability of more than 20Mbps, while only 20% of nodes deployed in Australia can go above 20Mbps. This is not related to line speed availability in Australia, but rather it is due to the fact that 65% of Ethereum nodes are located in Europe or the US and therefore geographically far from Asia-based nodes.",
+        "Given the above, our take is that we don’t see any critical objection to the current desired blob target and max values of 6/9 discussed in the All Core Dev CL Call on Thursday 28th of November.",
+        "At the same time, we expect that nodes will be stressed with regard to bandwidth availability during the 1st and 4th seconds of the slot, especially assuming the number of duplicate messages that Gossipsub inevitably propagates through the network."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/blob-parameter-only-bpo-forks/22623/1",
+      "read_at": "2026-11-06 21:51:53.209677+00",
+      "read_as": "forum raw text",
+      "sha256": "f17365295385b6e1adcc287ba9fff79520d4bee26bd2605dc8be8fb54edf54c6",
+      "quoted_by": [
+        "w-mg22623-protolambda"
+      ],
+      "passages": [
+        "BPO forks are simple Ethereum forks that only change two parameters: blob targets and blob limits.",
+        "There are two generally agreed upon priorities with blobs: 1) ensure solo stakers with limited bandwidth can continue to produce blocks, and 2) provide DA scale to L2s to keep tx costs competitive. More flexibility to tweak blob parameters will help Ethereum thread the needle between the two."
+      ]
+    },
+    {
+      "url": "https://blog.base.dev/achieving-more-blob-space-in-2025",
+      "read_at": "2026-11-06 21:51:56.046552+00",
+      "read_as": "page text",
+      "sha256": "ca344d3f001f6f4ad8b5929829a4dbc3debeceafa4bbef4d41ee05b096f8915b",
+      "quoted_by": [
+        "w-base-blob-acc-2025"
+      ],
+      "passages": [
+        "Right now, blob usage has been saturated for several months, resulting in higher fees for users and constrained ecosystem growth.",
+        "We believe 24 blobs per block is a sensible starting point given that PeerDAS requires the weakest nodes to use roughly 8x less bandwidth than before, aligning with current bandwidth levels (3 blobs per block)."
+      ]
+    },
+    {
+      "url": "https://sigmaprime.io/blog/shipping-peerdas/",
+      "read_at": "2026-11-10 16:07:38.251593+00",
+      "read_as": "page text",
+      "sha256": "d5a617609c121b6147efb3547869b841965c872b8328dfbe3d668e212b6a1336",
+      "quoted_by": [
+        "w-sigma-chen-2025-06-26"
+      ],
+      "passages": [
+        "Rather than spending time trying to push to 72 blobs, I think we'd be better off setting a more realistic number that already works today, with some headroom, as the target and making it robust.",
+        "Launch Fusaka with up to 18 blobs (2x Pectra), and schedule one BPO fork to increase this to 24 blobs.",
+        "Finalising a blob schedule without enough real-world data might be a bit risky, but having a tentative target to focus testing around would still be very helpful."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eip-7892-blob-parameter-only-hardforks/23018/5",
+      "read_at": "2026-11-06 21:51:53.868881+00",
+      "read_as": "forum raw text",
+      "sha256": "a42a6dd07ce8aae8ab05a0c7ba93b3ce67593b7ee977a96aa77ca62c49d8736c",
+      "quoted_by": [
+        "w-mg23018-etan"
+      ],
+      "passages": [
+        "The problem with only rolling the ForkDigest is that after the BPO activates, network traffic from clients that did not upgrade remains valid on the network partition of clients that upgraded.",
+        "The EIP rationale doesn't make sense to me. The same coordination is required for a BPO: All users have to update clients before it activates, and the node consumes more resources after the fork, possibly requiring hardware upgrades; the experience for users is exactly the same as for a full blown fork."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/block-blob-propagation-with-peerdas/23801/1",
+      "read_at": "2026-11-06 21:51:54.779351+00",
+      "read_as": "forum raw text",
+      "sha256": "8396a7daaeae8d0efcc8fd8447e2b10ce8aecb89f7c233c90f5035841f469714",
+      "quoted_by": [
+        "w-er23801-mempirate"
+      ],
+      "passages": [
+        "Increasing the blob count incurs a clear worsening of both block latency and attestation rate on almost all observed networks, both before and after PeerDAS alike.",
+        "Additionally, we observed a worse tail latency after PeerDAS compared to before, and the tail latency increasingly worsens as the blob count increases.",
+        "However, increasing the blob count has no noticeable impact on the orphan rate; some results are inconclusive and overall more data is required to have a meaningful conclusion regarding orphan rate."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/hegota-headliner-partial-reconstruction-and-2d-peerdas/27652/1",
+      "read_at": "2026-11-06 21:51:55.596227+00",
+      "read_as": "forum raw text",
+      "sha256": "cc15941b3514d3df18fb3988c728a1815fd7572bbcdef7e114c5899096b78acd",
+      "quoted_by": [
+        "w-mg27652-leobago"
+      ],
+      "passages": [
+        "Partial reconstruction and 2D PeerDAS represent a natural next step in the evolution of data availability for Hegota.",
+        "Delaying a principled move toward partial reconstruction and 2D sampling risks accumulating technical debt and locking in bandwidth-inefficient assumptions."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/hegota-headliner-partial-reconstruction-and-2d-peerdas/27652/2",
+      "read_at": "2026-11-06 21:54:18.543033+00",
+      "read_as": "forum raw text",
+      "sha256": "9ac890f86234c65c5d5c254789038c154eb327f11772a7d9a70122245c6b9d95",
+      "quoted_by": [
+        "w-mg27652-cskiraly"
+      ],
+      "passages": [
+        "Support for row-based reconstruction does not need 2D encoding.",
+        "Where the 2D encoding comes in is allowing cheaper sampling."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "map": "based-vs-native-rollups",
+  "sources": [
+    {
+      "url": "https://ethresear.ch/t/15016/1",
+      "read_at": "2026-11-10 15:36:25.903529+00",
+      "read_as": "forum raw text",
+      "sha256": "3eadd6b8a7e2d240a57e8027ad4456990713586238b0694036600749d03d3ce4",
+      "quoted_by": [
+        "w-drake-based-2023"
+      ],
+      "passages": [
+        "We highlight a special subset of rollups we call \"based\" or \"L1-sequenced\". The sequencing of such rollups—based sequencing—is maximally simple and inherits L1 liveness and decentralisation. Moreover, based rollups are particularly economically aligned with their base L1.",
+        "A rollup is said to be based, or L1-sequenced, when its sequencing is driven by the base L1. More concretely, a based rollup is one where the next L1 proposer may, in collaboration with L1 searchers and builders, permissionlessly include the next rollup block as part of the next L1 block.",
+        "Based rollups forgo MEV to the L1, limiting their revenue to base fees. Counter-intuitively, this may increase overall income for based rollups.",
+        "Fast pre-confirmations are trivial with centralised sequencing, and achievable with an external PoS consensus. Fast pre-confirmations with L1 sequencing is an open problem with promising research avenues including EigenLayer, inclusion lists, and builder bonds."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/15016/18",
+      "read_at": "2026-11-10 15:36:26.745511+00",
+      "read_as": "forum raw text",
+      "sha256": "6f0330165ff31f483e87d9e34ddde28089d66cfc5e7e75ecab9515f932666494",
+      "quoted_by": [
+        "w-brunof-2023"
+      ],
+      "passages": [
+        "If there's a liveness failure, rollups can recover by having a new set of sequencers (or even just one) be chosen on L1. There's no reason to stop the chain and force people to do a mass exit. We can always find new people to continue building blocks.",
+        "Regarding the disadvantages, latency is a big one. With L2 sequencers you can have L2 block finality in 1s which, while much weaker than L1 block finality for sure, still provides a decent guarantee for most use cases."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/17353/1",
+      "read_at": "2026-11-10 15:36:27.587703+00",
+      "read_as": "forum raw text",
+      "sha256": "b7773eba04414a55df72773b585275b584414dc01a02dc50fd6be4e5f77fe7d0",
+      "quoted_by": [
+        "w-drake-preconfs-2023"
+      ],
+      "passages": [
+        "Based preconfs offer a competitive user experience for based sequencing, with latencies on the order of 100ms.",
+        "A transaction with a preconf promise from the next preconfer can be immediately included and executed onchain by any proposer ahead of that preconfer. The preconfer is then expected to honour any remaining promises on their slot using the inclusion list."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/17353/2",
+      "read_at": "2026-11-10 15:36:28.584201+00",
+      "read_as": "forum raw text",
+      "sha256": "5c9e36858389ce6d568d1bf83d09fc306b4f0ec360da673a7625d46022458f6d",
+      "quoted_by": [
+        "w-bfisch-2023"
+      ],
+      "passages": [
+        "This seems to offer a different (weaker) type of \"preconfirmation\" guarantee than *finality,* which is what a consensus protocol like Espresso's Hotshot protocol provides. What happens to these preconfs when there is a reorg on Ethereum's LMD Ghost protocol? Also, how much stake would be slashed for invalid preconfirmations in this proposal versus a protocol like the Espresso Sequencer (e.g., assuming the same amount of L1 validator stake is participating in each via Eigenlayer)? For the Espresso Sequencer the amount slashed would be 1/3 of the entire stake."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/17353/21",
+      "read_at": "2026-11-10 15:36:29.438497+00",
+      "read_as": "forum raw text",
+      "sha256": "f0906191d4530105e4e0a03a6dac7fdb99eab36b155eb82f544fd94238b0df85",
+      "quoted_by": [
+        "w-drake-narrowed-2024"
+      ],
+      "passages": [
+        "I think I concede your point—it's possible for non-based rollups to enjoy the full censorship resistance benefits of Ethereum L1, all while enjoying preconfirmations",
+        "If liveness is not one of the fundamental advantages of based sequencing then I guess the two big remaining advantages are a) credible neutrality, which is critical for a shared sequencer and b) L1 compatibility, necessary to have synchronous composability with L1 contracts and $0.5T of assets."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/19695/1",
+      "read_at": "2026-11-10 15:36:30.646293+00",
+      "read_as": "forum raw text",
+      "sha256": "567798c918caa71fa057846a46e81b2cda0715f9457537df7b986f354f107a56",
+      "quoted_by": [
+        "w-oshitani-2024"
+      ],
+      "passages": [
+        "However, compared to non-preconfirming based sequencing, naive implementations of based preconfirmations introduce negative externalities that require thoughtful consideration.",
+        "Given that L2 transaction fees are typically low, searchers may choose to avoid latency races altogether and instead flood the rollup with probabilistic arbitrage attempts. This can be done by spamming an arbitrage contract that attempts an arbitrage and rollbacks if it fails."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/21517/1",
+      "read_at": "2026-11-10 15:36:31.667834+00",
+      "read_as": "forum raw text",
+      "sha256": "728669dbe5f78330c8a06dfe97baa308f57d0c50afaa634b507c0c146d17e00c",
+      "quoted_by": [
+        "w-drake-native-2025"
+      ],
+      "passages": [
+        "This post suggests a pathway for EVM-equivalent rollups to rid themselves of security councils and other attack vectors, unlocking full Ethereum L1 security.",
+        "Based rollups and native rollups are orthogonal concepts: \"based\" relates to L1 sequencing whereas \"native\" relates to L1 execution. A rollup that is simultaneously based and native is whimsically called an \"ultra sound rollup\".",
+        "Today's EVM-equivalent optimistic and zk-rollups have thousands of lines of code for their fraud proof game or SNARK verifier that could collapse to a single line of code. Native rollups also don't require ancillary infrastructure like proving networks, watchtowers, and security councils."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/21517/9",
+      "read_at": "2026-11-10 15:36:32.608874+00",
+      "read_as": "forum raw text",
+      "sha256": "86df25cc390fc8861a34b1797ce6c6c782fca5a8bd071c88ba51582f4ec312f5",
+      "quoted_by": [
+        "w-edfelten-2025"
+      ],
+      "passages": [
+        "A word of caution here. Practical L2 designs have several features that don't seem compatible with the design described here.",
+        "L2s do gas accounting differently than L1 does, for example by adding a surcharge to pay for data availability; or if the L2 has variable block time for efficiency, then adjusting gas prices based on timestamp rather than block number. Doing this trustlessly requires changes to the state transition function."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/21517/35",
+      "read_at": "2026-11-10 15:36:34.360178+00",
+      "read_as": "forum raw text",
+      "sha256": "1444c1a5e0c51f704497e941f16ff8df0868a8916a4c21b0b7cd58321d83e9c6",
+      "quoted_by": [
+        "w-ctrain-2025"
+      ],
+      "passages": [
+        "Regarding the gas accounting issue, this is a problem that rollups incur because of their desire/need to spread batches across L1 blocks and manage costs in self-determined ways.",
+        "All of this is to say, native rollup transaction gas accounting has a viable path to being equivalent to L1 gas accounting."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/21517/37",
+      "read_at": "2026-11-10 15:36:35.236291+00",
+      "read_as": "forum raw text",
+      "sha256": "a332ec10581f98daf52cd1d415648ebaf5f42dee8cc397c237f239867bd7b3cf",
+      "quoted_by": [
+        "w-cwgoes-2025"
+      ],
+      "passages": [
+        "In order to provide this kind of synchronous composability, the actual state changes must be able to depend on all of the state which could be involved (from the perspective of a single contract: the other contracts to which you could send synchronous calls to, the results of which might change your own state changes).",
+        "This trace and post-state-root is computed in the EVM itself, which would require simulating the EVM in the EVM -- not computationally feasible, and I'm assuming not the intention here.",
+        "This would allow for synchronous composability, but L1 execution -- at least as it exists today -- has no facility to do this, or at least none that I could see described here."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/21517/38",
+      "read_at": "2026-11-10 15:36:36.107318+00",
+      "read_as": "forum raw text",
+      "sha256": "c2e96fc13ac5e35d60234c7c1e29908f45f7d33cd22164b70073745ea3f1b21c",
+      "quoted_by": [
+        "w-mteam88-2025"
+      ],
+      "passages": [
+        "If the a property we at Spire call coordinated sequencing is present, the shared block builder can run a simulation and determine the correct post state root. This likely only applies to a based rollup, so there are absolutely theoretical native rollup implementations that do not have sync composability with L1."
+      ]
+    },
+    {
+      "url": "https://eips.ethereum.org/EIPS/eip-8079",
+      "read_at": "2026-11-10 15:36:37.627915+00",
+      "read_as": "page text",
+      "sha256": "e896913b4cf02fc7824975ac0394b12f918f75a422840b2589b69640396299e5",
+      "quoted_by": [
+        "w-eip8079-2025"
+      ],
+      "passages": [
+        "Today, EVM-equivalent rollups need to implement and maintain complex proof systems just to be able to replicate what Ethereum already provides on L1. Such complexity significantly increases the probability of encountering bugs and prevents projects from getting rid of security councils and from moving to Stage 2."
+      ]
+    },
+    {
+      "url": "https://x.com/VitalikButerin/status/2018711006394843585",
+      "read_at": "2026-11-10 16:50:31.618243+00",
+      "read_as": "page text",
+      "sha256": "122ceb0c5b6a5456ee4c62fe05d95b0b021fb7e59da82ac12c6ce75d72624b3b",
+      "quoted_by": [
+        "w-vbuterin-l2-2026"
+      ],
+      "passages": [
+        "L1 does not need L2s to be \"branded shards\", because L1 is itself scaling. And L2s are not able or willing to satisfy the properties that a true \"branded shard\" would require.",
+        "The native rollup precompile would make full, security-council-free, EVM verification accessible."
+      ]
+    },
+    {
+      "url": "https://blog.ethereum.org/2026/03/23/l1-l2-ethereum",
+      "read_at": "2026-11-10 16:50:32.347606+00",
+      "read_as": "page text",
+      "sha256": "fb6729812d905d50de8401cc4b89465562ac0a93fa8d1c65d3d6ea85d5549a77",
+      "quoted_by": [
+        "w-ef-l1-l2-2026"
+      ],
+      "passages": [
+        "Relationship to L1: Those L2s seeking the tightest integration with L1 should push towards synchronous composability, full interoperability, shared liquidity, Stage 2, and mechanisms like native rollups.",
+        "Investing R&D towards the technology that will enable “native rollups” -- L2 chains that can be fully and trustlessly verified by L1, enabling synchronous composability and secure interoperability."
+      ]
+    },
+    {
+      "url": "https://ethresear.ch/t/native-proof-verification/24798",
+      "read_at": "2026-11-10 15:57:49.42691+00",
+      "read_as": "forum raw text",
+      "sha256": "73c57984cd4cede731e60b5b2dbd0162c65828734862244e20107d2f1c28243e",
+      "quoted_by": [
+        "w-native-proof"
+      ],
+      "passages": [
+        "The overarching goal of this proposal is to massively derisk and simplify L2 bridges, and more generally any onchain application that verifies ZK proofs, by introducing a standard L1 primitive that any project can adopt in place of its bespoke onchain verifier stack.",
+        "just as native rollups inherit L1’s execution environment, native proof verification lets any rollup inherit L1’s proof verification infrastructure."
+      ]
+    }
+  ]
+}

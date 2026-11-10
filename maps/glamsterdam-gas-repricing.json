@@ -1,0 +1,2817 @@
+{
+  "slug": "glamsterdam-gas-repricing",
+  "title": "Should Glamsterdam's gas repricing ship as it is?",
+  "intro": "Glamsterdam, Ethereum's next upgrade, raises the price of creating and reading state, so the network can safely carry far more transactions. In October 2026 the security firm ChainSecurity published findings that the new gas accounting lets the amount of gas left in a transaction go up, which some deployed contracts rely on never happening, and similar warnings had been raised on the EIP's forum thread since June. This map follows the argument, from the case for repricing to the question of whether the upgrade should ship as it is.",
+  "eips": [
+    "EIP-8037",
+    "EIP-8038"
+  ],
+  "topic": "protocol",
+  "stops": [
+    {
+      "id": "s-01",
+      "kind": "quote",
+      "date": "2025-11-01",
+      "date_label": "November 2025",
+      "place": "EthStaker at Devconnect Buenos Aires",
+      "speaker": "Marius van der Wijden",
+      "speaker_slug": "marius-van-der-wijden",
+      "talk_id": "dcdc5cdd-51e1-4ea6-aab0-6db4f4f75ee6",
+      "talk_slug": "marius-van-der-wijden-sustainable-scaling",
+      "note": "The opening case: a higher gas limit is limited by the slowest operation, so the fix is to reprice operations rather than hope every client can be made faster.",
+      "lines": [
+        {
+          "t": 632,
+          "clean": "But what we can do is [reprice] some of the operations. As I mentioned before, every operation is denominated in gas. So if we change the amount of gas that an operation [takes], we can homogenize these operations, and with that we can again increase the gas limit.",
+          "caption": "but what we can do is we can repric some of the operations. As I mentioned before, every operation is denominated in gas. So if we change the amount of gas that that an operation take uh we can kind of homogenize uh these operations and with that we can again increase the gas limit.",
+          "chunks": [
+            {
+              "ord": 15,
+              "t": 632,
+              "raw": "but what we can do is we can repric some of the operations. As I mentioned before, every operation is denominated in gas. So if we change the amount of gas that that an operation take uh we can kind of homogenize uh these operations and with that we can again increase the gas limit."
+            }
+          ],
+          "edits": [
+            "the caption cuts off 'repric' and says 'take': written [reprice] and [takes]; the repeated 'we can' and the fillers 'kind of' and 'uh' are dropped, nothing else changes"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-ryley-o",
+      "kind": "written",
+      "date": "2025-11-05",
+      "date_label": "5 November 2025",
+      "place": "Ethereum Magicians",
+      "author": "ryley-o",
+      "affiliation": "Ethereum app developer working on projects that store metadata on-chain (as stated in the post)",
+      "source_title": "EIP-8037: State Creation Gas Cost Increase",
+      "source_url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/15",
+      "note": "An early objection from an app developer: the proposed storage prices could push on-chain projects off Ethereum.",
+      "lines": [
+        {
+          "text": "However, the proposed increases in storage costs — roughly 10x for SSTORE-style immutable blob storage and 3x for general slot storage — seem likely to push many applications off of L1. That feels somewhat counter to Ethereum’s broader goal of remaining a decentralized and viable platform for EVM applications."
+        }
+      ]
+    },
+    {
+      "id": "s-03",
+      "kind": "quote",
+      "date": "2025-11-21",
+      "date_label": "21 November 2025",
+      "place": "EIP Summit at Devconnect Argentina",
+      "speaker": "Maria Silva",
+      "speaker_slug": "maria-silva",
+      "talk_id": "261ff087-dd7f-4a7a-ac71-ce1f86ec74ea",
+      "talk_slug": "eip-8007-major-update-evm-gas-prices-maria-ines-silva",
+      "note": "Why repricing at all, from the author of the repricing meta EIP: the headliners add room for most resources, but the room for state growth does not change.",
+      "lines": [
+        {
+          "t": 427,
+          "clean": "We are adding more room for execution, for state IO, for data. But for state growth, which is how much the storage layer is growing, the available resources don't change. So everything needs to become cheaper in relation to state growth, or, say, in another way, state growth needs to become more expensive.",
+          "caption": "So we are adding more room for execution for state IO for data. Um but for state growth which is how much the storage layer let's say is growing um that doesn't change like the the available resources there don't change um so everything needs to become cheaper in relation to state growth or say in another way state growth needs to become more expensive",
+          "chunks": [
+            {
+              "ord": 10,
+              "t": 427,
+              "raw": "So we are adding more room for execution for state IO for data. Um"
+            },
+            {
+              "ord": 11,
+              "t": 472,
+              "raw": "but for state growth which is how much the storage layer let's say is growing um that doesn't change like the the available resources there don't change um so everything needs to become cheaper in relation to state growth or say in another way state growth needs to become more expensive"
+            }
+          ],
+          "edits": [
+            "drops the fillers 'um', 'like' and the repeated 'the'; stops before 'otherwise that will be a single mock' where the caption is unclear"
+          ]
+        },
+        {
+          "t": 472,
+          "clean": "So in [summary], these headliners are great. They are giving us more throughput, but we won't be able to squeeze all that throughput gain until we [reprice] these things.",
+          "caption": "and so in summaries like these headliners are great they are giving us more throughput but we can really just squeeze we won't be able to squeeze all that throughput gain until we repric these things",
+          "chunks": [
+            {
+              "ord": 11,
+              "t": 472,
+              "raw": "and so in summaries like these headliners are great they are giving us"
+            },
+            {
+              "ord": 12,
+              "t": 516,
+              "raw": "more throughput but we can really just squeeze we won't be able to squeeze all that throughput gain until we repric these things"
+            }
+          ],
+          "edits": [
+            "'summaries like these' is read as 'summary'; 'repric' (cut off in the captions) is written [reprice]; the false start 'we can really just squeeze' is dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acde228-marius",
+      "kind": "quote",
+      "date": "2026-01-15",
+      "date_label": "15 January 2026",
+      "place": "All Core Devs Execution #228",
+      "speaker": "Marius van der Wijden",
+      "speaker_slug": "marius-van-der-wijden",
+      "talk_id": "09b1d5d4-f67e-4fd1-94fa-6d756f59591a",
+      "talk_slug": "all-core-devs-execution-228",
+      "note": "The call the map wrote off as 'hands the decision to the next call': it is where the EIP's design is put to the execution teams (state growth tied to the gas limit, target about 100 GB a year) and where the alternative on the table is first stated. Marius makes the case.",
+      "lines": [
+        {
+          "t": 1507,
+          "clean": "It has multiple different goals. [It] makes state growth dependent on the gas limit, so that whenever we increase the gas limit, we also increase the cost for creating new state. And this is very important, because if we 10x the gas limit, we don't want to 10x the amount of state that can be created in this gas limit. We want the state increase to be kind of constant, and we want a target of roughly 100GB per year",
+          "caption": "It has multiple different, goals. makes state growth, Dependent on the gas limit, so that whenever we increase the gas limit, we also increase the cost for creating new state. And this is very important, because if we, like, 10x the gas limit… We also want to 10X how… we don't want to 10x the amount of state that we are… that can be created in this… in this gas limit. We want the state Increase to be kind of constant, and we want a target of Roughly 100GB per year",
+          "chunks": [
+            {
+              "ord": 72,
+              "t": 1507,
+              "raw": "It has multiple different, goals. makes state growth, Dependent on the gas limit, so that whenever we increase the gas limit, we also increase the cost for creating new state. And this is very important, because if we, like, 10x the gas limit… We also want to 10X how… we don't want to 10x the amount of state that we are… that can be created in this… in this gas limit. We want the state Increase to be kind of constant, and we want a target of Roughly 100GB per year"
+            }
+          ],
+          "edits": [
+            "'makes' is given a subject, '[It]'",
+            "'We also want to 10X how…' is dropped as a restart"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acde228-carl",
+      "kind": "quote",
+      "date": "2026-01-15",
+      "date_label": "15 January 2026",
+      "place": "All Core Devs Execution #228",
+      "speaker": "Carl Beekhuizen",
+      "speaker_slug": "carl-beekhuizen",
+      "talk_id": "09b1d5d4-f67e-4fd1-94fa-6d756f59591a",
+      "talk_slug": "all-core-devs-execution-228",
+      "note": "The alternative put to the same call by a researcher: skip the multidimensional metering and only raise the state creation prices once, for maximum simplicity.",
+      "lines": [
+        {
+          "t": 2348,
+          "clean": "Basically a bare-bones EIP that increases the state creation costs.",
+          "caption": "basically a bare-bones EIP that increases the, gas, like, the state creation costs.",
+          "chunks": [
+            {
+              "ord": 100,
+              "t": 2348,
+              "raw": "basically a bare-bones EIP that increases the, gas, like, the state creation costs."
+            }
+          ],
+          "edits": [
+            "the stray word 'gas,' (a restart before 'the state creation costs') is dropped"
+          ]
+        },
+        {
+          "t": 2348,
+          "clean": "For new storage slots from 20,000 to 80,000, and for creating new accounts from 25,000 to [100,000].",
+          "caption": "for new storage slots from 20,000 to, 80,000, and for creating new accounts from, 25,000 to $100,000.",
+          "chunks": [
+            {
+              "ord": 100,
+              "t": 2348,
+              "raw": "for new storage slots from 20,000 to, 80,000, and for creating new accounts from, 25,000 to $100,000."
+            }
+          ]
+        },
+        {
+          "t": 2348,
+          "clean": "So I think if you want maximum simplicity for [Glamsterdam], as you crank that goal up to infinity, you basically approach having to do this.",
+          "caption": "So I think, like, if you want maximum simplicity for Glanster Dam, like, as you crank that goal up to infinity, like, you basically approach having to do this.",
+          "chunks": [
+            {
+              "ord": 100,
+              "t": 2348,
+              "raw": "So I think, like, if you want maximum simplicity for Glanster Dam, like, as you crank that goal up to infinity, like, you basically approach having to do this."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-04",
+      "kind": "quote",
+      "date": "2026-01-19",
+      "date_label": "19 January 2026",
+      "place": "All Core Devs Testing #66",
+      "speaker": "Andrew Ashikhmin",
+      "speaker_slug": "andrew-ashikhmin",
+      "talk_id": "4eb61ab4-baf2-4d1e-8502-d090b24b3ab9",
+      "talk_slug": "all-core-devs-testing-66",
+      "note": "An early application-side worry from a client team, on the day EIP-8037 became a candidate: a price that moves with the gas limit may break assumptions in existing contracts.",
+      "lines": [
+        {
+          "t": 2901,
+          "clean": "I think it's fine to CFI this EIP, but I would be cautious about the dynamic pricing. I think it might violate some assumptions of smart contracts, existing ones, and also the smart contracts devs' view or picture. So I would fix the cost per state byte instead of linking it to the gas limit, and when we decide to raise the gas limit, we can have a mini hard fork to adjust the cost per [state byte].",
+          "caption": "I think it's fine to CFI this EIP, but, I would be cautious about the dynamic pricing. I think, it might violate some assumptions of, smart contracts, existing ones, and, also, like, the, smart contracts devs, like, view, or picture. So I would actually go… I would fix this… the cost per state byte, and Instead of linking it to the gas limit, and when we decide to raise the gas limit, we can have a mini hard fork to adjust the cost per statewide.",
+          "chunks": [
+            {
+              "ord": 111,
+              "t": 2901,
+              "raw": "I think it's fine to CFI this EIP, but, I would be cautious about the dynamic pricing. I think, it might violate some assumptions of, smart contracts, existing ones, and, also, like, the, smart contracts devs, like, view, or picture. So I would actually go… I would fix this… the cost per state byte, and Instead of linking it to the gas limit, and when we decide to raise the gas limit, we can have a mini hard fork to adjust the cost per statewide."
+            }
+          ],
+          "edits": [
+            "'statewide' is read as [state byte]; the false start 'I would actually go… I would fix this…' is dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-05",
+      "kind": "quote",
+      "date": "2026-02-18",
+      "date_label": "18 February 2026",
+      "place": "Glamsterdam Repricings #2",
+      "speaker": "Maria Silva",
+      "speaker_slug": "maria-silva",
+      "talk_id": "b0ba37f2-3d73-4f8e-82bc-fff793853a09",
+      "talk_slug": "glamsterdam-repricings-2",
+      "note": "The mechanism the whole later argument is about, explained by its author: a second pool of gas, the reservoir, that pays for state creation first.",
+      "lines": [
+        {
+          "t": 1152,
+          "clean": "We have still the gas left, as we have now in the EVM, and this gas left is essentially bound by the transaction gas limits.",
+          "caption": "we have still the gas left, as we have now in the EVM, and this gas left is essentially bound by the transaction gas limits,",
+          "chunks": [
+            {
+              "ord": 30,
+              "t": 1152,
+              "raw": "we have still the gas left, as we have now in the EVM, and this gas left is essentially bound by the transaction gas limits,"
+            }
+          ],
+          "edits": [
+            "the quote starts mid-sentence at 'we have still the gas left' and ends before 'so the 60 million, gas units'; only punctuation changes"
+          ]
+        },
+        {
+          "t": 1152,
+          "clean": "Because for state creation, users can use more than these transaction limits, they have this reservoir. Whenever their transaction requires more than the transaction limit, this [extra] is sent to this reservoir. The state creation transactions use the reservoir, and then once the reservoir is zero, they start using gas left, while the regular gas can only be taken from the gas left.",
+          "caption": "And then, because For state creation, users can use more than These transaction limits, they have this reservoir, so whenever their transaction requires more than the transaction limit. this extract is, sent to this reservoir. And then what happens is that, the gas left, so… The state creation transactions use the reservoir, and then once the reservoir is zero, they start using gas left, while the regular gas is… can only be taken from the gas left, okay?",
+          "chunks": [
+            {
+              "ord": 30,
+              "t": 1152,
+              "raw": "And then, because For state creation, users can use more than These transaction limits, they have this reservoir, so whenever their transaction requires more than the transaction limit. this extract is, sent to this reservoir. And then what happens is that, the gas left, so… The state creation transactions use the reservoir, and then once the reservoir is zero, they start using gas left, while the regular gas is… can only be taken from the gas left, okay?"
+            }
+          ],
+          "edits": [
+            "'extract' is read as [extra]; 'so whenever' is made a new sentence; the false start 'And then what happens is that, the gas left, so…' and the stutter 'is…' before 'can only be taken' are dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-06",
+      "kind": "quote",
+      "date": "2026-02-26",
+      "date_label": "26 February 2026",
+      "place": "All Core Devs Execution #231",
+      "speaker": "Anders Elowsson",
+      "speaker_slug": "anders-elowsson",
+      "talk_id": "71d12525-5887-4cf5-be63-5b81556b4880",
+      "talk_slug": "all-core-devs-execution-231",
+      "note": "A design critique from an author of an alternative proposal: EIP-8037 prices state by predicting demand, not by measuring it.",
+      "lines": [
+        {
+          "t": 2766,
+          "clean": "We are currently doing 8037, and it feels slightly brittle to me, the way it is designed, because we're trying to predict, essentially, demand elasticity, instead of going by measured demand. And if these predictions turn out to be wrong, we will sort of impede scaling.",
+          "caption": "we are currently doing 8037, and it feels slightly brittle to me, the way… the way it is designed, because we're trying to predict, essentially, demand elasticity, instead of going, like, by measured demand. And the thing is that if these predictions turn out to be wrong, we will sort of impede scaling.",
+          "chunks": [
+            {
+              "ord": 105,
+              "t": 2766,
+              "raw": "we are currently doing 8037, and it feels slightly brittle to me, the way… the way it is designed, because we're trying to predict, essentially, demand elasticity, instead of going, like, by measured demand."
+            },
+            {
+              "ord": 106,
+              "t": 2820,
+              "raw": "And the thing is that if these predictions turn out to be wrong, we will sort of impede scaling."
+            }
+          ],
+          "edits": [
+            "the restart 'the way… the way' and the filler 'like' are dropped; 'And the thing is that' is shortened to 'And'"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-07",
+      "kind": "quote",
+      "date": "2026-03-04",
+      "date_label": "4 March 2026",
+      "place": "Glamsterdam Repricings #3",
+      "speaker": "Maria Silva",
+      "speaker_slug": "maria-silva",
+      "talk_id": "5f7a7c26-f97a-41d6-876f-20fd932c1349",
+      "talk_slug": "glamsterdam-repricings-3",
+      "note": "After a survey of application teams, the EIP's champion states the two biggest concerns about 8037 and 8038: higher prices, and a cost per byte that moves.",
+      "lines": [
+        {
+          "t": 3482,
+          "clean": "My understanding was that the two biggest concerns around the state's operation [EIPs], 8037 and [8038], were, on one hand, the actual increase, so a worry that making things more expensive could hurt some applications.",
+          "caption": "my understanding was that the two biggest concerns around the state's operation EEIP, so 8037 and AT38, Was, on one hand, the actual increase, so a worry that making things more expensive could… Hurt some applications,",
+          "chunks": [
+            {
+              "ord": 114,
+              "t": 3482,
+              "raw": "my understanding was that the two biggest concerns around the state's operation EEIP, so 8037 and AT38, Was, on one hand, the actual increase, so a worry that making things more expensive could… Hurt some applications,"
+            }
+          ],
+          "edits": [
+            "'EEIP' and 'AT38' are read as [EIPs] and [8038]; the quote stops before 'either because things get too expensive, or because there's some, like, cold pots that need to be updated', whose last words are unclear in the captions"
+          ]
+        },
+        {
+          "t": 3482,
+          "clean": "And the second one was on the cost per byte: the fact that we have a dynamic cost per byte now leads to some more complexity when optimizing apps.",
+          "caption": "And the second one was on the cost per byte, so the dynamic… the fact that we have a dynamic cost per byte now leads to some more complexity when Optimizing, apps",
+          "chunks": [
+            {
+              "ord": 114,
+              "t": 3482,
+              "raw": "And the second one was on the cost per byte, so the dynamic… the fact that we have a dynamic cost per byte now leads to some more complexity when Optimizing, apps"
+            }
+          ],
+          "edits": [
+            "the false start 'so the dynamic…' is dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-08",
+      "kind": "quote",
+      "date": "2026-03-12",
+      "date_label": "12 March 2026",
+      "place": "All Core Devs Execution #232",
+      "speaker": "Andrew Ashikhmin",
+      "speaker_slug": "andrew-ashikhmin",
+      "talk_id": "ac565284-87d6-4acf-991d-47a3a91dc11d",
+      "talk_slug": "all-core-devs-execution-232",
+      "note": "The complexity objection in its strongest form, from a client team: several overlapping kinds of gas, and a fix that is either principled or not shipped.",
+      "lines": [
+        {
+          "t": 482,
+          "clean": "All of those changes in isolation, they make sense, but if you look at all of them together, they end up in a horrible mess, because they are not aligned with each other.",
+          "caption": "all of those changes in isolation, they make sense, but if you look at all of them together, like, they end up in a horrible mess, because they are not aligned with each other.",
+          "chunks": [
+            {
+              "ord": 25,
+              "t": 482,
+              "raw": "all of those changes in isolation, they make sense, but if you look at all of them together, like, they end up in a horrible mess, because they are not aligned with each other."
+            }
+          ],
+          "edits": [
+            "drops the filler 'like'"
+          ]
+        },
+        {
+          "t": 911,
+          "clean": "Right now we are reaching this level of complexity that we need the [principled] approach now, so I'm very uncomfortable with implementing and shipping 8037 without a principled approach. It either has to be refactored with a principled approach. Or we should not ship it at all. Otherwise, if we just ship it without a principled approach, it will be very bug-prone, or error-prone.",
+          "caption": "right now we are reaching this level of complexity that we need the principal approach now, so I'm very uncomfortable with, implementing and shipping, 8037 without a principal approach, so… It either has to be refactored with a principled approach, and that principled approach should be also applied to 3928, 7778, and also blob gas should be consistent with the principled approach. Or we should not ship it at all. Otherwise, yeah, if we just, yeah, ship it without a principled approach, it will be very bug-prone, or error-prone.",
+          "chunks": [
+            {
+              "ord": 37,
+              "t": 911,
+              "raw": "right now we are reaching this level of complexity that we need the principal approach now, so I'm very uncomfortable with, implementing and shipping, 8037 without a principal approach, so… It either has to be refactored with a principled approach, and that principled approach should be also applied to 3928, 7778, and also blob gas should be consistent with the principled approach. Or we should not ship it at all. Otherwise, yeah, if we just, yeah, ship it without a principled approach, it will be very bug-prone, or error-prone."
+            }
+          ],
+          "edits": [
+            "'principal' is read as [principled]; the clause 'and that principled approach should be also applied to 3928, 7778, and also blob gas should be consistent with the principled approach' is dropped; the fillers 'yeah' are dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-rep4-marius",
+      "kind": "quote",
+      "date": "2026-03-18",
+      "date_label": "18 March 2026",
+      "place": "Glamsterdam Repricings #4",
+      "speaker": "Marius van der Wijden",
+      "speaker_slug": "marius-van-der-wijden",
+      "talk_id": "c213a503-0bc7-4f83-bc8a-16cc7b73a0ab",
+      "talk_slug": "glamsterdam-repricings-4",
+      "note": "The reason for the refund-on-failure rule, stated a month before it was decided (s-rep6-refund-principle): the reservoir is passed into every subcall, so a failed subcall must hand the state gas back, since no state was created. The map's exclusion called this call a restatement of the complexity concern; this argument is new.",
+      "lines": [
+        {
+          "t": 668,
+          "clean": "If you fail a subcall, it would not just burn the bit of regular gas that you gave to it, but it would burn all of the state gas that you had. And if you are passing state gas, and the [subcall] reverts, no state changes will be made. So the principal thing is to return back all of the state gas if a [subcall] reverts, right? Because there are no state changes.",
+          "caption": "If you, yeah, if you fail a subcall, it would not just burn. A bit… the bit of regular gas that you gave to it, but it would burn all of the state gas that you… that you had. So… And, if you are… If you are… passing state gas, and the subcore reverts, no state changes will be made. So, the… The principal thing is to return back all of the state gas if a subcore reverts, right? Because there's not… there are no state changes,",
+          "chunks": [
+            {
+              "ord": 15,
+              "t": 668,
+              "raw": "If you, yeah, if you fail a subcall, it would not just burn. A bit… the bit of regular gas that you gave to it, but it would burn all of the state gas that you… that you had. So… And, if you are… If you are… passing state gas, and the subcore reverts, no state changes will be made. So, the… The principal thing is to return back all of the state gas if a subcore reverts, right? Because there's not… there are no state changes,"
+            }
+          ],
+          "edits": [
+            "'subcore' is read as '[subcall]' (twice)",
+            "'there's not…' is dropped as a false start before 'there are no state changes'"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-rep6-griefing",
+      "kind": "quote",
+      "date": "2026-04-15",
+      "date_label": "15 April 2026",
+      "place": "Glamsterdam Repricings #6",
+      "speaker": "Ben Adams",
+      "speaker_slug": "ben-adams",
+      "talk_id": "3aebec50-b0d9-46be-a9d2-e85f06424a93",
+      "talk_slug": "glamsterdam-repricings-6",
+      "note": "The objection raised when the refund design was decided: if state gas is refunded in full on a revert, can someone create state, revert, and pay nothing? Maria Silva answers it in the next stop.",
+      "lines": [
+        {
+          "t": 323,
+          "clean": "If it was a full refund, could somebody use it to grief in some way, where they create state and revert, and not pay any state cost? So there's no cost for the [revert], but they have done extra work.",
+          "caption": "If it was a full refund, could somebody use it to… Grief in some way, where they create state and revert. Could not pay any state cost. If you know what I mean. So there's no cost for the river, but they have done extra work.",
+          "chunks": [
+            {
+              "ord": 10,
+              "t": 323,
+              "raw": "If it was a full refund, could somebody use it to… Grief in some way, where they create state and revert. Could not pay any state cost. If you know what I mean. So there's no cost for the river, but they have done extra work."
+            }
+          ],
+          "edits": [
+            "'Could not pay any state cost' is read as the end of the same question, so 'and' is supplied and 'could' dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-rep6-refund-principle",
+      "kind": "quote",
+      "date": "2026-04-15",
+      "date_label": "15 April 2026",
+      "place": "Glamsterdam Repricings #6",
+      "speaker": "Maria Silva",
+      "speaker_slug": "maria-silva",
+      "talk_id": "3aebec50-b0d9-46be-a9d2-e85f06424a93",
+      "talk_slug": "glamsterdam-repricings-6",
+      "note": "The refund design for EIP-8037 is decided on this call (spec PRs EIPs#11476 and #11532, merged 17 Apr): state gas pays only for state that is actually created, so it is refunded when nothing is created. This is the principle that later lets gas come back after a failed call. The call's decision, in her words, is the second line.",
+      "lines": [
+        {
+          "t": 408,
+          "clean": "The [state gas] component should only cover the long-term costs, and so it's only actually affected if state is created. For the part of the in-the-moment execution cost, that should be covered by the state access cost, which we updated with EIP 8038. And so, I would expect no incentives for [griefing] to be there, because you'd always pay the cost of the execution. You just wouldn't pay the cost of the state growth, and that's fine, because actually no state is being grown.",
+          "caption": "the states… gas component should only cover the long-term costs, and so it's only actually affected if… state is created. For the part of the in-the-moment execution cost, that should be covered by the state access cost, which we updated with EIP 8038. And so, I would expect no incentives for grifting to be there, because you'd always… Pay the cost of the execution. You just wouldn't pay the cost of the state growth, and that's fine, because actually no state is being grown.",
+          "chunks": [
+            {
+              "ord": 12,
+              "t": 408,
+              "raw": "the states… gas component should only cover the long-term costs, and so it's only actually affected if… state is created. For the part of the in-the-moment execution cost, that should be covered by the state access cost, which we updated with EIP 8038. And so, I would expect no incentives for grifting to be there, because you'd always… Pay the cost of the execution. You just wouldn't pay the cost of the state growth, and that's fine, because actually no state is being grown."
+            }
+          ],
+          "edits": [
+            "'the states… gas component' is read as 'the [state gas] component'"
+          ]
+        },
+        {
+          "t": 786,
+          "clean": "But at least we have a decision, in general, for the end of the block, the refund should be there. And should go to the reservoir.",
+          "caption": "but at least we have a decision, like, in general, for the end of the block, the refund should be there. And should go to the reservoir.",
+          "chunks": [
+            {
+              "ord": 29,
+              "t": 786,
+              "raw": "but at least we have a decision, like, in general, for the end of the block, the refund should be there. And should go to the reservoir."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acde235-marius",
+      "kind": "quote",
+      "date": "2026-04-23",
+      "date_label": "23 April 2026",
+      "place": "All Core Devs Execution #235",
+      "speaker": "Marius van der Wijden",
+      "speaker_slug": "marius-van-der-wijden",
+      "talk_id": "763cee75-b1f5-4265-8c13-68a2dbff1e0c",
+      "talk_slug": "all-core-devs-execution-235",
+      "note": "The call that debates dropping the dynamic cost per state byte (the fixed price was then agreed at the Svalbard interop and written into EIP-8037 on 4 May, PR #11573). Marius argues a fixed price defeats the purpose of the EIP and the choice is the dynamic version or pulling it out.",
+      "lines": [
+        {
+          "t": 2820,
+          "clean": "I think it makes no sense to have 8037 with fixed gas costs, because that really defeats the purpose of 8037.",
+          "caption": "I think it makes no sense to have this, 8037 with fixed gas costs, because that really defeats the purpose of 8037.",
+          "chunks": [
+            {
+              "ord": 123,
+              "t": 2820,
+              "raw": "I think it makes no sense to have this, 8037 with fixed gas costs, because that really defeats the purpose of 8037."
+            }
+          ],
+          "edits": [
+            "'this,' before '8037 with fixed gas costs' is dropped as a false start"
+          ]
+        },
+        {
+          "t": 2889,
+          "clean": "We can only really change the gas costs as long as we also change the gas limit at the same time. So I think it makes no sense to have this static gas cost in 8037. Either we do 8037 properly, or we decide to pull it out and just 5X all of the gas costs",
+          "caption": "We can only really change the… The gas, the gas, costs? As long as we also change the gas limit in the same at the same time. So… I think it makes no sense to have this static gas cost in 8037. Either we do 8037 properly, or we decide to pull it out and just 5X all of the gas costs",
+          "chunks": [
+            {
+              "ord": 124,
+              "t": 2889,
+              "raw": "We can only really change the… The gas, the gas, costs? As long as we also change the gas limit in the same at the same time. So… I think it makes no sense to have this static gas cost in 8037. Either we do 8037 properly, or we decide to pull it out and just 5X all of the gas costs"
+            }
+          ],
+          "edits": [
+            "'in the same' is dropped as a restart before 'at the same time'"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acde235-maria",
+      "kind": "quote",
+      "date": "2026-04-23",
+      "date_label": "23 April 2026",
+      "place": "All Core Devs Execution #235",
+      "speaker": "Maria Silva",
+      "speaker_slug": "maria-silva",
+      "talk_id": "763cee75-b1f5-4265-8c13-68a2dbff1e0c",
+      "talk_slug": "all-core-devs-execution-235",
+      "note": "The champion's side of the same exchange: a fixed price, a schedule or a dynamic price are all better than not doing the EIP, because without it the gas limit cannot rise.",
+      "lines": [
+        {
+          "t": 2934,
+          "clean": "The decision between a fixed gas cost and completely pulling out [this] EIP, I think, is the difference between remaining at the current block limits versus maybe trying to guesstimate what the average gas limit will be between Glamsterdam and [Hegota]. Because on [Hegota], we could update this again, if we go with the fixed cost per [byte]. I agree with Marius that having the dynamic one is nicer because it gives us more flexibility on how we increase the block limit.",
+          "caption": "the decision between a fixed gas cost and completely pulling out these EIP, I think, is the difference between remaining at the current block limits versus Maybe trying to guesstimate the… Better, in hindsight, what the… average gas limit will be between Glamsterdam and Eguta? Because on EGOTA, we could update this again, if we go with the… with the fixed, cost per bite. I agree with Marius that having the dynamic one is nicer because it gives us more flexibility. On the… on how we increase the… the block limit.",
+          "chunks": [
+            {
+              "ord": 126,
+              "t": 2934,
+              "raw": "the decision between a fixed gas cost and completely pulling out these EIP, I think, is the difference between remaining at the current block limits versus Maybe trying to guesstimate the… Better, in hindsight, what the… average gas limit will be between Glamsterdam and Eguta? Because on EGOTA, we could update this again, if we go with the… with the fixed, cost per bite. I agree with Marius that having the dynamic one is nicer because it gives us more flexibility. On the… on how we increase the… the block limit."
+            }
+          ],
+          "edits": [
+            "'Better, in hindsight, what the…' is dropped as a false start"
+          ]
+        },
+        {
+          "t": 2994,
+          "clean": "I just think any of these options are better than not doing 8037 at all, because that means we cannot [increase] the block limits.",
+          "caption": "I just think any of these options are better than not doing 8037 at all, because that means we cannot Increased, the block limits.",
+          "chunks": [
+            {
+              "ord": 127,
+              "t": 2994,
+              "raw": "I just think any of these options are better than not doing 8037 at all, because that means we cannot Increased, the block limits."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acde235-miller",
+      "kind": "quote",
+      "date": "2026-04-23",
+      "date_label": "23 April 2026",
+      "place": "All Core Devs Execution #235",
+      "speaker": "Peter Miller",
+      "speaker_slug": "peter-miller",
+      "talk_id": "763cee75-b1f5-4265-8c13-68a2dbff1e0c",
+      "talk_slug": "all-core-devs-execution-235",
+      "note": "The objection from the test team, beyond the complexity point already on the map: the EIP is a stopgap for proper multidimensional pricing, so its reservoir machinery may be built for nothing.",
+      "lines": [
+        {
+          "t": 3346,
+          "clean": "Firstly, this is a transitional EIP. In the long term, we want to do proper multidimensional gas pricing, and part of the concern is that there's a lot of complexity [in 8037], and it's not clear that that complexity is going to stay into the world of [multidimensional] gas pricing when we don't have that much of a grasp on the final design. And I'm worried that some of the quite complicated mechanisms related to reservoirs could be designed differently, and it's just got really complicated.",
+          "caption": "Is that, firstly, this is, like, a transitional EIP. Like, in the long term, we want to do proper multidimensional gas pricing, and the concern… part of the concern is that there's a lot of complexity later 37, and it's not clear that that complexity is going to stay into the world of multinational gas pricing when we don't, like, have That much of a grasp on the final design. And I'm worried that some of the quite complicated mechanisms, related to reservoirs could be designed differently, and it's just got really complicated.",
+          "chunks": [
+            {
+              "ord": 137,
+              "t": 3346,
+              "raw": "Is that, firstly, this is, like, a transitional EIP. Like, in the long term, we want to do proper multidimensional gas pricing, and the concern… part of the concern is that there's a lot of complexity later 37, and it's not clear that that complexity is going to stay into the world of multinational gas pricing when we don't, like, have"
+            },
+            {
+              "ord": 138,
+              "t": 3390,
+              "raw": "That much of a grasp on the final design. And I'm worried that some of the quite complicated mechanisms, related to reservoirs could be designed differently, and it's just got really complicated."
+            }
+          ],
+          "edits": [
+            "'and the concern…' is dropped as a restart",
+            "'later 37' is read as '[in 8037]' and 'multinational' as '[multidimensional]'"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-09",
+      "kind": "quote",
+      "date": "2026-05-01",
+      "date_label": "1 May 2026",
+      "place": "ETHCluj 2026",
+      "speaker": "Milos Stankovic",
+      "speaker_slug": "milos-stankovic",
+      "talk_id": "f7bed534-8f63-42a7-8e20-040cdabff2f2",
+      "talk_slug": "milos-stankovic-understanding-glamsterdam",
+      "note": "The plain-language reason for the state price: more gas means more state, and the home-node disk limit arrives ten times sooner.",
+      "lines": [
+        {
+          "t": 997,
+          "clean": "Another issue when you increase the block gas limit is the rate that the entire state grows will also increase. If you suddenly have five times more gas and there are five times more transactions in Ethereum, the entire state of Ethereum will keep increasing at a 5x rate compared to the current state.",
+          "caption": "Another Another issue with when you increase the block gas limit is um the state the the the rate that the reach the entire state grows will also increase. So, if you suddenly have five times more gas and they are five times more transaction in Ethereum, the entire state of the entire Ethereum will keep increasing as of at a 5x rate compared to the current state.",
+          "chunks": [
+            {
+              "ord": 26,
+              "t": 997,
+              "raw": "Another Another issue with when you increase the block gas limit is um the state the the the rate that the reach the entire state grows will also increase. So, if you suddenly have five times more gas and they are five times more transaction in Ethereum, the entire"
+            },
+            {
+              "ord": 27,
+              "t": 1040,
+              "raw": "state of the entire Ethereum will keep increasing as of at a 5x rate compared to the current state."
+            }
+          ],
+          "edits": [
+            "'Another Another issue with when' is read as 'Another issue when'; the fillers 'um' and the stutters 'the the the' are dropped",
+            "'they are five times more transaction' is read as 'there are five times more transactions' (caption mishearing and plural)",
+            "false starts and repeats dropped: 'the state' after 'um', 'reach' in 'that the reach the entire state', the opening 'So,', the repeated 'the entire' in 'the entire state of the entire Ethereum', and 'as of' in 'increasing as of at a 5x rate'"
+          ]
+        },
+        {
+          "t": 1040,
+          "clean": "We advocated that 2 terabytes would be enough to run an Ethereum node. We know that the state keeps growing, and we need some solution in the long term of how that can be sustainable.",
+          "caption": "we advocated that 2 terabytes would be enough to run Ethereum node. We know that the state keeps growing and always keep growing and we need some solution in the long term of how that can be sustainable.",
+          "chunks": [
+            {
+              "ord": 27,
+              "t": 1040,
+              "raw": "we advocated that 2 terabytes would be enough to run Ethereum node. We know that the state keeps growing and always keep growing and we need some solution in the long term of how that can be sustainable."
+            }
+          ],
+          "edits": [
+            "starts after 'So, that is an issue because for most node operators and for most home operators,'; 'always keep growing' is read as 'keeps growing'"
+          ]
+        },
+        {
+          "t": 1040,
+          "clean": "But the 2 terabytes is not something we would hit very soon, but if we scale the gas limit 10x, we will hit that boundary 10 times faster. So instead of maybe having 10 years to figure out the state growth problem, now we have 1 year to figure that out.",
+          "caption": "but the the 2 terabytes gas limit is not something we would hit very soon, but if we scale the gas limit 10x and the state that the we will hit that uh boundary 10 times faster. So, instead of maybe having 10 years to figure out the the state growth problem, now we have 1 year to figure that out.",
+          "chunks": [
+            {
+              "ord": 27,
+              "t": 1040,
+              "raw": "but the the 2 terabytes gas limit is not something we would hit very soon, but if we scale the gas limit 10x and the state that the we will hit that uh boundary 10 times faster. So, instead of maybe having 10 years to figure out the the"
+            },
+            {
+              "ord": 28,
+              "t": 1083,
+              "raw": "state growth problem, now we have 1 year to figure that out."
+            }
+          ],
+          "edits": [
+            "'gas limit' after '2 terabytes' is a caption slip and is dropped; the garbled 'and the state that the' before 'we will hit' is dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-rep7-fixed-price",
+      "kind": "quote",
+      "date": "2026-05-13",
+      "date_label": "13 May 2026",
+      "place": "Glamsterdam Repricings #7",
+      "speaker": "Maria Silva",
+      "speaker_slug": "maria-silva",
+      "talk_id": "1d90d3f1-2e12-4bd2-a3a7-4cadabccaaf4",
+      "talk_slug": "glamsterdam-repricings-7",
+      "note": "The outcome of the cost-per-byte argument, as the author presents it on the first repricing call after the Svalbard interop: the price per state byte becomes a fixed number, with the size of the increases. The EIP text changed on 4 May (EIPs#11573).",
+      "lines": [
+        {
+          "t": 172,
+          "clean": "The second one was more about updating the parameters, the exact numbers, and there's two components to these. First is fixing the cost per byte to a value that would be, like, the closer to what we actually do on the final Amsterdam fork.",
+          "caption": "the second one was more about updating the parameters, the… the exact numbers, and there's two components to these. So, first is fixing the cost per byte to a value that would be, like, the closer to the… what we actually do on the final Amsterdam fork.",
+          "chunks": [
+            {
+              "ord": 7,
+              "t": 172,
+              "raw": "the second one was more about updating the parameters, the… the exact numbers, and there's two components to these. So, first is fixing the cost per byte to a value that would be, like, the closer to the… what we actually do on the final Amsterdam fork."
+            }
+          ]
+        },
+        {
+          "t": 302,
+          "clean": "For a new account, this would be a 7-time increase, for a new slot, a 5-time increase, and for a contract deployment, an 8-time increase. This seems like a lot, but you kind of turn it into a cost in ETH, based on the base fee we have right now, which we still expect the base fee to go down with the increased block limit, and, it's actually not horrible.",
+          "caption": "So I have for a new account, this would be a 7-time increase for a new slot, a 5-time increase, and for a contract deployment, an 8-time Increase. This seems like a lot, but you then… you kind of turn it into a cost in ETH, based on the base fee we have right now, which we still expect the base fee to go down with the increased, with the increased, block limit, and, it's actually not horrible.",
+          "chunks": [
+            {
+              "ord": 9,
+              "t": 302,
+              "raw": "So I have for a new account, this would be a 7-time increase for a new slot, a 5-time increase, and for a contract deployment, an 8-time Increase. This seems like a lot, but you then… you kind of turn it into a cost in ETH, based on the base fee we have right now, which we still expect the base fee to go down with the increased, with the increased, block limit, and, it's actually not horrible."
+            }
+          ],
+          "edits": [
+            "'then…' is dropped as a false start"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-anton-chainsecurity",
+      "kind": "written",
+      "date": "2026-06-05",
+      "date_label": "5 June 2026",
+      "place": "Ethereum Magicians",
+      "author": "Anton_ChainSecurity",
+      "source_title": "EIP-8037: State Creation Gas Cost Increase",
+      "source_url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/28",
+      "note": "An early warning about gas checks, months before the main finding: under EIP-8037 a catch path that used to run out of gas can now complete, paid from the reservoir.",
+      "lines": [
+        {
+          "text": "The pattern: a contract calls a child via try/catch and, on revert, performs state changes. The catch path cannot distinguish a legitimate revert from an out-of-gas revert."
+        },
+        {
+          "text": "Today, forcing the catch via OOG also depletes the regular gas that the catch's SSTOREs need, so the whole tx OOGs and the state change does not persist."
+        },
+        {
+          "text": "Catch paths that previously did not fit within a tx (multi-SSTORE shutdown / liquidation / freeze state changes) now do, because most of their cost is paid from the reservoir rather than the inner-call gas budget."
+        }
+      ]
+    },
+    {
+      "id": "w-abc-123-c",
+      "kind": "written",
+      "date": "2026-06-05",
+      "date_label": "5 June 2026",
+      "place": "Ethereum Magicians",
+      "author": "abc-123-c",
+      "source_title": "EIP-8037: State Creation Gas Cost Increase",
+      "source_url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/29",
+      "note": "The case that contracts which inspect gas were already on notice: it is an anti-pattern, and the answer is to migrate before the fork.",
+      "lines": [
+        {
+          "text": "This problem has existed since eip1884, it is now an anti-pattern. The protocol strongly discourages the deployment of static gas usage contracts because they are highly susceptible by repricing. The best approach is to migrate them before the upgrade ships."
+        }
+      ]
+    },
+    {
+      "id": "w-hirako2000",
+      "kind": "written",
+      "date": "2026-06-05",
+      "date_label": "5 June 2026",
+      "place": "Ethereum Magicians",
+      "author": "hirako2000",
+      "source_title": "EIP-8037: State Creation Gas Cost Increase",
+      "source_url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/31",
+      "note": "The backward-compatibility question in one line, posted in the same exchange about gas checks: some deployed contracts simply cannot be changed.",
+      "lines": [
+        {
+          "text": "The question is does Ethereum favours ensuring backward compatibility or move forward. Some contracts simply cannot be updated."
+        }
+      ]
+    },
+    {
+      "id": "s-acdt82-factory",
+      "kind": "quote",
+      "date": "2026-06-08",
+      "date_label": "8 June 2026",
+      "place": "All Core Devs Testing #82",
+      "speaker": "Toni Wahrstätter",
+      "speaker_slug": "toni-wahrstatter",
+      "talk_id": "13a9f3e6-3a86-4b99-810a-f56a4a72df2e",
+      "talk_slug": "all-core-devs-testing-82",
+      "note": "The first known case of deployed fixed-gas code failing under EIP-8037, four months before the disclosure: the common pre-signed deployment factory has a hard-coded gas limit that no longer covers its state creation. Fixed by putting it in the genesis file; the EIP gained a caveat on 1 June (EIPs#11706).",
+      "lines": [
+        {
+          "t": 1879,
+          "clean": "The reason we had to do this on devnet was because 8037 increased the state gas prices, and Arachnid, which was deployed using Nick's method, wouldn't fit into the transaction anymore, because it had a transaction gas limit of 100K, and this was too low.",
+          "caption": "and the reason we had to do this on devnet was because 8037 increased the state gas prices, and Arachnid, which was deployed using Nick's method, wouldn't fit into the transaction anymore, because it had a transaction gas limit of 100K, and this was too low.",
+          "chunks": [
+            {
+              "ord": 92,
+              "t": 1879,
+              "raw": "and the reason we had to do this on devnet was because 8037 increased the state gas prices, and"
+            },
+            {
+              "ord": 93,
+              "t": 1941,
+              "raw": "Arachnid, which was deployed using Nick's method, wouldn't fit into the transaction anymore, because it had a transaction gas limit of 100K, and this was too low."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-atiselsts",
+      "kind": "written",
+      "date": "2026-06-14",
+      "date_label": "14 June 2026",
+      "place": "Ethereum Magicians",
+      "author": "atiselsts",
+      "source_title": "EIP-8038: State-access gas cost update",
+      "source_url": "https://ethereum-magicians.org/t/eip-8038-state-access-gas-cost-update/25693/10",
+      "note": "The first measurement of what the state-access prices do to real DeFi transactions, at 60M and 200M gas limits. The SLOAD increase was later reverted (ACDT #90).",
+      "lines": [
+        {
+          "text": "Results show that the dominant effect is SLOAD repricing (EIP-8038) and that the gas cost increase is around 50% with 3x multiplier, and >200% with 10x multiplier."
+        }
+      ]
+    },
+    {
+      "id": "w-jat9292",
+      "kind": "written",
+      "date": "2026-06-15",
+      "date_label": "15 June 2026",
+      "place": "Ethereum Magicians",
+      "author": "jat9292",
+      "source_title": "EIP-8037: State Creation Gas Cost Increase",
+      "source_url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/33",
+      "note": "The privacy objection: confidential tokens create state on almost every transfer, and the timeline to adapt is short.",
+      "lines": [
+        {
+          "text": "However, the current direction to include ERC-8037 in Glamsterdam creates an unreasonable timeframe to solve this complex issue that we believe the standard authors were not aware of. This will impact an entire category of privacy solutions while keeping non-private transactions cheap."
+        },
+        {
+          "text": "At the current rates, the state-gas component of a confidential transfer roughly increases by x5 in absolute terms while existing ERC-20 transfer is mostly unaffected - making privacy much more expensive for all Ethereum users."
+        }
+      ]
+    },
+    {
+      "id": "w-misilva73-blocker",
+      "kind": "written",
+      "date": "2026-06-15",
+      "date_label": "15 June 2026",
+      "place": "Ethereum Magicians",
+      "author": "misilva73",
+      "author_slug": "maria-silva",
+      "source_title": "EIP-8037: State Creation Gas Cost Increase",
+      "source_url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/34",
+      "note": "The author's answer: the EIP is scheduled and is what lets the gas limit rise, so it is very unlikely to be declined.",
+      "lines": [
+        {
+          "text": "This EIP is currently Scheduled for Inclusion. It is already part of the glamsterdam devnets and it is a blocker for us to increase the gas limit further, so it is very unlikely to be declined at this point."
+        }
+      ]
+    },
+    {
+      "id": "w-arikg",
+      "kind": "written",
+      "date": "2026-06-16",
+      "date_label": "16 June 2026",
+      "place": "Ethereum Magicians",
+      "author": "ArikG",
+      "source_title": "EIP-8037: State Creation Gas Cost Increase",
+      "source_url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/36",
+      "note": "The request to slow down: reconsider timing, delay one fork, or phase the increase in.",
+      "lines": [
+        {
+          "text": "Regarding this EIP, understandably the EIP is already in SFI state which is obviously not easy to reopen conversation and a lot of effort has been put into it. From our point of view it seems to be fast-tracked to this state and we believe that it happened without deep enough understanding of impact on the application layer - so although it’s a bit late, we believe it is a good enough argument to reconsider the approach and timing."
+        },
+        {
+          "text": "There are multiple ways to make this better, a delay of one fork to do deeper work with the application layer is one way to go. Another way is making the increase more gradual, with small impact on the first fork (to not waste implemetnation/testing time) and a bigger impact on the second fork."
+        }
+      ]
+    },
+    {
+      "id": "s-acde239-refunds",
+      "kind": "quote",
+      "date": "2026-06-18",
+      "date_label": "18 June 2026",
+      "place": "All Core Devs Execution #239",
+      "speaker": "Maria Silva",
+      "speaker_slug": "maria-silva",
+      "talk_id": "76f44423-b7f7-4c6a-8f32-0fd64d4cdec7",
+      "talk_slug": "all-core-devs-execution-239",
+      "note": "The spec change for devnet 6 that sends state-gas refunds back to the call's own gas first. Ethlabs' 10 Nov timeline links this change to gasleft() being able to go up after a reverted call.",
+      "lines": [
+        {
+          "t": 1436,
+          "clean": "We'll go with those two changes. The first one is around where the state gas refunds or refills go to. So before, they were always going to the reservoir, and now they are going to the place where they were taken off. So it means that we first give back to gas left, if there was any spill to gas left, and then we give back to the reservoir, when there's no more spill to account for.",
+          "caption": "we'll go with those two changes. So the first one is, The first one is around the… where the, state gas, refunds or refills go to. So before, they were always going to the reservoir, and now they are going to the place where they were taken off, so it means that, we first, give back to gas left, if there was any spill to gas left, and then, we give back to the reservoir, when there's no more, spill, to… to account for.",
+          "chunks": [
+            {
+              "ord": 56,
+              "t": 1436,
+              "raw": "we'll go with those two changes. So the first one is, The first one is around the… where the, state gas, refunds or refills go to. So before, they were always going to the reservoir, and now they are going to the place where they were taken off, so it means that, we first, give back to gas left, if there was any spill to gas left, and then, we give back to the reservoir, when there's no more, spill, to… to account for."
+            }
+          ],
+          "edits": [
+            "the false start 'So the first one is,' is dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acde239-create",
+      "kind": "quote",
+      "date": "2026-06-18",
+      "date_label": "18 June 2026",
+      "place": "All Core Devs Execution #239",
+      "speaker": "Maria Silva",
+      "speaker_slug": "maria-silva",
+      "talk_id": "76f44423-b7f7-4c6a-8f32-0fd64d4cdec7",
+      "talk_slug": "all-core-devs-execution-239",
+      "note": "The second of the two changes agreed on this call for devnet 6 (the refund routing is on s-acde239-refunds): CREATE charges its state gas unconditionally and refills it afterwards if the account already existed. Ethlabs lists this change. It was replaced on 7 July, when the charge was made conditional (EIPs#11858), agreed on the Testing #86 EL breakout, whose captions carry no speaker names.",
+      "lines": [
+        {
+          "t": 1436,
+          "clean": "The second change is a clarification on when the state gas charging is done for create, and essentially now we are just charging it unconditionally, and then at the end of the execution for create, if the account was already there, we just refill the state gas.",
+          "caption": "The change number two is a clarification on when. the state gas charging is done for create, and essentially now we are just charging it unconditionally, and then at the end of the execution for Create, if the account was already there. We just, refill, the state gas.",
+          "chunks": [
+            {
+              "ord": 56,
+              "t": 1436,
+              "raw": "The change number two is a clarification on when. the state gas charging is done for create, and essentially now we are just charging it unconditionally, and then at the end of the execution for Create, if the account was already there."
+            },
+            {
+              "ord": 57,
+              "t": 1494,
+              "raw": "We just, refill, the state gas."
+            }
+          ],
+          "edits": [
+            "'The change number two' is read as 'The second change'"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-amxx",
+      "kind": "written",
+      "date": "2026-06-19",
+      "date_label": "19 June 2026",
+      "place": "Ethereum Magicians",
+      "author": "Amxx",
+      "affiliation": "Shares the view of OpenZeppelin developers",
+      "source_title": "EIP-8037: State Creation Gas Cost Increase",
+      "source_url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/38",
+      "note": "A balanced view from a maintainer of widely used contract libraries: the change is needed, and some contracts will still be hit hard.",
+      "lines": [
+        {
+          "text": "First of all, I understand this change is needed to ensure the sustainability and security of the L1. This is obviously not something we want to compromise on."
+        },
+        {
+          "text": "However, I cannot deny that some smart contracts are going to be significantly affected, while others not so much."
+        }
+      ]
+    },
+    {
+      "id": "w-pr11858-create",
+      "kind": "written",
+      "date": "2026-07-03",
+      "date_label": "3 July 2026",
+      "place": "GitHub (ethereum/EIPs)",
+      "author": "chfast",
+      "source_title": "Update EIP-8037: charge account creation conditionally at access (PR #11858)",
+      "source_url": "https://github.com/ethereum/EIPs/pull/11858",
+      "note": "Replaces the 18 June CREATE rule (charge unconditionally, refill if the account existed) with a conditional charge at the destination access. Agreed on the Testing #86 EL breakout (6 July; captions carry no speaker names), merged 7 July. The source does not say who chfast is.",
+      "lines": [
+        {
+          "text": "Replace the unconditional-charge-with-refill model for CREATE/CREATE2 with a conditional charge applied at the single destination access that also performs the EIP-7610 collision check - the access EIP-7928 already sanctions and records."
+        },
+        {
+          "text": "Creations failing the balance/nonce/depth checks never read the destination and charge nothing; pre-existing destinations (e.g. pre-funded deterministic-deployment addresses) charge nothing and their create frame is no longer temporarily under-budgeted; only a creation that writes a new account pays, in the creating frame before the 63/64ths split, exactly as the CALL* family."
+        }
+      ]
+    },
+    {
+      "id": "s-18",
+      "kind": "quote",
+      "date": "2026-08-03",
+      "date_label": "3 August 2026",
+      "place": "All Core Devs Testing #90",
+      "speaker": "Maria Silva",
+      "speaker_slug": "maria-silva",
+      "talk_id": "0906d1d9-8db2-413d-9a40-f4be983d421a",
+      "talk_slug": "all-core-devs-testing-90",
+      "note": "App-compatibility work changing the spec: with final benchmark numbers, the planned SLOAD increase is dropped, which removes a problem found for Uniswap V2.",
+      "lines": [
+        {
+          "t": 667,
+          "clean": "Storage access currently costs 2,100, and with this new anchor, it means that we don't need to price it at 3,000, sorry. We can keep it at the price that it is today. So this means that [SLOADs] won't change their cost.",
+          "caption": "Storage access, currently costs, $2,100, and with this new anchor, it means that we don't need to price it at, 300… 3,000, sorry. We can keep it at the price that it is today. So this means that that, like, SLOAs won't change their cost.",
+          "chunks": [
+            {
+              "ord": 23,
+              "t": 667,
+              "raw": "Storage access, currently costs, $2,100, and with this new anchor, it means that we don't need to price it at, 300… 3,000, sorry. We can keep it at the price that it is today. So this means that that, like, SLOAs won't change their cost."
+            }
+          ],
+          "edits": [
+            "'SLOAs' is read as [SLOADs]; the slip '300…' before '3,000, sorry' is dropped; the fillers 'like' and 'that that' are dropped"
+          ]
+        },
+        {
+          "t": 667,
+          "clean": "And so this will also have an impact on our backward compatibility analysis. So, for instance, we had a finding that Uniswap V2 had some issues with this SLOAD cost, and by going back to the previous cost, that issue will go away.",
+          "caption": "And so this will also have an impact on our backward compatibility analysis. So, for instance, we had, a finding that Uniswap V2, was, was, had some… issues with this, SLOAD cost, and by going back to the previous cost, that, issue will go away.",
+          "chunks": [
+            {
+              "ord": 23,
+              "t": 667,
+              "raw": "And so this will also have an impact on our backward compatibility analysis. So, for instance, we had, a finding that Uniswap V2, was, was, had some…"
+            },
+            {
+              "ord": 24,
+              "t": 728,
+              "raw": "issues with this, SLOAD cost, and by going back to the previous cost, that, issue will go away."
+            }
+          ],
+          "edits": [
+            "the repeated 'was, was' is dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acde243-signoff",
+      "kind": "quote",
+      "date": "2026-08-13",
+      "date_label": "13 August 2026",
+      "place": "All Core Devs Execution #243",
+      "speaker": "Jochem Brouwer",
+      "speaker_slug": "jochem-brouwer",
+      "talk_id": "a3c08891-2954-4657-be9b-ff98bc54e6b6",
+      "talk_slug": "all-core-devs-execution-243",
+      "note": "The sign-off of the final repricing numbers for EIP-2780, EIP-8037 and EIP-8038 (those frozen on Testing #90), after Nixo asks whether they are final. The same read-out ends by saying the block gas limit can be raised to 200 million gas at Glamsterdam.",
+      "lines": [
+        {
+          "t": 542,
+          "clean": "We can comfortably sign off the numbers which were presented at ACD 90. There are some specific benchmarks now which we will forward to the clients, which they should look at, but these are not a problem, because these are still well within the safety limits of these repricing numbers.",
+          "caption": "We can comfortably sign off the numbers which were presented at ACD 90. There are some specific benchmarks now, which we will forward to the clients which they should look at, but these are not a problem, because these are still well within the safety limits of these repricing numbers.",
+          "chunks": [
+            {
+              "ord": 16,
+              "t": 542,
+              "raw": "We can comfortably sign off the numbers which were presented at ACD 90. There are some specific benchmarks now, which we will forward to the clients which they should look at, but these are not a problem, because these are still well within the safety limits of these repricing numbers."
+            }
+          ]
+        },
+        {
+          "t": 542,
+          "clean": "That means that we do not need to re-release anything with changed specs, because the specs have not changed for these EIPs. Clients do not need to change their numbers or their code.",
+          "caption": "That means that we do not need to re-release anything with changed specs, because the specs have not changed for these EIPs, which is this thing, so that's very nice. Clients do not need to change their numbers or their code.",
+          "chunks": [
+            {
+              "ord": 16,
+              "t": 542,
+              "raw": "That means that we do not need to re-release anything with changed specs, because the specs have not changed for these EIPs, which is this thing, so that's very nice. Clients do not need to change their numbers or their code."
+            }
+          ],
+          "edits": [
+            "'which is this thing, so that's very nice' is dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acde243-anders",
+      "kind": "quote",
+      "date": "2026-08-13",
+      "date_label": "13 August 2026",
+      "place": "All Core Devs Execution #243",
+      "speaker": "Anders Elowsson",
+      "speaker_slug": "anders-elowsson",
+      "talk_id": "a3c08891-2954-4657-be9b-ff98bc54e6b6",
+      "talk_slug": "all-core-devs-execution-243",
+      "note": "The calibration worry about the fixed price, stated when he proposes EIP-8368 (recalibrating the cost per state byte) on the same call: nobody knows how much of the gas budget users will spend on state creation.",
+      "lines": [
+        {
+          "t": 3666,
+          "clean": "However, we might find ourselves in a situation where demand for state creation is relatively low. In this case, we will be creating too little state gas at the cost that we have provided. We might also find ourselves in a situation where demand for state creation is relatively high, and in this case, we will be buying too little execution gas, because we will be suppressing execution via the max metering function of EIP 8037.",
+          "caption": "However, we might find ourselves in a situation where demand for state creation is relatively low. In this case, we will be creating too little state gas at the cost that we have provided. We might also find ourselves in a situation where demand for state creation is relatively high, and in this case, we will be creating too little execution gas, or buying too little execution gas, because we will be suppressing execution via the max metering function of EIP 8037.",
+          "chunks": [
+            {
+              "ord": 128,
+              "t": 3666,
+              "raw": "However, we might find ourselves in a situation where demand for state creation is relatively low. In this case, we will be creating too little state gas at the cost that we have provided. We might also find ourselves in a situation where demand for state creation is relatively high, and in this case, we will be creating too little execution gas, or buying too little execution gas, because we will be suppressing execution via the max metering function of EIP 8037."
+            }
+          ],
+          "edits": [
+            "the self-correction 'creating too little execution gas, or' is dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-ef-repricing-notice",
+      "kind": "written",
+      "date": "2026-08-24",
+      "date_label": "24 August 2026",
+      "place": "Ethereum Foundation Blog",
+      "author": "Ethereum Foundation Protocol Research, EthPandaOps, and Specifications teams",
+      "source_title": "Glamsterdam repricing testing",
+      "source_url": "https://blog.ethereum.org/2026/08/24/glamsterdam-repricing-testing",
+      "note": "The first public notice to app developers, seven weeks before the ChainSecurity finding: a small set of contracts that branch on gasleft() or hard-code gas may break, and most flagged issues are fixed with a higher gas limit. It is the official baseline the later disclosure is measured against.",
+      "lines": [
+        {
+          "text": "Most flagged issues are fixed with a gas-limit increase, and the large majority of smart contracts are unaffected."
+        },
+        {
+          "text": "Potentially broken: Fails even with a substantially raised gas limit. Contracts in the last group typically rely on hardcoded gas assumptions, such as fixed stipends (Solidity's transfer/send 2,300 gas), hardcoded gas values in calls, logic that branches on gasleft(), or presigned transactions with fixed gas limits."
+        }
+      ]
+    },
+    {
+      "id": "s-acdt94-refill-frames",
+      "kind": "quote",
+      "date": "2026-08-31",
+      "date_label": "31 August 2026",
+      "place": "All Core Devs Testing #94",
+      "speaker": "Paweł Bylica",
+      "speaker_slug": "pawel-bylica",
+      "talk_id": "94440605-f0c8-4a9f-8848-4a2898696655",
+      "talk_slug": "all-core-devs-testing-94",
+      "note": "The late spec change that makes a refill follow gas across call frames (EIPs#12265, merged 4 Sep), so state gas returns to where it was taken from, including to a frame's execution gas. It builds on the 18 June routing rule. Ratified on All Core Devs Consensus #186 (3 Sep).",
+      "lines": [
+        {
+          "t": 3790,
+          "clean": "[State gas] goes back to the pool it took it from. And it works, but only in the frame context, and it doesn't work across the frames. So the update is to actually make it work across the frames. And to my understanding, the implementation impact is small.",
+          "caption": "The state goes back to the… the pool it took it from. And it works, but only in the frame context, and it doesn't work across the frames. So the update is to actually make it work across the frames. Yeah, and to my understanding, the implementation impact is small.",
+          "chunks": [
+            {
+              "ord": 176,
+              "t": 3790,
+              "raw": "The state goes back to the… the pool it took it from. And it works, but only in the frame context, and it doesn't work across the frames. So the update is to actually make it work across the frames. Yeah, and to my understanding, the implementation impact is small."
+            }
+          ],
+          "edits": [
+            "'The state' is read as 'State gas' (as the previous sentence is about refills)",
+            "'Yeah,' dropped"
+          ]
+        },
+        {
+          "t": 4099,
+          "clean": "We wanted this change to be consistent. And not to allow the situation when you kind of launder the regular gas into state gas.",
+          "caption": "we wanted this change to be consistent. And not to allow the situation when you… kind of launder. the regular gas into state gas, and you cannot.",
+          "chunks": [
+            {
+              "ord": 188,
+              "t": 4099,
+              "raw": "we wanted this change to be consistent. And not to allow the situation when you… kind of launder. the regular gas into state gas, and you cannot."
+            }
+          ],
+          "edits": [
+            "the trailing false start 'and you cannot' is dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acdt94-selfdestruct-for",
+      "kind": "quote",
+      "date": "2026-08-31",
+      "date_label": "31 August 2026",
+      "place": "All Core Devs Testing #94",
+      "speaker": "Paweł Bylica",
+      "speaker_slug": "pawel-bylica",
+      "talk_id": "94440605-f0c8-4a9f-8848-4a2898696655",
+      "talk_slug": "all-core-devs-testing-94",
+      "note": "The case for refilling state gas on a contract that is created and self-destructed in the same transaction (EIPs#12249), a refill rule that had been removed in April. Rejected on the same call (next stop); All Core Devs Execution #244 (27 Aug) had already sent it to the 8037 authors.",
+      "lines": [
+        {
+          "t": 2250,
+          "clean": "This is a use case that is actually used on the mainnet, where we have a create and [self-destruct] sandwich, so it creates some kind of ephemeral contract that can execute, and it's removed in the end of the transaction. And it doesn't work very well with a current EIP-8037 spec, because the user will be charged for creating a contract, including its code, and will not get the refund in the end. And the fix is to actually give it the refund.",
+          "caption": "this is a use case that is actually used on the mainnet, where we have a create and sort of distract sandwich, so it creates some kind of ephemeral contract that can execute, and it's removed in the end of transaction. And it doesn't work very well with a current EIP-8037 spec, because User will be charged for creating a contract, including its code. And will not get the refund in the end. And the fix is to actually give it the refund.",
+          "chunks": [
+            {
+              "ord": 112,
+              "t": 2250,
+              "raw": "this is a use case that is actually used on the mainnet, where we have a create and sort of distract sandwich, so it creates some kind of ephemeral contract that can execute, and it's removed in the end of transaction. And it doesn't work very well with a current EIP-8037 spec, because User will be charged for creating a contract, including its code. And will not get the refund in the end. And the fix is to actually give it the refund."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acdt94-selfdestruct-against",
+      "kind": "quote",
+      "date": "2026-08-31",
+      "date_label": "31 August 2026",
+      "place": "All Core Devs Testing #94",
+      "speaker": "Maria Silva",
+      "speaker_slug": "maria-silva",
+      "talk_id": "94440605-f0c8-4a9f-8848-4a2898696655",
+      "talk_slug": "all-core-devs-testing-94",
+      "note": "The reasons the refill had been dropped, from the EIP's champion; the call then declined the change (Forkcast key decision at 01:01:26: complexity and the self-destruct deprecation trajectory).",
+      "lines": [
+        {
+          "t": 2387,
+          "clean": "The reasons why we dropped it was first for simplicity and testing, because after we started implementing these, we realized some edge cases that were more complicated. And the second one was the idea that we would like to eventually deprecate self-destruct, right? So we don't want to move in a direction where we are incentivizing people to continue to use self-destruct, which I think is what's happening here.",
+          "caption": "the reasons why we dropped it was first for simplicity and testing, because after We started implementing these, we realized, Give some edge cases that were… more complicated. And the second one was, sort of these… idea that we would like to eventually deprecate self-destruct, right? So we don't want to move in a direction where we are making these use cases, like, incentivizing people to continue to use self-destruct, which I think is what's happening here.",
+          "chunks": [
+            {
+              "ord": 116,
+              "t": 2387,
+              "raw": "the reasons why we dropped it was first for simplicity and testing, because after We started implementing these, we realized, Give some edge cases that were… more complicated. And the second one was, sort of these… idea that we would like to eventually deprecate self-destruct, right? So we don't want to move in a direction where we are making these use cases, like, incentivizing people to continue to use self-destruct, which I think is what's happening here."
+            }
+          ],
+          "edits": [
+            "'Give' before 'some edge cases' dropped as a stray word",
+            "'making these use cases, like,' dropped from 'we are making these use cases, like, incentivizing people'"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-acdc186-decision",
+      "kind": "quote",
+      "date": "2026-09-03",
+      "date_label": "3 September 2026",
+      "place": "All Core Devs Consensus #186",
+      "speaker": "Maria Silva",
+      "speaker_slug": "maria-silva",
+      "talk_id": "c3ca0c16-69b2-4c27-9a71-dc6a66b8e543",
+      "talk_slug": "all-core-devs-consensus-186",
+      "note": "The decision on the cross-frame refill change (EIPs#12265), taken three days after the Testing #94 discussion, with the client teams' positions.",
+      "lines": [
+        {
+          "t": 312,
+          "clean": "I asked all clients in Discord, and essentially the results were that everyone was okay with moving on with the change, so Erigon and Geth supported. Reth and Nethermind said they would not oppose the majority, and [Ethrex] and Besu, they are also in support. And so I think the final decision is to go with this change.",
+          "caption": "I asked, all clients, in Discord, and, essentially the results were… everyone was okay with moving on with the change, so Erigon and Geth supported. Reth and Nethermind said they would not oppose the majority and eat Reth, and, Besu, they are also, in support. And so I think the… the final decision is to go with this change",
+          "chunks": [
+            {
+              "ord": 13,
+              "t": 312,
+              "raw": "I asked, all clients, in Discord, and, essentially the results were… everyone was okay with moving on with the change, so Erigon and Geth supported."
+            },
+            {
+              "ord": 14,
+              "t": 377,
+              "raw": "Reth and Nethermind said they would not oppose the majority and eat Reth, and, Besu, they are also, in support. And so I think the… the final decision is to go with this change"
+            }
+          ],
+          "edits": [
+            "'the results were… everyone' is joined with 'that'"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-pyravim-sepolia",
+      "kind": "written",
+      "date": "2026-10-08",
+      "date_label": "8 October 2026",
+      "place": "Ethereum Magicians",
+      "author": "PyraVim",
+      "source_title": "EIP-8037: State Creation Gas Cost Increase",
+      "source_url": "https://ethereum-magicians.org/t/eip-8037-state-creation-gas-cost-increase/25694/50",
+      "note": "The first real-network evidence: Glamsterdam went live on Sepolia and failed transactions rose from 1.91% to 10.97% in the first 10.5 hours.",
+      "lines": [
+        {
+          "text": "Glamsterdam went live on Sepolia at 13:53:36 UTC on Oct 6. I recorded every Sepolia transaction for two days before the fork and since. In the first 10.5 hours after the fork, failures went from 1.91% to 10.97% of transactions (against the 10.5 hours before), and transactions that burned their whole gas limit from 0.15% to 2.02%."
+        },
+        {
+          "text": "About a third of the extra failures are bots repeating the same failing call."
+        }
+      ]
+    },
+    {
+      "id": "w-chainsecurity-blog",
+      "kind": "written",
+      "date": "2026-10-13",
+      "date_label": "13 October 2026",
+      "place": "ChainSecurity blog",
+      "author": "ChainSecurity",
+      "source_title": "Glamsterdam Hard Fork: When Spent Gas Comes Back",
+      "source_url": "https://www.chainsecurity.com/blog/glamsterdam-gas",
+      "note": "The finding that started the pause: with unchanged contract code, a failure that used to revert can now complete, and gasleft() does not show the reservoir.",
+      "lines": [
+        {
+          "text": "Glamsterdam changes what happens after a failed call. Gas refills and repricing can let failure handlers complete where they once reverted, undermining assumptions behind existing gas checks."
+        },
+        {
+          "text": "The reservoir travels with calls in full; EIP-150’s 63/64 rule applies only to gas_left. The GAS opcode reports only gas_left, so a small gasleft() value does not mean that there is not enough gas remaining to pay for state creation."
+        }
+      ]
+    },
+    {
+      "id": "w-pcaversaccio-agenda",
+      "kind": "written",
+      "date": "2026-10-21",
+      "date_label": "21 October 2026",
+      "place": "GitHub (ethereum/pm)",
+      "author": "pcaversaccio",
+      "source_title": "Comment on the ACDE #248 agenda",
+      "source_url": "https://github.com/ethereum/pm/issues/2267#issuecomment-6320847921",
+      "note": "The call to reassess the fork, posted the day before All Core Devs Execution #248.",
+      "lines": [
+        {
+          "text": "The fundamental \"broken\" thing is that gasleft() can increase. It's important that the core devs are aware of these findings and discuss this in tomorrow's ACDE. IMHO these findings call for a reassessment of this hard fork but that's not for me to decide of course."
+        }
+      ]
+    },
+    {
+      "id": "s-22",
+      "kind": "quote",
+      "date": "2026-10-22",
+      "date_label": "22 October 2026",
+      "place": "All Core Devs Execution #248",
+      "speaker": "Lightclient",
+      "speaker_slug": "lightclient",
+      "talk_id": "b7698101-1b57-4a83-957c-ecaa0db18b5e",
+      "talk_slug": "all-core-devs-execution-248",
+      "note": "The principle case against breaking deployed contracts, made on the call where the disclosure was first discussed.",
+      "lines": [
+        {
+          "t": 3227,
+          "clean": "I feel like I'm getting the sense from the way the conversation's unfolding a bit, is that we are trying to almost prove that some of these initial findings that we're having, that this is somehow an invariant that we told developers could break. And it's now breaking, and so therefore we're trying to maybe assign fault towards those developers. And, to me, that feels a bit of a wrong way to approach this.",
+          "caption": "I feel like I'm getting the sense from the way the conversation's unfolding a bit, is that… We are trying to almost prove that some of these, like, you know, initial findings that we're having, we're trying to, like, prove that this is somehow an invariant that we told developers could break. And it's now breaking, and so therefore, we're, like, trying to maybe assign fault towards those developers. And, to me, that feels a bit of a wrong way to approach this.",
+          "chunks": [
+            {
+              "ord": 112,
+              "t": 3227,
+              "raw": "I feel like I'm getting the sense from the way the conversation's unfolding a bit, is that… We are trying to almost prove that some of these, like, you know, initial findings that we're having, we're trying to, like, prove that this is somehow an invariant that we told developers could break. And it's now breaking, and so therefore, we're, like, trying to maybe assign fault towards those developers. And, to me, that feels a bit of a wrong way to approach this."
+            }
+          ],
+          "edits": [
+            "the restart 'we're trying to, like, prove' and the fillers 'like', 'you know' are dropped"
+          ]
+        },
+        {
+          "t": 3274,
+          "clean": "At the end of the day, if a sufficient number of users or a sufficient amount of funds on mainnet are making use of a functionality, we can't just say we have to break that functionality. Obviously, there's nuance to these arguments always, but if we find that there's a lot of contracts who are using this, and we find there's a lot of funds that are locked into this, I personally don't think we should break the user space, for those reasons.",
+          "caption": "And I think that, at the end of the day, if a sufficient number of users, or a sufficient amount of funds on mainnet are making use of a functionality. That we can't just… Say we have to, you know, Break that functionality. Obviously, there's… nuance to these arguments always, but if we find that there's a lot of contracts who are using this, and we find there's a lot of funds that are locked into this. I mean, I personally don't think we should break the user space, for those reasons.",
+          "chunks": [
+            {
+              "ord": 113,
+              "t": 3274,
+              "raw": "And I think that, at the end of the day, if a sufficient number of users, or a sufficient amount of funds on mainnet are making use of a functionality. That we can't just… Say we have to, you know, Break that functionality. Obviously, there's… nuance to these arguments always, but if we find that there's a lot of contracts who are using this, and we find there's a lot of funds that are locked into this. I mean, I personally don't think we should break the user space, for those reasons."
+            }
+          ],
+          "edits": [
+            "'That we can't just… Say we have to, you know, Break' is read as 'we can't just say we have to break'; 'I mean' is dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-lightclient-x",
+      "kind": "written",
+      "date": "2026-10-23",
+      "date_label": "23 October 2026",
+      "place": "X",
+      "author": "Lightclient",
+      "author_slug": "lightclient",
+      "source_title": "Post on X",
+      "source_url": "https://x.com/lightclients/status/2113606207252611307",
+      "note": "A core developer's own design objection, separate from the gasleft() finding: the repricing raises the gas limit without solving state growth.",
+      "lines": [
+        {
+          "text": "tldr; I really don't like these EIPs. They only allow us to increase gas limit without solving the fundamental problem of ever an growing state."
+        }
+      ]
+    },
+    {
+      "id": "w-svlachakis-callstatus",
+      "kind": "written",
+      "date": "2026-10-25",
+      "date_label": "25 October 2026",
+      "place": "GitHub (ethereum/EIPs)",
+      "author": "svlachakis",
+      "source_title": "Comment on PR #12581",
+      "source_url": "https://github.com/ethereum/EIPs/pull/12581#issuecomment-6396720099",
+      "note": "A second layer of fix: CALLSTATUS would let new contracts read the outcome of a call instead of guessing from gasleft().",
+      "lines": [
+        {
+          "text": "The root cause, contracts inferring the cause of a failure from gasleft(), is addressed for code written after Hegota by #12586 (CALLSTATUS): the outcome of a call becomes readable, including a halt behind proxies and wrappers, so no new contract needs a gas threshold for this, and the next repricing or reservoir change does not reopen the class. EIP-8141's explicit per-frame budgets remove the fixed-budget pattern itself for frame transactions."
+        }
+      ]
+    },
+    {
+      "id": "s-25",
+      "kind": "quote",
+      "date": "2026-10-26",
+      "date_label": "26 October 2026",
+      "place": "All Core Devs Testing #102",
+      "speaker": "Toni Wahrstätter",
+      "speaker_slug": "toni-wahrstatter",
+      "talk_id": "29e6015e-64c7-470a-909f-8e18aa683f68",
+      "talk_slug": "all-core-devs-testing-102",
+      "note": "The summary of the disclosure on the first call after it, from the EF researcher coordinating the response.",
+      "lines": [
+        {
+          "t": 781,
+          "clean": "Last week, ChainSecurity provided this bug report that 8037 and 8038 interact with some opcodes in a way that we weren't anticipating or weren't looking into, I guess. There are basically four issues.",
+          "caption": "last week, ChainSecurity provided this, bug report that 8037 and 8038 interact with some opcodes in a way that we weren't anticipating or weren't looking into, I guess. And… So, just to get everyone onto the same page, there are basically four issues.",
+          "chunks": [
+            {
+              "ord": 10,
+              "t": 781,
+              "raw": "last week, ChainSecurity provided this, bug report that 8037 and 8038 interact with some opcodes in a way that we weren't anticipating or weren't looking into, I guess. And… So, just to get everyone onto the same page, there are basically four issues."
+            }
+          ],
+          "edits": [
+            "the filler 'And… So, just to get everyone onto the same page,' is dropped"
+          ]
+        },
+        {
+          "t": 781,
+          "clean": "One of them was always known, that if you reprice opcodes, if you hard-code gas within contracts, that can break. And this is not the new part about this one. But then there is also an interaction with gas left, which is used in some of the contracts, and gas left could suddenly increase, and this was something new. Similar applies to refunds that suddenly could fund execution of a path that, before that, couldn't execute.",
+          "caption": "One of them was always known, that if you reprice opcodes, that, if you hard-code gas within contracts, that that can break. And this is not the new part about this one. But then there is also an interaction with gas left, which is used in some of the contracts, and based on what Jayani reported, gas left could suddenly increase, and this was something new. And similar applies to, gas left, Similar applies to refunds that suddenly could fund execution of a path that Before that, couldn't execute.",
+          "chunks": [
+            {
+              "ord": 10,
+              "t": 781,
+              "raw": "One of them was always known, that if you reprice opcodes, that, if you hard-code gas within contracts, that that can break. And this is not the new part about this one. But then there is also an interaction with gas left, which is used in some of the contracts, and based on what Jayani reported, gas left could suddenly increase, and this was something new. And similar applies to, gas left,"
+            },
+            {
+              "ord": 11,
+              "t": 834,
+              "raw": "Similar applies to refunds that suddenly could fund execution of a path that Before that, couldn't execute."
+            }
+          ],
+          "edits": [
+            "'based on what Jayani reported,' (the researcher's name, misheard) and the repeated start 'And similar applies to, gas left,' are dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-26",
+      "kind": "quote",
+      "date": "2026-10-26",
+      "date_label": "26 October 2026",
+      "place": "All Core Devs Testing #102",
+      "speaker": "Maria Silva",
+      "speaker_slug": "maria-silva",
+      "talk_id": "29e6015e-64c7-470a-909f-8e18aa683f68",
+      "talk_slug": "all-core-devs-testing-102",
+      "note": "The champion's proposed order of response: find affected contracts, ask the teams to fix them, change the spec only as a last and narrow step.",
+      "lines": [
+        {
+          "t": 975,
+          "clean": "The key thing will be, first, we understand the affected contracts, then we reach out to the teams. The default will be to understand if they can fix it. And if they can, then that should be our default, and only if they can't fix it, and the blast radius is big enough, would we then consider spec changes.",
+          "caption": "the key thing will be First, we understand the affected contracts, then we reach out to the teams, and the first… The default will be To understand if they can fix it. And if they can, then that should be our default. and only if… they can't fix it, and the blast radius is big enough, would we then consider spec changes?",
+          "chunks": [
+            {
+              "ord": 17,
+              "t": 975,
+              "raw": "the key thing will be First, we understand the affected contracts, then we reach out to the teams, and the first… The default will be To understand if they can fix it. And if they can, then that should be our default. and only if… they can't fix it, and the blast radius is big enough, would we then consider spec changes?"
+            }
+          ],
+          "edits": [
+            "the false start 'and the first…' is dropped"
+          ]
+        },
+        {
+          "t": 975,
+          "clean": "And the reason for this is mostly because spec changes are expensive. In many cases, it's not even possible to fix it without undoing the entire EIP, which would mean not raising the gas limit.",
+          "caption": "And the reason for this is mostly because Spec changes are expensive. In many cases, it's not even possible to fix it without undoing the entire EIP, which would mean not raising the gas limit.",
+          "chunks": [
+            {
+              "ord": 17,
+              "t": 975,
+              "raw": "And the reason for this is mostly because Spec changes are expensive. In many cases, it's not even possible to fix it without undoing the entire EIP, which would mean not raising the gas limit."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-gurukamath",
+      "kind": "written",
+      "date": "2026-10-27",
+      "date_label": "27 October 2026",
+      "place": "GitHub (ethereum/EIPs)",
+      "author": "gurukamath",
+      "source_title": "Comment on PR #12581",
+      "source_url": "https://github.com/ethereum/EIPs/pull/12581#issuecomment-6436393641",
+      "note": "The view that part of the break is of a familiar kind: any repricing can break code that assumes fixed prices, so he doubts Osaka prices should be carried forward to protect it, while calling the reservoir-crediting change a nice thing to have.",
+      "lines": [
+        {
+          "text": "Problem 1 outlined in the article (a new slot cheaper in gas_left) is a \"repricing-class\" break imo. These contracts would have run into the same issue if glamsterdam had simply reduced the SSTORE cost (no reservoir dynamics needed). So this is the same class of assumptions that have been repeatedly warned against. I'm not entirely sure we should be defending it, especially by carrying Osaka prices forward."
+        },
+        {
+          "text": "Having said that, refills and reverts crediting the reservoir, is a nice thing to have since it only restores the \"gas left never increases\" invariant that has held since Frontier and simplifies the accounting somewhat(?)."
+        }
+      ]
+    },
+    {
+      "id": "w-gretzke-pr",
+      "kind": "written",
+      "date": "2026-11-03",
+      "date_label": "3 November 2026",
+      "place": "GitHub (ethereum/EIPs)",
+      "author": "gretzke",
+      "source_title": "Comment on PR #12581",
+      "source_url": "https://github.com/ethereum/EIPs/pull/12581#issuecomment-6592071584",
+      "note": "A flaw that remains after the fix: whether a call with a fixed gas budget succeeds depends on the gas limit the user signs.",
+      "lines": [
+        {
+          "text": "The same call with the same calldata and the same state takes a different code path depending on a number the user picks in their wallet."
+        },
+        {
+          "text": "Wallets and eth_estimateGas look for the lowest limit that does not revert, and that is exactly the path where caught calls fail."
+        }
+      ]
+    },
+    {
+      "id": "s-29",
+      "kind": "quote",
+      "date": "2026-11-04",
+      "date_label": "4 November 2026",
+      "place": "Devcon 8",
+      "speaker": "Ioannis Sachinoglou",
+      "speaker_slug": "ioannis-sachinoglou",
+      "talk_id": "98ab0f0f-71bd-4ac8-9dc8-13a41e0efa80",
+      "talk_slug": "glamsterdam-hard-fork-out-gas-still-running-sachinoglou",
+      "note": "The finding from the researcher who presented it at Devcon: the question was flipped from \"which honest transactions break\" to \"what can an attacker now do\".",
+      "lines": [
+        {
+          "t": 79,
+          "clean": "It was already known that the [Glamsterdam] upgrade is going to break some smart contracts, and actually the folks from the [EF] were already aware of it, and the assumption was that only honest, non-malicious transactions will fail to work.",
+          "caption": "it was already known that the glam drum upgrade is going to break some smart contracts and actually the folks from the AF uh were already aware of and the assumption was that only honest work non-malicious transactions uh will fail to to work.",
+          "chunks": [
+            {
+              "ord": 2,
+              "t": 79,
+              "raw": "it was already known that the glam drum upgrade is going to break some smart contracts and actually the folks from the AF uh were already aware of and the assumption was that only honest work non-malicious transactions uh will fail to to work."
+            }
+          ],
+          "edits": [
+            "'glam drum' is read as [Glamsterdam]; 'AF' as [EF]; 'honest work non-malicious' as 'honest, non-malicious' ('work' is a caption slip); 'it' is supplied after 'aware of'"
+          ]
+        },
+        {
+          "t": 79,
+          "clean": "But my colleagues flipped the question, and they asked: is it possible for malicious activity that was not possible before Glamsterdam to be possible post [Glamsterdam]? It turns out the answer is quite interesting, and this led to a big investigation, collaboration with the Ethereum Foundation, where we found a lot of instances of issues that are caused by Glamsterdam.",
+          "caption": "But uh my colleagues uh flipped the question and they asked is it possible for malicious activity that was not possible before Glamsterdam to currently be possible post Glammsterdam and it turns out that uh the answer is uh quite interesting and this led to a big investigation collaboration with the Ethereum Foundation uh where we found a lot of instances of uh issues that uh are caused by Glamsterdam",
+          "chunks": [
+            {
+              "ord": 2,
+              "t": 79,
+              "raw": "But uh my colleagues uh flipped the question and they asked is it possible for malicious activity that was not possible before Glamsterdam to currently be possible post Glammsterdam and it turns out that uh the answer is uh quite interesting and this led to a"
+            },
+            {
+              "ord": 3,
+              "t": 125,
+              "raw": "big investigation collaboration with the Ethereum Foundation uh where we found a lot of instances of uh issues that uh are caused by Glamsterdam"
+            }
+          ],
+          "edits": [
+            "'Glammsterdam' is read as [Glamsterdam]; 'currently' is dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-30",
+      "kind": "quote",
+      "date": "2026-11-04",
+      "date_label": "4 November 2026",
+      "place": "Devcon 8",
+      "speaker": "Ioannis Sachinoglou",
+      "speaker_slug": "ioannis-sachinoglou",
+      "talk_id": "98ab0f0f-71bd-4ac8-9dc8-13a41e0efa80",
+      "talk_slug": "glamsterdam-hard-fork-out-gas-still-running-sachinoglou",
+      "note": "The core of the finding in one example: gas left can go up during a transaction, so a contract can be convinced it did not run out of gas when it did.",
+      "lines": [
+        {
+          "t": 827,
+          "clean": "If you notice here, gas left increases. And it's the first time this happens. Before that, before Amsterdam, gas could only monotonically decrease. But here you can see it increases. And this breaks this monotonicity assumption.",
+          "caption": "If you notice here, gas left increases. And it's the first time this happens. Uh, before that, before Amsterdam, uh, gas could only monotonically decrease. But here you can see it increases. And this breaks this monotonicity assumption.",
+          "chunks": [
+            {
+              "ord": 20,
+              "t": 827,
+              "raw": "If you notice here, gas left increases. And it's the first time this happens. Uh, before that, before Amsterdam, uh, gas could only monotonically decrease. But here you can see it increases."
+            },
+            {
+              "ord": 21,
+              "t": 862,
+              "raw": "And this breaks this monotonicity assumption."
+            }
+          ],
+          "edits": [
+            "the fillers 'uh' are dropped"
+          ]
+        },
+        {
+          "t": 862,
+          "clean": "Now once the target call finishes, because we are resetting the storage slot, suddenly the gas left increases, and suddenly we are able to persuade the contract that we didn't run out of gas, while in reality we did run out of gas.",
+          "caption": "Now once the target call uh finishes because we are resetting the storage slot suddenly gas the gas left increases and suddenly we are able to persuade the contract to convince the contract that we didn't run out of gas while in reality we did run out of gas.",
+          "chunks": [
+            {
+              "ord": 21,
+              "t": 862,
+              "raw": "Now once the target call uh finishes because we are resetting the storage slot suddenly gas the gas left increases and suddenly we are able to persuade the contract to convince the contract that we didn't run out of gas while in reality we did run out of gas."
+            }
+          ],
+          "edits": [
+            "'to convince the contract' (a repeat of 'persuade the contract') is dropped; the stutter 'gas the gas left' is reduced to 'the gas left'"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-31",
+      "kind": "quote",
+      "date": "2026-11-04",
+      "date_label": "4 November 2026",
+      "place": "Devcon 8",
+      "speaker": "Rahul Kothari",
+      "speaker_slug": "rahul-kothari",
+      "talk_id": "b6769b20-0b3b-4293-a0e2-c24b3e2a0384",
+      "talk_slug": "glamsterdam-app-developers-what-ethereums-next-fork-kothari",
+      "note": "What app developers were told at Devcon: the finding is at the application layer, no live app is affected, and shipping as is could harm some.",
+      "lines": [
+        {
+          "t": 939,
+          "clean": "ChainSecurity last month had discovered a few security incidents, but at the app layer. Essentially, a lot of these assumptions that we as engineers always had broke, which leads to new attack vectors for certain apps.",
+          "caption": "chain security last month had discovered a few security incidents, but at the app layer. Essentially, a lot of these assumptions that we as engineers always had broke, which leads to new attack vectors for certain apps.",
+          "chunks": [
+            {
+              "ord": 23,
+              "t": 939,
+              "raw": "chain security last month had discovered a few security incidents, but at the app layer. Essentially, a lot of these assumptions that we as engineers always had broke, which leads to new attack vectors for certain apps."
+            }
+          ]
+        },
+        {
+          "t": 939,
+          "clean": "This is not a bug in our implementation of Glamsterdam. It is not a bug in the clients. It does not affect any apps live today, but we found out that if you were to ship Glamsterdam as is, certain apps may have new security issues, so we have delayed Glamsterdam for a bit.",
+          "caption": "This is not a bug in our implementation of Glamsterdam. It is not a bug in the clients but we it is not affect it does not affect any apps live today but we found out that if you were to ship Glamsterdam as is certain apps may have new security issues so we have delayed glamsterdam for a bit",
+          "chunks": [
+            {
+              "ord": 23,
+              "t": 939,
+              "raw": "This is not a bug in our implementation of Glamsterdam. It is not a bug in the clients but we it is not affect it does not affect any apps live today but we found out that if you were to ship Glamsterdam as is certain apps may have new security issues so we have"
+            },
+            {
+              "ord": 24,
+              "t": 983,
+              "raw": "delayed glamsterdam for a bit"
+            }
+          ],
+          "edits": [
+            "the false start 'but we it is not affect' is dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-ef-blog",
+      "kind": "written",
+      "date": "2026-11-06",
+      "date_label": "6 November 2026",
+      "place": "Ethereum Foundation Blog",
+      "author": "Marius van der Wijden",
+      "author_slug": "marius-van-der-wijden",
+      "source_title": "EIP-8037/EIP-8038 Glamsterdam",
+      "source_url": "https://blog.ethereum.org/2026/11/06/glamsterdam-8037-8038",
+      "note": "The official notice: the finding, the pause on the Hoodi test fork, and what the team needs from contract developers.",
+      "lines": [
+        {
+          "text": "During these tests Chainsecurity has found a few projects that would be vulnerable after Glamsterdam since they rely on certain invariants."
+        },
+        {
+          "text": "Based on these findings, ACD has decided to delay the hardfork process and not fork Hoodi until the issues are resolved. During this delay, the work on Hegota is not affected and is continuing in parallel in full force."
+        },
+        {
+          "text": "In order to reach a pragmatic decision on the next AllCoreDev calls, we need to know what might be broken post-Glamsterdam and if there are any potential spec changes that would prevent these issues."
+        }
+      ]
+    },
+    {
+      "id": "w-jango",
+      "kind": "written",
+      "date": "2026-11-06",
+      "date_label": "6 November 2026",
+      "place": "X",
+      "author": "jango.eth",
+      "source_title": "Post on X quoting Marius van der Wijden's 6 November PSA",
+      "source_url": "https://x.com/me_jango/status/2118817578789298648",
+      "note": "An application developer draws a line: breaking invariants that apps rely on is where he stops.",
+      "lines": [
+        {
+          "text": "Regardless of if this affects the protocols I work on or not, if breaking invariants what we’re up to, I’m out. That’s my line."
+        }
+      ]
+    },
+    {
+      "id": "w-ross-wei",
+      "kind": "written",
+      "date": "2026-11-07",
+      "date_label": "7 November 2026",
+      "place": "X",
+      "author": "ross.wei",
+      "source_title": "Post on X",
+      "source_url": "https://x.com/z0r0zzz/status/2118925021871820893",
+      "note": "The process complaint behind the dispute: people who write contracts are not in the room when upgrades are planned.",
+      "lines": [
+        {
+          "text": "smart contract developers are underrepresented in the planning around critical upgrades to the smart contract chain, and the social layer of ethereum generally"
+        }
+      ]
+    },
+    {
+      "id": "w-berckmans-1",
+      "kind": "written",
+      "date": "2026-11-07",
+      "date_label": "7 November 2026",
+      "place": "X",
+      "author": "Ryan Berckmans",
+      "author_slug": "ryan-berckmans",
+      "source_title": "Post on X",
+      "source_url": "https://x.com/ryanberckmans/status/2119097450203873687",
+      "note": "The case for shipping: Ethereum's commitments to apps never covered opcode prices or gas introspection, and the prices were set by the people best placed to set them.",
+      "lines": [
+        {
+          "text": "imo ethereum's commitments to apps do not extend to gas pricing, or to total ETH fee levels, or to USD fees. And also not to opcode pricing or gas introspection that depends on those prices. We guarantee maximally credibly neutral, maximally live access to the correct state transition function."
+        },
+        {
+          "text": "However, pricing opcodes can't use a neutral mechanism, we need to pick magic number opcode gas prices. Some of our best people researched this extensively and picked updated magic numbers, and that's something imo we should stick with now and continue our larger plans that are on track to grow to global ubiquity."
+        }
+      ]
+    },
+    {
+      "id": "w-rebuffo",
+      "kind": "written",
+      "date": "2026-11-07",
+      "date_label": "7 November 2026",
+      "place": "X",
+      "author": "Giulio Rebuffo",
+      "author_slug": "giulio-rebuffo",
+      "source_title": "Post on X",
+      "source_url": "https://x.com/GiulioRebuffo/status/2119097876290703493",
+      "note": "The limited-impact argument: the affected contracts are rare and unusual, and scaling will lower fees anyway.",
+      "lines": [
+        {
+          "text": "fwiw, this barely affects anyone on-chain, if you read the report from chain security, you will see that the affected contract use very esoteric mechanisms that are not present in the 99.99% of smart contracts."
+        },
+        {
+          "text": "also you will get more better gas costs from scaling so you wont pay more anyways."
+        }
+      ]
+    },
+    {
+      "id": "w-berckmans-2",
+      "kind": "written",
+      "date": "2026-11-07",
+      "date_label": "7 November 2026",
+      "place": "X",
+      "author": "Ryan Berckmans",
+      "author_slug": "ryan-berckmans",
+      "source_title": "Post on X",
+      "source_url": "https://x.com/ryanberckmans/status/2119113238671470708",
+      "note": "The same day, Berckmans clarifies: he is not arguing for recklessness, and asks for more public discussion of whether gas introspection was ever a guarantee.",
+      "lines": [
+        {
+          "text": "I'm not advocating to push forward recklessly. That would be stupid as everybody including me is well aware that ethereum's maximal reliability is our unique value proposition."
+        },
+        {
+          "text": "Currently I don't think it's clear to the community whether gas introspection behavior was ever one of our guarantees. I currently don't think it ever was or is. Nor is it clear what the impact of guaranteeing it forever, or breaking it now for these contracts, would be."
+        }
+      ]
+    },
+    {
+      "id": "w-pcaversaccio-crops",
+      "kind": "written",
+      "date": "2026-11-07",
+      "date_label": "7 November 2026",
+      "place": "X",
+      "author": "pcaversaccio",
+      "source_title": "Post on X",
+      "source_url": "https://x.com/pcaversaccio/status/2119102976325214694",
+      "note": "The answer to the 'why so late' argument: until activation it is not too late, and the invariants were only found two weeks earlier.",
+      "lines": [
+        {
+          "text": "until it's activated on mainnet it's not too late. core devs have not done proper analysis over the last 1.5 years and i'm not gonna push for a fork that breaks invariants that were unknown until ~2 weeks ago."
+        }
+      ]
+    },
+    {
+      "id": "w-duncan-introspection",
+      "kind": "written",
+      "date": "2026-11-07",
+      "date_label": "7 November 2026",
+      "place": "X",
+      "author": "Duncan Townsend",
+      "source_title": "Post on X, replying to Ryan Berckmans",
+      "source_url": "https://x.com/duncancmt/status/2119117136492728436",
+      "note": "The direct rebuttal to 'gas introspection was never a guarantee': for some functions it is the only trustless tool there is.",
+      "lines": [
+        {
+          "text": "Gas introspection is the only way to achieve some functionality (e.g. \"did this call OOG or normal revert?\" or \"how much should I reimburse the related?\") without introducing additional trust assumptions."
+        }
+      ]
+    },
+    {
+      "id": "w-banteg",
+      "kind": "written",
+      "date": "2026-11-07",
+      "date_label": "7 November 2026",
+      "place": "X",
+      "author": "banteg",
+      "source_title": "Post on X, replying to Ryan Berckmans",
+      "source_url": "https://x.com/banteg/status/2119117966134452341",
+      "note": "banteg reports two things: that the ethereum/repricing-impact list already counts 200,000 affected contracts and, by his analysis, misses more; and that several high-profile protocols are affected.",
+      "lines": [
+        {
+          "text": "besides the already huge list of 200,000 affected contracts in ethereum/repricing-impact, i found multiple methodological issues that make it miss many more."
+        },
+        {
+          "text": "it affects deployment and operation of several high profile protocols, not just some random devs misusing opcodes that were given to them."
+        }
+      ]
+    },
+    {
+      "id": "w-egorov",
+      "kind": "written",
+      "date": "2026-11-07",
+      "date_label": "7 November 2026",
+      "place": "X",
+      "author": "Michael Egorov",
+      "author_slug": "michael-egorov",
+      "source_title": "Post on X",
+      "source_url": "https://x.com/newmichwill/status/2119166409532232037",
+      "note": "Michael Egorov warns that shipping as specified could force an emergency fork back, and says it can be done without breaking immutable contracts that hold funds.",
+      "lines": [
+        {
+          "text": "It does look like Glamsterdam in the current form would lead to another emergency hard fork back, with a lot of drama.\n\nI am sure, it can be made without breaking immutable contracts which hold funds"
+        }
+      ]
+    },
+    {
+      "id": "w-atis-x",
+      "kind": "written",
+      "date": "2026-11-08",
+      "date_label": "8 November 2026",
+      "place": "X",
+      "author": "atis elsts",
+      "source_title": "Post on X",
+      "source_url": "https://x.com/atiselsts_eth/status/2119350667756089396",
+      "note": "The middle position: of three options, repricing state growth is a compromise and repricing has always been part of Ethereum, but the current design has nasty flaws to fix.",
+      "lines": [
+        {
+          "text": "Yet, gas repricing has always been part of Ethereum. That's why Solidity's send and transfer were deprecated."
+        },
+        {
+          "text": "The choice is between:\n1) Limiting L1 execution scaling - leaves L1 too expensive for many use cases\n2) State expiry - violates CROPS, L1's core promises\n3) Repricing state growth - a compromise"
+        },
+        {
+          "text": "That said, the current design is flawed in some nasty ways."
+        },
+        {
+          "text": "Let's fix those problems, but let's not throw the baby out with the bathwater."
+        }
+      ]
+    },
+    {
+      "id": "w-laurence-day",
+      "kind": "written",
+      "date": "2026-11-08",
+      "date_label": "8 November 2026",
+      "place": "X",
+      "author": "Laurence Day",
+      "author_slug": "laurence-day",
+      "affiliation": "Wildcat Labs (the post says these are personal opinions, not the company's)",
+      "source_title": "Post on X",
+      "source_url": "https://x.com/functi0nZer0/status/2119379629274222919",
+      "note": "A lending protocol's concrete costs: deployed, audited code repriced underneath it, Safe's execution check broken for large transactions, and the prospect of auditing twice.",
+      "lines": [
+        {
+          "text": "Nothing in our contracts changed: the chain reprices bytecode deposits by 7.65x underneath already-audited code."
+        },
+        {
+          "text": "Under EIP-8037, the GAS opcode no longer reports the reservoir, so a Safe's execution check (GS010) can never be satisfied for a transaction that needs more than the execution cap."
+        },
+        {
+          "text": "It is a consensus change that silently invalidates a safety check in the most widely deployed smart-contract wallet on Ethereum, with no deprecation path, and as of today nobody owns fixing it."
+        },
+        {
+          "text": "The cost - and the apparent lesson - of being an early, careful team on Ethereum is that you run the risk of needing to audit twice: once against the chain you deploy to, and once against the chain it becomes."
+        }
+      ]
+    },
+    {
+      "id": "w-duncan-safe",
+      "kind": "written",
+      "date": "2026-11-08",
+      "date_label": "8 November 2026",
+      "place": "X",
+      "author": "Duncan Townsend",
+      "source_title": "Post on X",
+      "source_url": "https://x.com/duncancmt/status/2119394472840618478",
+      "note": "A second Safe concern: Safe{Wallet} gas sponsorship needs to meter the gas a call uses, which he says EIP-8037 removes from the EVM.",
+      "lines": [
+        {
+          "text": "@safe's Safe{Wallet} gas sponsorship feature depends on the ability to meter the gas paid by a call. Under EIP-8037, this is no longer possible."
+        },
+        {
+          "text": "I don't mean that the specific implementation doesn't work correctly. I mean the entire \"meter the gas consumed by a call\" concept is removed from the EVM."
+        }
+      ]
+    },
+    {
+      "id": "w-kankodu",
+      "kind": "written",
+      "date": "2026-11-08",
+      "date_label": "8 November 2026",
+      "place": "X",
+      "author": "kankodu",
+      "source_title": "Post on X",
+      "source_url": "https://x.com/kankodu/status/2119414649204699528",
+      "note": "A check on one widely cited example: the Uniswap v4 Position Manager is heavily used, but he found no immutable contract using its subscribe pattern for rewards distribution that would break.",
+      "lines": [
+        {
+          "text": "Uniswap V4 Position Manager is being used as an example of highly used contract that will be broken after Glamsterdam. \n\nYes, the contract itself is highly used but I couldn't find any immutable contract using the subscribe pattern in the wild for rewards distribution that will be broken. Protocols (including Uniswap Foundation) just use Merkl to provide rewards and they do calculations off-chain."
+        }
+      ]
+    },
+    {
+      "id": "w-jango-email",
+      "kind": "written",
+      "date": "2026-11-08",
+      "date_label": "8 November 2026",
+      "place": "X",
+      "author": "jango.eth",
+      "source_title": "Post on X sharing an email to the Glamsterdam disclosure address",
+      "source_url": "https://x.com/me_jango/status/2119485122554523895",
+      "note": "Simulated findings beyond Juicebox itself: an OP Stack bridge contract on L1 that may fail to record a failed relay, and why that undermines trust in immutable protocols.",
+      "lines": [
+        {
+          "text": "L1CrossDomainMessenger reserves 40k gas to record a failed relay, which is less than a new slot now costs. If the target runs out of gas, the failure may go unrecorded. The portal finalizes the withdrawal with no replay, and the ETH stays in the L1 bridge."
+        },
+        {
+          "text": "The messenger cause is inferred from the code and the numbers, not traced."
+        },
+        {
+          "text": "It's impossible to trust an immutable protocol like Juicebox and Revnets if failures caused by changes to the underlying network are fair game."
+        }
+      ]
+    },
+    {
+      "id": "w-lalilulelo",
+      "kind": "written",
+      "date": "2026-11-09",
+      "date_label": "9 November 2026",
+      "place": "X",
+      "author": "La-Li-Lu-Le-Lo",
+      "source_title": "Post on X",
+      "source_url": "https://x.com/LaLiLuLeL0x/status/2119855220926644693",
+      "note": "Advice to the EF: write down what may change under deployed contracts, with app developers then carrying the risk of misreading it; give audits an expiry date by fork; and fix the final compatibility limits after Lean Ethereum.",
+      "lines": [
+        {
+          "text": "My personal advice for the EF:\n\nCreate a bible of good practices in building on Ethereum and what deltas (like gas price, block time, etc.) and what behaviors (gasLeft etc.) can change and should not be relied on as core logic of non-upgradable smart contracts from now to J* / Lean Ethereum."
+        },
+        {
+          "text": "Also asking all auditors in the space to add a new section “Expiry Date” basically based on good practice, giving the audited code a possible vote on when the code can be broken (or not) due to not being compliant with the best practices, specified on what next fork the protocol can start to be in danger."
+        },
+        {
+          "text": "Then, after J* / Lean Ethereum, working on the core ossification and establishing once and for all the final limits on what can change and what MUST be always be retrocompatible."
+        }
+      ]
+    },
+    {
+      "id": "w-ethlabs",
+      "kind": "written",
+      "date": "2026-11-10",
+      "date_label": "10 November 2026",
+      "place": "Ethlabs",
+      "author": "Ethlabs",
+      "source_title": "Tracking the Glamsterdam discussion",
+      "source_url": "https://ethlabs.org/writings/tracking-glamsterdam.html",
+      "note": "Ethlabs separates simple repricings, which it calls legitimate, from accounting changes that caused unforeseen problems, and recommends no decision until the audits are out. binji's post introducing it says Barnabé Monnot wrote it; the page itself is signed Ethlabs.",
+      "lines": [
+        {
+          "text": "It is expected that simple repricings break contracts that have hard-coded parameters."
+        },
+        {
+          "text": "In our view, there is no other way around these simple repricings, and they are legitimate to do as application developers were broadly expected not to condition on the fixed cost of these operations in order to derive their contract execution. This does not mean that the impacts we’ve seen so far are small, and we’ve also seen appropriate mitigations discussed with teams facing this issue."
+        },
+        {
+          "text": "On the other hand, beyond these simple repricings, accounting changes were also proposed as part of Glamsterdam. Some of these changes led to genuine, unforeseen problems. The task is to understand the magnitude of these issues."
+        },
+        {
+          "text": "Our recommendation: Do not proceed with spec changes or Hoodi scheduling until publication of findings and until findings lead to a clear position."
+        }
+      ]
+    },
+    {
+      "id": "s-status",
+      "kind": "status",
+      "date": "2026-11-10",
+      "date_label": "10 November 2026",
+      "place": "Forkcast, the Ethereum Foundation blog, the EIP pages and Marius van der Wijden on X",
+      "title": "Hoodi postponed; both EIPs still scheduled",
+      "body": "Forkcast lists EIP-8037 and EIP-8038 as still Scheduled for Glamsterdam, and both EIP pages are in Last Call. Hoodi, the test network, was due to fork on 26 October, but All Core Devs Execution #248 postponed it to analyse a security disclosure affecting the repricing EIPs; Forkcast says no new date is set. The Ethereum Foundation blog of 6 November says ACD has decided to delay the hard fork process and not fork Hoodi until the issues are resolved, and that the team is working with ChainSecurity and Dedaub and asking contract developers to check their projects. On 10 November Marius van der Wijden wrote on X that there is no decision on spec changes or Hoodi yet, and that the goal is to have the audit reports before the All Core Devs Testing call on 16 November, which is set for findings and an open Q&A, with app developers welcome. The proposed fix, EIPs#12581, is still open and no call has agreed it. The Ethlabs page of 10 November says the All Core Devs Consensus call on 12 November is expected to give only a minimal update, and the Ethereum Foundation blog says the Dedaub and ChainSecurity engagements end on 13 November. The next All Core Devs Execution call, #249, is on 19 November 2026.",
+      "link": "https://forkcast.org/upgrade/glamsterdam",
+      "link_label": "See Glamsterdam on Forkcast",
+      "note": "Primary sources, re-read 10 Nov 2026: Forkcast (ethereum/forkcast, src/components/network-upgrade/OverviewSection.tsx: Hoodi due to fork on 26 Oct 2026, ACDE 248 postponed it to analyse a security disclosure affecting the repricing EIPs, no new date set; src/data/eips/8037.json and 8038.json: both Scheduled for Glamsterdam); the EF blog of 6 Nov 2026; eips.ethereum.org pages for EIP-8037 and EIP-8038 (status Last Call); Marius van der Wijden on X, 10 Nov 2026 (https://x.com/vdWijden/status/2120051444900339798: no decision on spec changes or Hoodi yet; audit reports targeted before ACDT on Nov 16; findings and open Q&A, app devs welcome); ethereum/pm#2299 (ACDT #103, 16 Nov 2026, agenda: status of ongoing audits, completion expected 16-19 Nov; app team contract findings; open Q&A); ethereum/pm#2285 (ACDE #249, 19 Nov 2026). The body says only what these sources say. Added 10 Nov: EIPs#12581 (state open, checked on GitHub, with no call decision in the pm agendas read); Ethlabs (https://ethlabs.org/writings/tracking-glamsterdam.html) for the 12 Nov ACDC; EF blog of 6 Nov for the 13 Nov engagement end. The X post of 10 Nov could not be opened in this check (HTTP 402) and the pm#2299 agenda supports its 16 Nov scope."
+    }
+  ],
+  "excluded": [
+    {
+      "id": "x-all-core-devs-execution-222",
+      "talk_id": "808c4e56-2552-467c-b428-da7f5c0f392f",
+      "reason": "ACDE #222, 9 Oct 2025: Maria Silva introduces the repricing EIPs in a list. A descriptive overview; her EIP-8007 talk carries the same case in one place."
+    },
+    {
+      "id": "x-stateless-implementers-call-44",
+      "talk_id": "bf6e5c21-70c5-42f3-8eca-30c5d88f1df3",
+      "reason": "Stateless Implementers #44: a passing mention of 8037/8038 inside a state-expiry idea."
+    },
+    {
+      "id": "x-all-core-devs-execution-223",
+      "talk_id": "8ae0476c-1493-4703-8ad8-81e17c4b04ce",
+      "reason": "ACDE #223: presents a separate EIP about re-deploying existing bytecode. A neighbouring fix, not the argument."
+    },
+    {
+      "id": "x-all-core-devs-execution-225",
+      "talk_id": "5c60f3f3-054c-4e15-93f7-3e7211d6c063",
+      "reason": "ACDE #225: scoping questions on state-growth options with no reasons for or against."
+    },
+    {
+      "id": "x-all-core-devs-execution-226",
+      "talk_id": "d1636acb-65d1-4ab7-bb72-a978ef157ea5",
+      "reason": "ACDE #226, 18 Dec 2025: Marius van der Wijden presents the repricing package (60 Mgas/s anchor, mitigating state growth). Same case as the EIP-8007 and Stankovic stops; redundant."
+    },
+    {
+      "id": "x-glamsterdam-ethereum-hardfork-deep-dive-sliva",
+      "talk_id": "1af0d8d8-6b78-4e4f-8dda-a551da85838b",
+      "reason": "Glamsterdam deep dive (Maria Silva, Jan 2026): a long walk-through of state-growth targets (about 120 GB a year); redundant with her EIP-8007 talk, Stankovic and the EIP page."
+    },
+    {
+      "id": "x-all-core-devs-execution-227",
+      "talk_id": "9c7dfd53-a74e-477e-96ac-4fb4c2a7830e",
+      "reason": "ACDE #227, 5 Jan 2026: Ansgar Dietrichs says the EIP was updated to reflect the current plan and recommends deciding a week later once things settle; the call decides nothing and adds no argument. (Delete the words 'process only'.)"
+    },
+    {
+      "id": "x-stateless-implementers-call-46",
+      "talk_id": "80d0cbb4-e2d8-4ac3-9325-d1a025325c1f",
+      "reason": "Stateless Implementers #46: passing mention of the state-creation price in a contract-size discussion."
+    },
+    {
+      "id": "x-stateless-implementers-call-47",
+      "talk_id": "92175e65-a8bf-4801-927e-f141ad710804",
+      "reason": "Stateless Implementers #47: a point that 8037 \"cannot be here forever\" for tokenization, but the captions carry no speaker labels, so the voice is not confirmed."
+    },
+    {
+      "id": "x-all-core-devs-execution-229",
+      "talk_id": "432b679b-7248-4fb7-9978-134f0fcb47f1",
+      "reason": "ACDE #229: devnet prioritisation; 8037 mentioned as a stretch goal."
+    },
+    {
+      "id": "x-glamsterdam-repricings-1",
+      "talk_id": "e3b1e08a-615e-4821-b5a2-02ec6b5dcab7",
+      "reason": "Glamsterdam Repricings #1: schedule and spec updates."
+    },
+    {
+      "id": "x-all-core-devs-testing-69",
+      "talk_id": "9ed4f750-7a58-4981-b3ce-fde70fe4f07f",
+      "reason": "ACDT #69: devnet scheduling."
+    },
+    {
+      "id": "x-all-core-devs-execution-230",
+      "talk_id": "e63fec0c-f245-4562-968b-c8728e5c8b64",
+      "reason": "ACDE #230: devnet scope."
+    },
+    {
+      "id": "x-all-core-devs-testing-70",
+      "talk_id": "902eb84f-aa70-400c-9cfb-801fa3f3c2e5",
+      "reason": "ACDT #70: test readiness for 8037 in a devnet."
+    },
+    {
+      "id": "x-all-core-devs-testing-71",
+      "talk_id": "5cb8caf5-7898-440a-93d1-7440a630d828",
+      "reason": "ACDT #71, 23 Feb 2026: decides that devnet 3 hard-codes the cost per state byte using the 100M-gas formula and the dynamic version goes to devnet 4 (Forkcast key decision 00:29:10). A staging decision with no argument; the price debate is on the ACDE #235 stops."
+    },
+    {
+      "id": "x-all-core-devs-testing-72",
+      "talk_id": "c4bd9aa4-e767-4bbc-943a-bc28f1460a17",
+      "reason": "ACDT #72: devnet status."
+    },
+    {
+      "id": "x-all-core-devs-testing-73",
+      "talk_id": "4f02ff28-982f-410d-9ea7-c0b2fdfffc80",
+      "reason": "ACDT #73: client test status."
+    },
+    {
+      "id": "x-all-core-devs-testing-75",
+      "talk_id": "2bd078e6-2f42-4ba7-9288-68106c21c128",
+      "reason": "ACDT #75: Erigon implementation status."
+    },
+    {
+      "id": "x-eip-7904-how-ethereum-fixing-compute-gas-costs-s",
+      "talk_id": "b67d7e66-c08b-4762-9707-0e39d00961e9",
+      "reason": "PEEPanEIP on EIP-7904 (Maria Silva): about compute repricing; 8037 appears in one answer."
+    },
+    {
+      "id": "x-all-core-devs-execution-233",
+      "talk_id": "8c94ec39-0ad0-4989-81a0-0a0595f1b31f",
+      "reason": "ACDE #233: devnet update; test-suite status of 8037."
+    },
+    {
+      "id": "x-glamsterdam-repricings-5",
+      "talk_id": "7e275a2d-d924-4f3d-b37e-8054730bce44",
+      "reason": "Repricings #5, 1 Apr 2026: Dragan Rakita lists three refill bugs found on devnet 3 (init-code check, static-call check, top-level create failure); these feed the refund decisions taken on Repricings #6 (s-rep6-*). Not 'spec and refund details' in general."
+    },
+    {
+      "id": "x-all-core-devs-execution-234",
+      "talk_id": "7bf281d4-c701-415d-a7d6-b6dd2de7a89e",
+      "reason": "ACDE #234: a question about fixed versus dynamic cost in a devnet; process."
+    },
+    {
+      "id": "x-all-core-devs-testing-77-bal-breakout",
+      "talk_id": "58ee45ec-b088-4504-a094-85a8b39d93e2",
+      "reason": "ACDT #77 BAL breakout: accounting mismatch bug between clients; implementation detail."
+    },
+    {
+      "id": "x-all-core-devs-testing-77",
+      "talk_id": "a8254a81-8915-4e9c-a9ca-e3ea57d2683f",
+      "reason": "ACDT #77: devnet divergence from reservoir handling; implementation detail."
+    },
+    {
+      "id": "x-all-core-devs-testing-78",
+      "talk_id": "9334acdd-8b81-4e8c-afed-9e6d01cf8ba4",
+      "reason": "ACDT #78, 20 Apr 2026: decides that devnet 4 carries the full EIP-8037 with the dynamic cost per byte (Forkcast 00:23:50) over Marius's request to undo the dynamic cost for testing. A devnet staging decision, overtaken by the ACDE #235 debate three days later; not a dispute about the 'test release'."
+    },
+    {
+      "id": "x-all-core-devs-execution-236",
+      "talk_id": "89e2797a-4d9c-4563-afe3-cfee561ca748",
+      "reason": "ACDE #236, 7 May 2026: Forkcast 00:17:15 moves eight EIPs from CFI to Scheduled (SFI) under the new SFI definition, including EIP-8037 (it topped the earlier CFI priority list, Nixo); Marius says EIP-8038 is not in a devnet and should not be SFI yet. Stefan Starflinger recaps the accounting changes made and reverted at Svalbard. No argument about 8037 was made; the status stop says it is Scheduled."
+    },
+    {
+      "id": "x-all-core-devs-testing-79",
+      "talk_id": "b1db3e29-1437-4ffc-8bf0-939b5fe615e8",
+      "reason": "ACDT #79: interop-week update."
+    },
+    {
+      "id": "x-all-core-devs-testing-80",
+      "talk_id": "ae9c503b-87e2-41ed-bd3c-50aa8ad6ced4",
+      "reason": "ACDT #80: Maria Silva asks clients to finish optimisations; schedule."
+    },
+    {
+      "id": "x-all-core-devs-execution-237",
+      "talk_id": "ded500f7-31d9-457b-ab03-afb2f54ccc57",
+      "reason": "ACDE #237: self-destruct proposal; mentions 8037 only in passing."
+    },
+    {
+      "id": "x-glamsterdam-repricings-8",
+      "talk_id": "c27e8220-e6d1-41d5-a89f-fc9e629d968d",
+      "reason": "Glamsterdam Repricings #8: benchmark updates."
+    },
+    {
+      "id": "x-all-core-devs-testing-81",
+      "talk_id": "8f79268c-4477-4b22-8aaf-e1f49da082eb",
+      "reason": "ACDT #81: 8037 implemented in all clients; status."
+    },
+    {
+      "id": "x-all-core-devs-execution-238",
+      "talk_id": "0f0f0795-1ca3-4556-8258-e72140a95267",
+      "reason": "ACDE #238: devnet 6 scope."
+    },
+    {
+      "id": "x-all-core-devs-testing-82",
+      "talk_id": "13a9f3e6-3a86-4b99-810a-f56a4a72df2e",
+      "reason": "ACDT #82, 8 Jun 2026: now stop s-acdt82-factory. The pre-signed deployment factory that EIP-8037 breaks is the first deployed fixed-gas code known to fail, so it belongs to the compatibility arc."
+    },
+    {
+      "id": "x-all-core-devs-testing-82-el-breakout",
+      "talk_id": "52ae151b-68d8-4d50-af27-dc74feeb1078",
+      "reason": "ACDT #82 EL breakout: no credited speakers, so it cannot be quoted."
+    },
+    {
+      "id": "x-all-core-devs-testing-83-el-breakout",
+      "talk_id": "2623daea-a50a-44bc-b7dc-b8b6f28d1217",
+      "reason": "ACDT #83 EL breakout, 15 Jun 2026: Maria Silva proposes refilling to where gas was taken from (gas left first, then the reservoir) and Pawel Bylica proposes charging CREATE unconditionally; both are formalised three days later on ACDE #239. Captions carry no speaker names, so nothing can be quoted. Not just 'no credited speakers'."
+    },
+    {
+      "id": "x-all-core-devs-testing-83",
+      "talk_id": "95f40738-04be-4cb0-bee3-09d6c2e21aee",
+      "reason": "ACDT #83: block-limit planning; passing mention."
+    },
+    {
+      "id": "x-all-core-devs-testing-84-el-breakout",
+      "talk_id": "383c535b-80f7-46db-a72c-89a4fd7c6a67",
+      "reason": "ACDT #84 EL breakout, 22 Jun 2026: agrees that EIP-7702 authorisation refunds follow the source-based rule and that the EIP-8038 SSTORE-clear refund bug was in the EIP text, not the specs. Captions unlabelled, so unquotable; a decision, not 'implementation detail'."
+    },
+    {
+      "id": "x-all-core-devs-testing-85",
+      "talk_id": "281a941c-1031-4663-b8a2-392b8d9b7577",
+      "reason": "ACDT #85: an open question on metering authorisations; passing."
+    },
+    {
+      "id": "x-all-core-devs-testing-86",
+      "talk_id": "281750bf-da4b-46b3-a59a-07c7efdf615f",
+      "reason": "ACDT #86: asks for a mild spec freeze; process."
+    },
+    {
+      "id": "x-all-core-devs-testing-86-el-breakout",
+      "talk_id": "bf4b32e6-a0ed-4689-b35e-2df37a1d62f8",
+      "reason": "ACDT #86 EL breakout, 6 Jul 2026: agrees the change that makes CREATE's state gas conditional at the destination access (EIPs#11858, replacing the 18 June rule). Captions unlabelled, so unquotable; the PR body is now written stop w-pr11858-create."
+    },
+    {
+      "id": "x-eipip-meeting-128",
+      "talk_id": "63349bd1-bcf2-4c8a-9f1a-04366a8bc08e",
+      "reason": "EIPIP #128: EIP process (8037 depends on ten EIPs); not an argument about shipping."
+    },
+    {
+      "id": "x-all-core-devs-testing-87",
+      "talk_id": "1c8b5a5d-a1a9-4c60-bbd1-31c8f7030bb1",
+      "reason": "ACDT #87: log-cost naming in EIP-2780; minor."
+    },
+    {
+      "id": "x-all-core-devs-testing-88",
+      "talk_id": "a704b6b5-0d7c-475f-aa35-c7707c48b133",
+      "reason": "ACDT #88: tracing fields for gas; minor."
+    },
+    {
+      "id": "x-all-core-devs-execution-242",
+      "talk_id": "4781018c-f1c2-4c90-b842-e24e568328d1",
+      "reason": "ACDE #242: receipt accounting for state gas; minor."
+    },
+    {
+      "id": "x-frame-transaction-breakout-2",
+      "talk_id": "5dadf42b-cc3c-48ca-8d29-365f0243d1b2",
+      "reason": "Frame Transaction Breakout #2: frames add state gas as a second dimension; neighbouring EIP."
+    },
+    {
+      "id": "x-all-core-devs-execution-244",
+      "talk_id": "d5a959b5-4cf4-4de0-a5fd-82cdfcfeac10",
+      "reason": "ACDE #244, 27 Aug 2026: Milos Costantini asks to restore the state-gas refill for contracts created and self-destructed in one transaction; Maria Silva answers why it was removed and the request goes to the EIP authors. Decided four days later on ACDT #94 (stops s-acdt94-selfdestruct-*). Not a 'minor' change: it is the refill rule."
+    },
+    {
+      "id": "x-all-core-devs-testing-95",
+      "talk_id": "320fb398-cd9a-4255-80fb-819c6e6f9936",
+      "reason": "ACDT #95: stress test with 64 KB contracts; test detail."
+    },
+    {
+      "id": "x-all-core-devs-execution-245",
+      "talk_id": "de0e9d99-2d79-41bd-8fc4-b3e78c7fedd3",
+      "reason": "ACDE #245: Maria Silva asks to delay the decision on the calibration EIPs until after Glamsterdam; adjacent."
+    },
+    {
+      "id": "x-all-core-devs-testing-96",
+      "talk_id": "3c60d086-5360-4402-bd89-407ebb4d9c3a",
+      "reason": "ACDT #96, 14 Sep 2026: approves EIPs#12311 (cap the transaction gas limit at 2^32-1; no client behaviour change) and EIPs#12317 (EIP-8038 warm SELFDESTRUCT beneficiary: text clarification). Neither moves the argument. Say that instead of 'a state-gas cap PR; minor'."
+    },
+    {
+      "id": "x-all-core-devs-testing-97",
+      "talk_id": "e428452b-c88a-499f-a2d3-05517b73465b",
+      "reason": "ACDT #97: a retrospective on the complexity of 8037 for the next fork; the complexity stop already carries it."
+    },
+    {
+      "id": "x-frame-transaction-breakout-5",
+      "talk_id": "ea1ce47d-6ab5-450b-8b40-c396cf48909b",
+      "reason": "Frame Transaction Breakout #5: a multidimensional fee-market design that would remove the reservoir; research direction."
+    },
+    {
+      "id": "x-all-core-devs-execution-246",
+      "talk_id": "4f73f80d-fe6a-4094-870f-c5323d4c2bcc",
+      "reason": "ACDE #246: gas-limit timing and cost per byte; minor."
+    },
+    {
+      "id": "x-all-core-devs-testing-99",
+      "talk_id": "ea2c570e-5f07-485b-ad99-5eb3308874f4",
+      "reason": "ACDT #99: tracing API fields; minor."
+    },
+    {
+      "id": "x-all-core-devs-execution-247",
+      "talk_id": "8ca1cd18-03a4-42ef-9385-3ba78f72f62a",
+      "reason": "ACDE #247: a one-line joke about 8037 fatigue; not a position, so not used."
+    },
+    {
+      "id": "x-frame-transaction-breakout-7",
+      "talk_id": "84c6c88f-fe7c-4299-be4c-da7786f07789",
+      "reason": "Frame Transaction Breakout #7: Lightclient says he dislikes the 8037 reservoir and calls it a hack for one-dimensional transactions; a design view for the frame transaction debate, before the disclosure."
+    },
+    {
+      "id": "x-how-ethereum-learned-scale-wahrstatter",
+      "talk_id": "04b39ff5-1602-4444-8d8d-50178e252084",
+      "reason": "How Ethereum Learned to Scale (Toni Wahrstätter, Devcon 8): says the repricing buys time but 8037 is a very complex EIP and no silver bullet; fair, but redundant with the other pro-repricing stops."
+    },
+    {
+      "id": "x-propamms-good-bad-how-keep-trustless-klages-mund",
+      "talk_id": "5ee236d0-0f99-497c-bb31-094368b2c6b1",
+      "reason": "PropAMMs panel (Devcon 8): the panelist says they have not thought about the repricing yet."
+    },
+    {
+      "id": "x-hritzdorf",
+      "reason": "hritzdorf, EIP-8037 thread, 5 Jun 2026: the sharpest reply to abc-123-c, but its antecedents sit in a sentence with an ellipsis that cannot be quoted, so hirako2000's standalone line stands in."
+    },
+    {
+      "id": "x-pcaversaccio-x",
+      "reason": "pcaversaccio on X, 7 Nov 2026 (should not ship in its current form): the same view as his 21 Oct comment, which is on the map."
+    },
+    {
+      "id": "x-gretzke-x",
+      "reason": "gretzke.eth on X, 7 Nov 2026: repeats the argument of his PR comment, which is on the map."
+    },
+    {
+      "id": "x-gas-repricing-breakouts",
+      "reason": "Gas Repricing Breakout #1 (29 Oct 2025) and #2 (5 Nov 2025): no credited speakers, so no line can be quoted."
+    },
+    {
+      "id": "x-stankovic-heimbach-others",
+      "reason": "Other talks that mention the repricing: Lioba Heimbach (EthCC, state growth measurements), Hudson Jang (Ethereum Korea, a list of Glamsterdam EIPs), Chiranjeev Mishra and Lightclient (Devcon, frame transactions): measurement, overview or neighbouring topics, not used."
+    },
+    {
+      "id": "x-butta-survey",
+      "talk_id": "5f7a7c26-f97a-41d6-876f-20fd932c1349",
+      "reason": "Glamsterdam Repricings #3, ord 110 to 113: the survey result that 6 of 19 application teams were very concerned about 8037. The speaker is not mapped to a speaker profile, so the loader would refuse it; Maria Silva's summary of the same concerns is used."
+    },
+    {
+      "id": "x-written-redundant",
+      "reason": "Written candidates left out (ETV-907 pass, 8 Nov 2026): misilva73's EIP-8037 summary and the forum posts colinlyguo (IO-heavy workloads), HarryR (charges for state never written), misilva73's Hegota post (do less next time; after the debate), Marius van der Wijden's X PSA (same message as the EF blog), the glamsterdam-gas-invariants README, EIP-8455/8456 proposal texts, the EIP-8037 and EIP-8038 pages (the status stop links them) and PyraVim's later detail."
+    },
+    {
+      "id": "x-claims-not-supported",
+      "reason": "Arc points the sources did not support as stops: ACDE #242 and ACDT #94 have no gas-introspection discussion in the transcripts; ACDE #236's scheduling is a confused exchange (covered by Forkcast and the forum thread); Peter Szilagyi's X post is about issuance, not this debate."
+    },
+    {
+      "id": "x-x-review-2026-11-10",
+      "reason": "X review, 10 Nov 2026 (binji's thread tagging people with takes on the debate): not used: Eli Ben-Sasson (8 Nov, on what the delay means for Starknet, not whether the repricing should ship); gabriel shapiro / lex_node, kenny / kennyistyping, ideahazard / 1d34h4z4rd (one-line reactions or posts that do not name the EIPs); LibertySwapFi and 0xmt / 08xmt (no posts on the debate); Marius van der Wijden on X, 8 Nov (a frustrated reply, not a position; the EF blog and his 10 Nov update carry his view); Duncan Townsend, 23 Oct (a Goodhart's-law jab at the 1 Ggas goal, minor); Laurence Day's 8 Nov teaser post (the long post that followed is on the map); binji's own posts (introduce the Ethlabs piece, no argument)."
+    },
+    {
+      "id": "x-svalbard-interop",
+      "reason": "The in-person interop at Svalbard (about 27 Apr to 1 May 2026) is where the dynamic cost per state byte was dropped for a fixed one and the accounting was reworked and partly reverted (EF blog recap, 2 May 2026). There is no recording or transcript in the catalogue, so it is a gap: the decision first reaches our calls at ACDT #79 (11 May) and Repricings #7 (13 May)."
+    },
+    {
+      "id": "x-acde246-gas-limit",
+      "talk_id": "4f73f80d-fe6a-4094-870f-c5323d4c2bcc",
+      "reason": "ACDE #246, 24 Sep 2026: agrees to schedule 200 million gas at the Glamsterdam fork on Sepolia; Potuz, Maria Silva and Ansgar Dietrichs discuss slow blocks found on devnet 8 (later put down to debug tracing, ACDT #98, 28 Sep). A different question (gas-limit safety), not the contract-compatibility dispute; it is also where Maria says the fixed cost per byte makes a slow gas-limit rise costly. Adjacent, not used."
+    },
+    {
+      "id": "x-rakita-12581",
+      "source_url": "https://github.com/ethereum/EIPs/pull/12581#issuecomment-6628572289",
+      "reason": "rakita on PR #12581, 4 Nov 2026: 'This probably can be closed.' Six words and no reason; it shows the fix PR may be dropped but does not say why. Minor; the status stop now says the PR is still open."
+    },
+    {
+      "id": "x-acdt66-69-feb",
+      "reason": "ACDT #66 (19 Jan 2026, EIP-8037 considered for inclusion, dynamic-pricing concerns taken async) and ACDT #69 (9 Feb 2026, prioritised for devnet 3): scheduling steps with no new argument; s-04 already carries the application-side worry of the CFI day."
+    }
+  ],
+  "audit": {
+    "date": "2026-11-10",
+    "spec_changes": [
+      {
+        "eip": "EIP-8037",
+        "date": "2025-10-28",
+        "change": "Rewrite of the proposal: state creation priced per byte and tied to the gas limit.",
+        "link": "https://github.com/ethereum/EIPs/pull/10635",
+        "agreed_at": "No call; EIP draft by the author.",
+        "stop": "s-01"
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-01-06",
+        "change": "EIP updated to the plan the authors then held (state gas dimension, cost per byte from the gas limit).",
+        "link": "https://github.com/ethereum/EIPs/pull/11002",
+        "agreed_at": "ACDE #227 (5 Jan: decision put off a week) and ACDE #228 (15 Jan: design presented).",
+        "stop": "s-acde228-marius"
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-02-10",
+        "change": "Quantised cost per byte and the reservoir model replace the revert-based gas cap.",
+        "link": "https://github.com/ethereum/EIPs/pull/11292",
+        "agreed_at": "Repricings #2 (18 Feb) explains it; ACDT #71 (23 Feb) hard-codes the cost per byte on devnet 3.",
+        "stop": "s-05"
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-03-06",
+        "change": "Reservoir mechanics clarified; 18 Mar: regular gas charged before state gas; 20 Mar: aligned with the EIP-7928 validation phases.",
+        "link": "https://github.com/ethereum/EIPs/pull/11328",
+        "agreed_at": "Repricings #4 (18 Mar) and ACDE #232 (12 Mar) discuss; no decision.",
+        "why_not": "Clarifications of the 10 Feb model; the argument they sit in is on s-08 and the new s-rep4-marius."
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-04-14",
+        "change": "Spilled state gas counts as state gas, not execution gas (EIPs#11522).",
+        "link": "https://github.com/ethereum/EIPs/pull/11522",
+        "agreed_at": "None: found on bal-devnet-3 when three clients split the chain.",
+        "why_not": "Spells out the author's stated intent after a client divergence; no behaviour decision and no argument."
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-04-17",
+        "change": "State gas refunded on every frame failure including the top level; refunds go to the reservoir for 0-to-x-to-0 stores, failed CREATE, same-transaction self-destruct and EIP-7702 authorisations; per-dimension block gas check (EIPs#11476, #11532, #11536).",
+        "link": "https://github.com/ethereum/EIPs/pull/11532",
+        "agreed_at": "Glamsterdam Repricings #6 (15 Apr 2026), after the case was made on Repricings #4.",
+        "stop": "s-rep6-refund-principle"
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-04-20",
+        "change": "Frame-scoped SSTORE restoration refund (EIPs#11548).",
+        "link": "https://github.com/ethereum/EIPs/pull/11548",
+        "agreed_at": "None; follows the 15 Apr decisions.",
+        "why_not": "Clarifies that the refund is undone if its frame fails; consistent with the principle already stated on s-rep6-refund-principle."
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-05-04",
+        "change": "Cost per state byte fixed at one constant (1174) instead of dynamic; state-gas accounting moved to the end of the call frame (EIPs#11573).",
+        "link": "https://github.com/ethereum/EIPs/pull/11573",
+        "agreed_at": "The Svalbard interop (about 27 Apr to 1 May; EF recap 2 May), after the debate on ACDE #235 (23 Apr); first on our calls at ACDT #79 and Repricings #7.",
+        "stop": "s-rep7-fixed-price"
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-05-13",
+        "change": "Parameters and rationale updated; bal-devnet-6 bugs fixed; SELFDESTRUCT charges clarified (EIPs#11616, #11611, #11606).",
+        "link": "https://github.com/ethereum/EIPs/pull/11616",
+        "agreed_at": "Repricings #7 (13 May).",
+        "stop": "s-rep7-fixed-price"
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-06-01",
+        "change": "Calldata floor aligned with block accounting; refill covers a CALL or CREATE that fails before entering the frame; caveat that pre-signed deployment factories fail on new chains (EIPs#11706).",
+        "link": "https://github.com/ethereum/EIPs/pull/11706",
+        "agreed_at": "Repricings #8 (27 May) for the floor; factory caveat from ACDT #82 (8 Jun).",
+        "stop": "s-acdt82-factory"
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-06-10",
+        "change": "EIP-7702 authorisation gas accounted against net state change; CALLCODE removed from the creation list (EIPs#11715, #11759).",
+        "link": "https://github.com/ethereum/EIPs/pull/11715",
+        "agreed_at": "Repricings #8 (27 May); ACDT #84 EL breakout (22 Jun, unlabelled).",
+        "why_not": "Extends the refund principle to authorisations; no objection raised, and the breakout captions have no speaker names."
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-06-18",
+        "change": "Refills credited to gas left first, then the reservoir (origin-routed), and CREATE charged unconditionally with a refill (EIPs#11807).",
+        "link": "https://github.com/ethereum/EIPs/pull/11807",
+        "agreed_at": "ACDE #239 (18 Jun).",
+        "stop": "s-acde239-refunds"
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-06-18",
+        "change": "The CREATE half of EIPs#11807: unconditional charge, refill if the account existed.",
+        "link": "https://github.com/ethereum/EIPs/pull/11807",
+        "agreed_at": "ACDE #239 (18 Jun); first discussed on the ACDT #83 EL breakout (15 Jun).",
+        "stop": "s-acde239-create"
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-07-07",
+        "change": "CREATE charged conditionally at the destination access, replacing the 18 June rule (EIPs#11858).",
+        "link": "https://github.com/ethereum/EIPs/pull/11858",
+        "agreed_at": "ACDT #86 EL breakout (6 Jul, unlabelled captions).",
+        "stop": "w-pr11858-create"
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-07-10",
+        "change": "Calldata floor applied to block-level gas accounting (EIPs#11908, Jochem Brouwer).",
+        "link": "https://github.com/ethereum/EIPs/pull/11908",
+        "agreed_at": "ACDT #87 (13 Jul): included in devnet 7.",
+        "why_not": "A bug fix that restores what EIP-7976 intends (blocks could carry 16x the calldata); no one argued against it."
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-07-22",
+        "change": "'Regular gas' renamed 'execution gas' (EIPs#11998).",
+        "link": "https://github.com/ethereum/EIPs/pull/11998",
+        "agreed_at": "ACDT #87 (13 Jul) and #89 (27 Jul): no objections.",
+        "why_not": "Names only; the PR states no change to the model."
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-08-25",
+        "change": "System-call SSTORE limit decoupled from request bounds (EIPs#12238); balance-only accounts described as existent (#12246).",
+        "link": "https://github.com/ethereum/EIPs/pull/12238",
+        "agreed_at": "None.",
+        "why_not": "Edge cases of system contracts and account existence; no effect on the argument."
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-09-04",
+        "change": "Refills follow gas across call frames: state gas returns to gas left when a child frame merges (EIPs#12265); a frame's state gas is restored on rollback (#12256); timing wording and unused counters (#12284, #12282, #12283).",
+        "link": "https://github.com/ethereum/EIPs/pull/12265",
+        "agreed_at": "ACDT #94 (31 Aug) discussion; ratified on ACDC #186 (3 Sep).",
+        "stop": "s-acdt94-refill-frames"
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-08-31",
+        "change": "Refill state gas for a contract created and self-destructed in one transaction (EIPs#12249): proposed, not merged.",
+        "link": "https://github.com/ethereum/EIPs/pull/12249",
+        "agreed_at": "ACDE #244 (27 Aug) and ACDT #94 (31 Aug): declined.",
+        "stop": "s-acdt94-selfdestruct-against"
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-09-14",
+        "change": "Pre-execution state gas kept out of the frame rollback (EIPs#12303); transaction gas limit capped at 2^32-1 (#12311); stale EIP-7610 collision rules removed (#12296, 18 Sep).",
+        "link": "https://github.com/ethereum/EIPs/pull/12311",
+        "agreed_at": "ACDT #96 (14 Sep): #12311 approved with no client change.",
+        "why_not": "Describes what the reference implementation already does, or a bound far from binding (the PR says about 43 times the contract size limit)."
+      },
+      {
+        "eip": "EIP-8037",
+        "date": "2026-10-24",
+        "change": "Proposed fix after the disclosure: refills and reverts credit the reservoir only; a legacy share charges the old price (EIPs#12581, open; #12582 per-frame allowance, open).",
+        "link": "https://github.com/ethereum/EIPs/pull/12581",
+        "agreed_at": "No call has agreed it: ACDT #102 (26 Oct) and later calls hold off spec changes. PR open as of 10 Nov.",
+        "stop": "w-gretzke-pr"
+      },
+      {
+        "eip": "EIP-8038",
+        "date": "2025-10-24",
+        "change": "State-access price update (SLOAD, SSTORE, account access) from the first draft.",
+        "link": "https://github.com/ethereum/EIPs/commit/a691b7ad1",
+        "agreed_at": "No call; draft.",
+        "why_not": "The proposal itself; its case is on s-01 and s-03."
+      },
+      {
+        "eip": "EIP-8038",
+        "date": "2026-05-13",
+        "change": "Aligned with EIP-8037 and clarified; SSTORE write-cost condition fixed (19 May).",
+        "link": "https://github.com/ethereum/EIPs/commit/85fe2077e",
+        "agreed_at": "Repricings #7 (13 May).",
+        "why_not": "Alignment edits while the numbers were still open."
+      },
+      {
+        "eip": "EIP-8038",
+        "date": "2026-06-18",
+        "change": "Preliminary numbers added; 22 Jun: SSTORE-clear refund reversed on a later re-write so round trips are not profitable.",
+        "link": "https://github.com/ethereum/EIPs/commit/803ee8db0",
+        "agreed_at": "ACDE #239 (18 Jun: no concerns, merged for devnet 6); ACDT #84 EL breakout (22 Jun, unlabelled).",
+        "why_not": "Numbers replaced by the frozen set (s-18, 3 Aug; signed off on s-acde243-signoff). The refund fix repairs a text bug to match the specs."
+      },
+      {
+        "eip": "EIP-8038",
+        "date": "2026-07-29",
+        "change": "Gas schedule restated as an access / write / creation component model; access-list costs derived from cold-access costs (31 Jul).",
+        "link": "https://github.com/ethereum/EIPs/commit/b7491982c",
+        "agreed_at": "ACDT #86-88 (Jul): numbers not yet final.",
+        "why_not": "Same prices written differently; the price change that matters (SLOAD stays at 2,100) is s-18."
+      },
+      {
+        "eip": "EIP-8038",
+        "date": "2026-08-03",
+        "change": "Final numbers frozen: SLOAD stays 2,100, account writes 9K, anchor 75 Mgas/s (carried to the EIP on 4 Aug via EIPs#12083).",
+        "link": "https://github.com/ethereum/EIPs/pull/12083",
+        "agreed_at": "ACDT #90 (3 Aug); signed off ACDE #243 (13 Aug).",
+        "stop": "s-18"
+      },
+      {
+        "eip": "EIP-8038",
+        "date": "2026-09-14",
+        "change": "Warm SELFDESTRUCT beneficiary access exemption preserved (EIPs#12317); wording and attribution fixes (#12343, #12353); methodology and reports added (15 Oct, #12517).",
+        "link": "https://github.com/ethereum/EIPs/pull/12317",
+        "agreed_at": "ACDT #96 (14 Sep): text clarification, no client change.",
+        "why_not": "Text clarifications; no behaviour change per the call."
+      }
+    ],
+    "timelines": [
+      {
+        "title": "Tracking the Glamsterdam discussion (Ethlabs, 10 Nov 2026)",
+        "url": "https://ethlabs.org/writings/tracking-glamsterdam.html",
+        "events": [
+          {
+            "date": "2026-02-18",
+            "event": "Design of EIP-8037 solidified on Repricings breakout #2.",
+            "stop": "s-05"
+          },
+          {
+            "date": "2026-06-05",
+            "event": "ChainSecurity warns on the EIP-8037 thread that a catch path can finish because the reservoir pays.",
+            "stop": "w-anton-chainsecurity"
+          },
+          {
+            "date": "2026-06-18",
+            "event": "ACDE #239: state-gas refunds go first to the call's own gas, then the reservoir.",
+            "stop": "s-acde239-refunds"
+          },
+          {
+            "date": "2026-06-18",
+            "event": "ACDE #239: CREATE charged unconditionally with a refill (the second change; replaced on 7 Jul).",
+            "stop": "s-acde239-create"
+          },
+          {
+            "date": "2026-10-13",
+            "event": "ChainSecurity blog 'When Spent Gas Comes Back'.",
+            "stop": "w-chainsecurity-blog"
+          },
+          {
+            "date": "2026-10-21",
+            "event": "pcaversaccio raises ethereum/pm issue 2267.",
+            "stop": "w-pcaversaccio-agenda"
+          },
+          {
+            "date": "2026-10-22",
+            "event": "Hoodi fork of 26 Oct cancelled indefinitely.",
+            "stop": "s-22"
+          },
+          {
+            "date": "2026-11-12",
+            "event": "ACDC: no discussion planned.",
+            "stop": "s-status"
+          },
+          {
+            "date": "2026-11-16",
+            "event": "ACDT: audit findings and open AMA with app developers.",
+            "stop": "s-status"
+          },
+          {
+            "date": "2026-11-19",
+            "event": "ACDE: findings discussed, possible spec change.",
+            "stop": "s-status"
+          }
+        ]
+      },
+      {
+        "title": "Ethereum Foundation blog, 'Glamsterdam 8037/8038' (6 Nov 2026, update 9 Nov)",
+        "url": "https://blog.ethereum.org/2026/11/06/glamsterdam-8037-8038",
+        "events": [
+          {
+            "date": "2026-11-06",
+            "event": "ACD delays the fork process and holds Hoodi; four reports of deployed contracts that could break; eight invariants listed.",
+            "stop": "w-ef-blog"
+          },
+          {
+            "date": "2026-11-09",
+            "event": "Update added to the post (content not captured; see notes).",
+            "excluded": "x-written-redundant"
+          },
+          {
+            "date": "2026-11-13",
+            "event": "Scheduled (EF blog, 6 Nov): Dedaub and ChainSecurity engagements end; reports to follow. Not yet happened as of 10 Nov.",
+            "stop": "s-status"
+          }
+        ]
+      },
+      {
+        "title": "Ethereum Foundation blog, 'Glamsterdam repricing testing' (24 Aug 2026)",
+        "url": "https://blog.ethereum.org/2026/08/24/glamsterdam-repricing-testing",
+        "events": [
+          {
+            "date": "2026-08-24",
+            "event": "First public warning: a small set of contracts that branch on gasleft() or hard-code gas may break; most flagged issues fixed by a higher gas limit.",
+            "stop": "w-ef-repricing-notice"
+          }
+        ]
+      },
+      {
+        "title": "Soldøgn interop recap (EF blog, Tim Beiko, 2 May 2026)",
+        "url": "https://blog.ethereum.org/2026/05/02/soldogn-interop-recap",
+        "events": [
+          {
+            "date": "2026-04-28",
+            "event": "Teams agree early in the week to drop dynamic pricing for a fixed cost per state byte.",
+            "stop": "s-rep7-fixed-price"
+          },
+          {
+            "date": "2026-04-29",
+            "event": "Wednesday: reservoir refund and refill edge cases force a rethink; Thursday: accounting back to the opcode level.",
+            "excluded": "x-all-core-devs-execution-236"
+          },
+          {
+            "date": "2026-05-01",
+            "event": "Spec stabilised on bal-devnet-6; BAL track delivers final repricing numbers; 200M gas limit floor targeted.",
+            "excluded": "x-svalbard-interop"
+          }
+        ]
+      },
+      {
+        "title": "ChainSecurity, 'When Spent Gas Comes Back' (13 Oct 2026)",
+        "url": "https://www.chainsecurity.com/blog/glamsterdam-gas/index.html",
+        "events": [
+          {
+            "date": "2026-10-13",
+            "event": "Finding published; specs reviewed as scheduled and in Last Call.",
+            "stop": "w-chainsecurity-blog"
+          }
+        ]
+      },
+      {
+        "title": "Forkcast key decisions for ACDE/ACDT/ACDC (recap index; primary sources are the calls)",
+        "url": "https://github.com/ethereum/forkcast/tree/main/public/artifacts",
+        "events": [
+          {
+            "date": "2026-01-19",
+            "event": "ACDT #66: EIP-8037 CFI, dynamic pricing concerns taken async.",
+            "excluded": "x-acdt66-69-feb"
+          },
+          {
+            "date": "2026-02-23",
+            "event": "ACDT #71: devnet 3 hard-codes cost per byte, dynamic version on devnet 4.",
+            "excluded": "x-all-core-devs-testing-71"
+          },
+          {
+            "date": "2026-04-20",
+            "event": "ACDT #78: devnet 4 spec includes full EIP-8037 with dynamic state costs.",
+            "excluded": "x-all-core-devs-testing-78"
+          },
+          {
+            "date": "2026-05-07",
+            "event": "ACDE #236: EIP-8037 moved to Scheduled (SFI).",
+            "excluded": "x-all-core-devs-execution-236"
+          },
+          {
+            "date": "2026-06-04",
+            "event": "ACDE #238: EIP-8038 and EIP-2780 included in glamsterdam-devnet-6.",
+            "excluded": "x-all-core-devs-execution-238"
+          },
+          {
+            "date": "2026-08-03",
+            "event": "ACDT #90: repricing numbers frozen.",
+            "stop": "s-18"
+          },
+          {
+            "date": "2026-08-13",
+            "event": "ACDE #243: repricing numbers final; 200M gas limit confirmed.",
+            "stop": "s-acde243-signoff"
+          },
+          {
+            "date": "2026-08-27",
+            "event": "ACDE #244: self-destruct refill not added to Glamsterdam.",
+            "stop": "s-acdt94-selfdestruct-against"
+          },
+          {
+            "date": "2026-08-31",
+            "event": "ACDT #94: self-destruct refill declined.",
+            "stop": "s-acdt94-selfdestruct-against"
+          },
+          {
+            "date": "2026-09-03",
+            "event": "ACDC #186: cross-frame refill change ratified.",
+            "stop": "s-acdc186-decision"
+          },
+          {
+            "date": "2026-09-14",
+            "event": "ACDT #96: EIPs#12311 merged, #12317 approved as text.",
+            "excluded": "x-all-core-devs-testing-96"
+          },
+          {
+            "date": "2026-09-24",
+            "event": "ACDE #246: 200M gas limit scheduled at the fork on Sepolia.",
+            "excluded": "x-acde246-gas-limit"
+          },
+          {
+            "date": "2026-10-22",
+            "event": "ACDE #248: Hoodi postponed.",
+            "stop": "s-22"
+          }
+        ]
+      },
+      {
+        "title": "Crypto press recaps (Cointelegraph, Decrypt, Forklog, crypto.news; Oct-Nov 2026)",
+        "url": "https://decrypt.co/381681/ethereum-delays-glamsterdam-testnet-fork-over-gas-security-flaws",
+        "events": [
+          {
+            "date": "2026-10-06",
+            "event": "Glamsterdam activates on Sepolia.",
+            "stop": "w-pyravim-sepolia"
+          },
+          {
+            "date": "2026-10-22",
+            "event": "Hoodi fork due 26 Oct postponed.",
+            "stop": "s-22"
+          },
+          {
+            "date": "2026-11-06",
+            "event": "ChainSecurity said to have found 13 real-world affected contracts (press figure; not in the ChainSecurity page itself).",
+            "excluded": "x-written-redundant"
+          }
+        ]
+      }
+    ]
+  }
+}

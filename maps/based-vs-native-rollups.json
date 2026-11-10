@@ -1,0 +1,1872 @@
+{
+  "slug": "based-vs-native-rollups",
+  "title": "Based vs native rollups",
+  "intro": "Who should put a rollup's transactions in order, and who should check that its results are right? Ethereum researchers and rollup builders have argued over two answers: let Ethereum's own block proposers do the sequencing (based rollups), or let Ethereum's own execution do the checking through a built-in tool (native rollups, EIP-8079). Underneath sits a bigger question, how much of a layer 2 Ethereum should take on, and the people who build layer 2s have a say in it.",
+  "eips": [
+    "EIP-8079",
+    "EIP-7917"
+  ],
+  "topic": "layer-2",
+  "stops": [
+    {
+      "kind": "written",
+      "id": "w-drake-based-2023",
+      "date": "2023-03-10",
+      "date_label": "10 March 2023",
+      "place": "ethresear.ch",
+      "author": "JustinDrake",
+      "author_slug": "justin-drake",
+      "source_title": "Based rollups—superpowers from L1 sequencing",
+      "source_url": "https://ethresear.ch/t/15016/1",
+      "note": "The proposal itself, in its author's words: what a based rollup is, why it would be simple and aligned with L1, and the costs he names himself. The map opens here (Alex, 7 Nov 2026).",
+      "lines": [
+        {
+          "text": "We highlight a special subset of rollups we call \"based\" or \"L1-sequenced\". The sequencing of such rollups—based sequencing—is maximally simple and inherits L1 liveness and decentralisation. Moreover, based rollups are particularly economically aligned with their base L1."
+        },
+        {
+          "text": "A rollup is said to be based, or L1-sequenced, when its sequencing is driven by the base L1. More concretely, a based rollup is one where the next L1 proposer may, in collaboration with L1 searchers and builders, permissionlessly include the next rollup block as part of the next L1 block."
+        },
+        {
+          "text": "Based rollups forgo MEV to the L1, limiting their revenue to base fees. Counter-intuitively, this may increase overall income for based rollups."
+        },
+        {
+          "text": "Fast pre-confirmations are trivial with centralised sequencing, and achievable with an external PoS consensus. Fast pre-confirmations with L1 sequencing is an open problem with promising research avenues including EigenLayer, inclusion lists, and builder bonds."
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-brunof-2023",
+      "date": "2023-03-20",
+      "date_label": "20 March 2023",
+      "place": "ethresear.ch",
+      "author": "bruno_f",
+      "source_title": "Based rollups—superpowers from L1 sequencing (reply)",
+      "source_url": "https://ethresear.ch/t/15016/18",
+      "note": "The first sharp reply on the same thread: liveness can be recovered without L1 sequencing, and latency is the real cost.",
+      "lines": [
+        {
+          "text": "If there's a liveness failure, rollups can recover by having a new set of sequencers (or even just one) be chosen on L1. There's no reason to stop the chain and force people to do a mass exit. We can always find new people to continue building blocks."
+        },
+        {
+          "text": "Regarding the disadvantages, latency is a big one. With L2 sequencers you can have L2 block finality in 1s which, while much weaker than L1 block finality for sure, still provides a decent guarantee for most use cases."
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-drake-preconfs-2023",
+      "date": "2023-11-08",
+      "date_label": "8 November 2023",
+      "place": "ethresear.ch",
+      "author": "JustinDrake",
+      "author_slug": "justin-drake",
+      "source_title": "Based preconfirmations",
+      "source_url": "https://ethresear.ch/t/17353/1",
+      "note": "The answer to the latency objection: let L1 proposers promise fast, slashable preconfirmations.",
+      "lines": [
+        {
+          "text": "Based preconfs offer a competitive user experience for based sequencing, with latencies on the order of 100ms."
+        },
+        {
+          "text": "A transaction with a preconf promise from the next preconfer can be immediately included and executed onchain by any proposer ahead of that preconfer. The preconfer is then expected to honour any remaining promises on their slot using the inclusion list."
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-bfisch-2023",
+      "date": "2023-11-09",
+      "date_label": "9 November 2023",
+      "place": "ethresear.ch",
+      "author": "ben-a-fisch",
+      "source_title": "Based preconfirmations (reply)",
+      "source_url": "https://ethresear.ch/t/17353/2",
+      "note": "A shared-sequencer view of based preconfs: a weaker guarantee than finality, and a question about how much stake backs it.",
+      "lines": [
+        {
+          "text": "This seems to offer a different (weaker) type of \"preconfirmation\" guarantee than *finality,* which is what a consensus protocol like Espresso's Hotshot protocol provides. What happens to these preconfs when there is a reorg on Ethereum's LMD Ghost protocol? Also, how much stake would be slashed for invalid preconfirmations in this proposal versus a protocol like the Espresso Sequencer (e.g., assuming the same amount of L1 validator stake is participating in each via Eigenlayer)? For the Espresso Sequencer the amount slashed would be 1/3 of the entire stake."
+        }
+      ]
+    },
+    {
+      "id": "s-18",
+      "kind": "quote",
+      "date": "2023-11-16",
+      "date_label": "16 November 2023",
+      "place": "Pragma Istanbul",
+      "speaker": "Daniel Wang",
+      "speaker_slug": "daniel-wang",
+      "talk_id": "70eea13c-5f31-42de-84b4-329495d9aca4",
+      "talk_slug": "panel-i-based-rollups-mev-gambit-pragma-istanbul-2023",
+      "speaker_confirmed": true,
+      "note": "Taiko's co-founder, introducing himself on a based rollups panel, on giving MEV to L1 and why that does not worry them.",
+      "lines": [
+        {
+          "t": 527,
+          "clean": "[Taiko] is a [based] rollup. What we say to ourselves is we just focus on the minimum scope of work. We let other people use the existing [MEV] framework to extract value from our L2 transactions. We don't really care, because we don't have a centralized component, so we don't really maintain the network.",
+          "caption": "Tao is a is a base rollup so basically what we say to ourself is you know we just focus on the minimum scope of work we let other people give up the opportunity uh let other people to use the existing uh M framework you know to extract value from our l two transactions we don't really care because we uh we don't have centralized component so we don't really you know maintain the network right",
+          "chunks": [
+            {
+              "ord": 12,
+              "t": 527,
+              "raw": "Tao is a is a base rollup so basically what we say to ourself is you know we just focus on the minimum scope of work we let other people give up the opportunity uh let other people to use the existing uh M framework you know to extract value from our l two transactions we don't really care because we uh we don't have centralized component so we don't really you know maintain the network right"
+            }
+          ],
+          "edits": [
+            "\"Tao\" is the caption's mishearing of Taiko (the speaker has just said he is its co-founder); \"base rollup\" read as \"based rollup\" (the panel title).",
+            "Dropped \"we let other people give up the opportunity\", a restart before \"let other people use the existing MEV framework\"."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s-19",
+      "kind": "quote",
+      "date": "2024-02-05",
+      "date_label": "5 February 2024",
+      "place": "Bankless",
+      "speaker": "Justin Drake",
+      "speaker_slug": "justin-drake",
+      "talk_id": "20599892-0a10-4ce1-b949-c8d4220be793",
+      "talk_slug": "fixing-fragmentation-justin-drake-bankless",
+      "speaker_confirmed": true,
+      "note": "Justin Drake answers whether sequencer revenue is why rollups resist shared sequencing: what sequencers collect today and what a centralized sequencer protects users from.",
+      "lines": [
+        {
+          "t": 3191,
+          "clean": "The sequencer today on the rollups is a collector of fees, it's not a generator of value. The reason is that it collects two different fees: it collects the layer one data fee for data availability, and really the value creation is the layer one, and it collects the layer 2 execution fee, a fee like the [EIP-1559] base fee.",
+          "caption": "the sequencer today on on the rollups is a collector of fees it's not a generator of value and the reason is that it largely speaking it collects two different fees it collects the layer one data fee for you know data availability and really the the value creation is the layer one and it collects the layer 2 execution fee and here this is a think of it as a fee like the IP 1559 base fee",
+          "chunks": [
+            {
+              "ord": 74,
+              "t": 3191,
+              "raw": "the sequencer today on on the rollups is a collector of fees it's not a generator of value and the reason is that it largely speaking it collects two different fees it collects the layer one data fee for you know data availability and really the the value creation is the layer one and it collects the layer 2 execution fee and here this is a think of it as a fee like the IP 1559 base fee"
+            }
+          ],
+          "edits": [
+            "Dropped \"largely speaking\" and \"here this is a think of it as\" (restarts).",
+            "\"IP 1559\" corrected to EIP-1559."
+          ]
+        },
+        {
+          "t": 3281,
+          "clean": "One of the really cool things about a centralized sequencer is that it provides [MEV] protection. It's kind of this super easy encrypted [mempool]. For example, there's no sandwiches on Arbitrum and on Optimism and on Base, because you send your transaction privately to the centralized sequencer, no one else can see it, and so no one else can go sandwich you.",
+          "caption": "one of the really cool things about uh a centralize sequencer is that it provides me protection it's kind of this super easy encrypted meol so for example there's no sandwiches on on arbitrum and on optimism and on base right because you send your transaction privately to the centralized sequencer no one else can see it and so no one else can go sandwich you",
+          "chunks": [
+            {
+              "ord": 76,
+              "t": 3281,
+              "raw": "one of the really cool things about uh a centralize sequencer is that it provides me protection it's kind of this super easy encrypted meol so for example there's no sandwiches on on arbitrum and on optimism and on base right because you send your transaction privately to the centralized sequencer no one else can see it and so no one else can go sandwich you"
+            }
+          ],
+          "edits": [
+            "Captions \"me\" and \"meol\" corrected to MEV and mempool."
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-drake-narrowed-2024",
+      "date": "2024-02-13",
+      "date_label": "13 February 2024",
+      "place": "ethresear.ch",
+      "author": "JustinDrake",
+      "author_slug": "justin-drake",
+      "source_title": "Based preconfirmations (reply to bruno_f)",
+      "source_url": "https://ethresear.ch/t/17353/21",
+      "note": "How the case for based sequencing narrowed after the liveness objection: which advantages remain, in the proposer's own words.",
+      "lines": [
+        {
+          "text": "I think I concede your point—it's possible for non-based rollups to enjoy the full censorship resistance benefits of Ethereum L1, all while enjoying preconfirmations"
+        },
+        {
+          "text": "If liveness is not one of the fundamental advantages of based sequencing then I guess the two big remaining advantages are a) credible neutrality, which is critical for a shared sequencer and b) L1 compatibility, necessary to have synchronous composability with L1 contracts and $0.5T of assets."
+        }
+      ]
+    },
+    {
+      "id": "s-01",
+      "kind": "quote",
+      "date": "2024-02-28",
+      "date_label": "28 February 2024",
+      "place": "Bankless",
+      "speaker": "Ben Fisch",
+      "speaker_slug": "ben-fisch",
+      "talk_id": "00e8704e-8496-47dc-93dd-a494d4130eab",
+      "talk_slug": "ethereums-new-frontier-has-arrived-bankless",
+      "note": "Early pitch from the shared-sequencing side: if the L1 proposer sequences, it can also promise speed.",
+      "lines": [
+        {
+          "t": 1683,
+          "clean": "With based sequencing you automatically are sharing a sequencer with Ethereum, with the L1, with the EVM. By involving the L1 proposer in the sequencing protocol, all sequencing protocols basically have a rotation of who's able to propose the next block for all the rollups that are on this sequencing protocol. If that can be the L1, the same as the proposer for the next Ethereum block, then suddenly this proposer can start to give what we call preconfirmation about what it will do.",
+          "caption": "with based sequencing you automatically are sharing a sequencer with ethereum with the with the L1 with the evm so um by involving the L1 proposer in the sequencing protocol right so all sequencing protocols basically have a rotation of okay who can propose the next block right who's able to propose the next block for all the rollups that are on this sequencing protocol and if that can be the L1 same as the proposer for the next ethereum block then suddenly this proposer can start to give what we call pre-confirmation about what it will do",
+          "chunks": [
+            {
+              "ord": 39,
+              "t": 1683,
+              "raw": "with based sequencing you automatically are sharing a sequencer with ethereum with the with the L1 with the evm so um by involving the L1 proposer in the sequencing protocol right so all sequencing protocols basically have a rotation of okay who can propose the next block right who's"
+            },
+            {
+              "ord": 40,
+              "t": 1725,
+              "raw": "able to propose the next block for all the rollups that are on this sequencing protocol and if that can be the L1 same as the proposer for the next ethereum block then suddenly this proposer can start to give what we call pre-confirmation about what it will do"
+            }
+          ],
+          "edits": [
+            "'right' and 'okay' tags dropped",
+            "quote starts after the lead-in 'The other thing to note is'"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-20",
+      "kind": "quote",
+      "date": "2024-04-21",
+      "date_label": "21 April 2024",
+      "place": "Based vs Non Based Sequencing: Converging Paths",
+      "speaker": "Toghrul Maharramov",
+      "speaker_slug": "toghrul-maharramov",
+      "talk_id": "fa5efa84-4b23-5bfa-9b73-94a67f0c9e12",
+      "talk_slug": "based-vs-non-based-sequencing-converging-paths-by-toghr-dd5cd40cb481",
+      "speaker_confirmed": true,
+      "note": "A rollup contributor disagrees with one claim for based sequencing, then describes how the two designs could meet in the middle.",
+      "lines": [
+        {
+          "t": 526,
+          "clean": "Justin Drake himself and also quite a few people claim that [based] sequencing [enables] rollups to inherit the base layer's guarantees for real-time censorship resistance and liveness. Unfortunately that's not quite true, and the reason why it's not quite true is because the L1 doesn't really have access to the L2 [mempool] by default.",
+          "caption": "Justin Drake himself and also quite a few people claim that base sequencing in aable rollups to inh inherit the base layers guarantees for for Real Time sensorship resistance and liveness uh unfortunately that's not quite true and the reason why it's not quite true is because the L1 doesn't really have access to the L2 mle by default",
+          "chunks": [
+            {
+              "ord": 12,
+              "t": 526,
+              "raw": "Justin Drake himself and also quite a few people claim that base sequencing in aable rollups to inh inherit the base layers guarantees for for Real Time sensorship resistance and liveness uh unfortunately that's not quite true and the reason why it's not quite true is because the L1 doesn't really have access to the L2 mle by default"
+            }
+          ],
+          "edits": [
+            "Caption \"base sequencing in aable rollups to inh inherit\" read as \"based sequencing enables rollups to inherit\"; \"mle\" read as \"mempool\" (the speaker says mempool in the next sentence); \"sensorship\" spelled censorship."
+          ]
+        },
+        {
+          "t": 909,
+          "clean": "An ideal [based] sequence rollup looks similar to a non-[based] sequence rollup, and an ideal non-[based] sequence rollup looks like a [based] sequence rollup, and that's the end game for both.",
+          "caption": "basically an ideal base sequence roll up look similar to a non-base sequence rollup and an ideal non-base sequence rollup looks like a Bas sequence rollup and that's the end game for both",
+          "chunks": [
+            {
+              "ord": 21,
+              "t": 909,
+              "raw": "basically an ideal base sequence roll up look similar to a non-base sequence rollup and an ideal non-base sequence rollup looks like a Bas sequence rollup and that's the end game for both"
+            }
+          ],
+          "edits": [
+            "Caption \"base\" read as \"based\" throughout (the talk is Based vs Non Based Sequencing)."
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-oshitani-2024",
+      "date": "2024-05-31",
+      "date_label": "31 May 2024",
+      "place": "ethresear.ch",
+      "author": "Lin Oshitani",
+      "author_slug": "lin-oshitani",
+      "affiliation": "Nethermind Research",
+      "source_title": "Strawmanning Based Preconfirmations",
+      "source_url": "https://ethresear.ch/t/19695/1",
+      "note": "A based-rollup builder names a cost of the fast path: naive based preconfs push externalities back onto L1 and its searchers.",
+      "lines": [
+        {
+          "text": "However, compared to non-preconfirming based sequencing, naive implementations of based preconfirmations introduce negative externalities that require thoughtful consideration."
+        },
+        {
+          "text": "Given that L2 transaction fees are typically low, searchers may choose to avoid latency races altogether and instead flood the rollup with probabilistic arbitrage attempts. This can be done by spamming an arbitrage contract that attempts an arbitrage and rollbacks if it fails."
+        }
+      ]
+    },
+    {
+      "id": "s-02",
+      "kind": "quote",
+      "date": "2024-07-16",
+      "date_label": "16 July 2024",
+      "place": "Bell Curve",
+      "speaker": "Vitalik Buterin",
+      "speaker_slug": "vitalik-buterin",
+      "talk_id": "4a3cbcb9-cf13-493c-9099-91ea0612c6e2",
+      "talk_slug": "ethcc-campside-chat-protocols-ecosystems-bell-curve",
+      "note": "The trade-off at the heart of the debate, from Vitalik: spend some L1 complexity (faster confirmations) so that more L2s can be based.",
+      "lines": [
+        {
+          "t": 1706,
+          "clean": "You're essentially trading off some amount of L1 complexity, but then you get potentially a very large gain in L2 simplicity. If one can have faster confirmations, for example, that greatly increases the set of L2s that could just be based rollups, and being a based rollup is incredibly simple.",
+          "caption": "you're essentially trading off like sub amount of L1 complexity but then you get like potentially a very large gain in L2 Simplicity right and so if like one can have like faster confirmations for example then like that greatly increases the set of l2s that could just be based rollups and being a based rollup is just like incredibly simple",
+          "chunks": [
+            {
+              "ord": 40,
+              "t": 1706,
+              "raw": "you're essentially trading off like sub amount of L1 complexity but then you get like potentially a very large gain in L2 Simplicity right and so if like one can have like faster confirmations for example then like that greatly increases the set of l2s that could just be based rollups and being a based rollup is just"
+            },
+            {
+              "ord": 41,
+              "t": 1748,
+              "raw": "like incredibly simple"
+            }
+          ],
+          "edits": [
+            "caption 'sub amount' read as 'some amount'",
+            "quote starts after two sentences left out: 'And the benefit of making L1 more expansive is that there's further guarantees that are guaranteed to users at the L1 level, and that means that L2s have to do less work.' and 'It might also even mean that some portion of applications are able to just continue living on L1.'"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-03",
+      "kind": "quote",
+      "date": "2024-11-04",
+      "date_label": "4 November 2024",
+      "place": "Bankless",
+      "speaker": "Justin Drake",
+      "speaker_slug": "justin-drake",
+      "talk_id": "12e10a70-eb90-4c4f-9adf-bafc6ef893da",
+      "talk_slug": "based-rollups-next-frontier-ethereum-scaling-justin-bankless",
+      "note": "Justin's case, in his own fair words: why L2s centralised their sequencers, and why he thinks that is not the end state.",
+      "lines": [
+        {
+          "t": 1762,
+          "clean": "Another final service that the centralized sequencers provide is preconfirmation: an extremely low-latency user experience, on the order of either two seconds for the Superchain, or even much faster in the context of Arbitrum, on the order of 250 milliseconds.",
+          "caption": "another final service that the centralized sequencers provide is that of pre-confirmation so extremely low latency uh user experience you know on the order of either two seconds for for the the super uh the super chain or even much faster in the context of arbitrum on the order of 250 milliseconds",
+          "chunks": [
+            {
+              "ord": 41,
+              "t": 1762,
+              "raw": "another final service that the centralized sequencers provide is that of pre-confirmation so extremely low latency uh user experience you know on the order of either two seconds for for the the super uh the super chain or even much faster in the context of arbitrum on the order of 250 milliseconds"
+            }
+          ]
+        },
+        {
+          "t": 1762,
+          "clean": "You can think of the centralized sequencer as being a cheat code, taking some sort of a massive shortcut, which is very strategically meaningful to do because it's very pragmatic, but it's not long-term sustainable. There's all sorts of reasons for that. One is that it's not credibly neutral, and we'll talk about that, and that means that it makes it very, very difficult to convince your competitors to join forces in shared sequencing.",
+          "caption": "and you can think of the centralized sequencer as being a cheat code AS has you know taking some sort of a massive shortcut uh which is you know very strategically meaningful to do because it's very pragmatic but it's not long-term sustainable uh and there's all sorts of reasons uh for that uh one is that it's not credibly neutral and we'll talk about that and that means that it makes it very very difficult to convince you know your competitors to join forces in in shared sequencing",
+          "chunks": [
+            {
+              "ord": 41,
+              "t": 1762,
+              "raw": "and you can think of the centralized sequencer as being a cheat code AS has you know taking some sort of a massive shortcut uh which is you know very strategically meaningful to do because it's very pragmatic but it's not long-term sustainable uh and there's all"
+            },
+            {
+              "ord": 42,
+              "t": 1805,
+              "raw": "sorts of reasons uh for that uh one is that it's not credibly neutral and we'll talk about that and that means that it makes it very very difficult to convince you know your competitors to join forces in in shared sequencing"
+            }
+          ],
+          "edits": [
+            "garbled 'AS has' after 'cheat code' dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-21",
+      "kind": "quote",
+      "date": "2024-11-26",
+      "date_label": "26 November 2024",
+      "place": "Unchained",
+      "speaker": "Martin Köppelmann",
+      "speaker_slug": "martin-koppelmann",
+      "talk_id": "0c72437e-dc25-4014-a78c-e1fafaea4b57",
+      "talk_slug": "whats-best-way-ethereum-grow-two-ethereans-debate-unchained",
+      "speaker_confirmed": true,
+      "note": "The execution-sharding side of a two-person debate: based rollups can reach L1 state, but whether rollups choose that depends on how strong L1 is.",
+      "lines": [
+        {
+          "t": 870,
+          "clean": "Yes, based rollups have in principle the advantage of being able to synchronously interact with Ethereum state. The problem in my view is that currently Ethereum is on track of becoming in a way less and less relevant. For a rollup you essentially have that choice: you can either be your own economic zone, and there you have some advantages, you can capture your own MEV, you can potentially be faster.",
+          "caption": "so yes based rollups have in principle the advantage of being able to yeah synchronously interact with with ethereum state the problem in my view is that currently ethereum is on track of becoming yeah in a way less and less relevant so so for rollup you essentially have that choice you can essentially either be your own economic zone and there you have of course you have some advantages you can capture your own meev you can potentially be faster",
+          "chunks": [
+            {
+              "ord": 20,
+              "t": 870,
+              "raw": "so yes based rollups have in principle the advantage of being able to yeah synchronously interact with with ethereum state the problem in my view is that currently ethereum is on track of becoming yeah in a way less and less relevant so so for rollup you essentially have that choice you can essentially either be your own economic"
+            },
+            {
+              "ord": 21,
+              "t": 914,
+              "raw": "zone and there you have of course you have some advantages you can capture your own meev you can potentially be faster"
+            }
+          ],
+          "edits": [
+            "Dropped \"yeah\" and a repeated \"it's two things so\" lead-in."
+          ]
+        },
+        {
+          "t": 914,
+          "clean": "The reason to choose to be based and to be part of the Ethereum economic zone, the main reason is the existing liquidity and activity on Ethereum L1. Currently we are in a trend where, if you just look at how much liquidity is there on L1 and how much liquidity is there on other chains in other zones, then currently L1 is losing in this ratio at least. So I would say we are currently on a trajectory where it becomes less likely for rollups to be based.",
+          "caption": "the reason to kind of choose to be based and to to be part of the ethereum kind of economic zone the main reason is the existing liquidity and activity on ethereum L1 and currently we are in a trend where if you just look at how much liquidity is there on L1 and how much liquidity is there on on other chains in other zones then currently uh L1 is losing in in in this ratio at least um so I would say we are currently on a trajectory where it becomes less likely for rollups to be based",
+          "chunks": [
+            {
+              "ord": 21,
+              "t": 914,
+              "raw": "the reason to kind of choose to be based and to to be part of the ethereum kind of economic zone the main reason is the existing liquidity and activity on ethereum L1 and currently we are in a trend where if you just look at how much liquidity is there on L1 and how much liquidity is there on on other chains in"
+            },
+            {
+              "ord": 22,
+              "t": 959,
+              "raw": "other zones then currently uh L1 is losing in in in this ratio at least um so I would say we are currently on a trajectory where it becomes less likely for rollups to be based"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s-22",
+      "kind": "quote",
+      "date": "2024-11-26",
+      "date_label": "26 November 2024",
+      "place": "Unchained",
+      "speaker": "Justin Drake",
+      "speaker_slug": "justin-drake",
+      "talk_id": "0c72437e-dc25-4014-a78c-e1fafaea4b57",
+      "talk_slug": "whats-best-way-ethereum-grow-two-ethereans-debate-unchained",
+      "speaker_confirmed": true,
+      "note": "Justin Drake's reply in the same debate: what would bring existing rollups toward based and native designs.",
+      "lines": [
+        {
+          "t": 2743,
+          "clean": "Once the option to become based becomes viable with preconfirmation, and once we have this precompile to have the native rollups, I think we're going to see more and more of the L2s becoming Ethereum. I'm hoping that at some point there will be a phase shift, because the network effects will start kicking in and you'll just be left behind if you don't join in.",
+          "caption": "once you know the option to become base becomes becomes viable with pre-confirmation and once we have this pre-compile to have the native rollups I think we're going to see more and more of the the l2s becoming ethereum and I think at least I'm hoping that at some point there will be a phase shift right because the the network effects will start kicking in and you'll just be left behind if you don't if you don't join in",
+          "chunks": [
+            {
+              "ord": 63,
+              "t": 2743,
+              "raw": "once you know the option to become base becomes becomes viable with pre-confirmation and once we have this pre-compile to have the native rollups I think we're going to see more and more of the the l2s becoming ethereum and I"
+            },
+            {
+              "ord": 64,
+              "t": 2788,
+              "raw": "think at least I'm hoping that at some point there will be a phase shift right because the the network effects will start kicking in and you'll just be left behind if you don't if you don't join in"
+            }
+          ],
+          "edits": [
+            "\"base\" read as \"based\"; dropped \"at least\" and \"right\" (fillers) and a repeated \"if you don't\"."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s-04",
+      "kind": "quote",
+      "date": "2024-12-02",
+      "date_label": "2 December 2024",
+      "place": "Bankless",
+      "speaker": "Justin Drake",
+      "speaker_slug": "justin-drake",
+      "talk_id": "47efd6b7-3635-4d76-ae93-38f88bd4d866",
+      "talk_slug": "ethereums-three-front-war-justin-drake-bankless",
+      "note": "The two separate axes (who sequences, who verifies) and the name for doing both: ultrasound rollup.",
+      "lines": [
+        {
+          "t": 4298,
+          "clean": "If you consume settlement, we say that you're [an L2]. If you consume DA, we say that you're a rollup. If you consume the sequencing, we say that you're based, and if you consume the virtual machine, we say that you're native. If you do all of these things and you're a based native rollup, then the term that I use is you're an ultrasound rollup: the maximally aligned thing possible.",
+          "caption": "if you consume settlement we say that you're nl2 if you consume da we say that you're a rollup if you consume the sequencing we say that you're based and if you consume the virtual machine we say that you're native and so if you do all of these things and you're a a a based native rollup uh then the term that I use is you're an ultrasound roll up like like you're the max the maximally aligned thing possible",
+          "chunks": [
+            {
+              "ord": 99,
+              "t": 4298,
+              "raw": "if you consume settlement we say that you're nl2 if you consume da we say that you're a rollup if you consume the"
+            },
+            {
+              "ord": 100,
+              "t": 4340,
+              "raw": "sequencing we say that you're based and if you consume the virtual machine we say that you're native and so if you do all of these things and you're a a a based native rollup uh then the term that I use is you're an ultrasound roll up like like you're the max the maximally aligned thing possible"
+            }
+          ],
+          "edits": [
+            "false start 'the max' dropped"
+          ]
+        },
+        {
+          "t": 4509,
+          "clean": "It's not concentric circles. You can choose to be one but not the other. You can choose to be based but not native, you can choose to be native but not based. You could be a based validium that doesn't consume the DA, or you could be a based rollup that does consume the DA. All of this is up for you to decide.",
+          "caption": "it's not concentric circles uh you can choose to be one but not the other so you can choose to be based but not native you can choose to be native but not based you could be a based uh validium that doesn't consume the The Da or you could be a based rollup that does consume the the the da so all of this is up for you to to decide",
+          "chunks": [
+            {
+              "ord": 104,
+              "t": 4509,
+              "raw": "it's not concentric circles uh you can choose to be one but not the other so you can choose to be"
+            },
+            {
+              "ord": 105,
+              "t": 4552,
+              "raw": "based but not native you can choose to be native but not based you could be a based uh validium that doesn't consume the The Da or you could be a based rollup that does consume the the the da so all of this is up for you to to decide"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "kind": "written",
+      "id": "w-drake-native-2025",
+      "date": "2025-01-20",
+      "date_label": "20 January 2025",
+      "place": "ethresear.ch",
+      "author": "JustinDrake",
+      "author_slug": "justin-drake",
+      "source_title": "Native rollups—superpowers from L1 execution",
+      "source_url": "https://ethresear.ch/t/21517/1",
+      "note": "The native rollups proposal in its author's words: the second half of the debate starts here, and the post says based and native are separate choices.",
+      "lines": [
+        {
+          "text": "This post suggests a pathway for EVM-equivalent rollups to rid themselves of security councils and other attack vectors, unlocking full Ethereum L1 security."
+        },
+        {
+          "text": "Based rollups and native rollups are orthogonal concepts: \"based\" relates to L1 sequencing whereas \"native\" relates to L1 execution. A rollup that is simultaneously based and native is whimsically called an \"ultra sound rollup\"."
+        },
+        {
+          "text": "Today's EVM-equivalent optimistic and zk-rollups have thousands of lines of code for their fraud proof game or SNARK verifier that could collapse to a single line of code. Native rollups also don't require ancillary infrastructure like proving networks, watchtowers, and security councils."
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-edfelten-2025",
+      "date": "2025-01-21",
+      "date_label": "21 January 2025",
+      "place": "ethresear.ch",
+      "author": "edfelten",
+      "source_title": "Native rollups—superpowers from L1 execution (reply)",
+      "source_url": "https://ethresear.ch/t/21517/9",
+      "note": "The first L2-side objection: real rollups differ from L1 in ways the state transition function must carry.",
+      "lines": [
+        {
+          "text": "A word of caution here. Practical L2 designs have several features that don't seem compatible with the design described here."
+        },
+        {
+          "text": "L2s do gas accounting differently than L1 does, for example by adding a surcharge to pay for data availability; or if the L2 has variable block time for efficiency, then adjusting gas prices based on timestamp rather than block number. Doing this trustlessly requires changes to the state transition function."
+        }
+      ]
+    },
+    {
+      "id": "s-05",
+      "kind": "quote",
+      "date": "2025-01-24",
+      "date_label": "24 January 2025",
+      "place": "Bell Curve",
+      "speaker": "Uma Roy",
+      "speaker_slug": "uma-roy",
+      "talk_id": "305c4734-3786-4960-b353-89a0c5ca2787",
+      "talk_slug": "cryptos-speculative-phase-ethereums-mass-reform-bell-curve",
+      "note": "A rollup-infrastructure founder on whether native rollups squeeze out customised L2s: her answer is no.",
+      "lines": [
+        {
+          "t": 2424,
+          "clean": "I think you can still have a variety of other rollups that are application specific, and in fact I think this path encourages that. It's saying Ethereum L1 is going to eat all the general-purpose, fully EVM-compatible rollups: we're going to provide an [in-line] proof system, and you can play in that game and do sequencing and stuff like that to provide a general-purpose EVM rollup.",
+          "caption": "I think you can still have a variety of other rollups that are application specific and in fact I think this path encourages that like it's saying etherum L1 is going to eat all the general purpose fully evm compatible rollups like we're going to provide like an inine proof system and you know you can play in that game and like do sequencing and stuff like that to provide a general purpose evm rollup",
+          "chunks": [
+            {
+              "ord": 57,
+              "t": 2424,
+              "raw": "I think you can still have a variety of other rollups that are application specific and in fact I think this path encourages that like it's saying etherum L1 is going to eat all the general purpose fully evm compatible rollups like we're going to provide like an inine proof system and you know you can play in that game and like do"
+            },
+            {
+              "ord": 58,
+              "t": 2468,
+              "raw": "sequencing and stuff like that to provide a general purpose evm rollup"
+            }
+          ],
+          "edits": [
+            "opening 'I kind of disagree', which answers a point not shown, left out"
+          ]
+        },
+        {
+          "t": 2468,
+          "clean": "But I think actually it'll push builders towards building application-specific rollups or more specialized rollups to differentiate. I don't think it's a, oh, everything has to be a native rollup. It's like native rollups will exist, they will have great security properties, they will inherit L1 security, but new teams building rollups, yeah, you should go crazy, you should customize it, and you can still deploy a rollup with the security council or whatever.",
+          "caption": "but I think actually it'll push Builders uh towards building application specific rollups or more specialized rollups to differentiate so like I don't think it's a oh everything has to be a native rollup it's like native rollups will exist they will have great security properties uh they will inherit L1 security but new teams building rollups uh yeah you should go crazy you should customize it and you can still deploy a rollup with the security Council or whatever",
+          "chunks": [
+            {
+              "ord": 58,
+              "t": 2468,
+              "raw": "but I think actually it'll push Builders uh towards building application specific rollups or more specialized rollups to differentiate so like I don't think it's a oh everything has to be a native rollup it's like native rollups will exist they will have great security properties uh they will inherit L1 security but new teams building rollups uh yeah you should go crazy you should customize it and you can still deploy a rollup with the security Council or whatever"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-06",
+      "kind": "quote",
+      "date": "2025-02-17",
+      "date_label": "17 February 2025",
+      "place": "The Rollup",
+      "speaker": "Justin Drake",
+      "speaker_slug": "justin-drake",
+      "talk_id": "e7746942-d80b-4697-b7ad-eb09f266a48a",
+      "talk_slug": "ethereums-native-rollup-roadmap-justin-drake-federico",
+      "note": "What native rollups are meant to remove: copy-of-the-EVM bugs and the governance that keeps a rollup in step with each hard fork.",
+      "lines": [
+        {
+          "t": 395,
+          "clean": "One of the first problems that we have today with EVM-equivalent rollups is that they're actually not equivalent. They have bugs, they have vulnerabilities. They're trying their best to be equivalent, but really it's extremely hard to build a perfect copy of [the EVM] in the form of a fraud [proof] game or [a SNARK] circuit.",
+          "caption": "one of the first problems that we have today with evm equivalent rollups is that they're actually not equivalent uh they have bugs they have vulnerabilities they're trying their best to be equivalent but really it's extremely hard to build a perfect copy of D evm in the form of a fraud prooof game or a a SN circuit",
+          "chunks": [
+            {
+              "ord": 9,
+              "t": 395,
+              "raw": "one of the first problems that we have today with evm equivalent rollups is that they're actually not equivalent uh they have bugs they have vulnerabilities they're trying their best to be equivalent but really it's extremely hard to build a perfect copy of D evm in the form of a fraud prooof game or a a SN circuit"
+            }
+          ]
+        },
+        {
+          "t": 438,
+          "clean": "There's a second reason that we have security councils, which is that the L1 EVM is itself a living thing. For every hard fork that changes the EVM, whether it's a new [opcode], a new precompile or a gas schedule change, if you want to maintain EVM equivalence at L2, well, you need to be able to mutate, and in order to mutate you need some form of governance, whether that's a security council or maybe, maybe some sort of token governance. The unfortunate reality is that this form of possible mutation is itself an attack vector, above and beyond the vulnerabilities that may happen.",
+          "caption": "there's a second reason that we have security councils which is that the L1 evm is itself a living thing right for every hard Fork that changes the evm whether it's a new OP codee a new pre-compile or a gas schedule change um if you want to maintain evm equivalence at L2 well you need to be able to to mutate and in order to mutate you need some form of governance whether that's a security Council or maybe maybe some sort of of token governance and the unfortunate reality is that this uh this form of of of possible mutation is itself an attack Vector above and beyond the vulnerabilities uh that may happen",
+          "chunks": [
+            {
+              "ord": 10,
+              "t": 438,
+              "raw": "there's a second reason that we have security councils which is that the L1 evm is itself a living thing right for every hard Fork that changes the evm whether it's a new OP codee a new pre-compile or a gas schedule change um if you want to maintain evm equivalence at L2 well you need to be able to to mutate and in order to mutate you need some form of governance whether that's a security Council or maybe maybe some sort of of token governance and the unfortunate reality is that this uh this form of of of possible mutation is itself an attack Vector above and beyond the vulnerabilities uh that may happen"
+            }
+          ],
+          "edits": [
+            "stutter 'of of' dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-07",
+      "kind": "quote",
+      "date": "2025-02-17",
+      "date_label": "17 February 2025",
+      "place": "The Rollup",
+      "speaker": "Federico Carrone",
+      "speaker_slug": "federico-carrone",
+      "talk_id": "e7746942-d80b-4697-b7ad-eb09f266a48a",
+      "talk_slug": "ethereums-native-rollup-roadmap-justin-drake-federico",
+      "note": "From a builder who supports both ideas: the obstacle to based rollups is social and political, not technical.",
+      "lines": [
+        {
+          "t": 829,
+          "clean": "I believe that base rollups are easier in some way to implement, because we don't need any change in the EVM, we don't need a new precompile, but they're more difficult due to, from my point of view, social, political reasons, to have them in production as a default.",
+          "caption": "I believe that base rollups are more difficult to they're easier in some way to implement because we don't need any change in the uh evm we don't need a new pre-compile but they're more difficult due to from my point of view social um political reasons uh to to have them in production uh as a default",
+          "chunks": [
+            {
+              "ord": 19,
+              "t": 829,
+              "raw": "I believe that base rollups are more difficult to they're easier in some way to implement because we don't need any change in the uh evm we don't need a new pre-compile but they're more difficult due to from my point of view social um political reasons uh to to have them in production"
+            },
+            {
+              "ord": 20,
+              "t": 872,
+              "raw": "uh as a default"
+            }
+          ],
+          "edits": [
+            "false start 'more difficult to they're' dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-23",
+      "kind": "quote",
+      "date": "2025-03-17",
+      "date_label": "17 March 2025",
+      "place": "Bankless",
+      "speaker": "Uma Roy",
+      "speaker_slug": "uma-roy",
+      "talk_id": "20903c7e-07fe-4249-9692-4f5a7ef26aea",
+      "talk_slug": "future-ethereum-scaling-native-rollups-explained-bankless",
+      "speaker_confirmed": true,
+      "note": "On the same show as Justin Drake: which of the two ideas unlocks composability, and how they combine.",
+      "lines": [
+        {
+          "t": 2014,
+          "clean": "I think the composability is actually unlocked more by the based sequencing aspect than the native rollup aspect. If all rollups use this native precompile, you just get better security properties. It's kind of this stage three thing that Justin's talking about.",
+          "caption": "I think the composability is actually unlocked more by the based sequencing aspect than the native rollup aspect if all rollups use this native pre-compile you just get better security properties it's kind of this stage three thing that Justin's talking about",
+          "chunks": [
+            {
+              "ord": 47,
+              "t": 2014,
+              "raw": "I think the composability is actually unlocked more by the based sequencing aspect than the native rollup aspect if all rollups use this native pre-compile you just get better security"
+            },
+            {
+              "ord": 48,
+              "t": 2057,
+              "raw": "properties it's kind of this stage three thing that Justin's talking about"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s-24",
+      "kind": "quote",
+      "date": "2025-03-17",
+      "date_label": "17 March 2025",
+      "place": "0xResearch",
+      "speaker": "Steven Goldfeder",
+      "speaker_slug": "steven-goldfeder",
+      "talk_id": "cb824b08-adb8-4370-8b88-5458d799c073",
+      "talk_slug": "how-arbitrum-pushing-limits-steven-goldfeder-0xresearch",
+      "speaker_confirmed": true,
+      "note": "Arbitrum's co-founder on enshrining execution in Ethereum: the case for letting rollups keep innovating on their own execution.",
+      "lines": [
+        {
+          "t": 1916,
+          "clean": "I get very nervous when people talk about [enshrining in] Ethereum that we're going to actually stifle innovation. If I look at Ethereum compared to the other ecosystems, the thing that it has really nice is the flip side of this quote unquote fragmentation coin: the fact that you have dozens of independent excellent core development teams building on Ethereum with slight variations.",
+          "caption": "I get very nervous when people talk about ining ethereum that we're going to actually stifle Innovation if I look at ethereum comp to the other ecosystems the thing that it has really nice is the flip side of this quote unquote fragmentation coin it's the fact that you have you know dozens of independent excellent core development teams building on ethereum with slight variations",
+          "chunks": [
+            {
+              "ord": 47,
+              "t": 1916,
+              "raw": "I get very nervous when people talk about ining ethereum that we're going to actually stifle Innovation if I look at ethereum comp to the other ecosystems the thing that it has really nice is the flip side of this quote unquote fragmentation coin it's the fact that you have you know dozens"
+            },
+            {
+              "ord": 48,
+              "t": 1956,
+              "raw": "of independent excellent core development teams building on ethereum with slight variations"
+            }
+          ],
+          "edits": [
+            "Caption \"ining ethereum\" read as \"enshrining in Ethereum\" (the same speaker says \"enshrine\" in the next lines); \"comp\" read as \"compared\"."
+          ]
+        },
+        {
+          "t": 1956,
+          "clean": "I'd like to see Ethereum continue on its path and not enshrine deep execution, unless it's really a common denominator to benefit all rollups. Like, hey, if you could say, hey, all rollups need the EVM precompile, so let's figure out a way to do that.",
+          "caption": "I'd like to see ethereum you know continue on its path and not enshrine like deep execution uh unless it's like really like a common denominator to benefit all rollups like hey if you could say hey all rollups need the evm pre-compiled so like let's figure out a way to do that",
+          "chunks": [
+            {
+              "ord": 48,
+              "t": 1956,
+              "raw": "I'd like to see ethereum you know continue on its path and not enshrine like deep execution uh unless it's like really like a common denominator to benefit all rollups like hey if you could say hey all rollups need the evm pre-compiled so like let's figure out a"
+            },
+            {
+              "ord": 49,
+              "t": 1999,
+              "raw": "way to do that"
+            }
+          ],
+          "edits": [
+            "Caption \"pre-compiled\" read as \"precompile\"."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "n-7917-01",
+      "kind": "quote",
+      "date": "2025-04-03",
+      "date_label": "3 April 2025",
+      "place": "All Core Devs - Consensus #154",
+      "speaker": "Mark Mackey",
+      "speaker_slug": "mark-mackey",
+      "talk_id": "2af2bb4d-6863-44dd-bb0c-afafe29697f9",
+      "talk_slug": "all-core-devs-consensus-154",
+      "speaker_confirmed": true,
+      "note": "EIP-7917 first argued for scope in Fusaka on an All Core Devs call: Pectra made effective balances change more often, so the proposer schedule is less stable, which preconfirmation protocols (the based-rollup speed fix) cannot live with.",
+      "lines": [
+        {
+          "t": 2639,
+          "clean": "I would like to advocate for the [proposer] lookahead EIP, I believe that's 7917. After [Pectra] we've dramatically changed the number of times that the effective balances can change in an epoch, because they can change anytime. There's a consolidation or a deposit to top up a validator or a withdrawal of more than one ETH, or just when compounding validators' balances cross an integer number of ETH. So this makes the proposer lookahead more unstable, which is difficult for pre-conf protocols to deal with.",
+          "caption": "So I would like to advocate for the proposure. Look ahead, eip, believe that's 7, 9, 1 7 So in after Petra. We've dramatically changed the the number of times that the effective balances can change in an epoch because they can change anytime. There's a consolidation or a deposit to top up a validator or a withdrawal of more than one eth. Or just when compounding validators balances cross an integer number of Eth. So this makes the the proposer look ahead more unstable, which is difficult for pre-conf protocols to deal with.",
+          "chunks": [
+            {
+              "ord": 88,
+              "t": 2639,
+              "raw": "So I would like to advocate for the proposure. Look ahead, eip, believe that's 7, 9, 1 7 So in after Petra. We've dramatically changed the the number of times that the effective balances can change in an epoch because they can change anytime. There's a consolidation or a deposit to top up a validator or a withdrawal of more than one eth. Or just when compounding validators balances cross an integer number of Eth. So this makes the the proposer look ahead more unstable, which is difficult for pre-conf protocols to deal with."
+            }
+          ],
+          "edits": [
+            "caption digits '7, 9, 1 7' written 7917",
+            "'proposure' and 'Petra' corrected in brackets ([proposer], [Pectra])"
+          ]
+        },
+        {
+          "t": 2763,
+          "clean": "Even if the actual changing of the 1st proposer in the epoch is rare, it's still quite a problem for [preconf] protocols, because they need to get the proposers for the next epoch on chain.",
+          "caption": "Even if the actual changing of the 1st proposer in the epoch is rare. It's still quite a problem for pre-comp protocols because they need to get the proposers for the next epoch on chain.",
+          "chunks": [
+            {
+              "ord": 90,
+              "t": 2763,
+              "raw": "Even if the actual changing of the 1st proposer in the epoch is rare. It's still quite a problem for pre-comp protocols because they need to get the proposers for the next epoch on chain."
+            }
+          ],
+          "edits": [
+            "'pre-comp' corrected to [preconf]"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "n-7917-02",
+      "kind": "quote",
+      "date": "2025-04-17",
+      "date_label": "17 April 2025",
+      "place": "All Core Devs - Consensus #155",
+      "speaker": "Potuz",
+      "speaker_slug": "potuz",
+      "talk_id": "1aca59f9-05f2-4f25-9119-f85359381ffa",
+      "talk_slug": "all-core-devs-consensus-155",
+      "speaker_confirmed": true,
+      "note": "The objection at the CFI call for EIP-7917: it would be the only Fusaka change to the beacon state, so the real question is whether one feature justifies touching that structure.",
+      "lines": [
+        {
+          "t": 2093,
+          "clean": "Including this and testing this would be quite a big change, in that it is the only thing that changes the beacon state.",
+          "caption": "But including this and testing this would be quite a big change in that. It is the only thing that changes the Beacon state",
+          "chunks": [
+            {
+              "ord": 84,
+              "t": 2093,
+              "raw": "But including this and testing this would be quite a big change in that. It is the only thing that changes the Beacon state"
+            }
+          ],
+          "edits": [
+            "'But' at the start dropped"
+          ]
+        },
+        {
+          "t": 2093,
+          "clean": "So far, out of the EIPs that we're considering, nothing touches the beacon state. And I think the crucial question we should be asking ourselves now is, do we really want to change that structure just because of the [EIP]?",
+          "caption": "so far out of the eips that we're considering. Nothing touches the Beacon State. And I think the crucial question we should be asking ourselves now is, do we really want to change that structure just because of the cip?",
+          "chunks": [
+            {
+              "ord": 84,
+              "t": 2093,
+              "raw": "so far out of the eips that we're considering. Nothing touches the Beacon State. And I think the crucial question we should be asking ourselves now is, do we really want to change that structure just because of the cip?"
+            }
+          ],
+          "edits": [
+            "'cip' corrected to [EIP]"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "n-7917-03",
+      "kind": "quote",
+      "date": "2025-04-17",
+      "date_label": "17 April 2025",
+      "place": "All Core Devs - Consensus #155",
+      "speaker": "Alex Stokes",
+      "speaker_slug": "alex-stokes",
+      "talk_id": "1aca59f9-05f2-4f25-9119-f85359381ffa",
+      "talk_slug": "all-core-devs-consensus-155",
+      "speaker_confirmed": true,
+      "note": "The CFI decision for EIP-7917 (considered for inclusion in Fusaka), as the call chair states it: weak support, conditional, dropped at the first sign of trouble.",
+      "lines": [
+        {
+          "t": 2520,
+          "clean": "Maybe just to summarize: weak support to CFI. So we'll go ahead and do that. Everyone is saying that essentially, at the first sign of any complications, we just essentially [DFI] it for Fusaka. So we would not SFI. It would not move on to any devnets, and we would move forward.",
+          "caption": "Yeah. So yeah, maybe just to summarize like week support to Cfi. So we'll go ahead and do that. Everyone is saying that essentially, at the 1st sign of any complications, we just essentially deify it for Fusaka. So we would not, Sfi. It would not move on to any devnets, and we would move forward.",
+          "chunks": [
+            {
+              "ord": 102,
+              "t": 2520,
+              "raw": "Yeah. So yeah, maybe just to summarize like week support to Cfi. So we'll go ahead and do that. Everyone is saying that essentially, at the 1st sign of any complications, we just essentially deify it for Fusaka. So we would not, Sfi. It would not move on to any devnets, and we would move forward."
+            }
+          ],
+          "edits": [
+            "'week support' read as 'weak support'",
+            "'1st' written 'first'",
+            "'deify' corrected to [DFI]"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s-08",
+      "kind": "quote",
+      "date": "2025-04-21",
+      "date_label": "21 April 2025",
+      "place": "PEEPanEIP",
+      "speaker": "Lin Oshitani",
+      "speaker_slug": "lin-oshitani",
+      "talk_id": "63d3ee12-2939-4b4f-a967-9fd437ebb74b",
+      "talk_slug": "eip-7917-deterministic-proposer-lookahead",
+      "note": "The preconfirmation fix at work: EIP-7917 makes the proposer schedule stable, and what that buys a based rollup (and what is not yet certain).",
+      "lines": [
+        {
+          "t": 1631,
+          "clean": "EIP-7917 is a relatively simple change. Spec-wise it's also very small, like 22 lines of spec change ignoring the comments, but it has large benefits. First and foremost, it unlocks robust preconfirmation protocols by making a stable lookahead that is available in the EVM via the beacon [root], which completely removes the need for hacks such as the optimistic lookahead scheme that we introduced before.",
+          "caption": "EIP7917 is a relatively simple change like I was able to explain it in like three slides and spec-wise it's also very small like it's like 22 lines of spec change ignoring the comments but have like large benefits like first and foremost like it unlocks robust pre-confirmation protocols by making a stable look ahead that is available in the EVM via the beacon via the beacon route which completely removes the need for hacks such as the optimistic look ahead scheme that we introduced before",
+          "chunks": [
+            {
+              "ord": 38,
+              "t": 1631,
+              "raw": "EIP7917 is a relatively simple change like I was able to explain it in like three slides and spec-wise it's also very small like it's like 22 lines of spec change ignoring the comments but have like large benefits like first and foremost like it unlocks robust pre-confirmation protocols by making a stable look ahead that is available in the EVM via the beacon via the beacon route which completely removes the need for hacks such as the optimistic look ahead scheme that we introduced before"
+            }
+          ],
+          "edits": [
+            "aside 'I was able to explain it in like three slides' dropped",
+            "repeated 'via the beacon' read as one"
+          ]
+        },
+        {
+          "t": 1882,
+          "clean": "The primary use case right now is L2 preconfirmations and L2 based rollup preconfirmations. So right now this is basically [Taiko]. For them, I think you could basically, as soon as they upgrade and actually enter based preconfirmations, you'll just have faster UX, basically. You'll have the comparable UX as you have in current Optimism or Arbitrum, for example, in the fastest case. And we're not sure if we'll immediately get there, because one thing, as you mentioned here, is, for example, the wallet and the whole infrastructure adaptation on handling this kind of very fast preconfirmations.",
+          "caption": "the primary use case right now or like at least what I had in my mind is like L2 preconfirmations and L2 like base rule of preconfirmations. So right now this is like basically tao and there's like a lot coming up right now and like for them I think you could basically like as soon as they upgrade and like actually enter based pre-confirmations and like you'll just have faster UX basically like you'll have the comparable UX as you have in like current optimism or arbitrum for example like in the fastest case and like we're not sure like if we'll immediately get there because like one thing as you mentioned here is like for example like the wallet and like the whole infra structure adaptation on like handling this kind of like very fast preconfirmations.",
+          "chunks": [
+            {
+              "ord": 44,
+              "t": 1882,
+              "raw": "the primary use case right now or like at least what I had in my mind is like L2 preconfirmations and L2 like base rule of preconfirmations. So right now this is like basically tao and there's like a lot coming up right now and like for them I think you could basically like as soon as they upgrade and like actually enter based pre-confirmations and like you'll just"
+            },
+            {
+              "ord": 45,
+              "t": 1925,
+              "raw": "have faster UX basically like you'll have the comparable UX as you have in like current optimism or arbitrum for example like in the fastest case and like we're not sure like if we'll immediately get there because like one thing as you mentioned here is like for example like the wallet and like the whole infra structure adaptation on like handling this kind of like very fast preconfirmations."
+            }
+          ],
+          "edits": [
+            "caption 'base rule of' read as 'based rollup'",
+            "asides 'or at least what I had in my mind' and 'and there's a lot coming up right now' dropped to shorten"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "kind": "written",
+      "id": "w-ctrain-2025",
+      "date": "2025-05-04",
+      "date_label": "4 May 2025",
+      "place": "ethresear.ch",
+      "author": "The-CTra1n",
+      "source_title": "Native rollups—superpowers from L1 execution (reply)",
+      "source_url": "https://ethresear.ch/t/21517/35",
+      "note": "A reply to the gas-accounting objection: standardised execution could make L2 gas accounting match L1.",
+      "lines": [
+        {
+          "text": "Regarding the gas accounting issue, this is a problem that rollups incur because of their desire/need to spread batches across L1 blocks and manage costs in self-determined ways."
+        },
+        {
+          "text": "All of this is to say, native rollup transaction gas accounting has a viable path to being equivalent to L1 gas accounting."
+        }
+      ]
+    },
+    {
+      "id": "s-09",
+      "kind": "quote",
+      "date": "2025-05-07",
+      "date_label": "7 May 2025",
+      "place": "Epicenter",
+      "speaker": "Joaquin Mendes",
+      "speaker_slug": "joaquin-mendes",
+      "talk_id": "2a0be660-d649-418c-8df6-22c02143f9d0",
+      "talk_slug": "taiko-scaling-ethereum-decentralised-manner-epicenter",
+      "note": "Taiko's COO: why being based matters for composability, and his answer to the cost objection.",
+      "lines": [
+        {
+          "t": 2612,
+          "clean": "But if you are not a base rollup, you will never share the sequencer with Ethereum, which means you will never share the liquidity with Ethereum. You will never be composable with Ethereum. You will never have the highest level of interoperability with Ethereum. That's a big problem long term.",
+          "caption": "But if you are not a base rollup, you will never share the sequencer with Ethereum, which means you will never share the liquidity with Ethereum. You will never be composable with Ethereum. You will never have the highest level of interoperability with Ethereum. That's a big problem long term.",
+          "chunks": [
+            {
+              "ord": 61,
+              "t": 2612,
+              "raw": "But if you are not a base rollup, you will never share the sequencer with Ethereum, which means you will never share the liquidity with Ethereum. You will never be composable with Ethereum. You will never have the highest level of interoperability with Ethereum. That's a big problem long term."
+            }
+          ]
+        },
+        {
+          "t": 2825,
+          "clean": "But look, even in the darkest days, where we were consistently using more blob space than the Ethereum limit, I think users were paying less than 10 cents on [Taiko], which is still cheap, and this is just the beginning. That's why I say that all these solutions that offer [sub-cent] transactions and subsecond confirmation times are short-term solutions. But if we think in the long term, Ethereum itself is planning to scale massively, and I think the price is not even going to be a conversation.",
+          "caption": "But look, even if the in the darkest days where we were um you know using more blob space than the Ethereum limit like consistently I think users were paying less than 10 cents on Tao um which is still cheap and this is just the beginning right if you if we look that's why I say that all these solutions that offer like subsent transactions and and subsecond confirmation times are are short-term solutions but if we think in the long term Ethereum itself is going to it's planning to scale massively not only on the gas limits but also on the blob space and I think the price is not is not even going to be a conversation",
+          "chunks": [
+            {
+              "ord": 66,
+              "t": 2825,
+              "raw": "But look, even if the in"
+            },
+            {
+              "ord": 67,
+              "t": 2867,
+              "raw": "the darkest days where we were um you know using more blob space than the Ethereum limit like consistently I think users were paying less than 10 cents on Tao um which is still cheap and this is just the beginning right if you if we look that's why I say that all these solutions that offer like subsent transactions and and subsecond confirmation times are are short-term solutions but if we think in the long term Ethereum itself is going to it's planning to scale massively not only on the gas limits but also on the blob space and I think the price is not is not even going to be a conversation"
+            }
+          ],
+          "edits": [
+            "false start 'if you if we look' dropped",
+            "clause 'not only on the gas limits but also on the blob space' dropped to shorten"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "n-7917-04",
+      "kind": "quote",
+      "date": "2025-05-29",
+      "date_label": "29 May 2025",
+      "place": "All Core Devs - Consensus #158",
+      "speaker": "Jason Vranek",
+      "speaker_slug": "jason-vranek",
+      "talk_id": "127103b4-8572-4db6-ad5b-f368a127eea6",
+      "talk_slug": "all-core-devs-consensus-158",
+      "speaker_confirmed": true,
+      "note": "The based-rollup builder's case at the SFI call for EIP-7917: what rollups need is lookahead access from the beacon state, and the three alternatives without it are all worse.",
+      "lines": [
+        {
+          "t": 432,
+          "clean": "We're working on two goals: one, to help existing rollups become based, and two, to help new apps launch based rollups. One of those initiatives was working on these inbox contracts for rollups. And without this EIP, it's pretty hacky.",
+          "caption": "we're working on 2 goals is one to like help existing. Roll ups become based. And 2 is help. New apps, launches based roll ups. So one of those initiatives was working on these inbox contracts for rollups. And yeah, without this eip, it's it's pretty hacky",
+          "chunks": [
+            {
+              "ord": 23,
+              "t": 432,
+              "raw": "we're working on 2 goals is one to like help existing. Roll ups become based. And 2 is help. New apps, launches based roll ups. So one of those initiatives was working on these inbox contracts for rollups. And yeah, without this eip, it's it's pretty hacky"
+            }
+          ],
+          "edits": [
+            "'launches' read as 'launch' (grammar of the sentence)"
+          ]
+        },
+        {
+          "t": 432,
+          "clean": "Without this, the problem we're trying to solve is that we need rollups to be aware and respect the schedule of preconfers, and to do this they need a view of the lookahead.",
+          "caption": "Without this, like, the problem we're trying to solve is that we need roll ups to be aware and respect the schedule of pre confers, and to do this they need a view of the look ahead.",
+          "chunks": [
+            {
+              "ord": 23,
+              "t": 432,
+              "raw": "Without this, like, the problem we're trying to solve is that we need roll ups to be aware and respect the schedule of pre confers, and to do this they need a view of the look ahead."
+            }
+          ],
+          "edits": [
+            "'like,' filler dropped; 'pre confers' read as 'preconfers'"
+          ]
+        },
+        {
+          "t": 486,
+          "clean": "Adding the lookahead to the beacon state just trivializes all these problems and makes it safer and cheaper to run these [rollups].",
+          "caption": "So adding the look ahead to the Beacon State just trivializes all these problems and makes it safer and cheaper to to run these ropes.",
+          "chunks": [
+            {
+              "ord": 24,
+              "t": 486,
+              "raw": "So adding the look ahead to the Beacon State just trivializes all these problems and makes it safer and cheaper"
+            },
+            {
+              "ord": 25,
+              "t": 543,
+              "raw": "to to run these ropes."
+            }
+          ],
+          "edits": [
+            "'So' dropped at the start; [rollups] for the caption 'ropes'"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s-10",
+      "kind": "quote",
+      "date": "2025-06-30",
+      "date_label": "30 June 2025",
+      "place": "EthCC[8]",
+      "speaker": "Marc Harvey-Hill",
+      "speaker_slug": "marc-harvey-hill",
+      "talk_id": "9c0e6ada-589b-55d0-8ba4-ae3cb5b096b6",
+      "talk_slug": "accelerating-ethereums-rollup-roadmap-ethcc-8-9c0e6ada",
+      "note": "A based rollup being built: Nethermind's Surge template, in a core developer's words.",
+      "lines": [
+        {
+          "t": 165,
+          "clean": "We're getting rid of the centralized sequencer and we're going to replace it with the Ethereum L1 proposer that we already have. Instead of introducing new infrastructure, like the centralized sequencer, we're just going to reuse the kind of existing [MEV-Boost] pipeline that we already have on Ethereum.",
+          "caption": "We're getting rid of the centralized sequencer and we're going to replace it with the Ethereum L1 proposer that we already have. Um, so instead of introducing new infrastructure like the centralized sequencer, we're just going to reuse the kind of existing Mev Boost pipeline uh that we already have on Ethereum",
+          "chunks": [
+            {
+              "ord": 4,
+              "t": 165,
+              "raw": "We're getting rid of the centralized sequencer and we're going to replace it with the Ethereum L1 proposer that we already have. Um, so instead of introducing new infrastructure like the centralized sequencer, we're just going to reuse the kind of existing Mev Boost pipeline uh that we already have on Ethereum"
+            }
+          ]
+        },
+        {
+          "t": 207,
+          "clean": "We're going to inherit Ethereum censorship resistance and [liveness] guarantees, and hopefully their security, depending on a few other factors. We're not introducing any kind of additional infrastructure in this centralized sequencer, and this results in just generally simplifying everything and making it a lot more [cost-effective], and just aligning everything with the base layer, so we don't really introduce these outside incentives.",
+          "caption": "we're going to inherit uh, Ethereum censorship resistance and and livveness guarantees and hopefully their security depending on a few other factors. um we're not introducing any kind of additional infrastructure in this centralized sequencer and this results in just generally simplifying everything and making it a lot more cost-ffective um and just aligning everything with the base layer so we don't really introduce these outside incentives",
+          "chunks": [
+            {
+              "ord": 5,
+              "t": 207,
+              "raw": "we're going to inherit uh, Ethereum censorship resistance and and livveness guarantees and hopefully their security depending on a few other factors."
+            },
+            {
+              "ord": 6,
+              "t": 240,
+              "raw": "um we're not introducing any kind of additional infrastructure in this centralized sequencer and this results in just generally simplifying everything and making it a lot more cost-ffective um and just aligning everything with the base layer so we don't really introduce these outside incentives"
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-11",
+      "kind": "quote",
+      "date": "2025-07-02",
+      "date_label": "2 July 2025",
+      "place": "EthCC[8]",
+      "speaker": "Will Papper",
+      "speaker_slug": "will-papper",
+      "talk_id": "576eed15-7fad-5deb-a3e8-0ea6c70602e6",
+      "talk_slug": "the-rise-of-appchains-why-control-over-your-stack-and-sequencer-matters-ethcc-8-576eed15",
+      "note": "The L2 side of the argument: why an app chain wants to keep and customise its own sequencer.",
+      "lines": [
+        {
+          "t": 494,
+          "clean": "So you see groups wanting to tune their chain economies to match their apps. World Chain pretty much just last week launched priority block space for humans, where they put humans that are [World-verified] ahead of bots in their blocks. And if you can customize the sequencer, you can create more value.",
+          "caption": "So you see groups wanting to tune their chain economies to match their apps. World Chain pretty much just last week launched priority block space for humans where um they put humans that are world verified ahead of bots in their blocks. So humans get priority. That's a really nice example where they're changing the economy and how it works to match the goals of world. Um and if you can customize the sequencer, you can create more value",
+          "chunks": [
+            {
+              "ord": 12,
+              "t": 494,
+              "raw": "So you see groups wanting to tune their chain economies to match their apps. World Chain pretty much just last week launched priority block space for humans where um they put humans that are world"
+            },
+            {
+              "ord": 13,
+              "t": 539,
+              "raw": "verified ahead of bots in their blocks. So humans get priority. That's a really nice example where they're changing the economy and how it works to match the goals of world. Um and if you can customize the sequencer, you can create more value"
+            }
+          ],
+          "edits": [
+            "sentences 'So humans get priority.' and 'That's a really nice example where they're changing the economy and how it works to match the goals of World.' dropped to shorten"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "kind": "written",
+      "id": "w-cwgoes-2025",
+      "date": "2025-07-17",
+      "date_label": "17 July 2025",
+      "place": "ethresear.ch",
+      "author": "cwgoes",
+      "source_title": "Native rollups—superpowers from L1 execution (reply)",
+      "source_url": "https://ethresear.ch/t/21517/37",
+      "note": "The objection: EXECUTE takes a fixed post-state root, so what \"synchronous composability\" needs is not obviously there.",
+      "lines": [
+        {
+          "text": "In order to provide this kind of synchronous composability, the actual state changes must be able to depend on all of the state which could be involved (from the perspective of a single contract: the other contracts to which you could send synchronous calls to, the results of which might change your own state changes)."
+        },
+        {
+          "text": "This trace and post-state-root is computed in the EVM itself, which would require simulating the EVM in the EVM -- not computationally feasible, and I'm assuming not the intention here."
+        },
+        {
+          "text": "This would allow for synchronous composability, but L1 execution -- at least as it exists today -- has no facility to do this, or at least none that I could see described here."
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-mteam88-2025",
+      "date": "2025-07-17",
+      "date_label": "17 July 2025",
+      "place": "ethresear.ch",
+      "author": "mteam88",
+      "affiliation": "Spire",
+      "source_title": "Native rollups—superpowers from L1 execution (reply)",
+      "source_url": "https://ethresear.ch/t/21517/38",
+      "note": "The reply from the based side: coordinated sequencing is where synchronous composability would come from, and it applies to based rollups.",
+      "lines": [
+        {
+          "text": "If the a property we at Spire call coordinated sequencing is present, the shared block builder can run a simulation and determine the correct post state root. This likely only applies to a based rollup, so there are absolutely theoretical native rollup implementations that do not have sync composability with L1."
+        }
+      ]
+    },
+    {
+      "kind": "written",
+      "id": "w-eip8079-2025",
+      "date": "2025-11-13",
+      "date_label": "13 November 2025",
+      "place": "EIP-8079",
+      "author": "Luca Donno and Justin Drake",
+      "source_title": "EIP-8079: Native rollups",
+      "source_url": "https://eips.ethereum.org/EIPS/eip-8079",
+      "note": "The proposal as an EIP draft: the motivation in the authors' words. Draft status is on the closing stop.",
+      "lines": [
+        {
+          "text": "Today, EVM-equivalent rollups need to implement and maintain complex proof systems just to be able to replicate what Ethereum already provides on L1. Such complexity significantly increases the probability of encountering bugs and prevents projects from getting rid of security councils and from moving to Stage 2."
+        }
+      ]
+    },
+    {
+      "id": "s-12",
+      "kind": "quote",
+      "date": "2025-11-22",
+      "date_label": "22 November 2025",
+      "place": "Ethproofs Day at Devconnect Argentina 2025",
+      "speaker": "Luca Donno",
+      "speaker_slug": "luca-donno",
+      "talk_id": "8bf676eb-9de3-43e1-9e14-dcc3681a2c23",
+      "talk_slug": "lightning-talk-native-rollups-by-luca-donno-l2beat",
+      "note": "The native rollup pitch and its price, from L2BEAT: no security council and far less code, but no new opcodes.",
+      "lines": [
+        {
+          "t": 469,
+          "clean": "You don't need security council because, again, this is a dependency that you already have on L1, and if there is a bug, L1 is going to fix it, and you get automatic upgrades with L1.",
+          "caption": "you don't need security council because uh Again, this is a dependency that you already have on L1 and if there is a bug, uh L1 is going to fix it and you get automatic upgrades with L1.",
+          "chunks": [
+            {
+              "ord": 11,
+              "t": 469,
+              "raw": "you don't need security council because uh Again,"
+            },
+            {
+              "ord": 12,
+              "t": 512,
+              "raw": "this is a dependency that you already have on L1 and if there is a bug, uh L1 is going to fix it and you get automatic upgrades with L1."
+            }
+          ]
+        },
+        {
+          "t": 587,
+          "clean": "The trade-off is, for native rollups, you cannot add new opcodes. You cannot add new [precompiles], because, again, we would be using the same [state transition] function that [L1] uses. But on the other side, everything that is outside of the core EVM [state transition] function can be personalized. It is possible to support custom sequencing. It is possible even to support custom [gas] tokens. It is even possible to collect the base fee.",
+          "caption": "so the trade-off is for native rollups you cannot add new op codes. You cannot add new pre-ompiles because again we you we would be using the same statization function that one uses. Uh but on the other side everything that is outside of the core EVM uh statization function can be personalized. So you could it is possible to support custom sequencing. It is possible even to support custom guest tokens. It is even possible to collect the base fee",
+          "chunks": [
+            {
+              "ord": 14,
+              "t": 587,
+              "raw": "so the trade-off is for native rollups you cannot add new op codes. You cannot add new pre-ompiles because again we you we would be using the same statization function that one uses. Uh but on the other side everything that is outside of the core EVM uh statization function can be personalized. So you could it is possible to support custom sequencing."
+            },
+            {
+              "ord": 15,
+              "t": 629,
+              "raw": "It is possible even to support custom guest tokens. It is even possible to collect the base fee"
+            }
+          ],
+          "edits": [
+            "false start 'So you could' dropped",
+            "'guest tokens' in the caption read as 'gas tokens', the base-fee context shows it"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-7917-live",
+      "kind": "decision",
+      "date": "2025-12-03",
+      "date_label": "3 December 2025",
+      "place": "Fusaka mainnet",
+      "title": "EIP-7917 goes live",
+      "body": "EIP-7917, the stable proposer schedule that based-rollup preconfirmations lean on, was considered for inclusion on All Core Devs Consensus #155 (17 April 2025), scheduled for inclusion on #158 (29 May 2025) and went live on mainnet with Fusaka on 3 December 2025. It settles that one preconfirmation fix; it does not decide based versus native rollups.",
+      "link": "https://blog.ethereum.org/2025/11/06/fusaka-mainnet-announcement",
+      "link_label": "Read the Fusaka announcement",
+      "note": "Confirmed from the Fusaka mainnet announcement (activation 3 Dec 2025, 21:49:11 UTC, epoch 411392, lists EIP-7917) and the two call transcripts. EIP-7917 file status Final since 16 Dec 2025. Call numbers come from the transcripts (Forkcast's EIP record has no call references); EIP-7917's only behaviour change after CFI was the 22 Aug 2025 off-by-one fix. Also see https://eips.ethereum.org/EIPS/eip-7917 (status Final, 16 Dec 2025)."
+    },
+    {
+      "id": "w-vbuterin-l2-2026",
+      "kind": "written",
+      "date": "2026-02-03",
+      "date_label": "3 February 2026",
+      "place": "X",
+      "author": "Vitalik Buterin",
+      "author_slug": "vitalik-buterin",
+      "source_title": "Vitalik Buterin on the role of L2s",
+      "source_url": "https://x.com/VitalikButerin/status/2018711006394843585",
+      "note": "Vitalik argues that L1 no longer needs L2s to be branded shards because L1 is itself scaling, and points to the native rollup precompile for security-council-free verification. s-13 and s-14 discuss the same shift.",
+      "lines": [
+        {
+          "text": "L1 does not need L2s to be \"branded shards\", because L1 is itself scaling. And L2s are not able or willing to satisfy the properties that a true \"branded shard\" would require."
+        },
+        {
+          "text": "The native rollup precompile would make full, security-council-free, EVM verification accessible."
+        }
+      ]
+    },
+    {
+      "id": "s-14",
+      "kind": "quote",
+      "date": "2026-02-04",
+      "date_label": "4 February 2026",
+      "place": "The Daily Gwei",
+      "speaker": "Anthony Sassano",
+      "speaker_slug": "anthony-sassano",
+      "talk_id": "a95ecfa2-6cab-4746-9054-7580deb04e95",
+      "talk_slug": "future-ethereums-layer-2-ecosystem-daily-gwei-refuel-856",
+      "note": "A commentator's view of the limit: a native rollup follows the L1, so is it still an L2? Followed by his answer that it is one more way to build on Ethereum.",
+      "lines": [
+        {
+          "t": 1276,
+          "clean": "For all intents and purposes, I actually don't think a native rollup is an L2.",
+          "caption": "For all intents and purposes, I actually don't think a native rollup is an L2",
+          "chunks": [
+            {
+              "ord": 32,
+              "t": 1276,
+              "raw": "For all intents and purposes, I actually don't think a native rollup is an L2"
+            }
+          ]
+        },
+        {
+          "t": 1276,
+          "clean": "Again, this is a thing, a definition, kind of semantics argument here. But if a native rollup is part of the L1, can only be changed by an L1 hard fork, has a bug, and the L1 has to fork to fix that bug, then for all intents and purposes, it's part of the L1. So I would put that into the bucket of L1 scaling.",
+          "caption": "Again, this is a thing a definition kind of semantics argument here. But if a native rollup is part of the L1, can only be changed by an L1 hard fork, has a bug, and has to and the L1 has to fork to fix that bug, then for all intents and purposes, it's part of the L1. It is not an L2. It is not another layer sitting on top of the L1. It is part of the L1 itself. So I would not call these things L2s. Maybe Valak does, but I just wouldn't, right? So I would put that into the bucket of L1 scaling",
+          "chunks": [
+            {
+              "ord": 32,
+              "t": 1276,
+              "raw": "Again, this is a thing a definition kind of semantics argument here. But if a native rollup is part of the L1, can only be changed by an L1 hard fork, has a bug, and has to and the L1 has to fork to fix that bug, then for all intents"
+            },
+            {
+              "ord": 33,
+              "t": 1319,
+              "raw": "and purposes, it's part of the L1. It is not an L2. It is not another layer sitting on top of the L1. It is part of the L1 itself. So I would not call these things L2s. Maybe Valak does, but I just wouldn't, right? So I would put that into the bucket of L1 scaling"
+            }
+          ],
+          "edits": [
+            "sentences 'It is not an L2. It is not another layer sitting on top of the L1. It is part of the L1 itself. So I would not call these things L2s.' dropped as repeats of the previous line",
+            "aside 'Maybe Valak does, but I just wouldn't, right?' dropped"
+          ]
+        },
+        {
+          "t": 1357,
+          "clean": "It's all about the trade-offs always. But I don't think that this is something that is at odds with L2s either. I think that it's just another way to build on Ethereum.",
+          "caption": "And it's all about the trade-offs always, guys. But again, like I don't think that this is something that is at odds with L2s either. I think that it's just another way to build on Ethereum",
+          "chunks": [
+            {
+              "ord": 34,
+              "t": 1357,
+              "raw": "And it's all about the trade-offs always, guys. But again, like I don't think that this is something that is at odds with L2s either. I think that it's just another way to build on Ethereum"
+            }
+          ],
+          "edits": [
+            "vocative 'guys' dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-13",
+      "kind": "quote",
+      "date": "2026-02-17",
+      "date_label": "February 2026",
+      "place": "ETHDenver 2026 · date from the event",
+      "speaker": "Preston Van Loon",
+      "speaker_slug": "preston-van-loon",
+      "talk_id": "6237bddb-c156-4b3c-96d4-7a17868ead15",
+      "talk_slug": "ethereums-evolution-fusaka-glamsterdam-beyond-van-loon",
+      "note": "The rethink of the rollup-centric roadmap, from someone on the inside: L1 scales faster, so copies of the L1 are no longer the point.",
+      "lines": [
+        {
+          "t": 386,
+          "clean": "We're scaling blobs faster than expected. And even L2 fees are really, really low. So the idea that we need general-purpose L2s, that is L2s that are simply the same EVM we have on the L1, just copy and paste it a bunch of times and all they do is go faster, that's not the vision anymore.",
+          "caption": "We're scaling blobs faster than expected. And even L2 fees are really, really low. So the idea that we need general purpose L2s, that is L2s that are simply the same EVM we have on the L1, just copy and paste it a bunch of times and all they do is go faster, that's not the vision anymore.",
+          "chunks": [
+            {
+              "ord": 10,
+              "t": 386,
+              "raw": "We're scaling blobs faster than expected. And even L2 fees are really, really low. So the idea that we need general purpose L2s, that is L2s that are simply the same EVM we have on the L1, just copy and paste it a bunch of times and all they do is go faster, that's not the vision anymore."
+            }
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-ef-l1-l2-2026",
+      "kind": "written",
+      "date": "2026-03-23",
+      "date_label": "23 March 2026",
+      "place": "Ethereum Foundation Blog",
+      "author": "Josh Rudolf, Julian Ma and Josh Stark",
+      "author_slug": null,
+      "source_title": "How L1 and L2s can build the strongest possible Ethereum",
+      "source_url": "https://blog.ethereum.org/2026/03/23/l1-l2-ethereum",
+      "note": "The EF Platform team's own position and R&D commitment on native rollups, in a post about the whole L1 and L2 relationship. It takes no position on based versus native rollups, and it says many L2s with different business models will keep playing a major role.",
+      "lines": [
+        {
+          "text": "Relationship to L1: Those L2s seeking the tightest integration with L1 should push towards synchronous composability, full interoperability, shared liquidity, Stage 2, and mechanisms like native rollups."
+        },
+        {
+          "text": "Investing R&D towards the technology that will enable “native rollups” -- L2 chains that can be fully and trustlessly verified by L1, enabling synchronous composability and secure interoperability."
+        }
+      ]
+    },
+    {
+      "id": "s-15",
+      "kind": "quote",
+      "date": "2026-03-31",
+      "date_label": "31 March 2026",
+      "place": "EthCC[9]",
+      "speaker": "Gajinder Singh",
+      "speaker_slug": "gajinder-singh",
+      "talk_id": "91ff3a30-423b-5c94-bc30-abd863466e24",
+      "talk_slug": "deep-dive-into-native-rollups-spec-implementation-ethcc-9-91ff3a30",
+      "note": "Where native rollups stand technically: they wait on mandatory proofs and canonical gas, and one proposal would let L2s bring their own host.",
+      "lines": [
+        {
+          "t": 38,
+          "clean": "If you look at the [strawmap], you have native rollups at L*. But for that to happen, you need to have mandatory proofs and you need to have canonical gas, which is happening a bit before. But even before that, we will quite soon have optional proofs, which will basically enable all the experimentations that you can do on optional proofs to build native rollups.",
+          "caption": "So if you [clears throat] look at the straw map, you have native rollups at L* and uh but for that to happen, you need to have mandatory proofs and you need to have canonical gas which is happening a bit before. And but even before that, we will quite uh soon have optional proofs which will basically enable all the experimentations that you can do on optional proofs to build native rollups",
+          "chunks": [
+            {
+              "ord": 1,
+              "t": 38,
+              "raw": "So if you [clears throat] look at the straw map, you have native rollups at L* and uh but for that to happen, you need to have mandatory proofs and you need to have canonical gas which is happening a bit before."
+            },
+            {
+              "ord": 2,
+              "t": 79,
+              "raw": "And but even before that, we will quite uh soon have optional proofs which will basically enable all the experimentations that you can do on optional proofs to build native rollups"
+            }
+          ]
+        },
+        {
+          "t": 758,
+          "clean": "There is one other proposal that is trying to extend native rollups by saying that you should be able to run any host that you want. There shouldn't be a canonical L1 EVM host that is out there. You should be able to supply your own host. That means that Arbitrum and Optimism, they can basically provide their own host, their own guest program.",
+          "caption": "And there is uh one other proposal that is trying to extend native roll-ups by saying that you should be able to run any can any uh host that you want. There shouldn't be a canonical uh uh L1 EVM host that is out there. You should be able to supply your own host. That means that Arbitrum uh and then uh Optimism, they can basically provide their own host uh own guest program",
+          "chunks": [
+            {
+              "ord": 19,
+              "t": 758,
+              "raw": "And there is uh one other proposal that is trying to extend native roll-ups by saying that you should be able to run any can any uh host that you want. There shouldn't be a canonical uh uh L1 EVM host that is out there. You should be able to supply your own host. That means that Arbitrum uh and then uh Optimism, they can basically provide their own host uh own guest program"
+            }
+          ],
+          "edits": [
+            "false starts 'can any' and 'and then' dropped; 'their' supplied before 'own guest program'"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-16",
+      "kind": "quote",
+      "date": "2026-03-31",
+      "date_label": "31 March 2026",
+      "place": "EthCC[9]",
+      "speaker": "Matt Pearring",
+      "speaker_slug": "matt-pearring",
+      "talk_id": "cd97a808-bb6a-5dc0-b411-7ac1e422c651",
+      "talk_slug": "what-is-the-next-evolution-for-layer-2s-ethcc-9-cd97a808",
+      "note": "The full hearing for an L2 team: An L2 team argues that sovereignty and flexibility are the point of an L2. 'These institutions' are the institutional users (asset issuers and similar businesses) the talk discusses just before this passage.",
+      "lines": [
+        {
+          "t": 995,
+          "clean": "The point here is that sovereignty over your chain is what matters for these institutions. So, L2s, L3s, L whatever you name it, that's what works for them. Sequencing can be handled by one party or a fixed committee, and what this enables is the changing of those ordering policies to happen way more quickly. You don't have to find some arbitrary builder or coordinate with the whole network to agree on a hard fork. You can just update that with a vote.",
+          "caption": "The point here is that sovereignty over your chain is what matters for these institutions. So, L2s, L3s, L whatever you name it, that's what works for them. Sequencing can be handled by one party or a fixed committee. And what this enables is the changing of those ordering policies to happen way more quickly, right? You don't have to find some arbitrary builder or coordinate with the whole network to agree on a hard fork. You can just update that with a vote",
+          "chunks": [
+            {
+              "ord": 25,
+              "t": 995,
+              "raw": "The point here is that sovereignty over your chain is what matters for these institutions. So, L2s, L3s, L whatever you name it, that's what works for them. Sequencing can be handled by one party or a fixed committee. And what this enables is the changing of those ordering policies to happen way more quickly, right? You don't have to find some arbitrary builder or coordinate with the whole network to agree on a hard fork. You can just update that with a vote"
+            }
+          ]
+        },
+        {
+          "t": 1038,
+          "clean": "Cross-chain actions are really, really only possible in a good way for the user by having sharded networks. And so the way we get there, I think some others were talking about base rollups, but in our minds, using the technology to have a separate network and configuring that to your needs is the right way to do it. And I think you can argue on the security angle, but ultimately flexibility is a choice, not a compromise.",
+          "caption": "cross-chain actions are really really only possible in a good way for the user by having sharded networks. And so, the way we get there, I think some others were talking about base roll-ups, but in our minds, using the the technology to have a separate network and configuring that to your needs is the right way to do it. And I think you can argue on this on the security the security angle, but ultimately flexibility is a choice, not a compromise",
+          "chunks": [
+            {
+              "ord": 26,
+              "t": 1038,
+              "raw": "cross-chain actions are really really only possible in a good way for the user by having sharded networks. And so, the way we get there, I think some others were talking about base roll-ups, but in our minds, using the the technology to have a separate network and configuring that to your needs is the right way to do it. And I think you can argue on this"
+            },
+            {
+              "ord": 27,
+              "t": 1082,
+              "raw": "on the security the security angle, but ultimately flexibility is a choice, not a compromise"
+            }
+          ],
+          "edits": [
+            "false start 'on this' dropped"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "w-native-proof",
+      "kind": "written",
+      "date": "2026-05-05",
+      "date_label": "5 May 2026",
+      "place": "ethresear.ch",
+      "author": "donnoh",
+      "author_slug": null,
+      "source_title": "Native proof verification",
+      "source_url": "https://ethresear.ch/t/native-proof-verification/24798",
+      "note": "A May 2026 research proposal that generalises EIP-8025 so any rollup, even a non-EVM one, can use L1 proof verification. The post calls it the same principle as native rollups, more generalised. Posted under the handle donnoh; the post states no affiliation.",
+      "lines": [
+        {
+          "text": "The overarching goal of this proposal is to massively derisk and simplify L2 bridges, and more generally any onchain application that verifies ZK proofs, by introducing a standard L1 primitive that any project can adopt in place of its bespoke onchain verifier stack."
+        },
+        {
+          "text": "just as native rollups inherit L1’s execution environment, native proof verification lets any rollup inherit L1’s proof verification infrastructure."
+        }
+      ]
+    },
+    {
+      "id": "s-17",
+      "kind": "quote",
+      "date": "2026-05-08",
+      "date_label": "May 2026",
+      "place": "EthPrague 2026",
+      "speaker": "Kumar Satyarth",
+      "speaker_slug": "kumar-satyarth",
+      "talk_id": "89e01269-0255-4f03-bddf-ac1c6e5e350b",
+      "talk_slug": "gap-between-included-executed-preconf-deep-dive-satyarth",
+      "note": "The speed objection and the preconfirmation answer, with the honest cost: a trusted gateway comes back, held in check by slashing.",
+      "lines": [
+        {
+          "t": 11,
+          "clean": "Base rollups have a very beautiful property. They use Ethereum's own validator instead of centralized sequencer, like similar how Arbitrum or Solana use. So you don't trust a centralized sequencer, but you trust the same set which is already running on the L1, but you have to pay the price for L1, which is the clock, the 12 seconds problem. 12 seconds per block. 12 seconds is fine if you're sending, let's say, ETH to your friend, but it's a disaster for a trader, arbitrageur or liquidator or, let's say, very importantly, cross-chain solvers.",
+          "caption": "So base rollups have a very beautiful property. So they use role Ethereum's own validator instead of centralized sequencer like similar how arbitum or Solana use. So you don't trust a centralized sequencer and but you trust the same set which is uh already running on the L1 but you have to pay the price for L1 which is the clock that is the 12 seconds problem. So 12 seconds per block. So 12 seconds is fine for if you're sending let's say ETH to your friend but it's a disaster for a trader arbitrageer or liquidator or let's say very importantly crosschain solvers",
+          "chunks": [
+            {
+              "ord": 0,
+              "t": 11,
+              "raw": "So base rollups have a very beautiful property."
+            },
+            {
+              "ord": 1,
+              "t": 53,
+              "raw": "So they use role Ethereum's own validator instead of centralized sequencer like similar how arbitum or Solana use. So you don't trust a centralized sequencer and but you trust the same set which is uh already running on the L1 but you have to pay the price for L1 which is the clock that is the 12 seconds problem. So 12 seconds per block. So 12 seconds is fine for if you're sending let's say ETH to your friend but it's a disaster for a trader arbitrageer or liquidator or let's say very importantly crosschain solvers"
+            }
+          ],
+          "edits": [
+            "garbled 'role' after 'they use' dropped"
+          ]
+        },
+        {
+          "t": 556,
+          "clean": "This comes as an honest trade-off. You are putting a trusted role, the gateway, inside it, and back into the system where you designed to remove the trusted role. What execution precons give you is a gateway whose trust is bounded by economic slashing. So you are getting economic security, and not by reputation or hope. That's not like the L1 trust model, and that's also not a centralized sequencer. So it's a third thing.",
+          "caption": "this comes as a honest trade-off. So uh let's say be honest what you are trading. So you are putting a trusted role the gateway inside it and back into the system where you designed to remove the trusted role right. So you are still putting a central entity gateway inside it. So what execution precons give you is a gateway whose trust uh is bounded by economic slashing. So you are getting economic security and not by reputation or hope. So that's not like L1 trust model and that's also not a centralized sequencer right you are actually getting a economic security here. So it's a third thing",
+          "chunks": [
+            {
+              "ord": 13,
+              "t": 556,
+              "raw": "this comes as a honest trade-off. So uh let's say be honest what you are trading. So you are putting a trusted role the gateway inside it and back into the system where you designed to remove the trusted role right. So you"
+            },
+            {
+              "ord": 14,
+              "t": 599,
+              "raw": "are still putting a central entity gateway inside it. So what execution precons give you is a gateway whose trust uh is bounded by economic slashing. So you are getting economic security and not by reputation or hope. So that's not like L1 trust model and that's also not a centralized sequencer right you are actually getting a economic security here. So it's a third thing"
+            }
+          ],
+          "edits": [
+            "sentences 'Let's say, be honest what you are trading.', 'You are still putting a central entity, the gateway, inside it.' and 'You are actually getting economic security here.' dropped as repeats"
+          ]
+        }
+      ],
+      "speaker_confirmed": true
+    },
+    {
+      "id": "s-status",
+      "kind": "status",
+      "date": "2026-11-10",
+      "date_label": "10 November 2026",
+      "place": "EIP-8079",
+      "title": "Still a draft",
+      "body": "Native rollups are written up as EIP-8079, which would expose Ethereum's state transition function through a new EXECUTE precompile. It is a Draft, created 13 November 2025, and no fork has proposed or scheduled it. The EIP leaves sequencing open, so a native rollup can be based or not. EIP-8025, the optional execution proofs that Gajinder Singh expects to enable native rollup experiments, was declined for Hegota at All Core Devs Consensus #189 on 15 October 2026 (Forkcast). The Strawmap on strawmap.org, updated 2 November 2026, places native rollups in the placeholder fork L*.",
+      "link": "https://eips.ethereum.org/EIPS/eip-8079",
+      "link_label": "Read EIP-8079",
+      "note": "Primary sources: EIP-8079 (eips.ethereum.org/EIPS/eip-8079): status Draft, created 13 Nov 2025, authors Luca Donno and Justin Drake, abstract \"Expose the state transition function to the execution layer via a new EXECUTE precompile\"; its Rationale says a native rollup can use a permissioned sequencer, based sequencing, or a staked network. Forkcast EIP record (ethereum/forkcast src/data/eips/8079.json): empty forkRelationships. The only All Core Devs decisions found on this map concern EIP-7917 (CFI #155, SFI #158, live in Fusaka), a preconfirmation fix; none decides based versus native. EIP-8025: Forkcast record, Proposed for Hegota at ACDC #178 (14 May 2026), Declined at ACDC #189 (15 Oct 2026). strawmap.org drawing read 10 Nov 2026 ('updated Nov 2, 2026'): native rollups at L*, mandatory proofs at K*. Re-read 10 Nov 2026: EIP-8079 still Draft (last change 21 Nov 2025, formatting), Forkcast record still has no fork relationships."
+    }
+  ],
+  "excluded": [
+    {
+      "id": "x-01",
+      "talk_id": "77b2db72-7f85-4cdb-b3db-112f665b29f3",
+      "reason": "Native Rollups Call #0: captions only, no speaker labels and no credited speaker, so no line can be attributed."
+    },
+    {
+      "id": "x-02",
+      "talk_id": "671b841b-eb0b-416e-9b32-61bd60c04ea0",
+      "reason": "Native Rollups Call #1: same; no speaker labels, no credited speaker."
+    },
+    {
+      "id": "x-03",
+      "talk_id": "e6dd1f03-b52f-4a0c-b7e8-926ee69cb47f",
+      "reason": "Ethereum Sequencing and Preconfirmations Call #8: no speaker labels, no credited speaker."
+    },
+    {
+      "id": "x-04",
+      "talk_id": "d98160bb-dcf5-4205-b7e9-a7ed84a171be",
+      "reason": "Ethereum Sequencing and Preconfirmations Call #17: no speaker labels, no credited speaker (Justin Drake and rollup founders speak but cannot be attributed)."
+    },
+    {
+      "id": "x-05",
+      "talk_id": "e36bc2a0-9dcb-42eb-9fa7-da562b880ca5",
+      "reason": "Ethereum Sequencing and Preconfirmations Call #18: no speaker labels, no credited speaker."
+    },
+    {
+      "id": "x-06",
+      "talk_id": "3703fa79-e71d-440c-985c-944d15f874a4",
+      "reason": "Ethproofs Call #5: Native Rollups: no speaker labels, no credited speaker."
+    },
+    {
+      "id": "x-07",
+      "talk_id": "e9e82516-66a3-45c6-9846-d1f714405fc7",
+      "reason": "FOCIL Breakout #21: Luca Donno's native-rollup remarks are labelled 'donnoh | L2BEAT', a name not mapped to a speaker profile, so the loader would refuse them (his Devconnect talk is used instead)."
+    },
+    {
+      "id": "x-08",
+      "talk_id": "8f9b15cc-f571-4b77-bc7e-4908d285fcc8",
+      "reason": "Taiko Based Boosted Rollups Explainer (Dec 2023): no credited speaker."
+    },
+    {
+      "id": "x-09",
+      "talk_id": "20903c7e-07fe-4249-9692-4f5a7ef26aea",
+      "reason": "Bankless, 17 Mar 2025 (segments 76 to 78): the answer to the customisation question ('top L2s try to be EVM equivalent; every divergence is a technical limitation') could be Justin Drake or Uma Roy; not confirmed, so left out."
+    },
+    {
+      "id": "x-10",
+      "talk_id": "305c4734-3786-4960-b353-89a0c5ca2787",
+      "reason": "Bell Curve, 24 Jan 2025 (segment 56): the objection that native rollups limit customisation is spoken by Jill Gunter or Nick White; not confirmed, so only Uma Roy's reply is used."
+    },
+    {
+      "id": "x-11",
+      "talk_id": "860007e4-6d64-443a-a18b-b4384a1beb97",
+      "reason": "The Daily Gwei, 12 Mar 2023: Anthony Sassano reads Justin Drake's original based-rollup post aloud; those are Justin's words in another voice, not a quote of the speaker."
+    },
+    {
+      "id": "x-n01",
+      "talk_id": "3703fa79",
+      "reason": "Ethproofs Call #5: Native Rollups (26 Sep 2025): captions only, no speaker labels, no credited speaker; no line can be attributed."
+    },
+    {
+      "id": "x-n02",
+      "talk_id": "d98160bb",
+      "reason": "Ethereum Sequencing and Preconfirmations calls #0-#18 (Feb 2024 to May 2025): captions only, no speaker labels, no credited speakers."
+    },
+    {
+      "id": "x-n03",
+      "talk_id": "fb212399",
+      "reason": "Universal synchronous composability, Justin Drake (EthCC 7, 10 Jul 2024): no transcript in the catalogue (Livepeer/StreamETH talk); named as a gap."
+    },
+    {
+      "id": "x-n04",
+      "talk_id": "97cb9b40",
+      "reason": "Ethereum needs native L2, Martin Köppelmann (Devcon 7, 15 Nov 2024): a Livepeer copy has no transcript; the YouTube copy (1a2a7379) is about execution sharding, which Justin Drake later called a related but different idea. Not used."
+    },
+    {
+      "id": "x-n05",
+      "talk_id": "6c611105",
+      "reason": "Optimism Sequencer Support, John Chase (17 Nov 2023) and other Devcon/EthCC/ETHDam sequencer and Taiko/Spire/Espresso talks without transcripts (Livepeer/StreamETH): gaps, not covered by the Supadata run."
+    },
+    {
+      "id": "x-n06",
+      "talk_id": "d033af3a",
+      "reason": "Mteam on Bankless, \"You're Not Bullish Enough on Based Rollups\" (20 Nov 2024), Scaling Ethereum With Based Rollups (Bell Curve, 3 Dec 2024), Taiko and Spire explainers (2023-2025): repeat the based-side case already carried by Justin Drake, Taiko and Spire stops; redundant."
+    },
+    {
+      "id": "x-n07",
+      "talk_id": "f6659c8b",
+      "reason": "Unified Ethereum vs L2 Ecosystem Competition panel (Devcon 7, 13 Nov 2024): mostly about L2 decentralisation and interop; the based and native ideas are barely discussed; minor."
+    },
+    {
+      "id": "x-n08",
+      "talk_id": "5581fd31",
+      "reason": "Vitalik Signals the End of the Rollup-Centric Roadmap (Bankless, 7 Feb 2026): a reaction to a post on X; the arc is carried by the Daily Gwei stop on 4 Feb 2026; redundant."
+    },
+    {
+      "id": "x-n09",
+      "talk_id": "ee083440",
+      "reason": "Conor McMenamin, A Revenue Model for Based Rollups (Devcon 7): about income and expenditure of based rollup players; not drafted this pass; candidate for a later pass."
+    },
+    {
+      "id": "x-fusaka-files",
+      "talk_id": "6d3a72bc-0e69-42e3-a27f-9e310e50800a",
+      "reason": "The Fusaka Files, 15 Nov 2025 (Justin Drake, Pooja Ranjan): EIP-7917 explained after the decision; a podcast recap that repeats the preconfirmation case. Listed so the talk is considered (it was missing from the catalogue sweep). Read ord 39 only."
+    },
+    {
+      "id": "x-eip8025-189",
+      "talk_id": "f56d4b7c-384d-478b-ae77-b7c86fea34cb",
+      "reason": "ACDC #189, 15 Oct 2026: EIP-8025 (optional execution proofs, the step that enables native-rollup experiments per s-15) was not CFI'd for Hegota (Forkcast: Declined). Read ord 49-110: the argument is about L1 zkEVM process (Lightclient, Potuz, Ignacio Hagopian), not based vs native. Carried as one sentence in the status body instead of a stop."
+    },
+    {
+      "id": "x-ethbeat-minor",
+      "reason": "Minor events from the L2BEAT/ethbeat native rollups tracker and The Block, none a decision or a new argument on based versus native: the ethrex proof of concept of EIP-8079 (The Block reports a demo on 10 to 11 Mar 2026, the tracker dates the merged PoC to Aug 2026; sources conflict), the FOCIL-based forced transactions post (Jun 2026), the EIP-8288 and EIP-8357 drafts (Sep and Oct 2026) and the live devnet (Oct 2026). Not read in full."
+    }
+  ],
+  "audit": {
+    "date": "2026-11-10",
+    "spec_changes": [
+      {
+        "eip": "EIP-7917",
+        "date": "2025-03-25",
+        "change": "EIP added (Draft): proposer_lookahead stored in the beacon state.",
+        "link": "https://github.com/ethereum/EIPs/commit/4c837b530",
+        "agreed_at": "ACDC #154 (3 Apr 2025) first raised for Fusaka; #155 (17 Apr) CFI; #158 (29 May) SFI",
+        "stop": "n-7917-01 (#154), n-7917-02/03 (#155), n-7917-04 (#158), s-7917-live; s-08 explains it (21 Apr)"
+      },
+      {
+        "eip": "EIP-7917",
+        "date": "2025-04-02",
+        "change": "Adds Danny Ryan quote, SSLE section, notes APS reduces need for SSLE.",
+        "link": "https://github.com/ethereum/EIPs/commit/184c68108",
+        "agreed_at": "none (rationale text)",
+        "why_not": "Rationale text only, no behaviour change."
+      },
+      {
+        "eip": "EIP-7917",
+        "date": "2025-06-04",
+        "change": "proposer_lookahead type List to Vector (fixed length).",
+        "link": "https://github.com/ethereum/EIPs/commit/93f9b39b2",
+        "agreed_at": "Follows consensus-specs Fusaka PR; no call item found",
+        "why_not": "Serialisation type detail, same behaviour."
+      },
+      {
+        "eip": "EIP-7917",
+        "date": "2025-08-22",
+        "change": "Off-by-one fix: lookahead for current_epoch + MIN_SEED_LOOKAHEAD + 1; helper functions reflected from consensus-specs.",
+        "link": "https://github.com/ethereum/EIPs/commit/ff1c41222",
+        "agreed_at": "Spec-conformance fix, tracked with consensus-specs; call not identified",
+        "why_not": "Bug fix aligning the EIP text with the shipped spec; no new argument. Mentioned in the s-7917-live note."
+      },
+      {
+        "eip": "EIP-7917",
+        "date": "2025-09-17",
+        "change": "Review, Last Call (29 Sep), Final (16 Dec 2025).",
+        "link": "https://eips.ethereum.org/EIPS/eip-7917",
+        "agreed_at": "Fusaka mainnet 3 Dec 2025",
+        "stop": "s-7917-live"
+      },
+      {
+        "eip": "EIP-8079",
+        "date": "2025-11-20",
+        "change": "EIP merged as Draft (created 13 Nov 2025). Spec body is mostly TBD.",
+        "link": "https://github.com/ethereum/EIPs/commit/c61e73cfd",
+        "agreed_at": "none, no ACD item",
+        "stop": "s-status; origin posts w-drake-native-2025"
+      },
+      {
+        "eip": "EIP-8079",
+        "date": "2025-11-21",
+        "change": "Formatting fix.",
+        "link": "https://github.com/ethereum/EIPs/commit/7187168b9",
+        "agreed_at": "none",
+        "why_not": "Formatting only. EIP-8079 has had no other change; Gajinder Singh (EthCC9, s-15) says the real spec has evolved beyond the EIP text, which is not in the repo."
+      },
+      {
+        "eip": "EIP-8025 (related)",
+        "date": "2026-05-14",
+        "change": "Proposed for Hegota at ACDC #178; Declined for Hegota at ACDC #189 (15 Oct 2026) per Forkcast. First rung of the native-rollup ladder in s-15.",
+        "link": "https://forkcast.org/calls/acdc/189",
+        "agreed_at": "ACDC #178, #188, #189",
+        "why_not": "L1 zkEVM process argument, not based vs native. Carried as one sentence in s-status; see x-eip8025-189."
+      }
+    ],
+    "timelines": [
+      {
+        "title": "ethbeat.org Native rollups (L2BEAT) tracker",
+        "url": "https://ethbeat.org/native-rollups",
+        "events": [
+          {
+            "date": "2025-01",
+            "event": "Native rollups - superpowers from L1 execution (Justin Drake)",
+            "stop": "w-drake-native-2025"
+          },
+          {
+            "date": "2025-11",
+            "event": "EIP-8079 Draft",
+            "stop": "s-status"
+          },
+          {
+            "date": "2026-05",
+            "event": "Native proof verification post",
+            "stop": "w-native-proof"
+          },
+          {
+            "date": "2026-06",
+            "event": "FOCIL-based forced transactions post",
+            "excluded": "x-ethbeat-minor"
+          },
+          {
+            "date": "2026-08",
+            "event": "ethrex PoC of EIP-8079 merged",
+            "excluded": "x-ethbeat-minor"
+          },
+          {
+            "date": "2026-09",
+            "event": "EIP-8288 and EIP-8357 drafts",
+            "excluded": "x-ethbeat-minor"
+          },
+          {
+            "date": "2026-10",
+            "event": "Live devnet",
+            "excluded": "x-ethbeat-minor"
+          }
+        ]
+      },
+      {
+        "title": "The Block: native rollups prototype (11 Mar 2026)",
+        "url": "https://www.theblock.co/post/393160/ethereum-researchers-demo-native-rollups-prototype-that-could-simplify-layer-2-verification",
+        "events": [
+          {
+            "date": "2026-03-10",
+            "event": "ethrex native rollups demo of EIP-8079",
+            "excluded": "x-ethbeat-minor"
+          }
+        ]
+      },
+      {
+        "title": "EF blog: How L1 and L2s can build the strongest possible Ethereum (23 Mar 2026)",
+        "url": "https://blog.ethereum.org/2026/03/23/l1-l2-ethereum",
+        "events": [
+          {
+            "date": "2026-03-23",
+            "event": "EF L1/L2 post: L2s seeking the tightest integration should push towards native rollups; EF invests R&D in native rollups",
+            "stop": "w-ef-l1-l2-2026"
+          }
+        ]
+      },
+      {
+        "title": "Wavect: native vs based rollups (Aug-Sep 2026)",
+        "url": "https://wavect.io/blog/native-rollups-vs-based-rollups/",
+        "events": [
+          {
+            "date": "2023-03",
+            "event": "Based rollup post",
+            "stop": "w-drake-based-2023"
+          },
+          {
+            "date": "2026-03-23",
+            "event": "EF L1/L2 post: L2s seeking the tightest integration should push towards native rollups; EF invests R&D in native rollups",
+            "stop": "w-ef-l1-l2-2026"
+          }
+        ]
+      },
+      {
+        "title": "Vitalik, 3 Feb 2026 (via The Block, Defiant coverage)",
+        "url": "https://thedefiant.io/vitalik-says-ethereum-s-layer-2-vision-no-longer-makes-sense",
+        "events": [
+          {
+            "date": "2026-02-03",
+            "event": "Vitalik: original L2 vision as branded shards no longer makes sense; supports the native rollup precompile",
+            "stop": "w-vbuterin-l2-2026"
+          }
+        ]
+      },
+      {
+        "title": "Fusaka mainnet announcement",
+        "url": "https://blog.ethereum.org/2025/11/06/fusaka-mainnet-announcement",
+        "events": [
+          {
+            "date": "2025-12-03",
+            "event": "Fusaka live with EIP-7917",
+            "stop": "s-7917-live"
+          }
+        ]
+      }
+    ]
+  }
+}

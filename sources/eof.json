@@ -1,0 +1,165 @@
+{
+  "map": "eof",
+  "sources": [
+    {
+      "url": "https://ethereum-magicians.org/t/evm-object-format-eof/5727/1",
+      "read_at": "2026-11-06 21:59:22.568478+00",
+      "read_as": "forum raw text",
+      "sha256": "04f2bc8d0225b05618db119f95e94232eb6b86808bd8e3a03f624fc38d96a7b7",
+      "quoted_by": [
+        "w-axic-2021"
+      ],
+      "passages": [
+        "Last week I have shared a document on the Eth R&D discord explaining some background on why some EVM changes are hard and motivation for improving the situation:",
+        "It also suggests a container format for EVM, which would enable further improvements, such as removing jumpdests, moving to static jumps, etc."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/eof-proposal-ban-code-introspection-of-eof-accounts/12113/1",
+      "read_at": "2026-11-06 21:59:23.17422+00",
+      "read_as": "forum raw text",
+      "sha256": "d0f1e83f849baa3e862524c820ce426cb16dde2d95e46c317f87f06de3caa42c",
+      "quoted_by": [
+        "w-vitalik-2022"
+      ],
+      "passages": [
+        "One of the arguments against any EVM changes is that it's much harder to add features to the EVM than to remove them (eg. the complexities around even removing a little-used opcode like SELFDESTRUCT), and so if the EVM keeps changing, ever-increasing ugliness and complexity is likely to be the outcome.",
+        "One way to greatly reduce this tradeoff is to find a way to automatically convert version n EVM code to version n+1 EVM code every time there is an upgrade (not necessarily immediately; perhaps convert when old code is \"touched\", and make sure that all version n code is converted to version n+1 before attempting to implement version n+2).",
+        "Ban EOF-formatted code from being read with CODECOPY, CODESIZE, EXTCODECOPY, EXTCODESIZE and EXTCODEHASH"
+      ]
+    },
+    {
+      "url": "https://mariusvanderwijden.github.io/blog/2024/07/12/EOF/",
+      "read_at": "2026-11-06 21:59:39.41881+00",
+      "read_as": "page text",
+      "sha256": "226c11fb357618f8da9fa03b23f353bb6f330bedfa1afd4dca42f125bbd1904c",
+      "quoted_by": [
+        "w-marius-2024"
+      ],
+      "passages": [
+        "The biggest issue I see is that EOF is extremely complex.",
+        "All-in-all EOF introduces 19 new opcodes. Additionally it removes 16 opcodes present in the existing EVM from EOF and changes the behavior of multiple opcodes in both versions.",
+        "Additionally EOF introduces the code and stack validation. This means that the code is verified before it’s being deployed. Therefore the code validity now becomes part of consensus which means that bugs in the code or stack validation will result in consensus bugs.",
+        "I personally believe that L1 should stop shipping small incremental improvements and should focus on big unlocks like 4844 and Verkle. These changes will really enable new things to be built on Ethereum, while EOF in my opinion only makes existing things slightly faster or slightly cheaper."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/ethereum-is-turning-into-a-labyrinth-of-unnecessary-complexity-with-eof-lets-reconsider-eof/23136/1",
+      "read_at": "2026-11-06 21:59:24.730709+00",
+      "read_as": "forum raw text",
+      "sha256": "7a839713e9dbaba52456cca7eb78076171aa58d62923db0246c6f1275f324824",
+      "quoted_by": [
+        "w-pcaversaccio-2025"
+      ],
+      "passages": [
+        "Furthermore, the purported benefits don't require EOF, they could be implemented in the current EVM in much less invasive ways.",
+        "In other words, all the benefits of EOF can be introduced in more piecemeal, less invasive updates to the EVM.",
+        "EOF has been a moving target: EOF is looking to get shipped even though parts of the spec keep changing, making it difficult for compiler and app devs to review the entire package."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/ethereum-is-turning-into-a-labyrinth-of-unnecessary-complexity-with-eof-lets-reconsider-eof/23136/3",
+      "read_at": "2026-11-06 21:59:25.679282+00",
+      "read_as": "forum raw text",
+      "sha256": "9a45277d43d84cec047684a92c43d7ce8a8716a1c07e12e02fb928ab07adfa97",
+      "quoted_by": [
+        "w-ramana-2025"
+      ],
+      "passages": [
+        "I would argue that a stable VM, on which people can invest in building up excellent tooling and apps with confidence, is much more valuable than the ability to evolve the VM to compete with other VMs, since this has the cost of scaring away investment in something that's gonna potentially change in the future."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/ethereum-is-turning-into-a-labyrinth-of-unnecessary-complexity-with-eof-lets-reconsider-eof/23136/42",
+      "read_at": "2026-11-06 21:59:26.304202+00",
+      "read_as": "forum raw text",
+      "sha256": "b855f25cb124c7c9bd890e5bd3228a8129c69cd9139ce4c7926bd4c8acc310ce",
+      "quoted_by": [
+        "w-moody-2025"
+      ],
+      "passages": [
+        "I wrote a lot of Uniswap V3 so let me comment on this. O(10%) is not a good ROI for the amount of mental overhead EOF introduces for me as a dapp developer.",
+        "I don't argue with the benefits of EOF, I take issue with the immeasurable complexity cost of those improvements."
+      ]
+    },
+    {
+      "url": "https://notes.ethereum.org/@ipsilon/eof_fusaka_options",
+      "read_at": "2026-11-06 21:59:40.557728+00",
+      "read_as": "page text",
+      "sha256": "774f434f7b06c132b36c50e91431ec00c9618f1ad52251971b377c4484a55c10",
+      "quoted_by": [
+        "w-ipsilon-2025"
+      ],
+      "passages": [
+        "Piecemeal solutions—introducing EOF features incrementally via separate EIPs across multiple forks—might seem to ease immediate complexity but ultimately yield a more convoluted, resource-intensive EVM once complete, as the lack of a unified structure magnifies integration woes.",
+        "Worse, their staggered rollouts amplify scheduling risks: EVM changes are consistently deprioritized in fork planning, often delayed by other upgrades, rendering deployment of all pieces in a timely fashion unlikely."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/ethereum-is-turning-into-a-labyrinth-of-unnecessary-complexity-with-eof-lets-reconsider-eof/23136/59",
+      "read_at": "2026-11-06 21:59:26.820368+00",
+      "read_as": "forum raw text",
+      "sha256": "0858bbbc3b39305b56755d26d56e390bf8114988344e693b92334f02917a596c",
+      "quoted_by": [
+        "w-msoos-2025"
+      ],
+      "passages": [
+        "I work on hevm, a symbolic execution framework for EVM with over 5k commits. What I can say is that EOF will significantly lower the burden of doing formal verification of contracts.",
+        "Based on these experiences, my opinion is that (1) we need formal verification or bugs will slip through and (2) without EOF, formal verification of contracts is gonna keep on being harder than it needs to be."
+      ]
+    },
+    {
+      "url": "https://soliditylang.org/blog/2025/03/27/the-case-for-eof/",
+      "read_at": "2026-11-06 21:59:39.937156+00",
+      "read_as": "page text",
+      "sha256": "4323e05bc6feade4a29407679a399d9abf994b006e9759933ebbb7422739208d",
+      "quoted_by": [
+        "w-solidity-2025"
+      ],
+      "passages": [
+        "The EVM Object Format is a long awaited upgrade that modernizes the EVM and removes obstacles that have wide-ranging effects on the entire language, tooling and application ecosystem on Ethereum. Solidity is in full support of the proposal and in this post we would like to explain why.",
+        "It is undeniable that the Ethereum clients bear most of the maintenance burden of this change as they will have to support both EOF and the legacy EVM for the foreseeable future. The benefits to clients of adopting EOF are also much less obvious.",
+        "However, we suspect that the burden is largely overstated. EOF is not a completely new VM design. It shares a lot more with the legacy EVM than it differs.",
+        "If the argument is that there should be no changes on the execution layer at all, our opinion is that it is way too early to ossify it."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/glamsterdam-headliner-proposal-eof/24464/1",
+      "read_at": "2026-11-06 21:59:27.402481+00",
+      "read_as": "forum raw text",
+      "sha256": "b09299d7546ec7b3c87d928f5ede91fc6d8b197a5487a9afe170bd6fb6e3d628",
+      "quoted_by": [
+        "w-wei-2025"
+      ],
+      "passages": [
+        "This is a headliner proposal for EOF for Glamsterdam. EOF was SFI'd and then DFI'd for Fusaka. This proposal repropose it for Glamsterdam."
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/evm-immediates/25605/1",
+      "read_at": "2026-11-06 21:59:28.283678+00",
+      "read_as": "forum raw text",
+      "sha256": "1592abefdb334db54c09a6fb4014a5cd281c26545366263c29086ea8ec9e10bb",
+      "quoted_by": [
+        "w-frangio-2025"
+      ],
+      "passages": [
+        "Many instructions have been proposed in the past that would've liked to use immediate operands, where the operand value is a constant hardcoded in the bytecode instead. No such instruction has been accepted yet because of concerns about breaking existing EVM bytecode.",
+        "The simplest way to introduce immediates without breaking existing code is to use EOF-like bytecode versioning"
+      ]
+    },
+    {
+      "url": "https://ethereum-magicians.org/t/delivering-an-impactful-2026/26532/1",
+      "read_at": "2026-11-06 21:59:29.156733+00",
+      "read_as": "forum raw text",
+      "sha256": "6a6a2b4785d315f6786ee2c586c32ab7df63f2d89e1da61af62cfbe0da034595",
+      "quoted_by": [
+        "w-stokes-2025"
+      ],
+      "passages": [
+        "These are only my personal views, and I wanted to get something out in writing ahead of upcoming ACD calls where we will be making scoping decisions.",
+        "By way of summary, Verkle was not selected due to technical risk (different state schemes became more attractive given other technological developments) and EOF was not selected due to social risk (the change was deemed too big by the community for something so central as Ethereum’s core virtual machine)."
+      ]
+    }
+  ]
+}
