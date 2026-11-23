@@ -2064,7 +2064,7 @@
       "place": "All Core Devs Execution #249",
       "title": "Where it stands, November 19",
       "body": "At ACDE #249, developers tentatively targeted the week of December 14 for Glamsterdam on Hoodi, assuming no specification changes. They deferred the go/no-go decision to the next consensus-layer call. A go decision would lock in the current specification for that path. Neither the fork date nor the decision to proceed unchanged was confirmed.",
-      "link": "https://github.com/ethereum/forkcast/blob/main/public/artifacts/acde/2026-11-19_249/key_decisions.json#L238-L245",
+      "link": "https://github.com/ethereum/forkcast/blob/14d897d00873d1496e290bbbb4de2e8dc9d4a757/public/artifacts/acde/2026-11-19_249/key_decisions.json#L4-L8",
       "link_label": "Call decision record"
     }
   ],
