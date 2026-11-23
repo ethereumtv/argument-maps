@@ -451,6 +451,19 @@
         "On the other hand, beyond these simple repricings, accounting changes were also proposed as part of Glamsterdam. Some of these changes led to genuine, unforeseen problems. The task is to understand the magnitude of these issues.",
         "Our recommendation: Do not proceed with spec changes or Hoodi scheduling until publication of findings and until findings lead to a clear position."
       ]
+    },
+    {
+      "url": "https://github.com/ethereum/pm/issues/2285#issuecomment-7011333049",
+      "read_at": "2026-11-23T11:52:26.841261+00:00",
+      "read_as": "GitHub API comment body",
+      "sha256": "d7b3cfc7e3e42bc3a989748214ed24bbb214b1b7a1b10cd2d38a85840e326be4",
+      "quoted_by": [
+        "w-acde249-besu"
+      ],
+      "passages": [
+        "We expect delays and the sacrifice of Sepolia with both options listed.",
+        "We think just fixing the spec tampers with Glamsterdam the least."
+      ]
     }
   ]
 }

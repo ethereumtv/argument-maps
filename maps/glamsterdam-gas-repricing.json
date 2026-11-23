@@ -2035,6 +2035,37 @@
       "link": "https://forkcast.org/upgrade/glamsterdam",
       "link_label": "See Glamsterdam on Forkcast",
       "note": "Primary sources, re-read 10 Nov 2026: Forkcast (ethereum/forkcast, src/components/network-upgrade/OverviewSection.tsx: Hoodi due to fork on 26 Oct 2026, ACDE 248 postponed it to analyse a security disclosure affecting the repricing EIPs, no new date set; src/data/eips/8037.json and 8038.json: both Scheduled for Glamsterdam); the EF blog of 6 Nov 2026; eips.ethereum.org pages for EIP-8037 and EIP-8038 (status Last Call); Marius van der Wijden on X, 10 Nov 2026 (https://x.com/vdWijden/status/2120051444900339798: no decision on spec changes or Hoodi yet; audit reports targeted before ACDT on Nov 16; findings and open Q&A, app devs welcome); ethereum/pm#2299 (ACDT #103, 16 Nov 2026, agenda: status of ongoing audits, completion expected 16-19 Nov; app team contract findings; open Q&A); ethereum/pm#2285 (ACDE #249, 19 Nov 2026). The body says only what these sources say. Added 10 Nov: EIPs#12581 (state open, checked on GitHub, with no call decision in the pm agendas read); Ethlabs (https://ethlabs.org/writings/tracking-glamsterdam.html) for the 12 Nov ACDC; EF blog of 6 Nov for the 13 Nov engagement end. The X post of 10 Nov could not be opened in this check (HTTP 402) and the pm#2299 agenda supports its 16 Nov scope."
+    },
+    {
+      "id": "w-acde249-besu",
+      "kind": "written",
+      "date": "2026-11-19",
+      "date_label": "19 November 2026",
+      "place": "All Core Devs Execution #249, written exchange",
+      "author": "jflo",
+      "affiliation": "Besu",
+      "source_title": "Besu prefers a narrow EIP-8037 revision",
+      "source_url": "https://github.com/ethereum/pm/issues/2285#issuecomment-7011333049",
+      "note": "Writing for Besu, JFlo argued that a narrow fix would be less complex to test than moving EIP-8037 to Hegotá. He clarified that either choice would delay Glamsterdam and cost the current Sepolia setup. That’s Besu’s position, not a decision from the call.",
+      "lines": [
+        {
+          "text": "We expect delays and the sacrifice of Sepolia with both options listed."
+        },
+        {
+          "text": "We think just fixing the spec tampers with Glamsterdam the least."
+        }
+      ]
+    },
+    {
+      "id": "s-acde249-hoodi",
+      "kind": "status",
+      "date": "2026-11-19",
+      "date_label": "19 November 2026",
+      "place": "All Core Devs Execution #249",
+      "title": "Where it stands, November 19",
+      "body": "At ACDE #249, developers tentatively targeted the week of December 14 for Glamsterdam on Hoodi, assuming no specification changes. They deferred the go/no-go decision to the next consensus-layer call. A go decision would lock in the current specification for that path. Neither the fork date nor the decision to proceed unchanged was confirmed.",
+      "link": "https://github.com/ethereum/forkcast/blob/main/public/artifacts/acde/2026-11-19_249/key_decisions.json#L238-L245",
+      "link_label": "Call decision record"
     }
   ],
   "excluded": [
